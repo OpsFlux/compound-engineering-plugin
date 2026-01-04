@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en" class="theme-dark">
+<html lang="zh-CN" class="theme-dark">
 
 <head>
   <meta charset="utf-8" />
-  <title>MCP Servers Reference - Compounding Engineering</title>
-  <meta content="Complete reference for the two MCP servers in the Compounding Engineering plugin." name="description" />
+  <title>MCP 服务器参考 - 复合工程</title>
+  <meta content="复合工程插件中两个 MCP 服务器的完整参考。" name="description" />
   <meta content="width=device-width, initial-scale=1" name="viewport" />
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
@@ -20,37 +20,37 @@
       <div class="sidebar-header">
         <a href="../index.html" class="nav-brand">
           <span class="logo-icon"><i class="fa-solid fa-layer-group"></i></span>
-          <span class="logo-text">CE Docs</span>
+          <span class="logo-text">CE文件</span>
         </a>
       </div>
       <nav class="sidebar-nav">
         <div class="nav-section">
-          <h3>Getting Started</h3>
+          <h3>入门</h3>
           <ul>
-            <li><a href="getting-started.html">Installation</a></li>
+            <li><a href="getting-started.html">安装</a></li>
           </ul>
         </div>
         <div class="nav-section">
-          <h3>Reference</h3>
+          <h3>参考</h3>
           <ul>
-            <li><a href="agents.html">Agents (23)</a></li>
-            <li><a href="commands.html">Commands (13)</a></li>
-            <li><a href="skills.html">Skills (11)</a></li>
-            <li><a href="mcp-servers.html" class="active">MCP Servers (two)</a></li>
+            <li><a href="agents.html">代理商 (23)</a></li>
+            <li><a href="commands.html">命令 (13)</a></li>
+            <li><a href="skills.html">技能 (11)</a></li>
+            <li><a href="mcp-servers.html" class="active">MCP 服务器（两台）</a></li>
           </ul>
         </div>
         <div class="nav-section">
-          <h3>Resources</h3>
+          <h3>资源</h3>
           <ul>
-            <li><a href="changelog.html">Changelog</a></li>
+            <li><a href="changelog.html">变更日志</a></li>
           </ul>
         </div>
         <div class="nav-section">
-          <h3>On This Page</h3>
+          <h3>在此页上</h3>
           <ul>
-            <li><a href="#playwright">Playwright</a></li>
-            <li><a href="#context7">Context7</a></li>
-            <li><a href="#manual-config">Manual Configuration</a></li>
+            <li><a href="#playwright">剧作家</a></li>
+            <li><a href="#context7">背景7</a></li>
+            <li><a href="#manual-config">手动配置</a></li>
           </ul>
         </div>
       </nav>
@@ -59,11 +59,11 @@
     <main class="docs-content">
       <div class="docs-header">
         <nav class="breadcrumb">
-          <a href="../index.html">Home</a>
+          <a href="../index.html">家</a>
           <span>/</span>
-          <a href="getting-started.html">Docs</a>
+          <a href="getting-started.html">文档</a>
           <span>/</span>
-          <span>MCP Servers</span>
+          <span>MCP服务器</span>
         </nav>
         <button class="mobile-menu-toggle" data-sidebar-toggle>
           <i class="fa-solid fa-bars"></i>
@@ -71,73 +71,73 @@
       </div>
 
       <article class="docs-article">
-        <h1><i class="fa-solid fa-server color-accent"></i> MCP Servers Reference</h1>
+        <h1><i class="fa-solid fa-server color-accent"></i> MCP 服务器参考</h1>
         <p class="lead">
-          Think of MCP servers as power tools that plug into Claude Code. Want Claude to actually <em>open a browser</em> and click around your app? That's Playwright. Need the latest Rails docs without leaving your terminal? That's Context7. The plugin bundles both servers—they just work when you install.
+          将 MCP 服务器视为插入 Claude Code 的强大工具。想让克劳德真正 <em>打开浏览器</em> 然后点击您的应用程序？那是剧作家。需要在不离开终端的情况下获得最新的 Rails 文档吗？这就是 Context7。该插件捆绑了两个服务器——它们在您安装时才起作用。
         </p>
 
         <div class="callout callout-warning">
           <div class="callout-icon"><i class="fa-solid fa-triangle-exclamation"></i></div>
           <div class="callout-content">
-            <h4>Known Issue: Auto-Loading</h4>
+            <h4>已知问题：自动加载</h4>
             <p>
-              Sometimes MCP servers don't wake up automatically. If Claude can't take screenshots or look up docs, you'll need to add them manually. See <a href="#manual-config">Manual Configuration</a> for the fix.
+              有时 MCP 服务器不会自动唤醒。如果 Claude 无法截取屏幕截图或查找文档，您需要手动添加它们。看 <a href="#manual-config">手动配置</a> 为了修复。
             </p>
           </div>
         </div>
 
         <!-- Playwright -->
         <section id="playwright">
-          <h2><i class="fa-brands fa-chrome"></i> Playwright</h2>
+          <h2><i class="fa-brands fa-chrome"></i> 剧作家</h2>
           <p>
-            You know how you can tell a junior developer "open Chrome and click the login button"? Now you can tell Claude the same thing. Playwright gives Claude hands to control a real browser—clicking buttons, filling forms, taking screenshots, running JavaScript. It's like pair programming with someone who has a browser open next to you.
+            您知道如何告诉初级开发人员“打开 Chrome 并单击登录按钮”吗？现在你可以告诉克劳德同样的事情。 Playwright 让 Claude 能够控制真正的浏览器——点击按钮、填写表格、截取屏幕截图、运行 JavaScript。这就像与在你旁边打开浏览器的人结对编程一样。
           </p>
 
-          <h3>Tools Provided</h3>
+          <h3>提供的工具</h3>
           <table class="docs-table">
             <thead>
               <tr>
-                <th>Tool</th>
-                <th>Description</th>
+                <th>工具</th>
+                <th>描述</th>
               </tr>
             </thead>
             <tbody>
               <tr>
                 <td><code>browser_navigate</code></td>
-                <td>Go to any URL—your localhost dev server, production, staging, that competitor's site you're studying</td>
+                <td>转到任何 URL — 您的本地主机开发服务器、生产、登台、您正在研究的竞争对手的网站</td>
               </tr>
               <tr>
                 <td><code>browser_take_screenshot</code></td>
-                <td>Capture what you're seeing right now. Perfect for "does this look right?" design reviews</td>
+                <td>捕捉您现在所看到的内容。非常适合“这看起来合适吗？”设计评论</td>
               </tr>
               <tr>
                 <td><code>browser_click</code></td>
-                <td>Click buttons, links, whatever. Claude finds it by text or CSS selector, just like you would</td>
+                <td>点击按钮、链接等等。 Claude 通过文本或 CSS 选择器找到它，就像您一样</td>
               </tr>
               <tr>
                 <td><code>browser_fill_form</code></td>
-                <td>Type into forms faster than you can. Great for testing signup flows without manual clicking</td>
+                <td>比您更快地输入表格。非常适合测试注册流程，无需手动点击</td>
               </tr>
               <tr>
                 <td><code>browser_snapshot</code></td>
-                <td>Get the page's accessibility tree—how screen readers see it. Useful for understanding structure without HTML noise</td>
+                <td>获取页面的辅助功能树 - 屏幕阅读器如何查看它。对于理解没有 HTML 噪音的结构很有用</td>
               </tr>
               <tr>
                 <td><code>browser_evaluate</code></td>
-                <td>Run any JavaScript in the page. Check localStorage, trigger functions, read variables—full console access</td>
+                <td>运行页面中的任何 JavaScript。检查本地存储、触发函数、读取变量——完全控制台访问</td>
               </tr>
             </tbody>
           </table>
 
-          <h3>When You'll Use This</h3>
+          <h3>当你使用这个时</h3>
           <ul>
-            <li><strong>Design reviews without leaving the terminal</strong> - "Take a screenshot of the new navbar on mobile" gets you a PNG in seconds</li>
-            <li><strong>Testing signup flows while you code</strong> - "Fill in the registration form with test@example.com and click submit" runs the test for you</li>
-            <li><strong>Debugging production issues</strong> - "Navigate to the error page and show me what's in localStorage" gives you the state without opening DevTools</li>
-            <li><strong>Competitive research</strong> - "Go to competitor.com and screenshot their pricing page" builds your swipe file automatically</li>
+            <li><strong>无需离开终端即可进行设计评审</strong> - “在移动设备上截取新导航栏的屏幕截图”可在几秒钟内为您提供 PNG</li>
+            <li><strong>在编码时测试注册流程</strong> - “使用 test@example.com 填写注册表并单击提交”为您运行测试</li>
+            <li><strong>调试生产问题</strong> - “导航到错误页面并显示 localStorage 中的内容”无需打开 DevTools 即可显示状态</li>
+            <li><strong>竞争研究</strong> - “前往竞争对手.com 并截取其定价页面的屏幕截图”会自动构建您的刷卡文件</li>
           </ul>
 
-          <h3>Example Usage</h3>
+          <h3>用法示例</h3>
           <div class="card-code-block">
             <pre><code># Just talk to Claude naturally—it knows when to use Playwright
 
@@ -153,7 +153,7 @@
 # The browser runs in the background. You'll get results without switching windows.</code></pre>
           </div>
 
-          <h3>Configuration</h3>
+          <h3>配置</h3>
           <div class="card-code-block">
             <pre><code>{
   "playwright": {
@@ -168,79 +168,79 @@
 
         <!-- Context7 -->
         <section id="context7">
-          <h2><i class="fa-solid fa-book-open"></i> Context7</h2>
+          <h2><i class="fa-solid fa-book-open"></i> 背景7</h2>
           <p>
-            Ever ask Claude about a framework and get an answer from 2023? Context7 fixes that. It's a documentation service that keeps Claude current with 100+ frameworks—Rails, React, Next.js, Django, whatever you're using. Think of it as having the official docs piped directly into Claude's brain.
+            曾经向 Claude 询问过框架并从 2023 年得到答案吗？ Context7 解决了这个问题。它是一项文档服务，可让 Claude 了解 100 多个框架的最新情况——Rails、React、Next.js、Django，无论您使用什么框架。可以将其视为将官方文档直接输入克劳德的大脑。
           </p>
 
-          <h3>Tools Provided</h3>
+          <h3>提供的工具</h3>
           <table class="docs-table">
             <thead>
               <tr>
-                <th>Tool</th>
-                <th>Description</th>
+                <th>工具</th>
+                <th>描述</th>
               </tr>
             </thead>
             <tbody>
               <tr>
                 <td><code>resolve-library-id</code></td>
-                <td>Maps "Rails" to the actual library identifier Context7 uses. You don't call this—Claude does it automatically</td>
+                <td>将“Rails”映射到 Context7 使用的实际库标识符。你不这么称呼——克劳德自动地这样做</td>
               </tr>
               <tr>
                 <td><code>get-library-docs</code></td>
-                <td>Fetches the actual documentation pages. Ask "How does useEffect work?" and this grabs the latest React docs</td>
+                <td>获取实际的文档页面。问“useEffect 是如何工作的？”这获取了最新的 React 文档</td>
               </tr>
             </tbody>
           </table>
 
-          <h3>What's Covered</h3>
-          <p>Over 100 frameworks and libraries. Here's a taste of what you can look up:</p>
+          <h3>涵盖什么</h3>
+          <p>超过 100 个框架和库。以下是您可以查找的内容：</p>
           <div class="framework-grid">
             <div class="framework-category">
-              <h4>Backend</h4>
+              <h4>后端</h4>
               <ul>
-                <li>Ruby on Rails</li>
-                <li>Django</li>
-                <li>Laravel</li>
-                <li>Express</li>
-                <li>FastAPI</li>
-                <li>Spring Boot</li>
+                <li>红宝石 on Rails</li>
+                <li>姜戈</li>
+                <li>拉维尔</li>
+                <li>表达</li>
+                <li>快速API</li>
+                <li>春季启动</li>
               </ul>
             </div>
             <div class="framework-category">
-              <h4>Frontend</h4>
+              <h4>前端</h4>
               <ul>
-                <li>React</li>
+                <li>反应</li>
                 <li>Vue.js</li>
-                <li>Angular</li>
-                <li>Svelte</li>
+                <li>角</li>
+                <li>斯韦尔特</li>
                 <li>Next.js</li>
-                <li>Nuxt</li>
+                <li>努克斯特</li>
               </ul>
             </div>
             <div class="framework-category">
-              <h4>Mobile</h4>
+              <h4>移动的</h4>
               <ul>
-                <li>React Native</li>
-                <li>Flutter</li>
-                <li>SwiftUI</li>
-                <li>Kotlin</li>
+                <li>反应本机</li>
+                <li>扑</li>
+                <li>斯威夫特用户界面</li>
+                <li>科特林</li>
               </ul>
             </div>
             <div class="framework-category">
-              <h4>Tools & Libraries</h4>
+              <h4>工具和库</h4>
               <ul>
-                <li>Tailwind CSS</li>
+                <li>顺风 CSS</li>
                 <li>PostgreSQL</li>
-                <li>Redis</li>
+                <li>雷迪斯</li>
                 <li>GraphQL</li>
-                <li>Prisma</li>
-                <li>And many more...</li>
+                <li>棱镜</li>
+                <li>还有更多...</li>
               </ul>
             </div>
           </div>
 
-          <h3>Example Usage</h3>
+          <h3>用法示例</h3>
           <div class="card-code-block">
             <pre><code># Just ask about the framework—Claude fetches current docs automatically
 
@@ -253,7 +253,7 @@
 # You get answers based on the latest docs, not Claude's training cutoff</code></pre>
           </div>
 
-          <h3>Configuration</h3>
+          <h3>配置</h3>
           <div class="card-code-block">
             <pre><code>{
   "context7": {
@@ -266,13 +266,13 @@
 
         <!-- Manual Configuration -->
         <section id="manual-config">
-          <h2><i class="fa-solid fa-gear"></i> Manual Configuration</h2>
+          <h2><i class="fa-solid fa-gear"></i> 手动配置</h2>
           <p>
-            If the servers don't load automatically (you'll know because Claude can't take screenshots or fetch docs), you need to wire them up yourself. It's a two-minute copy-paste job.
+            如果服务器没有自动加载（你会知道，因为克劳德无法截图或获取文档），你需要自己连接它们。这是一个两分钟的复制粘贴工作。
           </p>
 
-          <h3>Project-Level Configuration</h3>
-          <p>To enable for just this project, add this to <code>.claude/settings.json</code> in your project root:</p>
+          <h3>项目级配置</h3>
+          <p>要仅启用此项目，请将其添加到 <code>.claude/settings.json</code> 在您的项目根目录中：</p>
           <div class="card-code-block">
             <pre><code>{
   "mcpServers": {
@@ -290,8 +290,8 @@
 }</code></pre>
           </div>
 
-          <h3>Global Configuration</h3>
-          <p>Or enable everywhere—every project on your machine gets these servers. Add to <code>~/.claude/settings.json</code>:</p>
+          <h3>全局配置</h3>
+          <p>或者在任何地方启用 - 您计算机上的每个项目都会获得这些服务器。添加 <code>~/.claude/settings.json</code>:</p>
           <div class="card-code-block">
             <pre><code>{
   "mcpServers": {
@@ -309,28 +309,28 @@
 }</code></pre>
           </div>
 
-          <h3>Requirements</h3>
+          <h3>要求</h3>
           <table class="docs-table">
             <thead>
               <tr>
-                <th>Server</th>
-                <th>Requirement</th>
+                <th>服务器</th>
+                <th>要求</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td>Playwright</td>
-                <td>Node.js 18+ and npx</td>
+                <td>剧作家</td>
+                <td>Node.js 18+ 和 npx</td>
               </tr>
               <tr>
-                <td>Context7</td>
-                <td>Internet connection (HTTP endpoint)</td>
+                <td>背景7</td>
+                <td>互联网连接（HTTP 端点）</td>
               </tr>
             </tbody>
           </table>
 
-          <h3>Verifying MCP Servers</h3>
-          <p>After you add the config, restart Claude Code. Then test that everything works:</p>
+          <h3>验证 MCP 服务器</h3>
+          <p>添加配置后，重新启动 Claude Code。然后测试一切是否正常：</p>
           <div class="card-code-block">
             <pre><code># Ask Claude what it has
 "What MCP tools do you have access to?"
@@ -348,12 +348,12 @@
         <!-- Navigation -->
         <nav class="docs-nav-footer">
           <a href="skills.html" class="nav-prev">
-            <span class="nav-label">Previous</span>
-            <span class="nav-title"><i class="fa-solid fa-arrow-left"></i> Skills</span>
+            <span class="nav-label">以前的</span>
+            <span class="nav-title"><i class="fa-solid fa-arrow-left"></i> 技能</span>
           </a>
           <a href="getting-started.html" class="nav-next">
-            <span class="nav-label">Back to</span>
-            <span class="nav-title">Getting Started <i class="fa-solid fa-arrow-right"></i></span>
+            <span class="nav-label">返回</span>
+            <span class="nav-title">入门 <i class="fa-solid fa-arrow-right"></i></span>
           </a>
         </nav>
       </article>

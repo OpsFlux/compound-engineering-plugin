@@ -1,96 +1,96 @@
 ---
 name: workflows:plan
-description: Transform feature descriptions into well-structured project plans following conventions
+description: 按照约定将功能描述转换为结构良好的项目计划
+
 argument-hint: "[feature description, bug report, or improvement idea]"
 ---
+# 为新功能或错误修复制定计划
 
-# Create a plan for a new feature or bug fix
+## 介绍
 
-## Introduction
+**注意：当前年份是 2026 年。** 在约会计划和搜索最近的文档时使用此选项。
 
-**Note: The current year is 2026.** Use this when dating plans and searching for recent documentation.
+将功能描述、错误报告或改进想法转换为遵循项目约定和最佳实践的结构良好的 Markdown 文件问题。此命令提供灵活的详细级别以满足您的需求。
 
-Transform feature descriptions, bug reports, or improvement ideas into well-structured markdown files issues that follow project conventions and best practices. This command provides flexible detail levels to match your needs.
+## 功能描述
 
-## Feature Description
+<feature_description> #$参数</feature_description>
 
-<feature_description> #$ARGUMENTS </feature_description>
+**如果上面的功能描述为空，请询问用户：**“您想要计划什么？请描述您想要的功能、错误修复或改进。”
 
-**If the feature description above is empty, ask the user:** "What would you like to plan? Please describe the feature, bug fix, or improvement you have in mind."
+在用户提供清晰的功能描述之前，请勿继续。
 
-Do not proceed until you have a clear feature description from the user.
+## 主要任务
 
-## Main Tasks
-
-### 1. Repository Research & Context Gathering
-
-<thinking>
-First, I need to understand the project's conventions and existing patterns, leveraging all available resources and use paralel subagents to do this.
-</thinking>
-
-Runn these three agents in paralel at the same time:
-
-- Task repo-research-analyst(feature_description)
-- Task best-practices-researcher(feature_description)
-- Task framework-docs-researcher(feature_description)
-
-**Reference Collection:**
-
-- [ ] Document all research findings with specific file paths (e.g., `app/services/example_service.rb:42`)
-- [ ] Include URLs to external documentation and best practices guides
-- [ ] Create a reference list of similar issues or PRs (e.g., `#123`, `#456`)
-- [ ] Note any team conventions discovered in `CLAUDE.md` or team documentation
-
-### 2. Issue Planning & Structure
+### 1. 存储库研究和背景收集
 
 <thinking>
-Think like a product manager - what would make this issue clear and actionable? Consider multiple perspectives
+首先，我需要了解项目的惯例和现有模式，利用所有可用资源并使用并行子代理来完成此任务。
 </thinking>
 
-**Title & Categorization:**
+同时并行运行这三个代理：
 
-- [ ] Draft clear, searchable issue title using conventional format (e.g., `feat:`, `fix:`, `docs:`)
-- [ ] Determine issue type: enhancement, bug, refactor
+- 任务repo-research-analyst(feature_description)
+- 任务最佳实践研究员（功能描述）
+- 任务框架-docs-researcher(feature_description)
 
-**Stakeholder Analysis:**
+**参考资料集：**
 
-- [ ] Identify who will be affected by this issue (end users, developers, operations)
-- [ ] Consider implementation complexity and required expertise
+- [ ] 使用特定文件路径记录所有研究结果（例如，`app/services/example_service.rb:42`）
+- [ ] 包含外部文档和最佳实践指南的 URL
+- [ ] 创建类似问题或 PR 的参考列表（例如，`#123`、`#456`）
+- [ ] 注意 `CLAUDE.md` 或团队文档中发现的任何团队约定
 
-**Content Planning:**
+### 2. 发行计划和结构
 
-- [ ] Choose appropriate detail level based on issue complexity and audience
-- [ ] List all necessary sections for the chosen template
-- [ ] Gather supporting materials (error logs, screenshots, design mockups)
-- [ ] Prepare code examples or reproduction steps if applicable, name the mock filenames in the lists
+<thinking>
+像产品经理一样思考 - 怎样才能使这个问题变得清晰且可操作？考虑多种观点
+</thinking>
 
-### 3. SpecFlow Analysis
+**标题和分类：**
 
-After planning the issue structure, run SpecFlow Analyzer to validate and refine the feature specification:
+- [ ] 使用传统格式起草清晰、可搜索的问题标题（例如，`feat:`、`fix:`、`docs:`）
+- [ ] 确定问题类型：增强、错误、重构
 
-- Task spec-flow-analyzer(feature_description, research_findings)
+**利益相关者分析：**
 
-**SpecFlow Analyzer Output:**
+- [ ] 确定谁将受到此问题的影响（最终用户、开发人员、运营人员）
+- [ ] 考虑实施复杂性和所需的专业知识
 
-- [ ] Review SpecFlow analysis results
-- [ ] Incorporate any identified gaps or edge cases into the issue
-- [ ] Update acceptance criteria based on SpecFlow findings
+**内容策划：**
 
-### 4. Choose Implementation Detail Level
+- [ ] 根据问题复杂性和受众选择适当的详细程度
+- [ ] 列出所选模板的所有必要部分
+- [ ] 收集支持材料（错误日志、屏幕截图、设计模型）
+- [ ] 准备代码示例或复制步骤（如果适用），在列表中命名模拟文件名
 
-Select how comprehensive you want the issue to be, simpler is mostly better.
+### 3. SpecFlow 分析
 
-#### 📄 MINIMAL (Quick Issue)
+规划问题结构后，运行 SpecFlow Analyzer 来验证和细化功能规范：
 
-**Best for:** Simple bugs, small improvements, clear features
+- 任务规格流分析器（特征描述，研究结果）
 
-**Includes:**
+**SpecFlow 分析仪输出：**
 
-- Problem statement or feature description
-- Basic acceptance criteria
-- Essential context only
+- [ ] 查看 SpecFlow 分析结果
+- [ ] 将任何已识别的差距或边缘情况纳入问题中
+- [ ] 根据 SpecFlow 发现更新验收标准
 
-**Structure:**
+### 4. 选择实施细节级别
+
+选择您希望问题的全面程度，越简单越好。
+
+#### 📄 极简（快速发行）
+
+**最适合：** 简单的错误、小的改进、清晰的功能
+
+**包括：**
+
+- 问题陈述或功能描述
+- 基本验收标准
+- 仅重要上下文
+
+**结构：**
 
 ````markdown
 [Brief problem/feature description]
@@ -122,19 +122,20 @@ end
 - Documentation: [relevant_docs_url]
 ````
 
-#### 📋 MORE (Standard Issue)
 
-**Best for:** Most features, complex bugs, team collaboration
+#### 📋 更多（标准版）
 
-**Includes everything from MINIMAL plus:**
+**最适合：** 大多数功能、复杂的错误、团队协作
 
-- Detailed background and motivation
-- Technical considerations
-- Success metrics
-- Dependencies and risks
-- Basic implementation suggestions
+**包括 MINIMAL plus 的所有内容：**
 
-**Structure:**
+- 详细的背景和动机
+- 技术考虑
+- 成功指标
+- 依赖性和风险
+- 基本实施建议
+
+**结构：**
 
 ```markdown
 ## Overview
@@ -176,21 +177,22 @@ end
 - Related PRs: #[pr_number]
 ```
 
-#### 📚 A LOT (Comprehensive Issue)
 
-**Best for:** Major features, architectural changes, complex integrations
+#### 📚 很多（综合问题）
 
-**Includes everything from MORE plus:**
+**最适合：** 主要功能、架构变化、复杂集成
 
-- Detailed implementation plan with phases
-- Alternative approaches considered
-- Extensive technical specifications
-- Resource requirements and timeline
-- Future considerations and extensibility
-- Risk mitigation strategies
-- Documentation requirements
+**包括 MORE 的所有内容以及：**
 
-**Structure:**
+- 分阶段的详细实施计划
+- 考虑替代方法
+- 广泛的技术规格
+- 资源要求和时间表
+- 未来的考虑和可扩展性
+- 风险缓解策略
+- 文件要求
+
+**结构：**
 
 ```markdown
 ## Overview
@@ -298,30 +300,31 @@ end
 - Design documents: [links]
 ```
 
-### 5. Issue Creation & Formatting
+
+### 5.问题创建和格式设置
 
 <thinking>
-Apply best practices for clarity and actionability, making the issue easy to scan and understand
+应用最佳实践以提高清晰度和可操作性，使问题易于扫描和理解
 </thinking>
 
-**Content Formatting:**
+**内容格式：**
 
-- [ ] Use clear, descriptive headings with proper hierarchy (##, ###)
-- [ ] Include code examples in triple backticks with language syntax highlighting
-- [ ] Add screenshots/mockups if UI-related (drag & drop or use image hosting)
-- [ ] Use task lists (- [ ]) for trackable items that can be checked off
-- [ ] Add collapsible sections for lengthy logs or optional details using `<details>` tags
-- [ ] Apply appropriate emoji for visual scanning (🐛 bug, ✨ feature, 📚 docs, ♻️ refactor)
+- [ ] 使用清晰的描述性标题和适当的层次结构（##、###）
+- [ ] 在三个反引号中包含代码示例，并突出显示语言语法
+- [ ] 添加与 UI 相关的屏幕截图/模型（拖放或使用图像托管）
+- [ ] 使用任务列表 (- [ ]) 来查看可勾选的可跟踪项目
+- [ ] 使用 `<details>` 标签为冗长的日志或可选细节添加可折叠部分
+- [ ] 应用适当的表情符号进行视觉扫描（🐛 bug、✨ 功能、📚 文档、♻️ 重构）
 
-**Cross-Referencing:**
+**交叉参考：**
 
-- [ ] Link to related issues/PRs using #number format
-- [ ] Reference specific commits with SHA hashes when relevant
-- [ ] Link to code using GitHub's permalink feature (press 'y' for permanent link)
-- [ ] Mention relevant team members with @username if needed
-- [ ] Add links to external resources with descriptive text
+- [ ] 使用#number 格式链接到相关问题/PR
+- [ ] 在相关时使用 SHA 哈希引用特定提交
+- [ ] 使用 GitHub 的永久链接功能链接到代码（按“y”获取永久链接）
+- [ ] 如果需要，使用@用户名提及相关团队成员
+- [ ] 添加带有描述性文本的外部资源链接
 
-**Code & Examples:**
+**代码和示例：**
 
 ````markdown
 # Good example with syntax highlighting and line references
@@ -346,86 +349,89 @@ end
 </details>
 ````
 
-**AI-Era Considerations:**
 
-- [ ] Account for accelerated development with AI pair programming
-- [ ] Include prompts or instructions that worked well during research
-- [ ] Note which AI tools were used for initial exploration (Claude, Copilot, etc.)
-- [ ] Emphasize comprehensive testing given rapid implementation
-- [ ] Document any AI-generated code that needs human review
+**人工智能时代的考虑因素：**
 
-### 6. Final Review & Submission
+- [ ] 通过 AI 结对编程加速开发
+- [ ] 包括在研究过程中效果良好的提示或说明
+- [ ] 注意哪些人工智能工具用于初始探索（Claude、Copilot 等）
+- [ ] 考虑到快速实施，强调全面测试
+- [ ] 记录任何需要人工审核的人工智能生成的代码
 
-**Pre-submission Checklist:**
+### 6. 最终审核和提交
 
-- [ ] Title is searchable and descriptive
-- [ ] Labels accurately categorize the issue
-- [ ] All template sections are complete
-- [ ] Links and references are working
-- [ ] Acceptance criteria are measurable
-- [ ] Add names of files in pseudo code examples and todo lists
-- [ ] Add an ERD mermaid diagram if applicable for new model changes
+**预提交清单：**
 
-## Output Format
+- [ ] 标题可搜索且具有描述性
+- [ ] 标签准确地对问题进行分类
+- [ ] 所有模板部分均已完成
+- [ ] 链接和参考有效
+- [ ] 验收标准是可衡量的
+- [ ] 在伪代码示例和待办事项列表中添加文件名
+- [ ] 添加 ERD 美人鱼图（如果适用于新模型更改）
 
-Write the plan to `plans/<issue_title>.md`
+## 输出格式
 
-## Post-Generation Options
+将计划写入`plans/<issue_title>.md`
 
-After writing the plan file, use the **AskUserQuestion tool** to present these options:
+## 后生成选项
 
-**Question:** "Plan ready at `plans/<issue_title>.md`. What would you like to do next?"
+编写计划文件后，使用 **AskUserQuestion 工具** 呈现以下选项：
 
-**Options:**
-1. **Open plan in editor** - Open the plan file for review
-2. **Run `/deepen-plan`** - Enhance each section with parallel research agents (best practices, performance, UI)
-3. **Run `/plan_review`** - Get feedback from reviewers (DHH, Kieran, Simplicity)
-4. **Start `/workflows:work`** - Begin implementing this plan locally
-5. **Start `/workflows:work` on remote** - Begin implementing in Claude Code on the web (use `&` to run in background)
-6. **Create Issue** - Create issue in project tracker (GitHub/Linear)
-7. **Simplify** - Reduce detail level
+**问题：**“计划已在`plans/<issue_title>.md`准备好。接下来你想做什么？”
 
-Based on selection:
-- **Open plan in editor** → Run `open plans/<issue_title>.md` to open the file in the user's default editor
-- **`/deepen-plan`** → Call the /deepen-plan command with the plan file path to enhance with research
-- **`/plan_review`** → Call the /plan_review command with the plan file path
-- **`/workflows:work`** → Call the /workflows:work command with the plan file path
-- **`/workflows:work` on remote** → Run `/workflows:work plans/<issue_title>.md &` to start work in background for Claude Code web
-- **Create Issue** → See "Issue Creation" section below
-- **Simplify** → Ask "What should I simplify?" then regenerate simpler version
-- **Other** (automatically provided) → Accept free text for rework or specific changes
+**选项：**
+1. **在编辑器中打开计划** - 打开计划文件进行审查
+2. **运行`/deepen-plan`** - 使用并行研究代理增强每个部分（最佳实践、性能、UI）
+3. **运行 `/plan_review`** - 从审稿人那里获取反馈（DHH、Kieran、Simplicity）
+4. **开始`/workflows:work`** - 开始在当地实施该计划
+5. **在远程启动`/workflows:work`** - 开始在网络上的 Claude Code 中实施（使用`&` 在后台运行）
+6. **创建问题** - 在项目跟踪器中创建问题 (GitHub/Linear)
+7. **简化** - 降低细节级别
 
-**Note:** If running `/workflows:plan` with ultrathink enabled, automatically run `/deepen-plan` after plan creation for maximum depth and grounding.
+根据选择：
+- **在编辑器中打开计划** → 运行`open plans/<issue_title>.md`以在用户的默认编辑器中打开文件
+- **`/deepen-plan`** → 使用计划文件路径调用/deepen-plan命令以通过研究进行增强
+- **`/plan_review`** → 使用计划文件路径调用/plan_review命令
+- **`/workflows:work`** → 使用计划文件路径调用/workflows:work命令
+- **`/workflows:work` 远程** → 运行`/workflows:work plans/<issue_title>.md &` 开始在后台为 Claude Code web 工作
+- **创建问题** → 请参阅下面的“问题创建”部分
+- **简化** → 问“我应该简化什么？”然后重新生成更简单的版本
+- **其他**（自动提供）→ 接受自由文本进行返工或特定更改
 
-Loop back to options after Simplify or Other changes until user selects `/workflows:work` or `/plan_review`.
+**注意：** 如果在启用 ultrathink 的情况下运行`/workflows:plan`，则在创建计划后自动运行`/deepen-plan`以获得最大深度和基础。
 
-## Issue Creation
+在简化或其他更改后循环返回选项，直到用户选择`/workflows:work` 或`/plan_review`。
 
-When user selects "Create Issue", detect their project tracker from CLAUDE.md:
+## 问题创建
 
-1. **Check for tracker preference** in user's CLAUDE.md (global or project):
-   - Look for `project_tracker: github` or `project_tracker: linear`
-   - Or look for mentions of "GitHub Issues" or "Linear" in their workflow section
+当用户选择“创建问题”时，从 CLAUDE.md 检测他们的项目跟踪器：
 
-2. **If GitHub:**
+1. **检查用户的 CLAUDE.md 中的跟踪器首选项**（全局或项目）：
+   - 寻找`project_tracker: github`或`project_tracker: linear`
+   - 或者在其工作流程部分查找“GitHub 问题”或“线性”的提及
+
+2. **如果是 GitHub：**
    ```bash
    # Extract title from plan filename (kebab-case to Title Case)
    # Read plan content for body
    gh issue create --title "feat: [Plan Title]" --body-file plans/<issue_title>.md
    ```
 
-3. **If Linear:**
+
+3. **如果是线性的：**
    ```bash
    # Use linear CLI if available, or provide instructions
    # linear issue create --title "[Plan Title]" --description "$(cat plans/<issue_title>.md)"
    ```
 
-4. **If no tracker configured:**
-   Ask user: "Which project tracker do you use? (GitHub/Linear/Other)"
-   - Suggest adding `project_tracker: github` or `project_tracker: linear` to their CLAUDE.md
 
-5. **After creation:**
-   - Display the issue URL
-   - Ask if they want to proceed to `/workflows:work` or `/plan_review`
+4. **如果没有配置跟踪器：**
+   询问用户：“您使用哪个项目跟踪器？(GitHub/Linear/Other)”
+   - 建议将 `project_tracker: github` 或 `project_tracker: linear` 添加到他们的 CLAUDE.md
 
-NEVER CODE! Just research and write the plan.
+5. **创建后：**
+   - 显示问题 URL
+   - 询问他们是否想继续进行 `/workflows:work` 或 `/plan_review`
+
+永远不要编码！只需研究并编写计划即可。

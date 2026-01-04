@@ -1,191 +1,192 @@
-# Landing Page LaunchKit Refresh
+# 登陆页面 LaunchKit 刷新
 
-## Overview
+## 概述
 
-Review and enhance the `/docs/index.html` landing page using LaunchKit elements and Pragmatic Technical Writing style (Hunt/Thomas, Joel Spolsky). The current implementation is strong but can be refined section-by-section.
+使用 LaunchKit 元素和实用技术写作风格（Hunt/Thomas、Joel Spolsky）审查并增强 `/docs/index.html` 登陆页面。当前的实现很强大，但可以逐节细化。
 
-## Current State Assessment
+## 当前状态评估
 
-### What's Working Well
-- Specific, outcome-focused hero headline ("12 expert opinions in 30 seconds")
-- Developer-authentic copywriting (N+1 queries, CORS, SQL injection)
-- Stats section with clear metrics (23 agents, 16 commands, 11 skills, 2 MCP servers)
-- Philosophy section with concrete story (N+1 query bug)
-- Three-step installation with actual commands
-- FAQ accordion following LaunchKit patterns
-- Categorized feature sections with code examples
+### 什么是有效的
+- 具体、注重结果的英雄标题（“30 秒内 12 条专家意见”）
+- 开发者真实文案（N+1查询、CORS、SQL注入）
+- 具有清晰指标的统计部分（23 个代理、16 个命令、11 个技能、2 个 MCP 服务器）
+- 带有具体故事的哲学部分（N+1 查询错误）
+- 实际命令三步安装
+- FAQ 手风琴遵循 LaunchKit 模式
+- 带有代码示例的分类功能部分
 
-### Missing Elements (From Best Practices Research)
-1. **Social Proof Section** - No testimonials, GitHub stars, or user metrics
-2. **Visual Demo** - No GIF/animation showing the tool in action
-3. **Arrow icons on CTAs** - 26% conversion boost from studies
-4. **Trust indicators** - Open source badge, license info
+### 缺失的元素（来自最佳实践研究）
+1. **社交证明部分** - 没有推荐、GitHub 明星或用户指标
+2. **视觉演示** - 无 GIF/动画显示工具的运行情况
+3. **CTA 上的箭头图标** - 研究显示转化率提高了 26%
+4. **信任指标** - 开源徽章、许可证信息
 
 ---
 
-## Section-by-Section Review Plan
+## 逐节审查计划
 
-### 1. Hero Section (lines 56-78)
+### 1. 英雄部分（第 56-78 行）
 
-**Current:**
+**当前：**
 ```html
 <h1>Your Code Reviews Just Got 12 Expert Opinions. In 30 Seconds.</h1>
 ```
 
-**Review Checklist:**
-- [ ] Headline follows Pragmatic Writing (concrete before abstract) ✅
-- [ ] Eyebrow badge is current (Version 2.6.0) - verify
-- [ ] Description paragraph under 3 sentences ✅
-- [ ] Button group has arrow icon on primary CTA
-- [ ] "Read the Docs" secondary CTA present ✅
 
-**Potential Improvements:**
-- Add `→` arrow to "Install Plugin" button
-- Consider adding animated terminal GIF below buttons showing `/review` in action
+**审查清单：**
+- [ ] 标题遵循实用写作（具体在抽象之前）✅
+- [ ] 眉毛徽章是最新的（版本 2.6.0） - 验证
+- [ ] 3 句话下的描述段落 ✅
+- [ ] 按钮组在主 CTA 上有箭头图标
+- [ ]“阅读文档”辅助 CTA 呈现 ✅
 
-### 2. Stats Section (lines 81-104)
+**潜在的改进：**
+- 添加`→`箭头到“安装插件”按钮
+- 考虑在按钮下方添加动画终端 GIF，显示 `/review` 的运行情况
 
-**Current:** 4 stat cards (23 agents, 16 commands, 11 skills, 2 MCP servers)
+### 2. 统计部分（第 81-104 行）
 
-**Review Checklist:**
-- [ ] Numbers are accurate (verify against actual file counts)
-- [ ] Icons are appropriate for each stat
-- [ ] Hover effects working properly
-- [ ] Mobile layout (2x2 grid) is readable
+**当前：** 4张统计卡（23个代理，16个命令，11个技能，2个MCP服务器）
 
-**Potential Improvements:**
-- Add "developers using" or "reviews run" metric if available
-- Consider adding subtle animation on scroll
+**审查清单：**
+- [ ] 数字准确（根据实际文件计数进行验证）
+- [ ] 图标适合每个统计数据
+- [ ] 悬停效果正常工作
+- [ ] 移动布局（2x2 网格）可读
 
-### 3. Philosophy Section (lines 107-192)
+**潜在的改进：**
+- 添加“开发人员使用”或“评论运行”指标（如果可用）
+- 考虑在滚动上添加微妙的动画
 
-**Current:** "Why Your Third Code Review Should Be Easier Than Your First" with N+1 query story
+### 3. 哲学部分（第 107-192 行）
 
-**Review Checklist:**
-- [ ] Opens with concrete story (N+1 query) ✅
-- [ ] Quote block is memorable and quotable
-- [ ] Four pillars (Plan, Delegate, Assess, Codify) are clear
-- [ ] Each pillar has: tagline, description, tool tags
-- [ ] Descriptions use "you" voice ✅
+**当前：** “为什么你的第三次代码审查应该比第一次更容易”与 N+1 查询故事
 
-**Potential Improvements:**
-- Review pillar descriptions for passive voice
-- Ensure each pillar description follows PAS (Problem, Agitate, Solve) pattern
-- Check tool tags are accurate and current
+**审查清单：**
+- [ ] 打开具体故事（N+1 查询）✅
+- [ ] 引用块易于记忆且可引用
+- [ ] 四大支柱（计划、授权、评估、编纂）明确
+- [ ] 每个支柱都有：标语、描述、工具标签
+- [ ] 描述使用“你”的声音 ✅
 
-### 4. Agents Section (lines 195-423)
+**潜在的改进：**
+- 查看被动语态的支柱描述
+- 确保每个支柱描述遵循 PAS（问题、搅动、解决）模式
+- 检查工具标签是否准确且最新
 
-**Current:** 23 agents in 5 categories (Review, Research, Design, Workflow, Docs)
+### 4. 代理部分（第 195-423 行）
 
-**Review Checklist:**
-- [ ] All 23 agents are listed (count actual files)
-- [ ] Categories are logical and scannable
-- [ ] Each card has: name, badge, description, usage code
-- [ ] Descriptions are conversational (not passive)
-- [ ] Critical badges (Security, Data) stand out
+**当前：** 5 个类别的 23 个代理（审查、研究、设计、工作流程、文档）
 
-**Potential Improvements:**
-- Review agent descriptions against pragmatic writing checklist
-- Ensure descriptions answer "when would I use this?"
-- Add concrete scenarios to generic descriptions
+**审查清单：**
+- [ ] 列出所有 23 个代理（计算实际文件）
+- [ ] 类别符合逻辑且可扫描
+- [ ] 每张卡有：名称、徽章、描述、使用代码
+- [ ] 描述是对话式的（非被动式）
+- [ ] 关键徽章（安全、数据）脱颖而出
 
-### 5. Commands Section (lines 426-561)
+**潜在的改进：**
+- 根据实用的写作清单审查代理描述
+- 确保描述回答“我什么时候会使用这个？”
+- 在通用描述中添加具体场景
 
-**Current:** 16 commands in 2 categories (Workflow, Utility)
+### 5. 命令部分（第 426-561 行）
 
-**Review Checklist:**
-- [ ] All 16 commands are listed (count actual files)
-- [ ] Core workflow commands are highlighted
-- [ ] Descriptions are action-oriented
-- [ ] Command names match actual implementation
+**当前：** 2 个类别（工作流程、实用程序）16 个命令
 
-**Potential Improvements:**
-- Review command descriptions for passive voice
-- Lead with outcomes, not features
-- Add "saves you X minutes" framing where appropriate
+**审查清单：**
+- [ ] 列出所有 16 个命令（计算实际文件数）
+- [ ] 核心工作流程命令突出显示
+- [ ] 描述以行动为导向
+- [ ] 命令名称与实际实现匹配
 
-### 6. Skills Section (lines 564-703)
+**潜在的改进：**
+- 查看被动语态的命令描述
+- 以结果而非特征为主导
+- 在适当的地方添加“为您节省 X 分钟”的框架
 
-**Current:** 11 skills in 3 categories (Development, Content/Workflow, Image Generation)
+### 6. 技能部分（第 564-703 行）
 
-**Review Checklist:**
-- [ ] All 11 skills are listed (count actual directories)
-- [ ] Featured skill (gemini-imagegen) is properly highlighted
-- [ ] API key requirement is clear
-- [ ] Skill invocation syntax is correct
+**当前：** 3 个类别的 11 项技能（开发、内容/工作流程、图像生成）
 
-**Potential Improvements:**
-- Review skill descriptions against pragmatic writing
-- Ensure each skill answers "what problem does this solve?"
+**审查清单：**
+- [ ] 列出全部11个技能（算实际目录）
+- [ ] 特色技能（gemini-imagegen）正确突出显示
+- [ ] API密钥要求明确
+- [ ] 技能调用语法正确
 
-### 7. MCP Servers Section (lines 706-751)
+**潜在的改进：**
+- 根据实用写作审查技能描述
+- 确保每项技能都回答“这能解决什么问题？”
 
-**Current:** 2 MCP servers (Playwright, Context7)
+### 7. MCP 服务器部分（第 706-751 行）
 
-**Review Checklist:**
-- [ ] Tool lists are accurate
-- [ ] Descriptions explain WHY not just WHAT
-- [ ] Framework support list is current (100+)
+**当前：** 2 个 MCP 服务器（Playwright、Context7）
 
-**Potential Improvements:**
-- Add concrete example of each server in action
-- Consider before/after comparison
+**审查清单：**
+- [ ] 工具列表准确
+- [ ] 描述解释为什么而不仅仅是什么
+- [ ] 框架支持列表是最新的 (100+)
 
-### 8. Installation Section (lines 754-798)
+**潜在的改进：**
+- 添加每个服务器运行的具体示例
+- 考虑之前/之后的比较
 
-**Current:** "Three Commands. Zero Configuration." with 3 steps
+### 8. 安装部分（第 754-798 行）
 
-**Review Checklist:**
-- [ ] Commands are accurate and work
-- [ ] Step 3 shows actual usage examples
-- [ ] Timeline visual (vertical line) renders correctly
-- [ ] Copy buttons work on code blocks
+**当前：** “三个命令。零配置。”仅需 3 个步骤
 
-**Potential Improvements:**
-- Add copy-to-clipboard functionality if missing
-- Consider adding "What you'll see" output example
+**审查清单：**
+- [ ] 命令准确且有效
+- [ ] 步骤 3 显示实际使用示例
+- [ ] 时间轴视觉（垂直线）正确渲染
+- [ ] 复制按钮适用于代码块
 
-### 9. FAQ Section (lines 801-864)
+**潜在的改进：**
+- 添加复制到剪贴板功能（如果缺少）
+- 考虑添加“你会看到什么”输出示例
 
-**Current:** 5 questions in accordion format
+### 9. 常见问题解答部分（第 801-864 行）
 
-**Review Checklist:**
-- [ ] Questions address real objections
-- [ ] Answers are conversational (use "you")
-- [ ] Accordion expand/collapse works
-- [ ] No passive voice in answers
+**当前：** 5 个问题（手风琴格式）
 
-**Potential Improvements:**
-- Review for weasel words ("best practices suggest")
-- Ensure answers are direct and actionable
+**审查清单：**
+- [ ] 问题针对真正的反对意见
+- [ ] 答案是对话式的（使用“你”）
+- [ ] 手风琴展开/折叠作品
+- [ ] 答案中没有被动语态
 
-### 10. CTA Section (lines 868-886)
+**潜在的改进：**
+- 审查狡猾的词语（“最佳实践建议”）
+- 确保答案直接且可操作
 
-**Current:** "Install Once. Compound Forever." with Install + GitHub buttons
+### 10. CTA 部分（第 868-886 行）
 
-**Review Checklist:**
-- [ ] Badge is eye-catching ("Free & Open Source")
-- [ ] Headline restates core value proposition
-- [ ] Primary CTA has arrow icon ✅
-- [ ] Trust line at bottom
+**当前：**“安装一次。永远复合。”使用安装 + GitHub 按钮
 
-**Potential Improvements:**
-- Review trust line copy
-- Consider adding social proof element
+**审查清单：**
+- [ ] 徽章引人注目（“免费且开源”）
+- [ ] 标题重申核心价值主张
+- [ ] 主要 CTA 有箭头图标 ✅
+- [ ] 信任线位于底部
+
+**潜在的改进：**
+- 审查信任线副本
+- 考虑添加社交证明元素
 
 ---
 
-## NEW: Social Proof Section (To Add)
+## 新：社会证明部分（待添加）
 
-**Position:** After Stats section, before Philosophy section
+**位置：** 统计部分之后，哲学部分之前
 
-**Components:**
-- GitHub stars counter (dynamic or static)
-- "Trusted by X developers" metric
-- 2-3 testimonial quotes (if available)
-- Company logos (if applicable)
+**组件：**
+- GitHub 星星计数器（动态或静态）
+- “受 X 开发人员信任”指标
+- 2-3 条推荐语（如果有）
+- 公司徽标（如果适用）
 
-**LaunchKit Pattern:**
+**LaunchKit 模式：**
 ```html
 <section class="social-proof-section">
   <div class="heading centered">
@@ -197,83 +198,84 @@ Review and enhance the `/docs/index.html` landing page using LaunchKit elements 
 </section>
 ```
 
----
-
-## Pragmatic Writing Style Checklist (Apply to ALL Copy)
-
-### The Five Laws
-1. **Concrete Before Abstract** - Story/example first, then principle
-2. **Physical Analogies** - Import metaphors readers understand
-3. **Conversational Register** - Use "you", contractions, asides
-4. **Numbered Frameworks** - Create referenceable structures
-5. **Humor as Architecture** - Mental anchors for dense content
-
-### Anti-Patterns to Find and Fix
-- [ ] "It is recommended that..." → "Do this:"
-- [ ] "Best practices suggest..." → "Here's what works:"
-- [ ] Passive voice → Active voice
-- [ ] Abstract claims → Specific examples
-- [ ] Walls of text → Scannable lists
-
-### Quality Checklist (Per Section)
-- [ ] Opens with concrete story or example?
-- [ ] Can reader skim headers and get the arc?
-- [ ] Uses "you" at least once?
-- [ ] Clear action reader can take?
-- [ ] Reads aloud like speech?
 
 ---
 
-## Implementation Phases
+## 实用写作风格清单（适用于所有副本）
 
-### Phase 1: Copy Audit (No HTML Changes)
-1. Read through entire page
-2. Flag passive voice instances
-3. Flag abstract claims without examples
-4. Flag missing "you" voice
-5. Document improvements needed
+### 五定律
+1. **具体先于抽象** - 先讲故事/例子，再讲原则
+2. **物理类比** - 导入读者理解的隐喻
+3. **会话语域** - 使用“you”、缩写、旁白
+4. **编号框架** - 创建可引用的结构
+5. **幽默作为建筑** - 密集内容的精神锚
 
-### Phase 2: Copy Rewrites
-1. Rewrite flagged sections following pragmatic style
-2. Ensure each section passes quality checklist
-3. Maintain existing HTML structure
+### 查找和修复的反模式
+- [ ]“建议...”→“这样做：”
+- [ ]“最佳实践建议...”→“以下是有效的方法：”
+- [ ] 被动语态 → 主动语态
+- [ ] 摘要权利要求 → 具体示例
+- [ ] 文字墙 → 可扫描列表
 
-### Phase 3: Component Additions
-1. Add arrow icons to primary CTAs
-2. Add social proof section (if data available)
-3. Consider visual demo element
-
-### Phase 4: Verification
-1. Validate all counts (agents, commands, skills)
-2. Test all links and buttons
-3. Verify mobile responsiveness
-4. Check accessibility
+### 质量检查表（每部分）
+- [ ] 以具体的故事或例子开头？
+- [ ] 读者可以浏览标题并获取弧线吗？
+- [ ] 至少使用一次“你”？
+- [ ] 明确读者可以采取的行动？
+- [ ] 像演讲一样大声朗读？
 
 ---
 
-## Files to Modify
+## 实施阶段
 
-| File | Changes |
+### 第 1 阶段：复制审核（无 HTML 更改）
+1. 通读整页
+2. 标记被动语态实例
+3. 标记没有示例的抽象主张
+4.标记缺少“你”的声音
+5. 需要改进的文档
+
+### 第 2 阶段：复制重写
+1. 按照务实的风格重写标记的部分
+2.确保每个部分都通过质量检查表
+3. 维护现有的HTML结构
+
+### 第 3 阶段：添加组件
+1.为主CTA添加箭头图标
+2. 添加社会证明部分（如果有数据）
+3.考虑视觉演示元素
+
+### 第 4 阶段：验证
+1. 验证所有计数（代理、命令、技能）
+2. 测试所有链接和按钮
+3. 验证移动响应能力
+4. 检查可访问性
+
+---
+
+## 要修改的文件
+
+|文件 |变化|
 |------|---------|
-| `docs/index.html` | Copy rewrites, potential new section |
-| `docs/css/style.css` | Social proof styles (if adding) |
+| `docs/index.html` |复制重写，潜在的新部分 |
+| `docs/css/style.css` |社会证明样式（如果添加）|
 
 ---
 
-## Success Criteria
+## 成功标准
 
-1. All copy passes Pragmatic Writing quality checklist
-2. No passive voice in any description
-3. Every feature section answers "why should I care?"
-4. Stats are accurate against actual file counts
-5. Page loads in <3 seconds
-6. Mobile layout is fully functional
+1. 所有文案均通过语用写作质量检查表
+2. 任何描述中均不得使用被动语态
+3. 每个功能部分都回答“我为什么要关心？”
+4. 统计数据相对于实际文件数量是准确的
+5. 页面加载时间<3秒
+6. 移动布局功能齐全
 
 ---
 
-## References
+## 参考
 
-- LaunchKit Template: https://launchkit.evilmartians.io/
-- Pragmatic Writing Skill: `~/.claude/skills/pragmatic-writing-skill/SKILL.md`
-- Current Landing Page: `/Users/kieranklaassen/every-marketplace/docs/index.html`
-- Style CSS: `/Users/kieranklaassen/every-marketplace/docs/css/style.css`
+- LaunchKit 模板：https://launchkit.evilmartians.io/
+- 实用写作技巧：`~/.claude/skills/pragmatic-writing-skill/SKILL.md`
+- 当前登陆页面：`/Users/kieranklaassen/every-marketplace/docs/index.html`
+- CSS 样式：`/Users/kieranklaassen/every-marketplace/docs/css/style.css`

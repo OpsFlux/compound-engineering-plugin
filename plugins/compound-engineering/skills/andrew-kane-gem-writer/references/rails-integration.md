@@ -1,8 +1,8 @@
-# Rails Integration Patterns
+# Rails 集成模式
 
-## The Golden Rule
+## 黄金法则
 
-**Never require Rails gems directly.** This causes loading order issues.
+**永远不要直接需要 Rails gem。**这会导致加载顺序问题。
 
 ```ruby
 # WRONG - causes premature loading
@@ -15,9 +15,10 @@ ActiveSupport.on_load(:active_record) do
 end
 ```
 
-## ActiveSupport.on_load Hooks
 
-Common hooks and their uses:
+## ActiveSupport.on_load 挂钩
+
+常见的钩子及其用途：
 
 ```ruby
 # Models
@@ -42,9 +43,10 @@ ActiveSupport.on_load(:action_mailer) do
 end
 ```
 
-## Prepend for Behavior Modification
 
-When overriding existing Rails methods:
+## 行为修改前
+
+当重写现有的 Rails 方法时：
 
 ```ruby
 ActiveSupport.on_load(:active_record) do
@@ -53,9 +55,10 @@ ActiveSupport.on_load(:active_record) do
 end
 ```
 
-## Railtie Pattern
 
-Minimal Railtie for non-mountable gems:
+## 铁路领带图案
+
+不可安装宝石的最小拉杆：
 
 ```ruby
 # lib/gemname/railtie.rb
@@ -83,9 +86,10 @@ module GemName
 end
 ```
 
-## Engine Pattern (Mountable Gems)
 
-For gems with web interfaces (PgHero, Blazer, Ahoy):
+## 引擎图案（可安装宝石）
+
+对于带有 Web 界面的 gem（PgHero、Blazer、Ahoy）：
 
 ```ruby
 # lib/pghero/engine.rb
@@ -107,7 +111,8 @@ module PgHero
 end
 ```
 
-## Routes for Engines
+
+## 引擎路线
 
 ```ruby
 # config/routes.rb (in engine)
@@ -117,16 +122,18 @@ PgHero::Engine.routes.draw do
 end
 ```
 
-Mount in app:
+
+在应用程序中安装：
 
 ```ruby
 # config/routes.rb (in app)
 mount PgHero::Engine, at: "pghero"
 ```
 
-## YAML Configuration with ERB
 
-For complex gems needing config files:
+## 使用 ERB 进行 YAML 配置
+
+对于需要配置文件的复杂 gem：
 
 ```ruby
 def self.settings
@@ -141,7 +148,8 @@ def self.settings
 end
 ```
 
-## Generator Pattern
+
+## 生成器模式
 
 ```ruby
 # lib/generators/gemname/install_generator.rb
@@ -162,7 +170,8 @@ module GemName
 end
 ```
 
-## Conditional Feature Detection
+
+## 条件特征检测
 
 ```ruby
 # Check for specific Rails versions
@@ -181,3 +190,4 @@ def self.client
   end
 end
 ```
+

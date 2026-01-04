@@ -1,36 +1,36 @@
-# Grow Your Own Garden: Adaptive Agent Ecosystem
+# 种植你自己的花园：自适应代理生态系统
 
-> **Issue:** https://github.com/EveryInc/compound-engineering-plugin/issues/20
+> **问题：** https://github.com/EveryInc/compound-engineering-plugin/issues/20
 
-## The Idea
+## 想法
 
-Everyone grows their own garden, but we're all using the same process.
+每个人都种植自己的花园，但我们都使用相同的过程。
 
-Start from a **seed** (minimal core: `/plan`, `/work`, `/review`, `/compound`). Each `/compound` loop can suggest adding agents based on what you're working on—like building up a test suite to prevent regressions, but for code review expertise.
+从**种子**开始（最小核心：`/plan`、`/work`、`/review`、`/compound`）。每个 `/compound` 循环都可以根据您正在处理的内容建议添加代理，例如构建测试套件以防止回归，但需要代码审查专业知识。
 
-## Current Problem
+## 当前问题
 
-- Monolithic plugin: 24 agents, users use ~30%
-- No personalization (same agents for Rails dev and Python dev)
-- Static collection that doesn't adapt
+- 整体插件：24 个代理，用户使用 ~30%
+- 无个性化（Rails 开发和 Python 开发的代理相同）
+- 不适应的静态集合
 
-## Proposed Solution
+## 建议的解决方案
 
-### The Seed (Core Plugin)
+### 种子（核心插件）
 
-4 commands + minimal agents:
+4 个命令 + 最少的代理：
 
-| Component | What's Included |
-|-----------|-----------------|
-| Commands | `/plan`, `/work`, `/review`, `/compound` |
-| Review Agents | security, performance, simplicity, architecture, patterns |
-| Research Agents | best-practices, framework-docs, git-history, repo-analyst |
-| Skills | compound-docs, file-todos, git-worktree |
-| MCP Servers | playwright, context7 |
+|组件|包含什么 |
+|------------|------------------|
+|命令 | `/plan`、`/work`、`/review`、`/compound` |
+|审查代理|安全性、性能、简单性、架构、模式|
+|研究代理|最佳实践、框架文档、git 历史记录、repo 分析师 |
+|技能 |复合文档、文件待办事项、git-worktree |
+| MCP 服务器 |剧作家，背景7 |
 
-### The Growth Loop
+### 增长循环
 
-After each `/compound`:
+每 `/compound` 之后：
 
 ```
 ✅ Learning documented
@@ -41,12 +41,13 @@ After each `/compound`:
    [y] Yes  [n] No  [x] Never ask
 ```
 
-Three sources of new agents:
-1. **Predefined** - "You're using Rails, add DHH reviewer?"
-2. **Dynamic** - "You're using actor model, create an expert?"
-3. **Custom** - "Want to create an agent for this pattern?"
 
-### Agent Storage
+新代理的三个来源：
+1. **预定义** - “您正在使用 Rails，添加 DHH 审阅者吗？”
+2. **动态** - “您正在使用演员模型，创建专家？”
+3. **自定义** - “想要为此模式创建代理吗？”
+
+### 代理存储
 
 ```
 .claude/agents/       → Project-specific (highest priority)
@@ -54,49 +55,50 @@ Three sources of new agents:
 plugin/agents/        → From installed plugins
 ```
 
-## Implementation Phases
 
-### Phase 1: Split the Plugin
-- Create `agent-library/` with framework-specific agents (Rails, Python, TypeScript, Frontend)
-- Keep `compound-engineering` as core with universal agents
-- No breaking changes—existing users unaffected
+## 实施阶段
 
-### Phase 2: Agent Discovery
-- `/review` discovers agents from all three locations
-- Project agents override user agents override plugin agents
+### 第 1 阶段：拆分插件
+- 使用特定于框架的代理（Rails、Python、TypeScript、前端）创建`agent-library/`
+- 将`compound-engineering`作为通用代理的核心
+- 没有重大变化——现有用户不受影响
 
-### Phase 3: Growth via /compound
-- Detect tech stack (Gemfile, package.json, etc.)
-- Suggest relevant agents after documenting learnings
-- Install accepted agents to `~/.claude/agents/`
+### 第 2 阶段：代理发现
+- `/review` 发现来自所有三个地点的代理
+- 项目代理覆盖用户代理覆盖插件代理
 
-### Phase 4: Management
-- `/agents list` - See your garden
-- `/agents add <name>` - Add from library
-- `/agents disable <name>` - Temporarily disable
+### 第 3 阶段：通过 /compound 实现增长
+- 检测技术堆栈（Gemfile、package.json 等）
+- 记录学习内容后建议相关代理
+- 将接受的代理安装到`~/.claude/agents/`
 
-## What Goes Where
+### 第四阶段：管理
+- `/agents list` - 看看你的花园
+- `/agents add <name>` - 从库添加
+- `/agents disable <name>` - 暂时禁用
 
-**Core (seed):** 11 framework-agnostic agents
-- security-sentinel, performance-oracle, code-simplicity-reviewer
-- architecture-strategist, pattern-recognition-specialist
-- 4 research agents, 2 workflow agents
+## 什么去哪里
 
-**Agent Library:** 10 specialized agents
-- Rails: kieran-rails, dhh-rails, data-integrity (3)
-- Python: kieran-python (1)
-- TypeScript: kieran-typescript (1)
-- Frontend: julik-races, design-iterator, design-reviewer, figma-sync (4)
-- Editorial: every-style-editor (1)
+**核心（种子）：** 11 个与框架无关的代理
+- 安全哨兵、性能预言机、代码简单性审查者
+- 架构策略师、模式识别专家
+- 4 个研究代理，2 个工作流程代理
 
-## Key Constraint
+**代理库：** 10个专业代理
+- Rails：kieran-rails、dhh-rails、数据完整性 (3)
+- Python：kieran-python (1)
+- TypeScript：kieran-typescript (1)
+- 前端：julik-races、设计迭代器、设计评审器、figma-sync (4)
+- 社论：每种风格的编辑器 (1)
 
-Claude Code doesn't support plugin dependencies. Each plugin must be independent. Users manually install what they need, or we suggest additions via `/compound`.
+## 关键约束
 
-## Acceptance Criteria
+Claude Code 不支持插件依赖项。每个插件必须是独立的。用户手动安装他们需要的内容，或者我们建议通过`/compound`添加。
 
-- [ ] Core plugin works standalone with universal agents
-- [ ] `/compound` suggests agents based on detected tech stack
-- [ ] Users can accept/decline suggestions
-- [ ] `/agents` command for garden management
-- [ ] No breaking changes for existing users
+## 验收标准
+
+- [ ] 核心插件与通用代理独立工作
+- [ ] `/compound` 根据检测到的技术堆栈建议代理
+- [ ] 用户可以接受/拒绝建议
+- [ ] `/agents`花园管理命令
+- [ ] 对现有用户没有重大更改

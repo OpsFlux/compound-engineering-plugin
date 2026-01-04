@@ -1,39 +1,38 @@
 ---
-title: Plugin Versioning and Documentation Requirements
+title: 插件版本控制与文档要求
 category: workflow
 tags: [versioning, changelog, readme, plugin, documentation]
 created: 2025-11-24
 severity: process
 component: plugin-development
 ---
+# 插件版本控制和文档要求
 
-# Plugin Versioning and Documentation Requirements
+## 问题
 
-## Problem
+对复合工程插件进行更改时，文档可能与实际组件（代理、命令、技能）不同步。这会导致人们对每个版本中包含的内容感到困惑，并且很难跟踪随时间的变化。
 
-When making changes to the compound-engineering plugin, documentation can get out of sync with the actual components (agents, commands, skills). This leads to confusion about what's included in each version and makes it difficult to track changes over time.
+## 解决方案
 
-## Solution
+**对插件的每项更改都必须包括：**
 
-**Every change to the plugin MUST include:**
+1. **`plugin.json`** 中的版本提升
+   - 遵循语义版本控制（semver）
+   - 主要：重大变更或重大重组
+   - 次要：添加了新的代理、命令或技能
+   - 补丁：错误修复、文档更新、小改进
 
-1. **Version bump in `plugin.json`**
-   - Follow semantic versioning (semver)
-   - MAJOR: Breaking changes or major reorganization
-   - MINOR: New agents, commands, or skills added
-   - PATCH: Bug fixes, documentation updates, minor improvements
+2. **CHANGELOG.md 更新**
+   - 在`## [Unreleased]`或新版本部分下添加条目
+   - 使用保留变更日志格式
+   - 类别：添加、更改、弃用、删除、修复、安全
 
-2. **CHANGELOG.md update**
-   - Add entry under `## [Unreleased]` or new version section
-   - Use Keep a Changelog format
-   - Categories: Added, Changed, Deprecated, Removed, Fixed, Security
+3. **README.md验证**
+   - 验证组件计数与实际文件匹配
+   - 验证代理/命令/技能表是否准确
+   - 如果功能发生变化则更新描述
 
-3. **README.md verification**
-   - Verify component counts match actual files
-   - Verify agent/command/skill tables are accurate
-   - Update descriptions if functionality changed
-
-## Checklist for Plugin Changes
+## 插件更改清单
 
 ```markdown
 Before committing changes to compound-engineering plugin:
@@ -45,32 +44,33 @@ Before committing changes to compound-engineering plugin:
 - [ ] plugin.json description updated (if component counts changed)
 ```
 
-## File Locations
 
-- Version: `.claude-plugin/plugin.json` → `"version": "X.Y.Z"`
-- Changelog: `CHANGELOG.md`
-- Readme: `README.md`
+## 文件位置
 
-## Example Workflow
+- 版本：`.claude-plugin/plugin.json` → `"version": "X.Y.Z"`
+- 变更日志：`CHANGELOG.md`
+- 自述文件：`README.md`
 
-When adding a new agent:
+## 工作流程示例
 
-1. Create the agent file in `agents/[category]/`
-2. Bump version in `plugin.json` (minor version for new agent)
-3. Add to CHANGELOG under `### Added`
-4. Add row to README agent table
-5. Update README component count
-6. Update plugin.json description with new counts
+添加新代理时：
 
-## Prevention
+1. 在`agents/[category]/`中创建代理文件
+2. `plugin.json`中的凹凸版本（新代理的次要版本）
+3. 添加到 `### Added` 下的变更日志
+4. 将行添加到 README 代理表
+5.更新README组件数量
+6. 使用新计数更新 plugin.json 描述
 
-This documentation serves as a reminder. When Claude Code works on this plugin, it should:
+## 预防
 
-1. Check this doc before committing changes
-2. Follow the checklist above
-3. Never commit partial updates (all three files must be updated together)
+本文档起到提醒作用。当克劳德代码在这个插件上工作时，它应该：
 
-## Related Files
+1. 在提交更改之前检查此文档
+2. 按照上面的清单进行操作
+3. 切勿提交部分更新（所有三个文件必须一起更新）
+
+## 相关文件
 
 - `/Users/kieranklaassen/every-marketplace/plugins/compound-engineering/.claude-plugin/plugin.json`
 - `/Users/kieranklaassen/every-marketplace/plugins/compound-engineering/CHANGELOG.md`

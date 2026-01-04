@@ -1,10 +1,10 @@
-# DSPy.rb Testing, Optimization & Observability
+# DSPy.rb 测试、优化和可观察性
 
-## Testing
+## 测试
 
-DSPy.rb enables standard RSpec testing patterns for LLM logic, making your AI applications testable and maintainable.
+DSPy.rb 为 LLM 逻辑启用标准 RSpec 测试模式，使您的 AI 应用程序可测试和可维护。
 
-### Basic Testing Setup
+### 基本测试设置
 
 ```ruby
 require 'rspec'
@@ -32,9 +32,10 @@ RSpec.describe EmailClassifier do
 end
 ```
 
-### Mocking LLM Responses
 
-Test your modules without making actual API calls:
+### 嘲笑 LLM 回复
+
+测试您的模块而不进行实际的 API 调用：
 
 ```ruby
 RSpec.describe MyModule do
@@ -57,9 +58,10 @@ RSpec.describe MyModule do
 end
 ```
 
-### Testing Type Safety
 
-Verify that signatures enforce type constraints:
+### 测试类型安全
+
+验证签名是否强制执行类型约束：
 
 ```ruby
 RSpec.describe EmailClassificationSignature do
@@ -82,9 +84,10 @@ RSpec.describe EmailClassificationSignature do
 end
 ```
 
-### Testing Edge Cases
 
-Always test boundary conditions and error scenarios:
+### 测试边缘情况
+
+始终测试边界条件和错误场景：
 
 ```ruby
 RSpec.describe EmailClassifier do
@@ -122,9 +125,10 @@ RSpec.describe EmailClassifier do
 end
 ```
 
-### Integration Testing
 
-Test complete workflows end-to-end:
+### 集成测试
+
+端到端测试完整的工作流程：
 
 ```ruby
 RSpec.describe EmailProcessingPipeline do
@@ -145,9 +149,10 @@ RSpec.describe EmailProcessingPipeline do
 end
 ```
 
-### VCR for Deterministic Tests
 
-Use VCR to record and replay API responses:
+### 用于确定性测试的 VCR
+
+使用 VCR 记录和重放 API 响应：
 
 ```ruby
 require 'vcr'
@@ -173,13 +178,14 @@ RSpec.describe EmailClassifier do
 end
 ```
 
-## Optimization
 
-DSPy.rb provides powerful optimization capabilities to automatically improve your prompts and modules.
+## 优化
 
-### MIPROv2 Optimization
+DSPy.rb 提供强大的优化功能来自动改进您的提示和模块。
 
-MIPROv2 is an advanced multi-prompt optimization technique that uses bootstrap sampling, instruction generation, and Bayesian optimization.
+### MIPROv2 优化
+
+MIPROv2 是一种先进的多重提示优化技术，它使用引导采样、指令生成和贝叶斯优化。
 
 ```ruby
 require 'dspy/mipro'
@@ -233,9 +239,10 @@ result = optimized_module.forward(
 )
 ```
 
-### Bootstrap Few-Shot Learning
 
-Automatically generate few-shot examples from your training data:
+### Bootstrap 少样本学习
+
+从训练数据中自动生成少数样本：
 
 ```ruby
 require 'dspy/teleprompt'
@@ -254,9 +261,10 @@ optimized = teleprompter.compile(
 )
 ```
 
-### Custom Optimization Metrics
 
-Define custom metrics for your specific use case:
+### 自定义优化指标
+
+为您的特定用例定义自定义指标：
 
 ```ruby
 def custom_metric(example, prediction)
@@ -278,9 +286,10 @@ optimizer = DSPy::MIPROv2.new(
 )
 ```
 
-### A/B Testing Different Approaches
 
-Compare different module implementations:
+### A/B 测试不同的方法
+
+比较不同模块的实现：
 
 ```ruby
 # Approach A: ChainOfThought
@@ -327,13 +336,14 @@ puts "Approach A accuracy: #{approach_a_score}"
 puts "Approach B accuracy: #{approach_b_score}"
 ```
 
-## Observability
 
-Track your LLM application's performance, token usage, and behavior in production.
+## 可观察性
 
-### OpenTelemetry Integration
+跟踪您的 LLM 应用程序的性能、令牌使用情况以及生产中的行为。
 
-DSPy.rb automatically integrates with OpenTelemetry when configured:
+### OpenTelemetry 集成
+
+配置后，DSPy.rb 自动与 OpenTelemetry 集成：
 
 ```ruby
 require 'opentelemetry/sdk'
@@ -351,9 +361,10 @@ result = predictor.forward(input: 'data')
 # Traces are automatically sent to your OpenTelemetry collector
 ```
 
-### Langfuse Integration
 
-Track detailed LLM execution traces with Langfuse:
+### Langfuse集成
+
+使用 Langfuse 跟踪详细的 LLM 执行轨迹：
 
 ```ruby
 require 'dspy/langfuse'
@@ -374,9 +385,10 @@ result = predictor.forward(input: 'data')
 # View detailed traces in Langfuse dashboard
 ```
 
-### Manual Token Tracking
 
-Track token usage without external services:
+### 手动令牌跟踪
+
+无需外部服务即可跟踪令牌使用情况：
 
 ```ruby
 class TokenTracker
@@ -409,9 +421,10 @@ predictor = DSPy::Predict.new(MySignature)
 result = tracker.track_prediction(predictor, { input: 'data' })
 ```
 
-### Custom Logging
 
-Add detailed logging to your modules:
+### 自定义日志记录
+
+向您的模块添加详细的日志记录：
 
 ```ruby
 class EmailClassifier < DSPy::Module
@@ -442,9 +455,10 @@ class EmailClassifier < DSPy::Module
 end
 ```
 
-### Performance Monitoring
 
-Monitor latency and performance metrics:
+### 性能监控
+
+监控延迟和性能指标：
 
 ```ruby
 class PerformanceMonitor
@@ -500,9 +514,10 @@ result = monitor.monitor_request do
 end
 ```
 
-### Error Rate Tracking
 
-Monitor and alert on error rates:
+### 错误率跟踪
+
+错误率监控和警报：
 
 ```ruby
 class ErrorRateMonitor
@@ -538,11 +553,12 @@ class ErrorRateMonitor
 end
 ```
 
-## Best Practices
 
-### 1. Start with Tests
+## 最佳实践
 
-Write tests before optimizing:
+### 1. 从测试开始
+
+在优化之前编写测试：
 
 ```ruby
 # Define test cases first
@@ -561,9 +577,10 @@ end
 optimized = optimizer.compile(module, trainset: test_cases)
 ```
 
-### 2. Use Meaningful Metrics
 
-Define metrics that align with business goals:
+### 2. 使用有意义的指标
+
+定义与业务目标一致的指标：
 
 ```ruby
 def business_aligned_metric(example, prediction)
@@ -576,9 +593,10 @@ def business_aligned_metric(example, prediction)
 end
 ```
 
-### 3. Monitor in Production
 
-Always track production performance:
+### 3. 生产中的监控
+
+始终跟踪生产绩效：
 
 ```ruby
 class ProductionModule < DSPy::Module
@@ -602,9 +620,10 @@ class ProductionModule < DSPy::Module
 end
 ```
 
-### 4. Version Your Modules
 
-Track which version of your module is deployed:
+### 4. 对模块进行版本控制
+
+跟踪部署的模块版本：
 
 ```ruby
 class EmailClassifierV2 < DSPy::Module
@@ -621,3 +640,4 @@ class EmailClassifierV2 < DSPy::Module
   end
 end
 ```
+

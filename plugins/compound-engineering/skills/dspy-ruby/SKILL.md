@@ -1,31 +1,31 @@
 ---
 name: dspy-ruby
-description: This skill should be used when working with DSPy.rb, a Ruby framework for building type-safe, composable LLM applications. Use this when implementing predictable AI features, creating LLM signatures and modules, configuring language model providers (OpenAI, Anthropic, Gemini, Ollama), building agent systems with tools, optimizing prompts, or testing LLM-powered functionality in Ruby applications.
+description: 在使用 DSPy.rb 时应该使用此技能，DSPy.rb 是一个用于构建类型安全、可组合的 LLM 应用程序的 Ruby 框架。在实现可预测的 AI 功能、创建 LLM 签名和模块、配置语言模型提供程序（OpenAI、Anthropic、Gemini、Ollama）、使用工具构建代理系统、优化提示或在 Ruby 应用程序中测试 LLM 支持的功能时，请使用此功能。
+
 ---
+# DSPy.rb 专家
 
-# DSPy.rb Expert
+## 概述
 
-## Overview
+DSPy.rb 是一个 Ruby 框架，使开发人员能够**对 LLM 进行编程，而不是提示它们**。无需手动制作提示，而是通过类型安全、可组合的模块定义应用程序需求，这些模块可以像常规代码一样进行测试、优化和版本控制。
 
-DSPy.rb is a Ruby framework that enables developers to **program LLMs, not prompt them**. Instead of manually crafting prompts, define application requirements through type-safe, composable modules that can be tested, optimized, and version-controlled like regular code.
+该技能提供了以下方面的全面指导：
+- 为 LLM 操作创建类型安全签名
+- 构建可组合的模块和工作流程
+- 配置多个LLM提供商
+- 使用工具实施代理
+- 测试和优化LLM申请
+- 生产部署模式
 
-This skill provides comprehensive guidance on:
-- Creating type-safe signatures for LLM operations
-- Building composable modules and workflows
-- Configuring multiple LLM providers
-- Implementing agents with tools
-- Testing and optimizing LLM applications
-- Production deployment patterns
+## 核心能力
 
-## Core Capabilities
+### 1. 类型安全签名
 
-### 1. Type-Safe Signatures
+通过运行时类型检查为 LLM 操作创建输入/输出合同。
 
-Create input/output contracts for LLM operations with runtime type checking.
+**何时使用**：定义任何 LLM 任务，从简单分类到复杂分析。
 
-**When to use**: Defining any LLM task, from simple classification to complex analysis.
-
-**Quick reference**:
+**快速参考**：
 ```ruby
 class EmailClassificationSignature < DSPy::Signature
   description "Classify customer support emails"
@@ -42,27 +42,28 @@ class EmailClassificationSignature < DSPy::Signature
 end
 ```
 
-**Templates**: See `assets/signature-template.rb` for comprehensive examples including:
-- Basic signatures with multiple field types
-- Vision signatures for multimodal tasks
-- Sentiment analysis signatures
-- Code generation signatures
 
-**Best practices**:
-- Always provide clear, specific descriptions
-- Use enums for constrained outputs
-- Include field descriptions with `desc:` parameter
-- Prefer specific types over generic String when possible
+**模板**：请参阅 `assets/signature-template.rb` 了解综合示例，包括：
+- 具有多种字段类型的基本签名
+- 多模式任务的视觉签名
+- 情感分析签名
+- 代码生成签名
 
-**Full documentation**: See `references/core-concepts.md` sections on Signatures and Type Safety.
+**最佳实践**：
+- 始终提供清晰、具体的描述
+- 使用枚举来限制输出
+- 包括带有`desc:`参数的字段描述
+- 如果可能的话，优先选择特定类型而不是通用字符串
 
-### 2. Composable Modules
+**完整文档**：请参阅 `references/core-concepts.md` 有关签名和类型安全的部分。
 
-Build reusable, chainable modules that encapsulate LLM operations.
+### 2. 可组合模块
 
-**When to use**: Implementing any LLM-powered feature, especially complex multi-step workflows.
+构建封装 LLM 操作的可重用、可链接模块。
 
-**Quick reference**:
+**何时使用**：实现任何由 LLM 支持的功能，尤其是复杂的多步骤工作流程。
+
+**快速参考**：
 ```ruby
 class EmailProcessor < DSPy::Module
   def initialize
@@ -79,15 +80,16 @@ class EmailProcessor < DSPy::Module
 end
 ```
 
-**Templates**: See `assets/module-template.rb` for comprehensive examples including:
-- Basic modules with single predictors
-- Multi-step pipelines that chain modules
-- Modules with conditional logic
-- Error handling and retry patterns
-- Stateful modules with history
-- Caching implementations
 
-**Module composition**: Chain modules together to create complex workflows:
+**模板**：请参阅 `assets/module-template.rb` 了解综合示例，包括：
+- 具有单个预测器的基本模块
+- 链接模块的多步骤管道
+- 具有条件逻辑的模块
+- 错误处理和重试模式
+- 有历史的状态模块
+- 缓存实现
+
+**模块组合**：将模块链接在一起以创建复杂的工作流程：
 ```ruby
 class Pipeline < DSPy::Module
   def initialize
@@ -105,26 +107,29 @@ class Pipeline < DSPy::Module
 end
 ```
 
-**Full documentation**: See `references/core-concepts.md` sections on Modules and Module Composition.
 
-### 3. Multiple Predictor Types
+**完整文档**：请参阅 `references/core-concepts.md` 有关模块和模块组成的部分。
 
-Choose the right predictor for your task:
+### 3. 多种预测变量类型
 
-**Predict**: Basic LLM inference with type-safe inputs/outputs
+为您的任务选择正确的预测器：
+
+**预测**：具有类型安全输入/输出的基本 LLM 推理
 ```ruby
 predictor = DSPy::Predict.new(TaskSignature)
 result = predictor.forward(input: "data")
 ```
 
-**ChainOfThought**: Adds automatic reasoning for improved accuracy
+
+**ChainOfThought**：添加自动推理以提高准确性
 ```ruby
 predictor = DSPy::ChainOfThought.new(TaskSignature)
 result = predictor.forward(input: "data")
 # Returns: { reasoning: "...", output: "..." }
 ```
 
-**ReAct**: Tool-using agents with iterative reasoning
+
+**ReAct**：具有迭代推理功能的工具使用代理
 ```ruby
 predictor = DSPy::ReAct.new(
   TaskSignature,
@@ -133,25 +138,27 @@ predictor = DSPy::ReAct.new(
 )
 ```
 
-**CodeAct**: Dynamic code generation (requires `dspy-code_act` gem)
+
+**CodeAct**：动态代码生成（需要`dspy-code_act` gem）
 ```ruby
 predictor = DSPy::CodeAct.new(TaskSignature)
 result = predictor.forward(task: "Calculate factorial of 5")
 ```
 
-**When to use each**:
-- **Predict**: Simple tasks, classification, extraction
-- **ChainOfThought**: Complex reasoning, analysis, multi-step thinking
-- **ReAct**: Tasks requiring external tools (search, calculation, API calls)
-- **CodeAct**: Tasks best solved with generated code
 
-**Full documentation**: See `references/core-concepts.md` section on Predictors.
+**何时使用每个**：
+- **预测**：简单任务、分类、提取
+- **ChainOfThought**：复杂推理、分析、多步骤思考
+- **ReAct**：需要外部工具的任务（搜索、计算、API 调用）
+- **CodeAct**：使用生成的代码最好解决的任务
 
-### 4. LLM Provider Configuration
+**完整文档**：请参阅有关预测器的 `references/core-concepts.md` 部分。
 
-Support for OpenAI, Anthropic Claude, Google Gemini, Ollama, and OpenRouter.
+### 4.LLM提供商配置
 
-**Quick configuration examples**:
+支持 OpenAI、Anthropic Claude、Google Gemini、Ollama 和 OpenRouter。
+
+**快速配置示例**：
 ```ruby
 # OpenAI
 DSPy.configure do |c|
@@ -177,36 +184,37 @@ DSPy.configure do |c|
 end
 ```
 
-**Templates**: See `assets/config-template.rb` for comprehensive examples including:
-- Environment-based configuration
-- Multi-model setups for different tasks
-- Configuration with observability (OpenTelemetry, Langfuse)
-- Retry logic and fallback strategies
-- Budget tracking
-- Rails initializer patterns
 
-**Provider compatibility matrix**:
+**模板**：请参阅 `assets/config-template.rb` 了解综合示例，包括：
+- 基于环境的配置
+- 针对不同任务的多模型设置
+- 具有可观察性的配置（OpenTelemetry、Langfuse）
+- 重试逻辑和回退策略
+- 预算跟踪
+- Rails 初始值设定项模式
 
-| Feature | OpenAI | Anthropic | Gemini | Ollama |
-|---------|--------|-----------|--------|--------|
-| Structured Output | ✅ | ✅ | ✅ | ✅ |
-| Vision (Images) | ✅ | ✅ | ✅ | ⚠️ Limited |
-| Image URLs | ✅ | ❌ | ❌ | ❌ |
-| Tool Calling | ✅ | ✅ | ✅ | Varies |
+**提供商兼容性矩阵**：
 
-**Cost optimization strategy**:
-- Development: Ollama (free) or gpt-4o-mini (cheap)
-- Testing: gpt-4o-mini with temperature=0.0
-- Production simple tasks: gpt-4o-mini, claude-3-haiku, gemini-1.5-flash
-- Production complex tasks: gpt-4o, claude-3-5-sonnet, gemini-1.5-pro
+|特色 |开放人工智能 |人择 |双子座|奥拉玛 |
+|--------|--------|------------|--------|--------|
+|结构化输出| ✅ | ✅ | ✅ | ✅ |
+|愿景（图像）| ✅ | ✅ | ✅ | ⚠️ 有限公司 |
+|图像 URL | ✅ | ❌ | ❌ | ❌ |
+|工具调用 | ✅ | ✅ | ✅ |变化 |
 
-**Full documentation**: See `references/providers.md` for all configuration options, provider-specific features, and troubleshooting.
+**成本优化策略**：
+- 开发：Ollama（免费）或 gpt-4o-mini（便宜）
+- 测试：gpt-4o-mini，温度=0.0
+- 制作简单任务：gpt-4o-mini、claude-3-haiku、gemini-1.5-flash
+- 生产复杂任务：gpt-4o、claude-3-5-sonnet、gemini-1.5-pro
 
-### 5. Multimodal & Vision Support
+**完整文档**：有关所有配置选项、提供商特定功能和故障排除，请参阅`references/providers.md`。
 
-Process images alongside text using the unified `DSPy::Image` interface.
+### 5. 多模式和视觉支持
 
-**Quick reference**:
+使用统一的 `DSPy::Image` 界面处理图像和文本。
+
+**快速参考**：
 ```ruby
 class VisionSignature < DSPy::Signature
   description "Analyze image and answer questions"
@@ -228,7 +236,8 @@ result = predictor.forward(
 )
 ```
 
-**Image loading methods**:
+
+**图片加载方法**：
 ```ruby
 # From file
 DSPy::Image.from_file("path/to/image.jpg")
@@ -240,18 +249,19 @@ DSPy::Image.from_url("https://example.com/image.jpg")
 DSPy::Image.from_base64(base64_data, mime_type: "image/jpeg")
 ```
 
-**Provider support**:
-- OpenAI: Full support including URLs
-- Anthropic, Gemini: Base64 or file loading only
-- Ollama: Limited multimodal depending on model
 
-**Full documentation**: See `references/core-concepts.md` section on Multimodal Support.
+**提供商支持**：
+- OpenAI：全面支持，包括 URL
+- Anthropic、Gemini：Base64 或仅文件加载
+- Ollama：有限的多式联运，具体取决于型号
 
-### 6. Testing LLM Applications
+**完整文档**：请参阅有关多式联运支持的 `references/core-concepts.md` 部分。
 
-Write standard RSpec tests for LLM logic.
+### 6. 测试 LLM 申请
 
-**Quick reference**:
+为 LLM 逻辑编写标准 RSpec 测试。
+
+**快速参考**：
 ```ruby
 RSpec.describe EmailClassifier do
   before do
@@ -274,20 +284,21 @@ RSpec.describe EmailClassifier do
 end
 ```
 
-**Testing patterns**:
-- Mock LLM responses for unit tests
-- Use VCR for deterministic API testing
-- Test type safety and validation
-- Test edge cases (empty inputs, special characters, long texts)
-- Integration test complete workflows
 
-**Full documentation**: See `references/optimization.md` section on Testing.
+**测试模式**：
+- 单元测试的模拟法学硕士回应
+- 使用 VCR 进行确定性 API 测试
+- 测试类型安全性和验证
+- 测试边缘情况（空输入、特殊字符、长文本）
+- 集成测试完整的工作流程
 
-### 7. Optimization & Improvement
+**完整文档**：请参阅第 `references/optimization.md` 测试部分。
 
-Automatically improve prompts and modules using optimization techniques.
+### 7. 优化与改进
 
-**MIPROv2 optimization**:
+使用优化技术自动改进提示和模块。
+
+**MIPROv2 优化**：
 ```ruby
 require 'dspy/mipro'
 
@@ -317,20 +328,22 @@ optimized_module = optimizer.compile(
 )
 ```
 
-**A/B testing different approaches**:
+
+**A/B 测试不同的方法**：
 ```ruby
 # Test ChainOfThought vs ReAct
 approach_a_score = evaluate_approach(ChainOfThoughtModule, test_set)
 approach_b_score = evaluate_approach(ReActModule, test_set)
 ```
 
-**Full documentation**: See `references/optimization.md` section on Optimization.
 
-### 8. Observability & Monitoring
+**完整文档**：请参阅有关优化的`references/optimization.md`部分。
 
-Track performance, token usage, and behavior in production.
+### 8. 可观察性和监控
 
-**OpenTelemetry integration**:
+跟踪生产中的性能、令牌使用情况和行为。
+
+**开放遥测集成**：
 ```ruby
 require 'opentelemetry/sdk'
 
@@ -342,7 +355,8 @@ end
 # DSPy automatically creates traces
 ```
 
-**Langfuse tracing**:
+
+**Langfuse追踪**：
 ```ruby
 DSPy.configure do |c|
   c.lm = DSPy::LM.new('openai/gpt-4o-mini',
@@ -355,24 +369,26 @@ DSPy.configure do |c|
 end
 ```
 
-**Custom monitoring**:
-- Token tracking
-- Performance monitoring
-- Error rate tracking
-- Custom logging
 
-**Full documentation**: See `references/optimization.md` section on Observability.
+**自定义监控**：
+- 代币追踪
+- 性能监控
+- 错误率跟踪
+- 自定义日志记录
 
-## Quick Start Workflow
+**完整文档**：请参阅 `references/optimization.md` 有关可观察性的部分。
 
-### For New Projects
+## 快速启动工作流程
 
-1. **Install DSPy.rb and provider gems**:
+### 对于新项目
+
+1. **安装 DSPy.rb 和提供程序 gems**：
 ```bash
 gem install dspy dspy-openai  # or dspy-anthropic, dspy-gemini
 ```
 
-2. **Configure LLM provider** (see `assets/config-template.rb`):
+
+2. **配置LLM提供商**（参见`assets/config-template.rb`）：
 ```ruby
 require 'dspy'
 
@@ -382,7 +398,8 @@ DSPy.configure do |c|
 end
 ```
 
-3. **Create a signature** (see `assets/signature-template.rb`):
+
+3. **创建签名**（参见`assets/signature-template.rb`）：
 ```ruby
 class MySignature < DSPy::Signature
   description "Clear description of task"
@@ -397,7 +414,8 @@ class MySignature < DSPy::Signature
 end
 ```
 
-4. **Create a module** (see `assets/module-template.rb`):
+
+4. **创建模块**（参见`assets/module-template.rb`）：
 ```ruby
 class MyModule < DSPy::Module
   def initialize
@@ -411,14 +429,16 @@ class MyModule < DSPy::Module
 end
 ```
 
-5. **Use the module**:
+
+5. **使用模块**：
 ```ruby
 module_instance = MyModule.new
 result = module_instance.forward(input_field: "test")
 puts result[:output_field]
 ```
 
-6. **Add tests** (see `references/optimization.md`):
+
+6. **添加测试**（参见`references/optimization.md`）：
 ```ruby
 RSpec.describe MyModule do
   it 'produces expected output' do
@@ -428,15 +448,17 @@ RSpec.describe MyModule do
 end
 ```
 
-### For Rails Applications
 
-1. **Add to Gemfile**:
+### 对于 Rails 应用程序
+
+1. **添加到 Gemfile**：
 ```ruby
 gem 'dspy'
 gem 'dspy-openai'  # or other provider
 ```
 
-2. **Create initializer** at `config/initializers/dspy.rb` (see `assets/config-template.rb` for full example):
+
+2. **在 `config/initializers/dspy.rb` 处创建初始值设定项**（有关完整示例，请参阅 `assets/config-template.rb`）：
 ```ruby
 require 'dspy'
 
@@ -446,7 +468,8 @@ DSPy.configure do |c|
 end
 ```
 
-3. **Create modules in** `app/llm/` directory:
+
+3. **在**`app/llm/`目录中创建模块：
 ```ruby
 # app/llm/email_classifier.rb
 class EmailClassifier < DSPy::Module
@@ -454,7 +477,8 @@ class EmailClassifier < DSPy::Module
 end
 ```
 
-4. **Use in controllers/services**:
+
+4. **在控制器/服务中使用**：
 ```ruby
 class EmailsController < ApplicationController
   def classify
@@ -468,9 +492,10 @@ class EmailsController < ApplicationController
 end
 ```
 
-## Common Patterns
 
-### Pattern: Multi-Step Analysis Pipeline
+## 常见模式
+
+### 模式：多步骤分析管道
 
 ```ruby
 class AnalysisPipeline < DSPy::Module
@@ -489,7 +514,8 @@ class AnalysisPipeline < DSPy::Module
 end
 ```
 
-### Pattern: Agent with Tools
+
+### 模式：带工具的代理
 
 ```ruby
 class ResearchAgent < DSPy::Module
@@ -519,7 +545,8 @@ class WebSearchTool < DSPy::Tool
 end
 ```
 
-### Pattern: Conditional Routing
+
+### 模式：条件路由
 
 ```ruby
 class SmartRouter < DSPy::Module
@@ -542,7 +569,8 @@ class SmartRouter < DSPy::Module
 end
 ```
 
-### Pattern: Retry with Fallback
+
+### 模式：使用后备重试
 
 ```ruby
 class RobustModule < DSPy::Module
@@ -564,31 +592,32 @@ class RobustModule < DSPy::Module
 end
 ```
 
-## Resources
 
-This skill includes comprehensive reference materials and templates:
+## 资源
 
-### References (load as needed for detailed information)
+该技能包括全面的参考材料和模板：
 
-- [core-concepts.md](./references/core-concepts.md): Complete guide to signatures, modules, predictors, multimodal support, and best practices
-- [providers.md](./references/providers.md): All LLM provider configurations, compatibility matrix, cost optimization, and troubleshooting
-- [optimization.md](./references/optimization.md): Testing patterns, optimization techniques, observability setup, and monitoring
+### 参考资料（根据需要加载以获取详细信息）
 
-### Assets (templates for quick starts)
+- [core-concepts.md](./references/core-concepts.md)：签名、模块、预测器、多模式支持和最佳实践的完整指南
+- [providers.md](./references/providers.md)：所有 LLM 提供商配置、兼容性矩阵、成本优化和故障排除
+- [optimization.md](./references/optimization.md)：测试模式、优化技术、可观测性设置和监控
 
-- [signature-template.rb](./assets/signature-template.rb): Examples of signatures including basic, vision, sentiment analysis, and code generation
-- [module-template.rb](./assets/module-template.rb): Module patterns including pipelines, agents, error handling, caching, and state management
-- [config-template.rb](./assets/config-template.rb): Configuration examples for all providers, environments, observability, and production patterns
+### 资产（快速入门模板）
 
-## When to Use This Skill
+- [signature-template.rb](./assets/signature-template.rb)：签名示例，包括基础、愿景、情感分析和代码生成
+- [module-template.rb](./assets/module-template.rb)：模块模式，包括管道、代理、错误处理、缓存和状态管理
+- [config-template.rb](./assets/config-template.rb)：所有提供者、环境、可观察性和生产模式的配置示例
 
-Trigger this skill when:
-- Implementing LLM-powered features in Ruby applications
-- Creating type-safe interfaces for AI operations
-- Building agent systems with tool usage
-- Setting up or troubleshooting LLM providers
-- Optimizing prompts and improving accuracy
-- Testing LLM functionality
-- Adding observability to AI applications
-- Converting from manual prompt engineering to programmatic approach
-- Debugging DSPy.rb code or configuration issues
+## 何时使用此技能
+
+在以下情况下触发该技能：
+- 在 Ruby 应用程序中实现 LLM 支持的功能
+- 为人工智能操作创建类型安全的接口
+- 使用工具构建代理系统
+- 设置 LLM 提供商或对其进行故障排除
+- 优化提示，提高准确度
+- 测试LLM功能
+- 为人工智能应用程序添加可观察性
+- 从手动提示工程转换为编程方法
+- 调试 DSPy.rb 代码或配置问题

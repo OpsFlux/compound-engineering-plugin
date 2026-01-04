@@ -1,93 +1,93 @@
-# DHH Ruby Style Resources
+# DHH Ruby 风格资源
 
-Links to source material, documentation, and further reading for mastering DHH's Ruby/Rails style.
+链接到源材料、文档和进一步阅读以掌握 DHH 的 Ruby/Rails 风格。
 
-## Primary Source Code
+## 主要源代码
 
-### Campfire (Once)
-The main codebase this style guide is derived from.
+### 篝火（一次）
+本风格指南源自主要代码库。
 
-- **Repository**: https://github.com/basecamp/once-campfire
-- **Messages Controller**: https://github.com/basecamp/once-campfire/blob/main/app/controllers/messages_controller.rb
-- **JavaScript/Stimulus**: https://github.com/basecamp/once-campfire/tree/main/app/javascript
-- **Deployment**: Single Docker container with SQLite
+- **存储库**：https://github.com/basecamp/once-campfire
+- **消息控制器**：https://github.com/basecamp/once-campfire/blob/main/app/controllers/messages_controller.rb
+- **JavaScript/刺激**：https://github.com/basecamp/once-campfire/tree/main/app/javascript
+- **部署**：带有 SQLite 的单个 Docker 容器
 
-### Other 37signals Open Source
-- **Solid Queue**: https://github.com/rails/solid_queue - Database-backed Active Job backend
-- **Solid Cache**: https://github.com/rails/solid_cache - Database-backed Rails cache
-- **Solid Cable**: https://github.com/rails/solid_cable - Database-backed Action Cable adapter
-- **Kamal**: https://github.com/basecamp/kamal - Zero-downtime deployment tool
-- **Turbo**: https://github.com/hotwired/turbo-rails - Hotwire's SPA-like page accelerator
-- **Stimulus**: https://github.com/hotwired/stimulus - Modest JavaScript framework
+### 其他 37signals 开源
+- **实体队列**：https://github.com/rails/solid_queue - 数据库支持的活动作业后端
+- **实体缓存**：https://github.com/rails/solid_cache - 数据库支持的 Rails 缓存
+- **实心电缆**：https://github.com/rails/solid_cable - 支持数据库的操作电缆适配器
+- **Kamal**：https://github.com/basecamp/kamal - 零停机部署工具
+- **Turbo**：https://github.com/hotwired/turbo-rails - Hotwire 的类似 SPA 的页面加速器
+- **刺激**：https://github.com/hotwired/stimulus - 适度的 JavaScript 框架
 
-## Articles & Blog Posts
+## 文章和博客文章
 
-### Controller Organization
-- **How DHH Organizes His Rails Controllers**: https://jeromedalbert.com/how-dhh-organizes-his-rails-controllers/
-  - Definitive article on REST-pure controller design
-  - Documents the "only 7 actions" philosophy
-  - Shows how to create new controllers instead of custom actions
+### 控制者组织
+- **DHH 如何组织他的 Rails 控制器**：https://jeromedalbert.com/how-dhh-organizes-his-rails-controllers/
+  - 关于 REST 纯控制器设计的权威文章
+  - 记录了“只有 7 项行动”的理念
+  - 展示如何创建新控制器而不是自定义操作
 
-### Testing Philosophy
-- **37signals Dev - Pending Tests**: https://dev.37signals.com/pending-tests/
-  - How 37signals handles incomplete tests
-  - Pragmatic approach to test coverage
-- **37signals Dev - All About QA**: https://dev.37signals.com/all-about-qa/
-  - QA philosophy at 37signals
-  - Balance between automated and manual testing
+### 测试理念
+- **37signals 开发 - 待测试**：https://dev.37signals.com/pending-tests/
+  - 37signals 如何处理不完整的测试
+  - 测试覆盖率的务实方法
+- **37signals 开发 - 关于 QA**：https://dev.37signals.com/all-about-qa/
+  - 37signals 的质量保证理念
+  - 自动测试和手动测试之间的平衡
 
-### Architecture & Deployment
-- **Deploy Campfire on Railway**: https://railway.com/deploy/campfire
-  - Single-container deployment example
-  - SQLite in production patterns
+### 架构与部署
+- **在铁路上部署营火**：https://railway.com/deploy/campfire
+  - 单容器部署示例
+  - 生产模式中的 SQLite
 
-## Official Documentation
+## 官方文档
 
-### Rails Guides (DHH's Vision)
-- **Rails Doctrine**: https://rubyonrails.org/doctrine
-  - The philosophical foundation
-  - Convention over configuration explained
-  - "Optimize for programmer happiness"
+### Rails 指南（DHH 的愿景）
+- **Rails 原则**：https://rubyonrails.org/doctrine
+  - 哲学基础
+  - 约定优于配置解释
+  - “为程序员的幸福而优化”
 
-### Hotwire
-- **Hotwire**: https://hotwired.dev/
-  - Official Hotwire documentation
-  - Turbo Drive, Frames, and Streams
-- **Turbo Handbook**: https://turbo.hotwired.dev/handbook/introduction
-- **Stimulus Handbook**: https://stimulus.hotwired.dev/handbook/introduction
+### 热线
+- **热线**：https://hotwired.dev/
+  - 官方 Hotwire 文档
+  - 涡轮驱动、框架和流
+- **涡轮手册**：https://turbo.hotwired.dev/handbook/introduction
+- **刺激手册**：https://stimulus.hotwired.dev/handbook/introduction
 
-### Current Attributes
-- **Rails API - CurrentAttributes**: https://api.rubyonrails.org/classes/ActiveSupport/CurrentAttributes.html
-  - Official documentation for the Current pattern
-  - Thread-isolated attribute singleton
+### 当前属性
+- **Rails API - 当前属性**：https://api.rubyonrails.org/classes/ActiveSupport/CurrentAttributes.html
+  - 当前模式的官方文档
+  - 线程隔离属性单例
 
-## Videos & Talks
+## 视频和讲座
 
-### DHH Keynotes
-- **RailsConf Keynotes**: Search YouTube for "DHH RailsConf"
-  - Annual state of Rails addresses
-  - Philosophy and direction discussions
+### DHH 主题演讲
+- **RailsConf 主题演讲**：在 YouTube 上搜索“DHH RailsConf”
+  - Rails 地址的年度状态
+  - 哲学和方向讨论
 
-### Hotwire Tutorials
-- **Hotwire Demo by DHH**: Original demo showing the approach
-- **GoRails Hotwire Series**: Practical implementation tutorials
+### 热线教程
+- **DHH 的 Hotwire 演示**：展示该方法的原始演示
+- **GoRails Hotwire 系列**：实用实施教程
 
-## Books
+## 书籍
 
-### By DHH & 37signals
-- **Getting Real**: https://basecamp.com/gettingreal
-  - Product development philosophy
-  - Less is more approach
-- **Remote**: Working remotely philosophy
-- **It Doesn't Have to Be Crazy at Work**: Calm company culture
+### 由 DHH 和 37signals 提供
+- **变得真实**：https://basecamp.com/gettingreal
+  - 产品开发理念
+  - 少即是多的方法
+- **远程**：远程工作理念
+- **工作不必疯狂**：冷静的公司文化
 
-### Rails Books
-- **Agile Web Development with Rails**: The original Rails book
-- **The Rails Way**: Comprehensive Rails patterns
+### Rails 书籍
+- **使用 Rails 进行敏捷 Web 开发**：原始的 Rails 书籍
+- **The Rails Way**：综合 Rails 模式
 
-## Gems & Tools Used
+## 使用的宝石和工具
 
-### Core Stack
+### 核心堆栈
 ```ruby
 # Gemfile patterns from Campfire
 gem "rails", "~> 8.0"
@@ -104,7 +104,8 @@ gem "thruster"         # HTTP/2 proxy
 gem "image_processing" # Active Storage variants
 ```
 
-### Development
+
+### 发展
 ```ruby
 group :development do
   gem "web-console"
@@ -117,12 +118,13 @@ group :test do
 end
 ```
 
-## RuboCop Configuration
 
-37signals publishes their RuboCop rules:
-- **rubocop-rails-omakase**: https://github.com/rails/rubocop-rails-omakase
-  - Official Rails/37signals style rules
-  - Use this for consistent style enforcement
+## RuboCop 配置
+
+37signals 发布了他们的 RuboCop 规则：
+- **rubocop-rails-omakase**：https://github.com/rails/rubocop-rails-omakase
+  - 官方 Rails/37signals 风格规则
+  - 使用它来执行一致的风格
 
 ```yaml
 # .rubocop.yml
@@ -132,48 +134,49 @@ inherit_gem:
 # Project-specific overrides if needed
 ```
 
-## Community Resources
 
-### Forums & Discussion
-- **Ruby on Rails Discourse**: https://discuss.rubyonrails.org/
-- **Reddit r/rails**: https://reddit.com/r/rails
+## 社区资源
 
-### Podcasts
-- **Remote Ruby**: Ruby/Rails discussions
-- **Ruby Rogues**: Long-running Ruby podcast
-- **The Bike Shed**: Thoughtbot's development podcast
+### 论坛与讨论
+- **Ruby on Rails 讨论**：https://discuss.rubyonrails.org/
+- **Reddit r/rails**：https://reddit.com/r/rails
 
-## Key Philosophy Documents
+### 播客
+- **远程 Ruby**：Ruby/Rails 讨论
+- **Ruby Rogues**：长期运行的 Ruby 播客
+- **The Bike Shed**：Thoughtbot 的开发播客
 
-### The Rails Doctrine Pillars
-1. Optimize for programmer happiness
-2. Convention over Configuration
-3. The menu is omakase
-4. No one paradigm
-5. Exalt beautiful code
-6. Provide sharp knives
-7. Value integrated systems
-8. Progress over stability
-9. Push up a big tent
+## 关键哲学文档
 
-### DHH Quotes to Remember
+### Rails 主义支柱
+1.优化程序员的幸福感
+2.约定优于配置
+3.菜单是omakase
+4. 没有一种范式
+5. 赞美美丽的代码
+6.提供锋利的刀具
+7. 价值整合系统
+8. 进步重于稳定
+9. 搭起一个大帐篷
 
-> "The vast majority of Rails controllers can use the same seven actions."
+### DHH 引言要记住
 
-> "If you're adding a custom action, you're probably missing a controller."
+> “绝大多数 Rails 控制器都可以使用相同的七个操作。”
 
-> "Clear code is better than clever code."
+>“如果您要添加自定义操作，则可能缺少控制器。”
 
-> "The test file should be a love letter to the code."
+> “清晰的代码胜过聪明的代码。”
 
-> "SQLite is enough for most applications."
+> “测试文件应该是一封写给代码的情书。”
 
-## Version History
+> “SQLite 对于大多数应用程序来说已经足够了。”
 
-This style guide is based on:
-- Campfire source code (2024)
-- Rails 8.0 conventions
-- Ruby 3.3 syntax preferences
-- Hotwire 2.0 patterns
+## 版本历史
 
-Last updated: 2024
+本风格指南基于：
+- 篝火源代码（2024）
+- Rails 8.0 约定
+- Ruby 3.3 语法首选项
+- Hotwire 2.0 模式
+
+最后更新时间：2024 年

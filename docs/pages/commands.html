@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en" class="theme-dark">
+<html lang="zh-CN" class="theme-dark">
 
 <head>
   <meta charset="utf-8" />
-  <title>Command Reference - Compounding Engineering</title>
-  <meta content="Complete reference for all 16 slash commands in the Compounding Engineering plugin." name="description" />
+  <title>命令参考 - 复合工程</title>
+  <meta content="复合工程插件中所有 16 个斜线命令的完整参考。" name="description" />
   <meta content="width=device-width, initial-scale=1" name="viewport" />
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
@@ -20,36 +20,36 @@
       <div class="sidebar-header">
         <a href="../index.html" class="nav-brand">
           <span class="logo-icon"><i class="fa-solid fa-layer-group"></i></span>
-          <span class="logo-text">CE Docs</span>
+          <span class="logo-text">CE文件</span>
         </a>
       </div>
       <nav class="sidebar-nav">
         <div class="nav-section">
-          <h3>Getting Started</h3>
+          <h3>入门</h3>
           <ul>
-            <li><a href="getting-started.html">Installation</a></li>
+            <li><a href="getting-started.html">安装</a></li>
           </ul>
         </div>
         <div class="nav-section">
-          <h3>Reference</h3>
+          <h3>参考</h3>
           <ul>
-            <li><a href="agents.html">Agents (23)</a></li>
-            <li><a href="commands.html" class="active">Commands (13)</a></li>
-            <li><a href="skills.html">Skills (11)</a></li>
-            <li><a href="mcp-servers.html">MCP Servers (two)</a></li>
+            <li><a href="agents.html">代理商 (23)</a></li>
+            <li><a href="commands.html" class="active">命令 (13)</a></li>
+            <li><a href="skills.html">技能 (11)</a></li>
+            <li><a href="mcp-servers.html">MCP 服务器（两台）</a></li>
           </ul>
         </div>
         <div class="nav-section">
-          <h3>Resources</h3>
+          <h3>资源</h3>
           <ul>
-            <li><a href="changelog.html">Changelog</a></li>
+            <li><a href="changelog.html">变更日志</a></li>
           </ul>
         </div>
         <div class="nav-section">
-          <h3>On This Page</h3>
+          <h3>在此页上</h3>
           <ul>
-            <li><a href="#workflow-commands">Workflow (four)</a></li>
-            <li><a href="#utility-commands">Utility (12)</a></li>
+            <li><a href="#workflow-commands">工作流程（四）</a></li>
+            <li><a href="#utility-commands">实用工具 (12)</a></li>
           </ul>
         </div>
       </nav>
@@ -58,11 +58,11 @@
     <main class="docs-content">
       <div class="docs-header">
         <nav class="breadcrumb">
-          <a href="../index.html">Home</a>
+          <a href="../index.html">家</a>
           <span>/</span>
-          <a href="getting-started.html">Docs</a>
+          <a href="getting-started.html">文档</a>
           <span>/</span>
-          <span>Commands</span>
+          <span>命令</span>
         </nav>
         <button class="mobile-menu-toggle" data-sidebar-toggle>
           <i class="fa-solid fa-bars"></i>
@@ -70,49 +70,49 @@
       </div>
 
       <article class="docs-article">
-        <h1><i class="fa-solid fa-terminal color-accent"></i> Command Reference</h1>
+        <h1><i class="fa-solid fa-terminal color-accent"></i> 命令参考</h1>
         <p class="lead">
-          Here's the thing about slash commands: they're workflows you'd spend 20 minutes doing manually, compressed into one line. Type <code>/plan</code> and watch three agents launch in parallel to research your codebase while you grab coffee. That's the point—automation that actually saves time, not busywork dressed up as productivity.
+          这是关于斜杠命令的事情：它们是您需要花费 20 分钟手动完成的工作流程，并被压缩为一行。类型 <code>/plan</code> 一边喝咖啡，一边观看三个代理同时启动来研究您的代码库。这就是重点——自动化实际上可以节省时间，而不是伪装成生产力的忙碌工作。
         </p>
 
         <!-- Workflow Commands -->
         <section id="workflow-commands">
-          <h2><i class="fa-solid fa-arrows-spin"></i> Workflow Commands (four)</h2>
-          <p>These are the big four: Plan your feature, Review your code, Work through the implementation, and Codify what you learned. Every professional developer does this cycle—these commands just make you faster at it.</p>
+          <h2><i class="fa-solid fa-arrows-spin"></i> 工作流命令（四）</h2>
+          <p>这就是四大要点：规划你的功能、审查你的代码、完成实施以及整理你所学到的知识。每个专业开发人员都会执行此循环 - 这些命令只会让您更快地完成它。</p>
 
           <div class="command-detail" id="workflows-plan">
             <div class="command-detail-header">
               <code class="command-detail-name">/plan</code>
             </div>
             <p class="command-detail-description">
-              You've got a feature request and a blank page. This command turns "we need OAuth" into a structured plan that actually tells you what to build—researched, reviewed, and ready to execute.
+              您有一个功能请求和一个空白页。该命令将“我们需要 OAuth”转变为一个结构化计划，该计划实际上告诉您要构建什么 - 研究、审查并准备好执行。
             </p>
-            <h4>Arguments</h4>
+            <h4>论据</h4>
             <p><code>[feature description, bug report, or improvement idea]</code></p>
-            <h4>Workflow</h4>
+            <h4>工作流程</h4>
             <ol>
-              <li><strong>Repository Research (Parallel)</strong> - Launch three agents simultaneously:
+              <li><strong>存储库研究（并行）</strong> - 同时启动三个代理：
                 <ul>
-                  <li><code>repo-research-analyst</code> - Project patterns</li>
-                  <li><code>best-practices-researcher</code> - Industry standards</li>
-                  <li><code>framework-docs-researcher</code> - Framework documentation</li>
+                  <li><code>repo-research-analyst</code> - 项目模式</li>
+                  <li><code>best-practices-researcher</code> - 行业标准</li>
+                  <li><code>framework-docs-researcher</code> - 框架文档</li>
                 </ul>
               </li>
-              <li><strong>SpecFlow Analysis</strong> - Run <code>spec-flow-analyzer</code> for user flows</li>
-              <li><strong>Choose Detail Level</strong>:
+              <li><strong>SpecFlow 分析</strong> - 跑步 <code>spec-flow-analyzer</code> 对于用户流量</li>
+              <li><strong>选择详细程度</strong>:
                 <ul>
-                  <li><strong>MINIMAL</strong> - Simple bugs/small improvements</li>
-                  <li><strong>MORE</strong> - Standard features</li>
-                  <li><strong>A LOT</strong> - Major features with phases</li>
+                  <li><strong>极简</strong> - 简单的错误/小改进</li>
+                  <li><strong>更多的</strong> - 标准功能</li>
+                  <li><strong>很多</strong> - 具有阶段性的主要特征</li>
                 </ul>
               </li>
-              <li><strong>Write Plan</strong> - Save as <code>plans/&lt;issue_title&gt;.md</code></li>
-              <li><strong>Review</strong> - Call <code>/plan_review</code> for multi-agent feedback</li>
+              <li><strong>写计划</strong> - 另存为 <code>plans/&lt;issue_title&gt;.md</code></li>
+              <li><strong>审查</strong> - 称呼 <code>/plan_review</code> 用于多代理反馈</li>
             </ol>
             <div class="callout callout-info">
               <div class="callout-icon"><i class="fa-solid fa-circle-info"></i></div>
               <div class="callout-content">
-                <p>This command does NOT write code. It only researches and creates the plan.</p>
+                <p>该命令不编写代码。它只研究并制定计划。</p>
               </div>
             </div>
             <div class="card-code-block">
@@ -126,31 +126,31 @@
               <code class="command-detail-name">/review</code>
             </div>
             <p class="command-detail-description">
-              Twelve specialized reviewers examine your PR in parallel—security, performance, architecture, patterns. It's like code review by committee, except the committee finishes in two minutes instead of two days.
+              十二位专业审核员并行检查您的 PR——安全性、性能、架构、模式。这就像委员会的代码审查，只不过委员会在两分钟内完成而不是两天。
             </p>
-            <h4>Arguments</h4>
+            <h4>论据</h4>
             <p><code>[PR number, GitHub URL, branch name, or "latest"]</code></p>
-            <h4>Workflow</h4>
+            <h4>工作流程</h4>
             <ol>
-              <li><strong>Setup</strong> - Detect review target, optionally use git-worktree for isolation</li>
-              <li><strong>Launch 12 Parallel Review Agents</strong>:
+              <li><strong>设置</strong> - 检测审查目标，可选择使用 git-worktree 进行隔离</li>
+              <li><strong>启动12个并行审查代理</strong>:
                 <ul>
                   <li><code>kieran-rails-reviewer</code>, <code>dhh-rails-reviewer</code></li>
                   <li><code>security-sentinel</code>, <code>performance-oracle</code></li>
                   <li><code>architecture-strategist</code>, <code>data-integrity-guardian</code></li>
                   <li><code>pattern-recognition-specialist</code>, <code>git-history-analyzer</code></li>
-                  <li>And more...</li>
+                  <li>还有更多...</li>
                 </ul>
               </li>
-              <li><strong>Ultra-Thinking Analysis</strong> - Stakeholder perspectives, scenario exploration</li>
-              <li><strong>Simplification Review</strong> - Run <code>code-simplicity-reviewer</code></li>
-              <li><strong>Synthesize Findings</strong> - Categorize by severity (P1/P2/P3)</li>
-              <li><strong>Create Todo Files</strong> - Using file-todos skill for all findings</li>
+              <li><strong>超思维分析</strong> - 利益相关者视角、场景探索</li>
+              <li><strong>简化审查</strong> - 跑步 <code>code-simplicity-reviewer</code></li>
+              <li><strong>综合调查结果</strong> - 按严重程度分类（P1/P2/P3）</li>
+              <li><strong>创建待办事项文件</strong> - 对所有发现使用文件待办事项技能</li>
             </ol>
             <div class="callout callout-warning">
               <div class="callout-icon"><i class="fa-solid fa-triangle-exclamation"></i></div>
               <div class="callout-content">
-                <p><strong>P1 (Critical) findings BLOCK MERGE.</strong> Address these before merging.</p>
+                <p><strong>P1（关键）发现块合并。</strong> 在合并之前解决这些问题。</p>
               </div>
             </div>
             <div class="card-code-block">
@@ -166,39 +166,39 @@
               <code class="command-detail-name">/work</code>
             </div>
             <p class="command-detail-description">
-              Point this at a plan file and watch it execute—reading requirements, setting up environment, running tests, creating commits, opening PRs. It's the "just build the thing" button you wish you always had.
+              将其指向计划文件并观察它的执行 - 读取需求、设置环境、运行测试、创建提交、打开 PR。这是您希望一直拥有的“只构建东西”按钮。
             </p>
-            <h4>Arguments</h4>
+            <h4>论据</h4>
             <p><code>[plan file, specification, or todo file path]</code></p>
-            <h4>Phases</h4>
+            <h4>阶段</h4>
             <ol>
-              <li><strong>Quick Start</strong>
+              <li><strong>快速入门</strong>
                 <ul>
-                  <li>Read plan & clarify requirements</li>
-                  <li>Setup environment (live or worktree)</li>
-                  <li>Create TodoWrite task list</li>
+                  <li>阅读计划并明确要求</li>
+                  <li>设置环境（实时或工作树）</li>
+                  <li>创建 TodoWrite 任务列表</li>
                 </ul>
               </li>
-              <li><strong>Execute</strong>
+              <li><strong>执行</strong>
                 <ul>
-                  <li>Task execution loop with progress tracking</li>
-                  <li>Follow existing patterns</li>
-                  <li>Test continuously</li>
-                  <li>Figma sync if applicable</li>
+                  <li>带有进度跟踪的任务执行循环</li>
+                  <li>遵循现有模式</li>
+                  <li>不断测试</li>
+                  <li>Figma 同步（如果适用）</li>
                 </ul>
               </li>
-              <li><strong>Quality Check</strong>
+              <li><strong>质量检查</strong>
                 <ul>
-                  <li>Run test suite</li>
-                  <li>Run linting</li>
-                  <li>Optional reviewer agents for complex changes</li>
+                  <li>运行测试套件</li>
+                  <li>跑滚</li>
+                  <li>用于复杂变更的可选审阅代理</li>
                 </ul>
               </li>
-              <li><strong>Ship It</strong>
+              <li><strong>运送它</strong>
                 <ul>
-                  <li>Create commit with conventional format</li>
-                  <li>Create pull request</li>
-                  <li>Notify with summary</li>
+                  <li>使用常规格式创建提交</li>
+                  <li>创建拉取请求</li>
+                  <li>通知并附摘要</li>
                 </ul>
               </li>
             </ol>
@@ -213,28 +213,28 @@
               <code class="command-detail-name">/compound</code>
             </div>
             <p class="command-detail-description">
-              Just fixed a gnarly bug? This captures the solution before you forget it. Seven agents analyze what you did, why it worked, and how to prevent it next time. Each documented solution compounds your team's knowledge.
+              刚刚修复了一个棘手的错误？这可以在您忘记之前捕获解决方案。七名代理分析你做了什么，为什么它有效，以及下次如何防止它发生。每个记录的解决方案都会丰富您团队的知识。
             </p>
-            <h4>Arguments</h4>
+            <h4>论据</h4>
             <p><code>[optional: brief context about the fix]</code></p>
-            <h4>Workflow</h4>
+            <h4>工作流程</h4>
             <ol>
-              <li><strong>Preconditions</strong> - Verify problem is solved and verified working</li>
-              <li><strong>Launch seven parallel subagents</strong>:
+              <li><strong>前提条件</strong> - 验证问题已解决并验证工作正常</li>
+              <li><strong>启动七个并行子代理</strong>:
                 <ul>
-                  <li>Context Analyzer - Extract YAML frontmatter skeleton</li>
-                  <li>Solution Extractor - Identify root cause and solution</li>
-                  <li>Related Docs Finder - Find cross-references</li>
-                  <li>Prevention Strategist - Develop prevention strategies</li>
-                  <li>Category Classifier - Determine docs category</li>
-                  <li>Documentation Writer - Create the file</li>
-                  <li>Optional Specialized Agent - Based on problem type</li>
+                  <li>上下文分析器 - 提取 YAML frontmatter 骨架</li>
+                  <li>解决方案提取器 - 确定根本原因和解决方案</li>
+                  <li>相关文档查找器 - 查找交叉引用</li>
+                  <li>预防策略师 - 制定预防策略</li>
+                  <li>类别分类器 - 确定文档类别</li>
+                  <li>文档编写器 - 创建文件</li>
+                  <li>可选的专业代理 - 基于问题类型</li>
                 </ul>
               </li>
-              <li><strong>Create Documentation</strong> - File in <code>docs/solutions/[category]/</code></li>
+              <li><strong>创建文档</strong> - 文件输入 <code>docs/solutions/[category]/</code></li>
             </ol>
-            <h4>Auto-Triggers</h4>
-            <p>Phrases: "that worked", "it's fixed", "working now", "problem solved"</p>
+            <h4>自动触发</h4>
+            <p>短语：“有效”、“已修复”、“现在有效”、“问题已解决”</p>
             <div class="card-code-block">
               <pre><code>/compound
 /compound N+1 query optimization</code></pre>
@@ -244,26 +244,26 @@
 
         <!-- Utility Commands -->
         <section id="utility-commands">
-          <h2><i class="fa-solid fa-wrench"></i> Utility Commands (12)</h2>
-          <p>The supporting cast—commands that do one specific thing really well. Generate changelogs, resolve todos in parallel, triage findings, create new commands. The utilities you reach for daily.</p>
+          <h2><i class="fa-solid fa-wrench"></i> 实用命令 (12)</h2>
+          <p>支持角色——能够很好地完成某件事的命令。生成变更日志、并行解决待办事项、对结果进行分类、创建新命令。您每天使用的公用事业。</p>
 
           <div class="command-detail" id="changelog">
             <div class="command-detail-header">
               <code class="command-detail-name">/changelog</code>
             </div>
             <p class="command-detail-description">
-              Turn your git history into a changelog people actually want to read. Breaking changes at the top, fun facts at the bottom, everything organized by what matters to your users.
+              将您的 git 历史记录变成人们真正想要阅读的变更日志。顶部有重大变化，底部有有趣的事实，所有内容都按照对用户重要的内容进行组织。
             </p>
-            <h4>Arguments</h4>
+            <h4>论据</h4>
             <p><code>[optional: daily|weekly, or time period in days]</code></p>
-            <h4>Output Sections</h4>
+            <h4>输出部分</h4>
             <ul>
-              <li>Breaking Changes (top priority)</li>
-              <li>New Features</li>
-              <li>Bug Fixes</li>
-              <li>Other Improvements</li>
-              <li>Shoutouts</li>
-              <li>Fun Fact</li>
+              <li>重大变更（首要任务）</li>
+              <li>新功能</li>
+              <li>错误修复</li>
+              <li>其他改进</li>
+              <li>喊话</li>
+              <li>有趣的事实</li>
             </ul>
             <div class="card-code-block">
               <pre><code>/changelog daily
@@ -277,9 +277,9 @@
               <code class="command-detail-name">/create-agent-skill</code>
             </div>
             <p class="command-detail-description">
-              Need a new skill? This walks you through creating one that actually works—proper frontmatter, clear documentation, all the conventions baked in. Think of it as scaffolding for skills.
+              需要新技能吗？这将引导您创建一个真正有效的方案——正确的标题、清晰的文档、所有内置的约定。将其视为技能的脚手架。
             </p>
-            <h4>Arguments</h4>
+            <h4>论据</h4>
             <p><code>[skill description or requirements]</code></p>
             <div class="card-code-block">
               <pre><code>/create-agent-skill PDF processing for document analysis
@@ -292,9 +292,9 @@
               <code class="command-detail-name">/generate_command</code>
             </div>
             <p class="command-detail-description">
-              Same idea, but for commands instead of skills. Tell it what workflow you're tired of doing manually, and it generates a proper slash command with all the right patterns.
+              相同的想法，但用于命令而不是技能。告诉它您厌倦了手动执行的工作流程，它会生成具有所有正确模式的正确斜杠命令。
             </p>
-            <h4>Arguments</h4>
+            <h4>论据</h4>
             <p><code>[command purpose and requirements]</code></p>
             <div class="card-code-block">
               <pre><code>/generate_command Security audit for codebase
@@ -307,16 +307,16 @@
               <code class="command-detail-name">/heal-skill</code>
             </div>
             <p class="command-detail-description">
-              Skills drift—APIs change, URLs break, parameters get renamed. When a skill stops working, this figures out what's wrong and fixes the documentation. You approve the changes before anything commits.
+              技能漂移——API 更改、URL 损坏、参数重命名。当一项技能停止工作时，它会找出问题所在并修复文档。您在提交任何内容之前批准更改。
             </p>
-            <h4>Arguments</h4>
+            <h4>论据</h4>
             <p><code>[optional: specific issue to fix]</code></p>
-            <h4>Approval Options</h4>
+            <h4>批准选项</h4>
             <ol>
-              <li>Apply and commit</li>
-              <li>Apply without commit</li>
-              <li>Revise changes</li>
-              <li>Cancel</li>
+              <li>申请并提交</li>
+              <li>无需提交即可申请</li>
+              <li>修改变更</li>
+              <li>取消</li>
             </ol>
             <div class="card-code-block">
               <pre><code>/heal-skill API endpoint URL changed
@@ -329,15 +329,15 @@
               <code class="command-detail-name">/plan_review</code>
             </div>
             <p class="command-detail-description">
-              Before you execute a plan, have three reviewers tear it apart—Rails conventions, best practices, simplicity. Better to find the problems in the plan than in production.
+              在执行计划之前，请三位审阅者对其进行详细分析——Rails 约定、最佳实践、简单性。在计划中发现问题比在生产中发现问题更好。
             </p>
-            <h4>Arguments</h4>
+            <h4>论据</h4>
             <p><code>[plan file path or plan content]</code></p>
-            <h4>Review Agents</h4>
+            <h4>审查代理</h4>
             <ul>
-              <li><code>dhh-rails-reviewer</code> - Rails conventions</li>
-              <li><code>kieran-rails-reviewer</code> - Rails best practices</li>
-              <li><code>code-simplicity-reviewer</code> - Simplicity and clarity</li>
+              <li><code>dhh-rails-reviewer</code> - Rails 约定</li>
+              <li><code>kieran-rails-reviewer</code> - Rails 最佳实践</li>
+              <li><code>code-simplicity-reviewer</code> - 简单明了</li>
             </ul>
             <div class="card-code-block">
               <pre><code>/plan_review plans/user-authentication.md</code></pre>
@@ -349,18 +349,18 @@
               <code class="command-detail-name">/report-bug</code>
             </div>
             <p class="command-detail-description">
-              Something broken? This collects all the context—what broke, what you expected, error messages, environment—and files a proper bug report. No more "it doesn't work" issues.
+              有什么东西坏了？这会收集所有上下文 - 发生了什么问题、您期望什么、错误消息、环境 - 并提交正确的错误报告。不再有“它不起作用”的问题。
             </p>
-            <h4>Arguments</h4>
+            <h4>论据</h4>
             <p><code>[optional: brief description of the bug]</code></p>
-            <h4>Information Collected</h4>
+            <h4>收集的信息</h4>
             <ul>
-              <li>Bug category (Agent/Command/Skill/MCP/Installation)</li>
-              <li>Specific component name</li>
-              <li>Actual vs expected behavior</li>
-              <li>Steps to reproduce</li>
-              <li>Error messages</li>
-              <li>Environment info (auto-gathered)</li>
+              <li>错误类别（代理/命令/技能/MCP/安装）</li>
+              <li>具体组件名称</li>
+              <li>实际行为与预期行为</li>
+              <li>重现步骤</li>
+              <li>错误信息</li>
+              <li>环境信息（自动收集）</li>
             </ul>
             <div class="card-code-block">
               <pre><code>/report-bug Agent not working
@@ -373,17 +373,17 @@
               <code class="command-detail-name">/reproduce-bug</code>
             </div>
             <p class="command-detail-description">
-              Give it a GitHub issue number and it tries to actually reproduce the bug—reading the issue, analyzing code paths, iterating until it finds the root cause. Then it posts findings back to the issue.
+              给它一个 GitHub 问题编号，它会尝试实际重现错误 - 阅读问题、分析代码路径、迭代直到找到根本原因。然后它将调查结果发布回该问题。
             </p>
-            <h4>Arguments</h4>
+            <h4>论据</h4>
             <p><code>[GitHub issue number]</code></p>
-            <h4>Investigation Process</h4>
+            <h4>调查过程</h4>
             <ol>
-              <li>Read GitHub issue details</li>
-              <li>Launch parallel investigation agents</li>
-              <li>Analyze code for failure points</li>
-              <li>Iterate until root cause found</li>
-              <li>Post findings to GitHub issue</li>
+              <li>阅读 GitHub 问题详细信息</li>
+              <li>启动平行调查代理</li>
+              <li>分析代码寻找故障点</li>
+              <li>迭代直至找到根本原因</li>
+              <li>将调查结果发布到 GitHub 问题</li>
             </ol>
             <div class="card-code-block">
               <pre><code>/reproduce-bug 142</code></pre>
@@ -395,20 +395,20 @@
               <code class="command-detail-name">/triage</code>
             </div>
             <p class="command-detail-description">
-              Got a pile of code review findings or security audit results? This turns them into actionable todos—one at a time, you decide: create the todo, skip it, or modify and re-present.
+              获得一堆代码审查结果或安全审核结果？这会将它们变成可操作的待办事项 - 一次一个，由您决定：创建待办事项、跳过它或修改并重新呈现。
             </p>
-            <h4>Arguments</h4>
+            <h4>论据</h4>
             <p><code>[findings list or source type]</code></p>
-            <h4>User Decisions</h4>
+            <h4>用户决定</h4>
             <ul>
-              <li><strong>"yes"</strong> - Create/update todo file, change status to ready</li>
-              <li><strong>"next"</strong> - Skip and delete from todos</li>
-              <li><strong>"custom"</strong> - Modify and re-present</li>
+              <li><strong>“是的”</strong> - 创建/更新待办事项文件，将状态更改为就绪</li>
+              <li><strong>“下一个”</strong> - 从待办事项中跳过和删除</li>
+              <li><strong>“风俗”</strong> - 修改并重新呈现</li>
             </ul>
             <div class="callout callout-info">
               <div class="callout-icon"><i class="fa-solid fa-circle-info"></i></div>
               <div class="callout-content">
-                <p>This command does NOT write code. It only categorizes and creates todo files.</p>
+                <p>该命令不编写代码。它仅对待办事项文件进行分类和创建。</p>
               </div>
             </div>
             <div class="card-code-block">
@@ -422,16 +422,16 @@
               <code class="command-detail-name">/resolve_parallel</code>
             </div>
             <p class="command-detail-description">
-              All those TODO comments scattered through your codebase? This finds them, builds a dependency graph, and spawns parallel agents to resolve them all at once. Clears the backlog in minutes.
+              所有这些 TODO 注释都分散在您的代码库中吗？这会找到它们，构建依赖关系图，并生成并行代理来一次性解决所有问题。在几分钟内清除积压的订单。
             </p>
-            <h4>Arguments</h4>
+            <h4>论据</h4>
             <p><code>[optional: specific TODO pattern or file]</code></p>
-            <h4>Process</h4>
+            <h4>过程</h4>
             <ol>
-              <li>Analyze TODO comments from codebase</li>
-              <li>Create dependency graph (mermaid diagram)</li>
-              <li>Spawn parallel <code>pr-comment-resolver</code> agents</li>
-              <li>Commit and push after completion</li>
+              <li>分析代码库中的 TODO 注释</li>
+              <li>创建依赖图（美人鱼图）</li>
+              <li>平行生成 <code>pr-comment-resolver</code> 代理人</li>
+              <li>完成后提交并推送</li>
             </ol>
             <div class="card-code-block">
               <pre><code>/resolve_parallel
@@ -445,16 +445,16 @@
               <code class="command-detail-name">/resolve_pr_parallel</code>
             </div>
             <p class="command-detail-description">
-              Same deal, but for PR review comments. Fetch unresolved threads, spawn parallel resolver agents, commit the fixes, and mark threads as resolved. Your reviewers will wonder how you're so fast.
+              同样的交易，但需要公关审查意见。获取未解决的线程，生成并行解析器代理，提交修复并将线程标记为已解决。你的评论者会想知道你怎么这么快。
             </p>
-            <h4>Arguments</h4>
+            <h4>论据</h4>
             <p><code>[optional: PR number or current PR]</code></p>
-            <h4>Process</h4>
+            <h4>过程</h4>
             <ol>
-              <li>Get all unresolved PR comments</li>
-              <li>Create TodoWrite list</li>
-              <li>Launch parallel <code>pr-comment-resolver</code> agents</li>
-              <li>Commit, resolve threads, and push</li>
+              <li>获取所有未解决的 PR 评论</li>
+              <li>创建 TodoWrite 列表</li>
+              <li>并行启动 <code>pr-comment-resolver</code> 代理人</li>
+              <li>提交、解析线程并推送</li>
             </ol>
             <div class="card-code-block">
               <pre><code>/resolve_pr_parallel
@@ -467,16 +467,16 @@
               <code class="command-detail-name">/resolve_todo_parallel</code>
             </div>
             <p class="command-detail-description">
-              Those todo files in your <code>/todos</code> directory? Point this at them and watch parallel agents knock them out—analyzing dependencies, executing in the right order, marking resolved as they finish.
+              您的那些待办事项文件 <code>/todos</code> 目录？将其指向它们，然后观察并行代理将它们击倒——分析依赖关系，以正确的顺序执行，并在完成时标记为“已解决”。
             </p>
-            <h4>Arguments</h4>
+            <h4>论据</h4>
             <p><code>[optional: specific todo ID or pattern]</code></p>
-            <h4>Process</h4>
+            <h4>过程</h4>
             <ol>
-              <li>Get unresolved TODOs from <code>/todos/*.md</code></li>
-              <li>Analyze dependencies</li>
-              <li>Spawn parallel agents</li>
-              <li>Commit, mark as resolved, push</li>
+              <li>从以下位置获取未解决的 TODO <code>/todos/*.md</code></li>
+              <li>分析依赖关系</li>
+              <li>生成并行代理</li>
+              <li>提交、标记为已解决、推送</li>
             </ol>
             <div class="card-code-block">
               <pre><code>/resolve_todo_parallel
@@ -490,7 +490,7 @@
               <code class="command-detail-name">/prime</code>
             </div>
             <p class="command-detail-description">
-              Your project initialization command. What exactly it does depends on your project setup—think of it as the "get everything ready" button before you start coding.
+              您的项目初始化命令。它到底做什么取决于您的项目设置 - 将其视为开始编码之前的“准备好一切”按钮。
             </p>
             <div class="card-code-block">
               <pre><code>/prime</code></pre>
@@ -501,12 +501,12 @@
         <!-- Navigation -->
         <nav class="docs-nav-footer">
           <a href="agents.html" class="nav-prev">
-            <span class="nav-label">Previous</span>
-            <span class="nav-title"><i class="fa-solid fa-arrow-left"></i> Agents</span>
+            <span class="nav-label">以前的</span>
+            <span class="nav-title"><i class="fa-solid fa-arrow-left"></i> 代理商</span>
           </a>
           <a href="skills.html" class="nav-next">
-            <span class="nav-label">Next</span>
-            <span class="nav-title">Skills <i class="fa-solid fa-arrow-right"></i></span>
+            <span class="nav-label">下一个</span>
+            <span class="nav-title">技能 <i class="fa-solid fa-arrow-right"></i></span>
           </a>
         </nav>
       </article>

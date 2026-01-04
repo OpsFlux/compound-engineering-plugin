@@ -1,12 +1,12 @@
-# DHH Ruby/Rails Patterns Reference
+# DHH Ruby/Rails 模式参考
 
-Comprehensive code patterns extracted from 37signals' Campfire codebase and DHH's public teachings.
+从 37signals 的 Campfire 代码库和 DHH 的公共教学中提取的综合代码模式。
 
-## Controller Patterns
+## 控制器模式
 
-### REST-Pure Controller Design
+### REST-纯控制器设计
 
-DHH's controller philosophy is "fundamentalistic" about REST. Every controller maps to a resource with only the 7 standard actions.
+DHH 的控制器哲学对于 REST 来说是“原教旨主义”的。每个控制器仅通过 7 个标准操作映射到一个资源。
 
 ```ruby
 # ✅ CORRECT: Standard REST actions only
@@ -43,7 +43,8 @@ class Messages::SearchesController < ApplicationController
 end
 ```
 
-### Controller Concerns for Shared Behavior
+
+### 控制器对共享行为的关注
 
 ```ruby
 # app/controllers/concerns/room_scoped.rb
@@ -66,7 +67,8 @@ class MessagesController < ApplicationController
 end
 ```
 
-### Complete Controller Example
+
+### 完整的控制器示例
 
 ```ruby
 class MessagesController < ApplicationController
@@ -150,9 +152,10 @@ class MessagesController < ApplicationController
 end
 ```
 
-## Model Patterns
 
-### Semantic Association Naming
+## 模型模式
+
+### 语义关联命名
 
 ```ruby
 class Message < ApplicationRecord
@@ -180,7 +183,8 @@ class Room < ApplicationRecord
 end
 ```
 
-### Scope Design
+
+### 范围设计
 
 ```ruby
 class Message < ApplicationRecord
@@ -203,7 +207,8 @@ class Message < ApplicationRecord
 end
 ```
 
-### Custom Creation Methods
+
+### 自定义创建方法
 
 ```ruby
 class Message < ApplicationRecord
@@ -222,7 +227,8 @@ class Message < ApplicationRecord
 end
 ```
 
-### Authorization on Models
+
+### 模型授权
 
 ```ruby
 class User < ApplicationRecord
@@ -245,7 +251,8 @@ def ensure_can_administer
 end
 ```
 
-### Model Broadcasting
+
+### 模特广播
 
 ```ruby
 class Message < ApplicationRecord
@@ -271,9 +278,10 @@ class Message < ApplicationRecord
 end
 ```
 
-## Current Attributes Pattern
 
-### Definition
+## 当前属性模式
+
+### 定义
 
 ```ruby
 # app/models/current.rb
@@ -292,7 +300,8 @@ class Current < ActiveSupport::CurrentAttributes
 end
 ```
 
-### Setting in Controller
+
+### 控制器中的设置
 
 ```ruby
 class ApplicationController < ActionController::Base
@@ -308,7 +317,8 @@ class ApplicationController < ActionController::Base
 end
 ```
 
-### Usage Throughout App
+
+### 整个应用程序的使用
 
 ```ruby
 # In models
@@ -333,9 +343,10 @@ class NotificationJob < ApplicationJob
 end
 ```
 
-## Ruby Idioms
 
-### Guard Clauses Over Nested Conditionals
+## 红宝石习语
+
+### 嵌套条件的保护子句
 
 ```ruby
 # ✅ Guard clauses
@@ -359,7 +370,8 @@ def process_message
 end
 ```
 
-### Expression-less Case Statements
+
+### 无表达式 Case 语句
 
 ```ruby
 # ✅ Clean case without expression
@@ -385,7 +397,8 @@ def find_paged_messages
 end
 ```
 
-### Method Chaining
+
+### 方法链接
 
 ```ruby
 # ✅ Fluent, chainable API
@@ -401,7 +414,8 @@ bots_eligible_for_webhook
   .each { |bot| bot.deliver_webhook_later(@message) }
 ```
 
-### Implicit Returns
+
+### 隐式返回
 
 ```ruby
 # ✅ Implicit return - the Ruby way
@@ -419,9 +433,10 @@ def full_name
 end
 ```
 
-## View Patterns
 
-### Helper Methods for Complex HTML
+## 查看模式
+
+### 复杂 HTML 的辅助方法
 
 ```ruby
 # app/helpers/messages_helper.rb
@@ -449,7 +464,8 @@ module MessagesHelper
 end
 ```
 
-### Turbo Frame Patterns
+
+### Turbo 框架模式
 
 ```erb
 <%# app/views/messages/index.html.erb %>
@@ -464,7 +480,8 @@ end
 <% end %>
 ```
 
-### Stimulus Controller Integration
+
+### 刺激控制器集成
 
 ```erb
 <div data-controller="message-form"
@@ -478,9 +495,10 @@ end
 </div>
 ```
 
-## Testing Patterns
 
-### System Tests First
+## 测试模式
+
+### 首先进行系统测试
 
 ```ruby
 # test/system/messages_test.rb
@@ -511,7 +529,8 @@ class MessagesTest < ApplicationSystemTestCase
 end
 ```
 
-### Fixtures Over Factories
+
+### 工厂固定装置
 
 ```yaml
 # test/fixtures/users.yml
@@ -538,7 +557,8 @@ greeting:
   creator: david
 ```
 
-### Integration Tests for API
+
+### API 集成测试
 
 ```ruby
 # test/integration/messages_api_test.rb
@@ -554,9 +574,10 @@ class MessagesApiTest < ActionDispatch::IntegrationTest
 end
 ```
 
-## Configuration Patterns
 
-### Solid Queue Setup
+## 配置模式
+
+### 固定队列设置
 
 ```ruby
 # config/queue.yml
@@ -581,7 +602,8 @@ production:
       processes: 2
 ```
 
-### Database Configuration for SQLite
+
+### SQLite 的数据库配置
 
 ```ruby
 # config/database.yml
@@ -599,7 +621,8 @@ production:
   database: storage/production.sqlite3
 ```
 
-### Single Container Deployment
+
+### 单容器部署
 
 ```dockerfile
 # Dockerfile
@@ -619,9 +642,10 @@ EXPOSE 80 443
 CMD ["./bin/rails", "server", "-b", "0.0.0.0"]
 ```
 
-## Development Philosophy
 
-### Ship, Validate, Refine
+## 发展理念
+
+### 发货、验证、完善
 
 ```ruby
 # 1. Merge prototype-quality code to test real usage
@@ -629,9 +653,10 @@ CMD ["./bin/rails", "server", "-b", "0.0.0.0"]
 # 3. Polish what works, remove what doesn't
 ```
 
-DHH merges features early to validate in production. Perfect code that no one uses is worse than rough code that gets feedback.
 
-### Fix Root Causes
+DHH 尽早合并功能以在生产中进行验证。没有人使用的完美代码比得到反馈的粗糙代码更糟糕。
+
+### 修复根本原因
 
 ```ruby
 # ✅ Prevent race conditions at the source
@@ -641,9 +666,10 @@ config.active_job.enqueue_after_transaction_commit = true
 retry_on ActiveRecord::RecordNotFound, wait: 1.second
 ```
 
-Address underlying issues rather than symptoms.
 
-### Vanilla Rails Over Abstractions
+解决根本问题而不是症状。
+
+### Vanilla Rails 超越抽象
 
 ```ruby
 # ✅ Direct ActiveRecord
@@ -653,9 +679,10 @@ Address underlying issues rather than symptoms.
 CreateCommentService.call(@card, comment_params)
 ```
 
-Use Rails conventions. Only abstract when genuine pain emerges.
 
-## Rails 7.1+ Idioms
+使用 Rails 约定。只有当真正的痛苦出现时才变得抽象。
+
+## Rails 7.1+ 习语
 
 ### params.expect (PR #120)
 
@@ -672,6 +699,7 @@ def card_params
   params.require(:card).permit(:title, :description, tags: [])
 end
 ```
+
 
 ### StringInquirer (PR #425)
 
@@ -692,7 +720,8 @@ end
 event.action == "completed"
 ```
 
-### Positive Naming
+
+### 正面命名
 
 ```ruby
 # ✅ Positive names
@@ -706,9 +735,10 @@ scope :non_hidden, -> { ... }   # Use :visible
 scope :is_not_draft, -> { ... } # Use :published
 ```
 
-## Extraction Guidelines
 
-### Rule of Three
+## 提取指南
+
+### 三法则
 
 ```ruby
 # First time: Just do it inline
@@ -729,9 +759,10 @@ module Processing
 end
 ```
 
-Wait for genuine pain before extracting.
 
-### Start in Controller, Extract When Complex
+等待真正疼痛后再拔牙。
+
+### 从控制器开始，复杂时提取
 
 ```ruby
 # Phase 1: Logic in controller
@@ -750,9 +781,10 @@ def index
 end
 ```
 
-## Anti-Patterns to Avoid
 
-### Don't Add Service Objects for Simple Cases
+## 要避免的反模式
+
+### 不要为简单情况添加服务对象
 
 ```ruby
 # ❌ Over-abstraction
@@ -780,7 +812,8 @@ class Message < ApplicationRecord
 end
 ```
 
-### Don't Use Policy Objects for Simple Auth
+
+### 不要使用策略对象进行简单身份验证
 
 ```ruby
 # ❌ Separate policy class
@@ -803,7 +836,8 @@ class User < ApplicationRecord
 end
 ```
 
-### Don't Mock Everything
+
+### 不要嘲笑一切
 
 ```ruby
 # ❌ Over-mocked test
@@ -828,3 +862,4 @@ test "sending message" do
   assert Message.exists?(body: "Hello")
 end
 ```
+

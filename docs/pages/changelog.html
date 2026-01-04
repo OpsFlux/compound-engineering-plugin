@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en" class="theme-dark">
+<html lang="zh-CN" class="theme-dark">
 
 <head>
   <meta charset="utf-8" />
-  <title>Changelog - Compounding Engineering</title>
-  <meta content="Version history and release notes for the Compounding Engineering plugin." name="description" />
+  <title>变更日志 - 复合工程</title>
+  <meta content="复合工程插件的版本历史记录和发行说明。" name="description" />
   <meta content="width=device-width, initial-scale=1" name="viewport" />
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
@@ -20,33 +20,33 @@
       <div class="sidebar-header">
         <a href="../index.html" class="nav-brand">
           <span class="logo-icon"><i class="fa-solid fa-layer-group"></i></span>
-          <span class="logo-text">CE Docs</span>
+          <span class="logo-text">CE文件</span>
         </a>
       </div>
       <nav class="sidebar-nav">
         <div class="nav-section">
-          <h3>Getting Started</h3>
+          <h3>入门</h3>
           <ul>
-            <li><a href="getting-started.html">Installation</a></li>
+            <li><a href="getting-started.html">安装</a></li>
           </ul>
         </div>
         <div class="nav-section">
-          <h3>Reference</h3>
+          <h3>参考</h3>
           <ul>
-            <li><a href="agents.html">Agents (23)</a></li>
-            <li><a href="commands.html">Commands (13)</a></li>
-            <li><a href="skills.html">Skills (11)</a></li>
-            <li><a href="mcp-servers.html">MCP Servers (two)</a></li>
+            <li><a href="agents.html">代理商 (23)</a></li>
+            <li><a href="commands.html">命令 (13)</a></li>
+            <li><a href="skills.html">技能 (11)</a></li>
+            <li><a href="mcp-servers.html">MCP 服务器（两台）</a></li>
           </ul>
         </div>
         <div class="nav-section">
-          <h3>Resources</h3>
+          <h3>资源</h3>
           <ul>
-            <li><a href="changelog.html" class="active">Changelog</a></li>
+            <li><a href="changelog.html" class="active">变更日志</a></li>
           </ul>
         </div>
         <div class="nav-section">
-          <h3>On This Page</h3>
+          <h3>在此页上</h3>
           <ul>
             <li><a href="#v2.6.0">v2.6.0</a></li>
             <li><a href="#v2.5.0">v2.5.0</a></li>
@@ -67,11 +67,11 @@
     <main class="docs-content">
       <div class="docs-header">
         <nav class="breadcrumb">
-          <a href="../index.html">Home</a>
+          <a href="../index.html">家</a>
           <span>/</span>
-          <a href="getting-started.html">Docs</a>
+          <a href="getting-started.html">文档</a>
           <span>/</span>
-          <span>Changelog</span>
+          <span>变更日志</span>
         </nav>
         <button class="mobile-menu-toggle" data-sidebar-toggle>
           <i class="fa-solid fa-bars"></i>
@@ -79,11 +79,11 @@
       </div>
 
       <article class="docs-article">
-        <h1><i class="fa-solid fa-clock-rotate-left color-accent"></i> Changelog</h1>
+        <h1><i class="fa-solid fa-clock-rotate-left color-accent"></i> 变更日志</h1>
         <p class="lead">
-          All notable changes to the compound-engineering plugin. This project follows
-          <a href="https://semver.org/">Semantic Versioning</a> and
-          <a href="https://keepachangelog.com/">Keep a Changelog</a> conventions.
+          复合工程插件的所有显着变化。该项目如下
+          <a href="https://semver.org/">语义版本控制</a> 和
+          <a href="https://keepachangelog.com/">保留变更日志</a> 惯例。
         </p>
 
         <!-- Version 2.6.0 -->
@@ -94,11 +94,11 @@
           </div>
 
           <div class="changelog-category removed">
-            <h3><i class="fa-solid fa-minus"></i> Removed</h3>
+            <h3><i class="fa-solid fa-minus"></i> 已删除</h3>
             <ul>
               <li>
-                <strong><code>feedback-codifier</code> agent</strong> - Removed from workflow agents.
-                Agent count reduced from 24 to 23.
+                <strong><code>feedback-codifier</code> 代理人</strong> - 从工作流代理中删除。
+                代理人数从 24 人减少至 23 人。
               </li>
             </ul>
           </div>
@@ -112,13 +112,13 @@
           </div>
 
           <div class="changelog-category added">
-            <h3><i class="fa-solid fa-plus"></i> Added</h3>
+            <h3><i class="fa-solid fa-plus"></i> 额外</h3>
             <ul>
               <li>
-                <strong><code>/report-bug</code> command</strong> - New slash command for reporting bugs in the
-                compound-engineering plugin. Provides a structured workflow that gathers bug information
-                through guided questions, collects environment details automatically, and creates a GitHub
-                issue in the EveryInc/every-marketplace repository.
+                <strong><code>/report-bug</code> 命令</strong> - 用于报告错误的新斜杠命令
+                复合工程插件。提供收集错误信息的结构化工作流程
+                通过引导式问题，自动收集环境详细信息，并创建GitHub
+                EveryInc/every-marketplace 存储库中的问题。
               </li>
             </ul>
           </div>
@@ -132,13 +132,13 @@
           </div>
 
           <div class="changelog-category improved">
-            <h3><i class="fa-solid fa-arrow-up"></i> Improved</h3>
+            <h3><i class="fa-solid fa-arrow-up"></i> 改进</h3>
             <ul>
               <li>
-                <strong>design-iterator agent</strong> - Added focused screenshot guidance: always capture
-                only the target element/area instead of full page screenshots. Includes browser_resize
-                recommendations, element-targeted screenshot workflow using browser_snapshot refs, and
-                explicit instruction to never use fullPage mode.
+                <strong>设计迭代代理</strong> - 添加了重点截图指导：始终捕获
+                仅目标元素/区域而不是整页屏幕截图。包括 browser_resize
+                建议、使用 browser_snapshot refs 的针对元素的屏幕截图工作流程，以及
+                明确指示永远不要使用全页模式。
               </li>
             </ul>
           </div>
@@ -152,14 +152,14 @@
           </div>
 
           <div class="changelog-category fixed">
-            <h3><i class="fa-solid fa-bug"></i> Fixed</h3>
+            <h3><i class="fa-solid fa-bug"></i> 固定的</h3>
             <ul>
               <li>
-                <strong>MCP Configuration</strong> - Moved MCP servers back to <code>plugin.json</code>
-                following working examples from anthropics/life-sciences plugins.
+                <strong>MCP配置</strong> - 将 MCP 服务器移回 <code>plugin.json</code>
+                以下是来自人类学/生命科学插件的工作示例。
               </li>
               <li>
-                <strong>Context7 URL</strong> - Updated to use HTTP type with correct endpoint URL.
+                <strong>上下文7 URL</strong> - 更新为使用具有正确端点 URL 的 HTTP 类型。
               </li>
             </ul>
           </div>
@@ -173,11 +173,11 @@
           </div>
 
           <div class="changelog-category changed">
-            <h3><i class="fa-solid fa-arrows-rotate"></i> Changed</h3>
+            <h3><i class="fa-solid fa-arrows-rotate"></i> 改变了</h3>
             <ul>
               <li>
-                <strong>MCP Configuration</strong> - Moved MCP servers from inline <code>plugin.json</code>
-                to separate <code>.mcp.json</code> file per Claude Code best practices.
+                <strong>MCP配置</strong> - 将 MCP 服务器从内联移至 <code>plugin.json</code>
+                分开 <code>.mcp.json</code> 根据克劳德代码最佳实践的文件。
               </li>
             </ul>
           </div>
@@ -191,11 +191,11 @@
           </div>
 
           <div class="changelog-category fixed">
-            <h3><i class="fa-solid fa-bug"></i> Fixed</h3>
+            <h3><i class="fa-solid fa-bug"></i> 固定的</h3>
             <ul>
               <li>
-                <strong>Playwright MCP Server</strong> - Added missing <code>"type": "stdio"</code> field
-                required for MCP server configuration to load properly.
+                <strong>剧作家 MCP 服务器</strong> - 添加了缺失的 <code>"type": "stdio"</code> 领域
+                正确加载 MCP 服务器配置所需的。
               </li>
             </ul>
           </div>
@@ -209,11 +209,11 @@
           </div>
 
           <div class="changelog-category added">
-            <h3><i class="fa-solid fa-plus"></i> Added</h3>
+            <h3><i class="fa-solid fa-plus"></i> 额外</h3>
             <ul>
               <li>
-                <strong>Context7 MCP Server</strong> - Bundled Context7 for instant framework documentation
-                lookup. Provides up-to-date docs for Rails, React, Next.js, and more than 100 other frameworks.
+                <strong>Context7 MCP 服务器</strong> - 捆绑 Context7 用于即时框架文档
+                查找。提供 Rails、React、Next.js 和 100 多个其他框架的最新文档。
               </li>
             </ul>
           </div>
@@ -227,25 +227,25 @@
           </div>
 
           <div class="changelog-category added">
-            <h3><i class="fa-solid fa-plus"></i> Added</h3>
+            <h3><i class="fa-solid fa-plus"></i> 额外</h3>
             <ul>
               <li>
-                <strong>Playwright MCP Server</strong> - Bundled <code>@playwright/mcp</code> for browser
-                automation across all projects. Provides screenshot, navigation, click, fill, and evaluate tools.
+                <strong>剧作家 MCP 服务器</strong> - 捆绑 <code>@playwright/mcp</code> 对于浏览器
+                所有项目的自动化。提供截图、导航、点击、填充和评估工具。
               </li>
             </ul>
           </div>
 
           <div class="changelog-category changed">
-            <h3><i class="fa-solid fa-arrows-rotate"></i> Changed</h3>
+            <h3><i class="fa-solid fa-arrows-rotate"></i> 改变了</h3>
             <ul>
-              <li>Replaced all Puppeteer references with Playwright across agents and commands:
+              <li>将代理和命令中的所有 Puppeteer 引用替换为 Playwright：
                 <ul>
-                  <li><code>bug-reproduction-validator</code> agent</li>
-                  <li><code>design-iterator</code> agent</li>
-                  <li><code>design-implementation-reviewer</code> agent</li>
-                  <li><code>figma-design-sync</code> agent</li>
-                  <li><code>generate_command</code> command</li>
+                  <li><code>bug-reproduction-validator</code> 代理人</li>
+                  <li><code>design-iterator</code> 代理人</li>
+                  <li><code>design-implementation-reviewer</code> 代理人</li>
+                  <li><code>figma-design-sync</code> 代理人</li>
+                  <li><code>generate_command</code> 命令</li>
                 </ul>
               </li>
             </ul>
@@ -260,11 +260,11 @@
           </div>
 
           <div class="changelog-category changed">
-            <h3><i class="fa-solid fa-arrows-rotate"></i> Changed</h3>
+            <h3><i class="fa-solid fa-arrows-rotate"></i> 改变了</h3>
             <ul>
               <li>
-                <strong>design-iterator agent</strong> - Updated description to emphasize proactive usage
-                when design work isn't coming together on first attempt.
+                <strong>设计迭代代理</strong> - 更新了描述以强调主动使用
+                当设计工作在第一次尝试中未能完成时。
               </li>
             </ul>
           </div>
@@ -278,10 +278,10 @@
           </div>
 
           <div class="changelog-category added">
-            <h3><i class="fa-solid fa-plus"></i> Added</h3>
+            <h3><i class="fa-solid fa-plus"></i> 额外</h3>
             <ul>
-              <li><strong>CLAUDE.md</strong> - Project instructions with versioning requirements</li>
-              <li><strong>docs/solutions/plugin-versioning-requirements.md</strong> - Workflow documentation</li>
+              <li><strong>克劳德.md</strong> - 具有版本控制要求的项目说明</li>
+              <li><strong>文档/解决方案/插件版本控制-requirements.md</strong> - 工作流程文档</li>
             </ul>
           </div>
         </section>
@@ -291,94 +291,94 @@
           <div class="version-header">
             <h2>v2.0.0</h2>
             <span class="version-date">2024-11-24</span>
-            <span class="version-badge major">Major Release</span>
+            <span class="version-badge major">主要版本</span>
           </div>
 
           <p class="version-description">
-            Major reorganization consolidating agents, commands, and skills from multiple sources into
-            a single, well-organized plugin.
+            重大重组，将多个来源的代理、指挥和技能整合为
+            一个单一的、组织良好的插件。
           </p>
 
           <div class="changelog-category added">
-            <h3><i class="fa-solid fa-plus"></i> Added</h3>
+            <h3><i class="fa-solid fa-plus"></i> 额外</h3>
 
-            <h4>New Agents (seven)</h4>
+            <h4>新代理（七）</h4>
             <ul>
-              <li><code>design-iterator</code> - Iteratively refine UI components through systematic design iterations</li>
-              <li><code>design-implementation-reviewer</code> - Verify UI implementations match Figma design specifications</li>
-              <li><code>figma-design-sync</code> - Synchronize web implementations with Figma designs</li>
-              <li><code>bug-reproduction-validator</code> - Systematically reproduce and validate bug reports</li>
-              <li><code>spec-flow-analyzer</code> - Analyze user flows and identify gaps in specifications</li>
-              <li><code>lint</code> - Run linting and code quality checks on Ruby and ERB files</li>
-              <li><code>ankane-readme-writer</code> - Create READMEs following Ankane-style template for Ruby gems</li>
+              <li><code>design-iterator</code> - 通过系统设计迭代，迭代细化UI组件</li>
+              <li><code>design-implementation-reviewer</code> - 验证 UI 实现是否符合 Figma 设计规范</li>
+              <li><code>figma-design-sync</code> - 将 Web 实现与 Figma 设计同步</li>
+              <li><code>bug-reproduction-validator</code> - 系统地重现和验证错误报告</li>
+              <li><code>spec-flow-analyzer</code> - 分析用户流量并确定规范中的差距</li>
+              <li><code>lint</code> - 对 Ruby 和 ERB 文件运行 linting 和代码质量检查</li>
+              <li><code>ankane-readme-writer</code> - 按照 Ankane 风格的 Ruby gems 模板创建自述文件</li>
             </ul>
 
-            <h4>New Commands (nine)</h4>
+            <h4>新命令（九）</h4>
             <ul>
-              <li><code>/changelog</code> - Create engaging changelogs for recent merges</li>
-              <li><code>/plan_review</code> - Multi-agent plan review in parallel</li>
-              <li><code>/resolve_parallel</code> - Resolve TODO comments in parallel</li>
-              <li><code>/resolve_pr_parallel</code> - Resolve PR comments in parallel</li>
-              <li><code>/reproduce-bug</code> - Reproduce bugs using logs and console</li>
-              <li><code>/prime</code> - Prime/setup command</li>
-              <li><code>/create-agent-skill</code> - Create or edit Claude Code skills</li>
-              <li><code>/heal-skill</code> - Fix skill documentation issues</li>
-              <li><code>/codify</code> - Document solved problems for knowledge base</li>
+              <li><code>/changelog</code> - 为最近的合并创建引人入胜的变更日志</li>
+              <li><code>/plan_review</code> - 并行多代理计划审查</li>
+              <li><code>/resolve_parallel</code> - 并行解决TODO注释</li>
+              <li><code>/resolve_pr_parallel</code> - 并行解决 PR​​ 评论</li>
+              <li><code>/reproduce-bug</code> - 使用日志和控制台重现错误</li>
+              <li><code>/prime</code> - 启动/设置命令</li>
+              <li><code>/create-agent-skill</code> - 创建或编辑克劳德代码技能</li>
+              <li><code>/heal-skill</code> - 修复技能文档问题</li>
+              <li><code>/codify</code> - 记录知识库已解决的问题</li>
             </ul>
 
-            <h4>New Skills (10)</h4>
+            <h4>新技能 (10)</h4>
             <ul>
-              <li><code>andrew-kane-gem-writer</code> - Write Ruby gems following Andrew Kane's patterns</li>
-              <li><code>codify-docs</code> - Capture solved problems as categorized documentation</li>
-              <li><code>create-agent-skills</code> - Expert guidance for creating Claude Code skills</li>
-              <li><code>dhh-ruby-style</code> - Write Ruby/Rails code in DHH's 37signals style</li>
-              <li><code>dspy-ruby</code> - Build type-safe LLM applications with DSPy.rb</li>
-              <li><code>every-style-editor</code> - Review copy for Every's style guide compliance</li>
-              <li><code>file-todos</code> - File-based todo tracking system</li>
-              <li><code>frontend-design</code> - Create production-grade frontend interfaces</li>
-              <li><code>git-worktree</code> - Manage Git worktrees for parallel development</li>
-              <li><code>skill-creator</code> - Guide for creating effective Claude Code skills</li>
+              <li><code>andrew-kane-gem-writer</code> - 按照 Andrew Kane 的模式编写 Ruby gems</li>
+              <li><code>codify-docs</code> - 将已解决的问题捕获为分类文档</li>
+              <li><code>create-agent-skills</code> - 创建克劳德代码技能的专家指导</li>
+              <li><code>dhh-ruby-style</code> - 以 DHH 的 37signals 风格编写 Ruby/Rails 代码</li>
+              <li><code>dspy-ruby</code> - 使用 DSPy.rb 构建类型安全的 LLM 应用程序</li>
+              <li><code>every-style-editor</code> - 审查副本以确保每个人的风格指南合规性</li>
+              <li><code>file-todos</code> - 基于文件的待办事项跟踪系统</li>
+              <li><code>frontend-design</code> - 创建生产级前端界面</li>
+              <li><code>git-worktree</code> - 管理 Git 工作树以进行并行开发</li>
+              <li><code>skill-creator</code> - 创建有效的克劳德代码技能的指南</li>
             </ul>
           </div>
 
           <div class="changelog-category changed">
-            <h3><i class="fa-solid fa-arrows-rotate"></i> Changed</h3>
-            <h4>Agents Reorganized by Category</h4>
+            <h3><i class="fa-solid fa-arrows-rotate"></i> 改变了</h3>
+            <h4>代理商按类别重组</h4>
             <ul>
-              <li><code>review/</code> (10 agents) - Code quality, security, performance reviewers</li>
-              <li><code>research/</code> (four agents) - Documentation, patterns, history analysis</li>
-              <li><code>design/</code> (three agents) - UI/design review and iteration</li>
-              <li><code>workflow/</code> (six agents) - PR resolution, bug validation, linting</li>
-              <li><code>docs/</code> (one agent) - README generation</li>
+              <li><code>review/</code> （10 名代理）- 代码质量、安全性、性能审核员</li>
+              <li><code>research/</code> （四个代理）- 文档、模式、历史分析</li>
+              <li><code>design/</code> （三个代理）- UI/设计审查和迭代</li>
+              <li><code>workflow/</code> （六名代理）- PR 解决、错误验证、linting</li>
+              <li><code>docs/</code> （一名代理）- 自述文件生成</li>
             </ul>
           </div>
 
           <div class="version-summary">
-            <h4>Summary</h4>
+            <h4>概括</h4>
             <table>
               <thead>
                 <tr>
-                  <th>Component</th>
+                  <th>成分</th>
                   <th>v1.1.0</th>
                   <th>v2.0.0</th>
-                  <th>Change</th>
+                  <th>改变</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td>Agents</td>
+                  <td>代理商</td>
                   <td>17</td>
                   <td>24</td>
                   <td class="positive">+7</td>
                 </tr>
                 <tr>
-                  <td>Commands</td>
+                  <td>命令</td>
                   <td>6</td>
                   <td>15</td>
                   <td class="positive">+9</td>
                 </tr>
                 <tr>
-                  <td>Skills</td>
+                  <td>技能</td>
                   <td>1</td>
                   <td>11</td>
                   <td class="positive">+10</td>
@@ -396,25 +396,25 @@
           </div>
 
           <div class="changelog-category added">
-            <h3><i class="fa-solid fa-plus"></i> Added</h3>
+            <h3><i class="fa-solid fa-plus"></i> 额外</h3>
             <ul>
               <li>
-                <strong>gemini-imagegen Skill</strong>
+                <strong>gemini-imagegen 技能</strong>
                 <ul>
-                  <li>Text-to-image generation with Google's Gemini API</li>
-                  <li>Image editing and manipulation</li>
-                  <li>Multi-turn refinement via chat interface</li>
-                  <li>Multiple reference image composition (up to 14 images)</li>
-                  <li>Model support: <code>gemini-2.5-flash-image</code> and <code>gemini-3-pro-image-preview</code></li>
+                  <li>使用 Google 的 Gemini API 生成文本到图像</li>
+                  <li>图像编辑和操作</li>
+                  <li>通过聊天界面进行多轮细化</li>
+                  <li>多参考图像合成（最多 14 张图像）</li>
+                  <li>型号支持： <code>gemini-2.5-flash-image</code> 和 <code>gemini-3-pro-image-preview</code></li>
                 </ul>
               </li>
             </ul>
           </div>
 
           <div class="changelog-category fixed">
-            <h3><i class="fa-solid fa-bug"></i> Fixed</h3>
+            <h3><i class="fa-solid fa-bug"></i> 固定的</h3>
             <ul>
-              <li>Corrected component counts in documentation (17 agents, not 15)</li>
+              <li>更正了文档中的组件数量（17 个代理，而不是 15 个）</li>
             </ul>
           </div>
         </section>
@@ -424,65 +424,65 @@
           <div class="version-header">
             <h2>v1.0.0</h2>
             <span class="version-date">2024-10-09</span>
-            <span class="version-badge">Initial Release</span>
+            <span class="version-badge">初始版本</span>
           </div>
 
           <p class="version-description">
-            Initial release of the compound-engineering plugin.
+            复合工程插件的初始版本。
           </p>
 
           <div class="changelog-category added">
-            <h3><i class="fa-solid fa-plus"></i> Added</h3>
+            <h3><i class="fa-solid fa-plus"></i> 额外</h3>
 
-            <h4>17 Specialized Agents</h4>
+            <h4>17名专业代理人</h4>
 
-            <p><strong>Code Review (five)</strong></p>
+            <p><strong>代码审查（五）</strong></p>
             <ul>
-              <li><code>kieran-rails-reviewer</code> - Rails code review with strict conventions</li>
-              <li><code>kieran-python-reviewer</code> - Python code review with quality standards</li>
-              <li><code>kieran-typescript-reviewer</code> - TypeScript code review</li>
-              <li><code>dhh-rails-reviewer</code> - Rails review from DHH's perspective</li>
-              <li><code>code-simplicity-reviewer</code> - Final pass for simplicity and minimalism</li>
+              <li><code>kieran-rails-reviewer</code> - 按照严格约定进行 Rails 代码审查</li>
+              <li><code>kieran-python-reviewer</code> - 具有质量标准的Python代码审查</li>
+              <li><code>kieran-typescript-reviewer</code> - TypeScript 代码审查</li>
+              <li><code>dhh-rails-reviewer</code> - DHH 角度的 Rails 审查</li>
+              <li><code>code-simplicity-reviewer</code> - 简单和极简主义的最终通行证</li>
             </ul>
 
-            <p><strong>Analysis & Architecture (four)</strong></p>
+            <p><strong>分析与架构（四）</strong></p>
             <ul>
-              <li><code>architecture-strategist</code> - Architectural decisions and compliance</li>
-              <li><code>pattern-recognition-specialist</code> - Design pattern analysis</li>
-              <li><code>security-sentinel</code> - Security audits and vulnerability assessments</li>
-              <li><code>performance-oracle</code> - Performance analysis and optimization</li>
+              <li><code>architecture-strategist</code> - 架构决策和合规性</li>
+              <li><code>pattern-recognition-specialist</code> - 设计模式分析</li>
+              <li><code>security-sentinel</code> - 安全审计和漏洞评估</li>
+              <li><code>performance-oracle</code> - 性能分析与优化</li>
             </ul>
 
-            <p><strong>Research (four)</strong></p>
+            <p><strong>研究（四）</strong></p>
             <ul>
-              <li><code>framework-docs-researcher</code> - Framework documentation research</li>
-              <li><code>best-practices-researcher</code> - External best practices gathering</li>
-              <li><code>git-history-analyzer</code> - Git history and code evolution analysis</li>
-              <li><code>repo-research-analyst</code> - Repository structure and conventions</li>
+              <li><code>framework-docs-researcher</code> - 框架文档研究</li>
+              <li><code>best-practices-researcher</code> - 外部最佳实践收集</li>
+              <li><code>git-history-analyzer</code> - Git历史和代码演变分析</li>
+              <li><code>repo-research-analyst</code> - 存储库结构和约定</li>
             </ul>
 
-            <p><strong>Workflow (three)</strong></p>
+            <p><strong>工作流程（三）</strong></p>
             <ul>
-              <li><code>every-style-editor</code> - Every's style guide compliance</li>
-              <li><code>pr-comment-resolver</code> - PR comment resolution</li>
-              <li><code>feedback-codifier</code> - Feedback pattern codification</li>
+              <li><code>every-style-editor</code> - 每个人的风格指南合规性</li>
+              <li><code>pr-comment-resolver</code> - PR评论解析</li>
+              <li><code>feedback-codifier</code> - 反馈模式编码</li>
             </ul>
 
-            <h4>Six Slash Commands</h4>
+            <h4>六个斜杠命令</h4>
             <ul>
-              <li><code>/plan</code> - Create implementation plans</li>
-              <li><code>/review</code> - Comprehensive code reviews</li>
-              <li><code>/work</code> - Execute work items systematically</li>
-              <li><code>/triage</code> - Triage and prioritize issues</li>
-              <li><code>/resolve_todo_parallel</code> - Resolve TODOs in parallel</li>
-              <li><code>/generate_command</code> - Generate new slash commands</li>
+              <li><code>/plan</code> - 制定实施计划</li>
+              <li><code>/review</code> - 全面的代码审查</li>
+              <li><code>/work</code> - 系统地执行工作项目</li>
+              <li><code>/triage</code> - 对问题进行分类和确定优先级</li>
+              <li><code>/resolve_todo_parallel</code> - 并行解决 TODO</li>
+              <li><code>/generate_command</code> - 生成新的斜杠命令</li>
             </ul>
 
-            <h4>Infrastructure</h4>
+            <h4>基础设施</h4>
             <ul>
-              <li>MIT license</li>
-              <li>Plugin manifest (<code>plugin.json</code>)</li>
-              <li>Pre-configured permissions for Rails development</li>
+              <li>我的许可证</li>
+              <li>插件清单（<code>plugin.json</code>)</li>
+              <li>Rails 开发的预配置权限</li>
             </ul>
           </div>
         </section>

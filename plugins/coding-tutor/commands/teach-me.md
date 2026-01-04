@@ -1,1 +1,1 @@
-Teach me something using the coding-tutor skill
+使用编码导师技能教我一些东西

@@ -1,32 +1,33 @@
 <overview>
-How to inject dynamic runtime context into agent system prompts. The agent needs to know what exists in the app to know what it can work with. Static prompts aren't enough—the agent needs to see the same context the user sees.
+如何将动态运行时上下文注入代理系统提示中。代理需要知道应用程序中存在什么才能知道它可以使用什么。静态提示是不够的——代理需要看到与用户看到的相同的上下文。
 
-**Core principle:** The user's context IS the agent's context.
+**核心原则：** 用户的上下文就是代理的上下文。
 </overview>
 
 <why_context_matters>
-## Why Dynamic Context Injection?
+## 为什么要动态上下文注入？
 
-A static system prompt tells the agent what it CAN do. Dynamic context tells it what it can do RIGHT NOW with the user's actual data.
+静态系统提示告诉代理它可以做什么。动态上下文告诉它现在可以用用户的实际数据做什么。
 
-**The failure case:**
+**失败案例：**
 ```
 User: "Write a little thing about Catherine the Great in my reading feed"
 Agent: "What system are you referring to? I'm not sure what reading feed means."
 ```
 
-The agent failed because it didn't know:
-- What books exist in the user's library
-- What the "reading feed" is
-- What tools it has to publish there
 
-**The fix:** Inject runtime context about app state into the system prompt.
+代理失败是因为它不知道：
+- 用户的图书馆中有哪些书籍
+- 什么是“阅读提要”
+- 有哪些工具可以在那里发布
+
+**修复：** 将有关应用程序状态的运行时上下文注入系统提示符中。
 </why_context_matters>
 
 <pattern name="context-injection">
-## The Context Injection Pattern
+## 上下文注入模式
 
-Build your system prompt dynamically, including current app state:
+动态构建系统提示符，包括当前应用程序状态：
 
 ```swift
 func buildSystemPrompt() -> String {
@@ -60,13 +61,14 @@ func buildSystemPrompt() -> String {
     """
 }
 ```
+
 </pattern>
 
 <what_to_inject>
-## What Context to Inject
+## 注入什么上下文
 
-### 1. Available Resources
-What data/files exist that the agent can access?
+### 1. 可用资源
+代理可以访问哪些数据/文件？
 
 ```swift
 ## Available in User's Library
@@ -80,8 +82,9 @@ Research folders:
 - Documents/Research/book_456/ (1 file)
 ```
 
-### 2. Current State
-What has the user done recently? What's the current context?
+
+### 2.现状
+用户最近做了什么？目前的背景是什么？
 
 ```swift
 ## Recent Activity
@@ -91,8 +94,9 @@ What has the user done recently? What's the current context?
 - This week: Added 3 new books to library
 ```
 
-### 3. Capabilities Mapping
-What tool maps to what UI feature? Use the user's language.
+
+### 3. 能力映射
+什么工具对应什么 UI 功能？使用用户的语言。
 
 ```swift
 ## What You Can Do
@@ -105,8 +109,9 @@ What tool maps to what UI feature? Use the user's language.
 | "my profile" | `read_file("profile.md")` | Shows reading profile |
 ```
 
-### 4. Domain Vocabulary
-Explain app-specific terms the user might use.
+
+### 4. 领域词汇
+解释用户可能使用的特定于应用程序的术语。
 
 ```swift
 ## Vocabulary
@@ -116,12 +121,13 @@ Explain app-specific terms the user might use.
 - **Reading profile**: A markdown file describing user's reading preferences
 - **Highlight**: A passage the user marked in a book
 ```
+
 </what_to_inject>
 
 <implementation_patterns>
-## Implementation Patterns
+## 实现模式
 
-### Pattern 1: Service-Based Injection (Swift/iOS)
+### 模式 1：基于服务的注入 (Swift/iOS)
 
 ```swift
 class AgentContextBuilder {
@@ -161,7 +167,8 @@ let context = AgentContextBuilder(
 let systemPrompt = basePrompt + "\n\n" + context
 ```
 
-### Pattern 2: Hook-Based Injection (TypeScript)
+
+### 模式 2：基于 Hook 的注入 (TypeScript)
 
 ```typescript
 interface ContextProvider {
@@ -190,7 +197,8 @@ async function buildSystemPrompt(providers: ContextProvider[]): Promise<string> 
 }
 ```
 
-### Pattern 3: Template-Based Injection
+
+### 模式 3：基于模板的注入
 
 ```markdown
 # System Prompt Template (system-prompt.template.md)
@@ -216,6 +224,7 @@ You are a reading assistant.
 {{/each}}
 ```
 
+
 ```typescript
 // Render at runtime
 const prompt = Handlebars.compile(template)({
@@ -224,14 +233,15 @@ const prompt = Handlebars.compile(template)({
   recentActivity: await activityService.getRecent(10),
 });
 ```
+
 </implementation_patterns>
 
 <context_freshness>
-## Context Freshness
+## 上下文新鲜度
 
-Context should be injected at agent initialization, and optionally refreshed during long sessions.
+上下文应该在代理初始化时注入，并且可以选择在长时间会话期间刷新。
 
-**At initialization:**
+**初始化时：**
 ```swift
 // Always inject fresh context when starting an agent
 func startChatAgent() async -> AgentSession {
@@ -243,7 +253,8 @@ func startChatAgent() async -> AgentSession {
 }
 ```
 
-**During long sessions (optional):**
+
+**在长时间会议期间（可选）：**
 ```swift
 // For long-running agents, provide a refresh tool
 tool("refresh_context", "Get current app state") { _ in
@@ -256,18 +267,20 @@ tool("refresh_context", "Get current app state") { _ in
 }
 ```
 
-**What NOT to do:**
+
+**不应该做什么：**
 ```swift
 // DON'T: Use stale context from app launch
 let cachedContext = appLaunchContext  // Stale!
 // Books may have been added, activity may have changed
 ```
+
 </context_freshness>
 
 <examples>
-## Real-World Example: Every Reader
+## 现实世界的例子：每个读者
 
-The Every Reader app injects context for its chat agent:
+Every Reader 应用程序为其聊天代理注入上下文：
 
 ```swift
 func getChatAgentSystemPrompt() -> String {
@@ -315,24 +328,25 @@ func getChatAgentSystemPrompt() -> String {
 }
 ```
 
-**Result:** When user says "write a little thing about Catherine the Great in my reading feed", the agent:
-1. Sees "reading feed" → knows to use `publish_to_feed`
-2. Sees available books → finds the relevant book ID
-3. Creates appropriate content for the Feed tab
+
+**结果：** 当用户说“在我的阅读提要中写一些关于叶卡捷琳娜大帝的事情”时，代理：
+1.看到“阅读提要”→知道使用`publish_to_feed`
+2.查看可用书籍→查找相关书籍ID
+3. 为 Feed 选项卡创建适当的内容
 </examples>
 
 <checklist>
-## Context Injection Checklist
+## 上下文注入清单
 
-Before launching an agent:
-- [ ] System prompt includes current resources (books, files, data)
-- [ ] Recent activity is visible to the agent
-- [ ] Capabilities are mapped to user vocabulary
-- [ ] Domain-specific terms are explained
-- [ ] Context is fresh (gathered at agent start, not cached)
+启动代理之前：
+- [ ]系统提示包含当前资源（书籍、文件、数据）
+- [ ] 代理可以看到最近的活动
+- [ ] 功能映射到用户词汇表
+- [ ] 领域特定术语的解释
+- [ ] 上下文是新鲜的（在代理启动时收集，未缓存）
 
-When adding new features:
-- [ ] New resources are included in context injection
-- [ ] New capabilities are documented in system prompt
-- [ ] User vocabulary for the feature is mapped
+添加新功能时：
+- [ ] 新资源包含在上下文注入中
+- [ ] 新功能记录在系统提示符中
+- [ ] 映射该功能的用户词汇
 </checklist>

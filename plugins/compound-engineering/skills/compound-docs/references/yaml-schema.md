@@ -1,33 +1,33 @@
-# YAML Frontmatter Schema
+# YAML Frontmatter 架构
 
-**See `.claude/skills/codify-docs/schema.yaml` for the complete schema specification.**
+**完整的模式规范请参见`.claude/skills/codify-docs/schema.yaml`。**
 
-## Required Fields
+## 必填字段
 
-- **module** (string): Module name (e.g., "EmailProcessing") or "CORA" for system-wide issues
-- **date** (string): ISO 8601 date (YYYY-MM-DD)
-- **problem_type** (enum): One of [build_error, test_failure, runtime_error, performance_issue, database_issue, security_issue, ui_bug, integration_issue, logic_error, developer_experience, workflow_issue, best_practice, documentation_gap]
-- **component** (enum): One of [rails_model, rails_controller, rails_view, service_object, background_job, database, frontend_stimulus, hotwire_turbo, email_processing, brief_system, assistant, authentication, payments, development_workflow, testing_framework, documentation, tooling]
-- **symptoms** (array): 1-5 specific observable symptoms
-- **root_cause** (enum): One of [missing_association, missing_include, missing_index, wrong_api, scope_issue, thread_violation, async_timing, memory_leak, config_error, logic_error, test_isolation, missing_validation, missing_permission, missing_workflow_step, inadequate_documentation, missing_tooling, incomplete_setup]
-- **resolution_type** (enum): One of [code_fix, migration, config_change, test_fix, dependency_update, environment_setup, workflow_improvement, documentation_update, tooling_addition, seed_data_update]
-- **severity** (enum): One of [critical, high, medium, low]
+- **模块**（字符串）：模块名称（例如，“EmailProcessing”）或“CORA”用于系统范围的问题
+- **日期**（字符串）：ISO 8601 日期 (YYYY-MM-DD)
+- **problem_type**（枚举）：[build_error、test_failure、runtime_error、performance_issue、database_issue、security_issue、ui_bug、integration_issue、logic_error、developer_experience、workflow_issue、best_practice、documentation_gap]之一
+- **组件**（枚举）：[rails_model、rails_controller、rails_view、service_object、background_job、数据库、frontend_stimulus、hotwire_turbo、email_processing、brief_system、assistant、authentication、 payment、development_workflow、testing_framework、documentation、tooling]之一
+- **症状**（数组）：1-5 个特定的可观察症状
+- **root_cause**（枚举）：[missing_association、missing_include、missing_index、wrong_api、scope_issue、thread_violation、async_timing、memory_leak、config_error、logic_error、test_isolation、missing_validation、missing_permission、missing_workflow_step、inspection_documentation、missing_tooling、incomplete_setup]之一
+- **分辨率类型**（枚举）：[code_fix、migration、config_change、test_fix、dependency_update、environment_setup、workflow_improvement、documentation_update、tooling_addition、seed_data_update]之一
+- **严重性**（枚举）：[严重、高、中、低]之一
 
-## Optional Fields
+## 可选字段
 
-- **rails_version** (string): Rails version in X.Y.Z format
-- **tags** (array): Searchable keywords (lowercase, hyphen-separated)
+- **rails_version** （字符串）：X.Y.Z 格式的 Rails 版本
+- **标签**（数组）：可搜索关键字（小写，连字符分隔）
 
-## Validation Rules
+## 验证规则
 
-1. All required fields must be present
-2. Enum fields must match allowed values exactly (case-sensitive)
-3. symptoms must be YAML array with 1-5 items
-4. date must match YYYY-MM-DD format
-5. rails_version (if provided) must match X.Y.Z format
-6. tags should be lowercase, hyphen-separated
+1. 所有必填字段必须存在
+2. 枚举字段必须与允许的值完全匹配（区分大小写）
+3. 症状必须是包含 1-5 项的 YAML 数组
+4.日期必须符合YYYY-MM-DD格式
+5.rails_version（如果提供）必须匹配 X.Y.Z 格式
+6.标签应该小写，用连字符分隔
 
-## Example
+## 例子
 
 ```yaml
 ---
@@ -46,20 +46,21 @@ tags: [n-plus-one, eager-loading, performance]
 ---
 ```
 
-## Category Mapping
 
-Based on `problem_type`, documentation is filed in:
+## 类别映射
 
-- **build_error** → `docs/solutions/build-errors/`
-- **test_failure** → `docs/solutions/test-failures/`
-- **runtime_error** → `docs/solutions/runtime-errors/`
-- **performance_issue** → `docs/solutions/performance-issues/`
-- **database_issue** → `docs/solutions/database-issues/`
-- **security_issue** → `docs/solutions/security-issues/`
+根据 `problem_type`，文件归档于：
+
+- **构建错误** → `docs/solutions/build-errors/`
+- **测试失败** → `docs/solutions/test-failures/`
+- **运行时错误** → `docs/solutions/runtime-errors/`
+- **性能问题** → `docs/solutions/performance-issues/`
+- **数据库问题** → `docs/solutions/database-issues/`
+- **安全问题** → `docs/solutions/security-issues/`
 - **ui_bug** → `docs/solutions/ui-bugs/`
-- **integration_issue** → `docs/solutions/integration-issues/`
-- **logic_error** → `docs/solutions/logic-errors/`
-- **developer_experience** → `docs/solutions/developer-experience/`
-- **workflow_issue** → `docs/solutions/workflow-issues/`
-- **best_practice** → `docs/solutions/best-practices/`
+- **集成问题** → `docs/solutions/integration-issues/`
+- **逻辑错误** → `docs/solutions/logic-errors/`
+- **开发者经验** → `docs/solutions/developer-experience/`
+- **工作流程问题** → `docs/solutions/workflow-issues/`
+- **最佳实践** → `docs/solutions/best-practices/`
 - **documentation_gap** → `docs/solutions/documentation-gaps/`

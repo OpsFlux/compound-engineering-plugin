@@ -1,6 +1,6 @@
-# Recommended Skill Structure
+# 推荐的技能结构
 
-The optimal structure for complex skills separates routing, workflows, and knowledge.
+复杂技能的最佳结构将路由、工作流程和知识分开。
 
 <structure>
 ```
@@ -15,30 +15,31 @@ skill-name/
     ├── reference-b.md
     └── ...
 ```
+
 </structure>
 
 <why_this_works>
-## Problems This Solves
+## 解决的问题
 
-**Problem 1: Context gets skipped**
-When important principles are in a separate file, Claude may not read them.
-**Solution:** Put essential principles directly in SKILL.md. They load automatically.
+**问题 1：上下文被跳过**
+当重要的原则放在单独的文件中时，克劳德可能不会阅读它们。
+**解决方案：** 将基本原则直接放入 SKILL.md 中。它们会自动加载。
 
-**Problem 2: Wrong context loaded**
-A "build" task loads debugging references. A "debug" task loads build references.
-**Solution:** Intake question determines intent → routes to specific workflow → workflow specifies which references to read.
+**问题 2：加载了错误的上下文**
+“构建”任务加载调试引用。 “调试”任务加载构建引用。
+**解决方案：** 接收问题确定意图 → 通往特定工作流程的路线 → 工作流程指定要阅读的参考文献。
 
-**Problem 3: Monolithic skills are overwhelming**
-500+ lines of mixed content makes it hard to find relevant parts.
-**Solution:** Small router (SKILL.md) + focused workflows + reference library.
+**问题 3：单一技能势不可挡**
+500 多行混合内容使得很难找到相关部分。
+**解决方案：** 小型路由器（SKILL.md）+重点工作流程+参考库。
 
-**Problem 4: Procedures mixed with knowledge**
-"How to do X" mixed with "What X means" creates confusion.
-**Solution:** Workflows are procedures (steps). References are knowledge (patterns, examples).
+**问题4：程序与知识混合**
+“如何做 X”与“X 的含义”混合在一起会造成混乱。
+**解决方案：** 工作流程是过程（步骤）。参考文献是知识（模式、示例）。
 </why_this_works>
 
 <skill_md_template>
-## SKILL.md Template
+## 技能.md 模板
 
 ```markdown
 ---
@@ -96,10 +97,11 @@ All domain knowledge in `references/`:
 | option-c.md | [What it does] |
 </workflows_index>
 ```
+
 </skill_md_template>
 
 <workflow_template>
-## Workflow Template
+## 工作流程模板
 
 ```markdown
 # Workflow: [Name]
@@ -128,41 +130,42 @@ This workflow is complete when:
 - [ ] Criterion 3
 </success_criteria>
 ```
+
 </workflow_template>
 
 <when_to_use_this_pattern>
-## When to Use This Pattern
+## 何时使用此模式
 
-**Use router + workflows + references when:**
-- Multiple distinct workflows (build vs debug vs ship)
-- Different workflows need different references
-- Essential principles must not be skipped
-- Skill has grown beyond 200 lines
+**在以下情况下使用路由器+工作流程+参考：**
+- 多个不同的工作流程（构建、调试、发布）
+- 不同的工作流程需要不同的参考
+- 不可忽视的基本原则
+- 技能已发展到超过 200 行
 
-**Use simple single-file skill when:**
-- One workflow
-- Small reference set
-- Under 200 lines total
-- No essential principles to enforce
+**在以下情况下使用简单的单列技能：**
+- 一个工作流程
+- 小参考集
+- 总共不到 200 行
+- 没有强制执行的基本原则
 </when_to_use_this_pattern>
 
 <key_insight>
-## The Key Insight
+## 关键见解
 
-**SKILL.md is always loaded. Use this guarantee.**
+**SKILL.md 始终加载。使用此保证。**
 
-Put unavoidable content in SKILL.md:
-- Essential principles
-- Intake question
-- Routing logic
+将不可避免的内容放入SKILL.md中：
+- 基本原则
+- 摄入量问题
+- 路由逻辑
 
-Put workflow-specific content in workflows/:
-- Step-by-step procedures
-- Required references for that workflow
-- Success criteria for that workflow
+将工作流程特定的内容放入工作流程/中：
+- 分步程序
+- 该工作流程所需的参考资料
+- 该工作流程的成功标准
 
-Put reusable knowledge in references/:
-- Patterns and examples
-- Technical details
-- Domain expertise
+将可重用的知识放在参考文献/中：
+- 模式和例子
+- 技术细节
+- 领域专业知识
 </key_insight>

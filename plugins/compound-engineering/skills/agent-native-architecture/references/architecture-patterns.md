@@ -1,11 +1,11 @@
 <overview>
-Architectural patterns for building prompt-native agent systems. These patterns emerge from the philosophy that features should be defined in prompts, not code, and that tools should be primitives.
+用于构建提示本地代理系统的架构模式。这些模式源于这样的理念：功能应该在提示中定义，而不是代码，并且工具应该是基元。
 </overview>
 
 <pattern name="event-driven-agent">
-## Event-Driven Agent Architecture
+## 事件驱动代理架构
 
-The agent runs as a long-lived process that responds to events. Events become prompts.
+代理作为响应事件的长期进程运行。事件变成提示。
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
@@ -24,13 +24,14 @@ The agent runs as a long-lived process that responds to events. Events become pr
                    (restart)       (list_items)
 ```
 
-**Key characteristics:**
-- Events (messages, webhooks, timers) trigger agent turns
-- Agent decides how to respond based on system prompt
-- Tools are primitives for IO, not business logic
-- State persists between events via data tools
 
-**Example: Discord feedback bot**
+**主要特征：**
+- 事件（消息、网络钩子、计时器）触发代理轮流
+- Agent根据系统提示决定如何响应
+- 工具是 IO 的原语，而不是业务逻辑
+- 通过数据工具在事件之间保持状态
+
+**示例：Discord 反馈机器人**
 ```typescript
 // Event source
 client.on("messageCreate", (message) => {
@@ -53,12 +54,13 @@ When someone shares feedback:
 Use your judgment about importance and categorization.
 `;
 ```
+
 </pattern>
 
 <pattern name="two-layer-git">
-## Two-Layer Git Architecture
+## 两层 Git 架构
 
-For self-modifying agents, separate code (shared) from data (instance-specific).
+对于自修改代理，将代码（共享）与数据（特定于实例）分开。
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
@@ -86,17 +88,18 @@ For self-modifying agents, separate code (shared) from data (instance-specific).
 └─────────────────────────────────────────────────────────────┘
 ```
 
-**Why this works:**
-- Code and site are version controlled (GitHub)
-- Raw data stays local (instance-specific)
-- Site is generated from data, so reproducible
-- Automatic rollback via git history
+
+**为什么这有效：**
+- 代码和站点受版本控制（GitHub）
+- 原始数据保留在本地（特定于实例）
+- 网站是根据数据生成的，因此可重复
+- 通过git历史记录自动回滚
 </pattern>
 
 <pattern name="multi-instance">
-## Multi-Instance Branching
+## 多实例分支
 
-Each agent instance gets its own branch while sharing core code.
+每个代理实例都有自己的分支，同时共享核心代码。
 
 ```
 main                        # Shared features, bug fixes
@@ -105,26 +108,28 @@ main                        # Shared features, bug fixes
 └── instance/research-bot   # Research assistant
 ```
 
-**Change flow:**
-| Change Type | Work On | Then |
-|-------------|---------|------|
-| Core features | main | Merge to instance branches |
-| Bug fixes | main | Merge to instance branches |
-| Instance config | instance branch | Done |
-| Instance data | instance branch | Done |
 
-**Sync tools:**
+**更改流程：**
+|更改类型 |继续工作|然后|
+|----------|---------|------|
+|核心特点|主要|合并到实例分支 |
+|错误修复 |主要|合并到实例分支 |
+|实例配置 |实例分支|完成 |
+|实例数据 |实例分支|完成 |
+
+**同步工具：**
 ```typescript
 tool("self_deploy", "Pull latest from main, rebuild, restart", ...)
 tool("sync_from_instance", "Merge from another instance", ...)
 tool("propose_to_main", "Create PR to share improvements", ...)
 ```
+
 </pattern>
 
 <pattern name="site-as-output">
-## Site as Agent Output
+## 站点作为代理输出
 
-The agent generates and maintains a website as a natural output, not through specialized site tools.
+代理生成并维护网站作为自然输出，而不是通过专门的网站工具。
 
 ```
 Discord Message
@@ -140,7 +145,8 @@ Git commit + push triggers deployment
 Site updates automatically
 ```
 
-**Key insight:** Don't build site generation tools. Give the agent file tools and teach it in the prompt how to create good sites.
+
+**关键见解：** 不要构建网站生成工具。为代理提供文件工具并在提示中教它如何创建良好的站点。
 
 ```markdown
 ## Site Management
@@ -157,12 +163,13 @@ The site should be:
 
 You decide the structure. Make it good.
 ```
+
 </pattern>
 
 <pattern name="approval-gates">
-## Approval Gates Pattern
+## 批准门模式
 
-Separate "propose" from "apply" for dangerous operations.
+对于危险操作，将“建议”与“申请”分开。
 
 ```typescript
 // Pending changes stored separately
@@ -192,21 +199,22 @@ tool("apply_pending", async () => {
 });
 ```
 
-**What requires approval:**
-- src/*.ts (agent code)
-- package.json (dependencies)
-- system prompt changes
 
-**What doesn't:**
-- data/* (instance data)
-- site/* (generated content)
-- docs/* (documentation)
+**需要批准的内容：**
+- src/*.ts（代理代码）
+- package.json（依赖项）
+- 系统提示更改
+
+**什么不：**
+- data/*（实例数据）
+- site/*（生成的内容）
+- docs/*（文档）
 </pattern>
 
 <pattern name="unified-agent-architecture">
-## Unified Agent Architecture
+## 统一代理架构
 
-One execution engine, many agent types. All agents use the same orchestrator but with different configurations.
+一种执行引擎，多种代理类型。所有代理都使用相同的协调器，但具有不同的配置。
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
@@ -227,7 +235,8 @@ One execution engine, many agent types. All agents use the same orchestrator but
     - read_file          - web_search         - analyze_image
 ```
 
-**Implementation:**
+
+**执行：**
 
 ```swift
 // All agents use the same orchestrator
@@ -276,22 +285,23 @@ struct ChatAgent {
 }
 ```
 
-**Benefits:**
-- Consistent lifecycle management across all agent types
-- Automatic checkpoint/resume (critical for mobile)
-- Shared tool protocol
-- Easy to add new agent types
-- Centralized error handling and logging
+
+**好处：**
+- 所有代理类型的一致生命周期管理
+- 自动检查点/恢复（对于移动设备至关重要）
+- 共享工具协议
+- 轻松添加新的代理类型
+- 集中的错误处理和日志记录
 </pattern>
 
 <pattern name="agent-to-ui-communication">
-## Agent-to-UI Communication
+## 代理到 UI 通信
 
-When agents take actions, the UI should reflect them immediately. The user should see what the agent did.
+当代理采取行动时，用户界面应立即反映它们。用户应该看到代理做了什么。
 
-**Pattern 1: Shared Data Store (Recommended)**
+**模式 1：共享数据存储（推荐）**
 
-Agent writes through the same service the UI observes:
+代理通过 UI 观察到的同一服务进行写入：
 
 ```swift
 // Shared service
@@ -326,9 +336,10 @@ struct FeedView: View {
 }
 ```
 
-**Pattern 2: File System Observation**
 
-For file-based data, watch the file system:
+**模式2：文件系统观察**
+
+对于基于文件的数据，观察文件系统：
 
 ```swift
 class ResearchWatcher: ObservableObject {
@@ -353,9 +364,10 @@ tool("write_file", { path, content }) -> {
 }
 ```
 
-**Pattern 3: Event Bus (Cross-Component)**
 
-For complex apps with multiple independent components:
+**模式 3：事件总线（跨组件）**
+
+对于具有多个独立组件的复杂应用程序：
 
 ```typescript
 // Shared event bus
@@ -382,7 +394,8 @@ function FeedView() {
 }
 ```
 
-**What to avoid:**
+
+**要避免什么：**
 
 ```swift
 // BAD: UI doesn't observe agent changes
@@ -396,23 +409,24 @@ struct FeedView: View {
     let items = database.query("feed")  // Stale!
 }
 ```
+
 </pattern>
 
 <pattern name="model-tier-selection">
-## Model Tier Selection
+## 型号等级选择
 
-Different agents need different intelligence levels. Use the cheapest model that achieves the outcome.
+不同的代理需要不同的情报水平。使用实现结果的最便宜的模型。
 
-| Agent Type | Recommended Tier | Reasoning |
-|------------|-----------------|-----------|
-| Chat/Conversation | Balanced | Fast responses, good reasoning |
-| Research | Balanced | Tool loops, not ultra-complex synthesis |
-| Content Generation | Balanced | Creative but not synthesis-heavy |
-| Complex Analysis | Powerful | Multi-document synthesis, nuanced judgment |
-| Profile/Onboarding | Powerful | Photo analysis, complex pattern recognition |
-| Simple Queries | Fast/Haiku | Quick lookups, simple transformations |
+|代理类型 |推荐等级 |推理|
+|------------|-----------------|------------|
+|聊天/对话 |平衡|反应快，推理好 |
+|研究|平衡|工具循环，而不是超复杂的综合 |
+|内容生成|平衡|有创意但不重综合 |
+|复杂分析 |强大|多文档综合，细致判断|
+|简介/入职 |强大|照片分析、复杂模式识别|
+|简单查询 |快/俳句 |快速查找，简单转换 |
 
-**Implementation:**
+**执行：**
 
 ```swift
 enum ModelTier {
@@ -449,23 +463,24 @@ let lookupConfig = AgentConfig(
 )
 ```
 
-**Cost optimization strategies:**
-- Start with balanced tier, only upgrade if quality insufficient
-- Use fast tier for tool-heavy loops where each turn is simple
-- Reserve powerful tier for synthesis tasks (comparing multiple sources)
-- Consider token limits per turn to control costs
+
+**成本优化策略：**
+- 从平衡层开始，仅在质量不足时升级
+- 使用快速层进行需要大量工具的循环，其中每个回合都很简单
+- 为综合任务保留强大的层（比较多个来源）
+- 考虑每回合的代币限制以控制成本
 </pattern>
 
 <design_questions>
-## Questions to Ask When Designing
+## 设计时要问的问题
 
-1. **What events trigger agent turns?** (messages, webhooks, timers, user requests)
-2. **What primitives does the agent need?** (read, write, call API, restart)
-3. **What decisions should the agent make?** (format, structure, priority, action)
-4. **What decisions should be hardcoded?** (security boundaries, approval requirements)
-5. **How does the agent verify its work?** (health checks, build verification)
-6. **How does the agent recover from mistakes?** (git rollback, approval gates)
-7. **How does the UI know when agent changes state?** (shared store, file watching, events)
-8. **What model tier does each agent type need?** (fast, balanced, powerful)
-9. **How do agents share infrastructure?** (unified orchestrator, shared tools)
+1. **什么事件触发代理轮流？**（消息、webhooks、计时器、用户请求）
+2. **代理需要什么原语？**（读、写、调用API、重启）
+3. **代理应该做出什么决定？**（格式、结构、优先级、行动）
+4. **哪些决策应该硬编码？**（安全边界、批准要求）
+5. **代理如何验证其工作？**（健康检查、构建验证）
+6. **代理如何从错误中恢复？**（git回滚，批准门）
+7. **UI 如何知道代理何时更改状态？**（共享存储、文件监视、事件）
+8. **每种代理类型需要什么模型层？**（快速、平衡、强大）
+9. **代理如何共享基础设施？**（统一编排器，共享工具）
 </design_questions>

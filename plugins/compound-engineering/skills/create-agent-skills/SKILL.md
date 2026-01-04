@@ -1,21 +1,21 @@
 ---
 name: creating-agent-skills
-description: Expert guidance for creating, writing, and refining Claude Code Skills. Use when working with SKILL.md files, authoring new skills, improving existing skills, or understanding skill structure and best practices.
+description: 创建、编写和完善 Claude 代码技能的专家指导。在使用 SKILL.md 文件、创作新技能、改进现有技能或了解技能结构和最佳实践时使用。
+
 ---
+# 创建代理技能
 
-# Creating Agent Skills
+该技能教授如何按照 Anthropic 的官方规范创建有效的 Claude 代码技能。
 
-This skill teaches how to create effective Claude Code Skills following Anthropic's official specification.
+## 核心原则
 
-## Core Principles
+### 1. 技能是提示
 
-### 1. Skills Are Prompts
+所有提示最佳实践均适用。说得清楚、直接。假设克劳德很聪明——只添加克劳德没有的上下文。
 
-All prompting best practices apply. Be clear, be direct. Assume Claude is smart - only add context Claude doesn't have.
+### 2. 标准 Markdown 格式
 
-### 2. Standard Markdown Format
-
-Use YAML frontmatter + markdown body. **No XML tags** - use standard markdown headings.
+使用 YAML frontmatter + markdown body。 **无 XML 标签** - 使用标准 Markdown 标题。
 
 ```markdown
 ---
@@ -35,9 +35,10 @@ Step-by-step procedures...
 Concrete usage examples...
 ```
 
-### 3. Progressive Disclosure
 
-Keep SKILL.md under 500 lines. Split detailed content into reference files. Load only what's needed.
+### 3. 渐进式披露
+
+将 SKILL.md 保持在 500 行以内。将详细内容拆分为参考文件。仅加载需要的内容。
 
 ```
 my-skill/
@@ -47,45 +48,48 @@ my-skill/
 └── scripts/              # Utility scripts (executed, not loaded)
 ```
 
-### 4. Effective Descriptions
 
-The description field enables skill discovery. Include both what the skill does AND when to use it. Write in third person.
+### 4. 有效的描述
 
-**Good:**
+描述字段支持技能发现。包括该技能的作用以及何时使用它。用第三人称写。
+
+**好：**
 ```yaml
 description: Extracts text and tables from PDF files, fills forms, merges documents. Use when working with PDF files or when the user mentions PDFs, forms, or document extraction.
 ```
 
-**Bad:**
+
+**不好：**
 ```yaml
 description: Helps with documents
 ```
 
-## Skill Structure
 
-### Required Frontmatter
+## 技能结构
 
-| Field | Required | Max Length | Description |
-|-------|----------|------------|-------------|
-| `name` | Yes | 64 chars | Lowercase letters, numbers, hyphens only |
-| `description` | Yes | 1024 chars | What it does AND when to use it |
-| `allowed-tools` | No | - | Tools Claude can use without asking |
-| `model` | No | - | Specific model to use |
+### 必需的 Frontmatter
 
-### Naming Conventions
+|领域|必填|最大长度|描述 |
+|--------|----------|------------|------------|
+| `name` |是的 | 64 个字符 |仅小写字母、数字、连字符 |
+| `description` |是的 | 1024 个字符 |它的作用以及何时使用它 |
+| `allowed-tools` |没有 | - |克劳德无需询问即可使用的工具 |
+| `model` |没有 | - |具体使用型号|
 
-Use **gerund form** (verb + -ing) for skill names:
+### 命名约定
+
+使用**动名词形式**（动词 + -ing）作为技能名称：
 
 - `processing-pdfs`
 - `analyzing-spreadsheets`
 - `generating-commit-messages`
 - `reviewing-code`
 
-Avoid: `helper`, `utils`, `tools`, `anthropic-*`, `claude-*`
+避免：`helper`、`utils`、`tools`、`anthropic-*`、`claude-*`
 
-### Body Structure
+### 身体结构
 
-Use standard markdown headings:
+使用标准 Markdown 标题：
 
 ```markdown
 # Skill Name
@@ -106,28 +110,29 @@ Additional capabilities (link to reference files)...
 Rules and constraints...
 ```
 
-## What Would You Like To Do?
 
-1. **Create new skill** - Build from scratch
-2. **Audit existing skill** - Check against best practices
-3. **Add component** - Add workflow/reference/example
-4. **Get guidance** - Understand skill design
+## 你想做什么？
 
-## Creating a New Skill
+1. **创建新技能** - 从头开始构建
+2. **审核现有技能** - 检查最佳实践
+3. **添加组件** - 添加工作流程/参考/示例
+4. **获得指导** - 了解技能设计
 
-### Step 1: Choose Type
+## 创造新技能
 
-**Simple skill (single file):**
-- Under 500 lines
-- Self-contained guidance
-- No complex workflows
+### 第 1 步：选择类型
 
-**Progressive disclosure skill (multiple files):**
-- SKILL.md as overview
-- Reference files for detailed docs
-- Scripts for utilities
+**简单技能（单档）：**
+- 500行以下
+- 独立的指导
+- 没有复杂的工作流程
 
-### Step 2: Create SKILL.md
+**渐进披露技巧（多个文件）：**
+- SKILL.md 作为概述
+- 详细文档的参考文件
+- 实用程序脚本
+
+### 步骤 2：创建 SKILL.md
 
 ```markdown
 ---
@@ -142,7 +147,8 @@ description: [What it does]. Use when [trigger conditions].
 [Immediate actionable example]
 
 ```[language]
-[Code example]
+
+[代码示例]
 ```
 
 ## Instructions
@@ -155,7 +161,8 @@ description: [What it does]. Use when [trigger conditions].
 Input: [description]
 Output:
 ```
-[result]
+
+[结果]
 ```
 
 ## Guidelines
@@ -164,79 +171,85 @@ Output:
 - [Constraint 2]
 ```
 
-### Step 3: Add Reference Files (If Needed)
 
-Link from SKILL.md to detailed content:
+### 步骤 3：添加参考文件（如果需要）
+
+SKILL.md 详细内容链接：
 
 ```markdown
 For API reference, see [REFERENCE.md](REFERENCE.md).
 For form filling guide, see [FORMS.md](FORMS.md).
 ```
 
-Keep references **one level deep** from SKILL.md.
 
-### Step 4: Add Scripts (If Needed)
+保留 SKILL.md 的参考**一层深度**。
 
-Scripts execute without loading into context:
+### 步骤 4：添加脚本（如果需要）
+
+脚本执行时无需加载到上下文中：
 
 ```markdown
 ## Utility Scripts
 
 Extract fields:
 ```bash
+
 python scripts/analyze.py input.pdf > fields.json
 ```
 ```
 
-### Step 5: Test With Real Usage
 
-1. Test with actual tasks, not test scenarios
-2. Observe where Claude struggles
-3. Refine based on real behavior
-4. Test with Haiku, Sonnet, and Opus
+### 步骤 5：实际使用情况测试
 
-## Auditing Existing Skills
+1. 使用实际任务进行测试，而不是测试场景
+2.观察克劳德挣扎的地方
+3. 基于真实行为进行细化
+4. 使用 Haiku、Sonnet 和 Opus 进行测试
 
-Check against this rubric:
+## 审核现有技能
 
-- [ ] Valid YAML frontmatter (name + description)
-- [ ] Description includes trigger keywords
-- [ ] Uses standard markdown headings (not XML tags)
-- [ ] SKILL.md under 500 lines
-- [ ] References one level deep
-- [ ] Examples are concrete, not abstract
-- [ ] Consistent terminology
-- [ ] No time-sensitive information
-- [ ] Scripts handle errors explicitly
+检查此标题：
 
-## Common Patterns
+- [ ] 有效的 YAML frontmatter（名称 + 描述）
+- [ ] 描述包含触发关键字
+- [ ] 使用标准 Markdown 标题（不是 XML 标签）
+- [ ] SKILL.md 500行以下
+- [ ] 引用一层深
+- [ ] 例子是具体的，而不是抽象的
+- [ ] 一致的术语
+- [ ] 没有时间敏感的信息
+- [ ] 脚本明确处理错误
 
-### Template Pattern
+## 常见模式
 
-Provide output templates for consistent results:
+### 模板模式
+
+提供输出模板以获得一致的结果：
 
 ```markdown
 ## Report Template
 
 ```markdown
-# [Analysis Title]
 
-## Executive Summary
-[One paragraph overview]
+# [分析标题]
 
-## Key Findings
-- Finding 1
-- Finding 2
+## 执行摘要
+【一段概述】
 
-## Recommendations
-1. [Action item]
-2. [Action item]
+## 主要发现
+- 发现1
+- 发现2
+
+## 建议
+1. [行动项目]
+2. [行动项目]
 ```
 ```
 
-### Workflow Pattern
 
-For complex multi-step tasks:
+### 工作流程模式
+
+对于复杂的多步骤任务：
 
 ```markdown
 ## Migration Workflow
@@ -244,10 +257,11 @@ For complex multi-step tasks:
 Copy this checklist:
 
 ```
-- [ ] Step 1: Backup database
-- [ ] Step 2: Run migration script
-- [ ] Step 3: Validate output
-- [ ] Step 4: Update configuration
+
+- [ ] 步骤一：备份数据库
+- [ ] 步骤 2：运行迁移脚本
+- [ ] 步骤 3：验证输出
+- [ ] 步骤 4：更新配置
 ```
 
 **Step 1: Backup database**
@@ -255,9 +269,10 @@ Run: `./scripts/backup.sh`
 ...
 ```
 
-### Conditional Pattern
 
-Guide through decision points:
+### 条件模式
+
+决策点指南：
 
 ```markdown
 ## Choose Your Approach
@@ -266,34 +281,35 @@ Guide through decision points:
 **Editing existing?** Follow "Editing workflow" below.
 ```
 
-## Anti-Patterns to Avoid
 
-- **XML tags in body** - Use markdown headings instead
-- **Vague descriptions** - Be specific with trigger keywords
-- **Deep nesting** - Keep references one level from SKILL.md
-- **Too many options** - Provide a default with escape hatch
-- **Windows paths** - Always use forward slashes
-- **Punting to Claude** - Scripts should handle errors
-- **Time-sensitive info** - Use "old patterns" section instead
+## 要避免的反模式
 
-## Reference Files
+- **正文中的 XML 标签** - 使用 Markdown 标题代替
+- **模糊的描述** - 使用具体的触发关键字
+- **深度嵌套** - 将 SKILL.md 中的引用保留一层
+- **选项太多** - 提供默认的逃生舱口
+- **Windows 路径** - 始终使用正斜杠
+- **踢克劳德** - 脚本应该处理错误
+- **时间敏感信息** - 使用“旧模式”部分代替
 
-For detailed guidance, see:
+## 参考文件
 
-- [official-spec.md](references/official-spec.md) - Anthropic's official skill specification
-- [best-practices.md](references/best-practices.md) - Skill authoring best practices
+有关详细指导，请参阅：
 
-## Success Criteria
+- [official-spec.md](references/official-spec.md) - Anthropic的官方技能规范
+- [best-practices.md](references/best-practices.md) - 技能创作最佳实践
 
-A well-structured skill:
-- Has valid YAML frontmatter with descriptive name and description
-- Uses standard markdown headings (not XML tags)
-- Keeps SKILL.md under 500 lines
-- Links to reference files for detailed content
-- Includes concrete examples with input/output pairs
-- Has been tested with real usage
+## 成功标准
 
-Sources:
-- [Agent Skills - Claude Code Docs](https://code.claude.com/docs/en/skills)
-- [Skill authoring best practices](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices)
-- [GitHub - anthropics/skills](https://github.com/anthropics/skills)
+结构良好的技能：
+- 具有有效的 YAML frontmatter 以及描述性名称和描述
+- 使用标准 Markdown 标题（不是 XML 标签）
+- 将 SKILL.md 保持在 500 行以内
+- 详细内容的参考文件链接
+- 包括带有输入/输出对的具体示例
+- 已经过实际使用测试
+
+资料来源：
+- [代理技能 - 克劳德代码文档](https://code.claude.com/docs/en/skills)
+- [技能创作最佳实践](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices)
+- [GitHub - anthropics/技能](https://github.com/anthropics/skills)

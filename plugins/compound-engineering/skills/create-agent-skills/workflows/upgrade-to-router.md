@@ -1,49 +1,51 @@
-# Workflow: Upgrade Skill to Router Pattern
+# 工作流程：将技能升级到路由器模式
 
 <required_reading>
-**Read these reference files NOW:**
-1. references/recommended-structure.md
-2. references/skill-structure.md
+**立即阅读这些参考文件：**
+1.references/recommended-structure.md
+2.references/skill-structure.md
 </required_reading>
 
 <process>
-## Step 1: Select the Skill
+## 第 1 步：选择技能
 
 ```bash
 ls ~/.claude/skills/
 ```
 
-Present numbered list, ask: "Which skill should be upgraded to the router pattern?"
 
-## Step 2: Verify It Needs Upgrading
+出示编号表，问：“哪项技能应该升级到路由器模式？”
 
-Read the skill:
+## 步骤 2：验证是否需要升级
+
+阅读技能：
 ```bash
 cat ~/.claude/skills/{skill-name}/SKILL.md
 ls ~/.claude/skills/{skill-name}/
 ```
 
-**Already a router?** (has workflows/ and intake question)
-→ Tell user it's already using router pattern, offer to add workflows instead
 
-**Simple skill that should stay simple?** (under 200 lines, single workflow)
-→ Explain that router pattern may be overkill, ask if they want to proceed anyway
+**已经是路由器？**（有工作流程/和摄入问题）
+→ 告诉用户它已经在使用路由器模式，建议改为添加工作流程
 
-**Good candidate for upgrade:**
-- Over 200 lines
-- Multiple distinct use cases
-- Essential principles that shouldn't be skipped
-- Growing complexity
+**简单的技能应该保持简单？**（200 行以下，单一工作流程）
+→ 解释路由器模式可能有点过分，询问他们是否仍想继续
 
-## Step 3: Identify Components
+**升级的良好候选者：**
+- 超过200行
+- 多个不同的用例
+- 不应忽略的基本原则
+- 日益复杂
 
-Analyze the current skill and identify:
+## 步骤 3：识别组件
 
-1. **Essential principles** - Rules that apply to ALL use cases
-2. **Distinct workflows** - Different things a user might want to do
-3. **Reusable knowledge** - Patterns, examples, technical details
+分析当前技能并确定：
 
-Present findings:
+1. **基本原则** - 适用于所有用例的规则
+2. **不同的工作流程** - 用户可能想做的不同事情
+3. **可重用的知识** - 模式、示例、技术细节
+
+目前的发现：
 ```
 ## Analysis
 
@@ -60,35 +62,37 @@ Present findings:
 - [Reference topic 2]
 ```
 
-Ask: "Does this breakdown look right? Any adjustments?"
 
-## Step 4: Create Directory Structure
+问：“这个细分看起来正确吗？有什么调整吗？”
+
+## 步骤 4：创建目录结构
 
 ```bash
 mkdir -p ~/.claude/skills/{skill-name}/workflows
 mkdir -p ~/.claude/skills/{skill-name}/references
 ```
 
-## Step 5: Extract Workflows
 
-For each identified workflow:
+## 步骤 5：提取工作流程
 
-1. Create `workflows/{workflow-name}.md`
-2. Add required_reading section (references it needs)
-3. Add process section (steps from original skill)
-4. Add success_criteria section
+对于每个已确定的工作流程：
 
-## Step 6: Extract References
+1. 创建`workflows/{workflow-name}.md`
+2.添加required_reading部分（需要的引用）
+3.添加流程部分（原技能步骤）
+4. 添加 success_criteria 部分
 
-For each identified reference topic:
+## 步骤 6：提取参考文献
 
-1. Create `references/{reference-name}.md`
-2. Move relevant content from original skill
-3. Structure with semantic XML tags
+对于每个确定的参考主题：
 
-## Step 7: Rewrite SKILL.md as Router
+1. 创建`references/{reference-name}.md`
+2.从原有技能中移出相关内容
+3. 具有语义 XML 标签的结构
 
-Replace SKILL.md with router structure:
+## 步骤7：将SKILL.md重写为Router
+
+将 SKILL.md 替换为路由器结构：
 
 ```markdown
 ---
@@ -130,32 +134,33 @@ What would you like to do?
 </workflows_index>
 ```
 
-## Step 8: Verify Nothing Was Lost
 
-Compare original skill content against new structure:
-- [ ] All principles preserved (now inline)
-- [ ] All procedures preserved (now in workflows)
-- [ ] All knowledge preserved (now in references)
-- [ ] No orphaned content
+## 步骤 8：确认没有丢失任何东西
 
-## Step 9: Test
+将原始技能内容与新结构进行比较：
+- [ ] 保留所有原则（现在内联）
+- [ ] 保留所有程序（现在在工作流程中）
+- [ ] 保留所有知识（现在在参考文献中）
+- [ ] 没有孤立内容
 
-Invoke the upgraded skill:
-- Does intake question appear?
-- Does each routing option work?
-- Do workflows load correct references?
-- Does behavior match original skill?
+## 步骤 9：测试
 
-Report any issues.
+调用升级后的技能：
+- 是否出现摄入问题？
+- 每个路由选项都有效吗？
+- 工作流程加载正确的参考吗？
+- 行为与原始技能相符吗？
+
+报告任何问题。
 </process>
 
 <success_criteria>
-Upgrade is complete when:
-- [ ] workflows/ directory created with workflow files
-- [ ] references/ directory created (if needed)
-- [ ] SKILL.md rewritten as router
-- [ ] Essential principles inline in SKILL.md
-- [ ] All original content preserved
-- [ ] Intake question routes correctly
-- [ ] Tested and working
+升级完成时：
+- [ ] 使用工作流程文件创建的工作流程/目录
+- 创建 [ ] 引用/目录（如果需要）
+- [ ] SKILL.md 重写为路由器
+- [ ] SKILL.md 中内嵌的基本原则
+- [ ] 保留所有原始内容
+- [ ] 正确接收问题路线
+- [ ] 已测试并正常工作
 </success_criteria>

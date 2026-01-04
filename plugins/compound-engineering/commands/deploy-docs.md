@@ -1,15 +1,15 @@
 ---
 name: deploy-docs
-description: Validate and prepare documentation for GitHub Pages deployment
+description: 验证并准备 GitHub Pages 部署的文档
+
 ---
+# 部署文档命令
 
-# Deploy Documentation Command
+验证文档站点并为 GitHub Pages 部署做好准备。
 
-Validate the documentation site and prepare it for GitHub Pages deployment.
+## 第 1 步：验证文档
 
-## Step 1: Validate Documentation
-
-Run these checks:
+运行这些检查：
 
 ```bash
 # Count components
@@ -31,33 +31,35 @@ for page in index agents commands skills mcp-servers changelog getting-started; 
 done
 ```
 
-## Step 2: Check for Uncommitted Changes
+
+## 步骤 2：检查未提交的更改
 
 ```bash
 git status --porcelain plugins/compound-engineering/docs/
 ```
 
-If there are uncommitted changes, warn the user to commit first.
 
-## Step 3: Deployment Instructions
+如果有未提交的更改，则警告用户先提交。
 
-Since GitHub Pages deployment requires a workflow file with special permissions, provide these instructions:
+## 步骤 3：部署说明
 
-### First-time Setup
+由于 GitHub Pages 部署需要具有特殊权限的工作流程文件，因此请提供以下说明：
 
-1. Create `.github/workflows/deploy-docs.yml` with the GitHub Pages workflow
-2. Go to repository Settings > Pages
-3. Set Source to "GitHub Actions"
+### 首次设置
 
-### Deploying
+1. 使用 GitHub Pages 工作流程创建`.github/workflows/deploy-docs.yml`
+2. 转到存储库设置 > 页面
+3. 将源设置为“GitHub Actions”
 
-After merging to `main`, the docs will auto-deploy. Or:
+### 部署
 
-1. Go to Actions tab
-2. Select "Deploy Documentation to GitHub Pages"
-3. Click "Run workflow"
+合并到`main`后，文档将自动部署。或者：
 
-### Workflow File Content
+1. 转到“操作”选项卡
+2. 选择“将文档部署到 GitHub Pages”
+3. 单击“运行工作流程”
+
+### 工作流程文件内容
 
 ```yaml
 name: Deploy Documentation to GitHub Pages
@@ -93,9 +95,10 @@ jobs:
       - uses: actions/deploy-pages@v4
 ```
 
-## Step 4: Report Status
 
-Provide a summary:
+## 步骤 4：报告状态
+
+提供一个总结：
 
 ```
 ## Deployment Readiness
@@ -110,3 +113,4 @@ Provide a summary:
 - [ ] Verify GitHub Pages workflow exists
 - [ ] Check deployment at https://everyinc.github.io/every-marketplace/
 ```
+

@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en" class="theme-dark">
+<html lang="zh-CN" class="theme-dark">
 
 <head>
   <meta charset="utf-8" />
-  <title>Agent Reference - Compounding Engineering</title>
-  <meta content="Complete reference for all 23 specialized AI agents in the Compounding Engineering plugin." name="description" />
+  <title>代理参考 - 复合工程</title>
+  <meta content="复合工程插件中所有 23 个专业 AI 代理的完整参考。" name="description" />
   <meta content="width=device-width, initial-scale=1" name="viewport" />
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
@@ -20,39 +20,39 @@
       <div class="sidebar-header">
         <a href="../index.html" class="nav-brand">
           <span class="logo-icon"><i class="fa-solid fa-layer-group"></i></span>
-          <span class="logo-text">CE Docs</span>
+          <span class="logo-text">CE文件</span>
         </a>
       </div>
       <nav class="sidebar-nav">
         <div class="nav-section">
-          <h3>Getting Started</h3>
+          <h3>入门</h3>
           <ul>
-            <li><a href="getting-started.html">Installation</a></li>
+            <li><a href="getting-started.html">安装</a></li>
           </ul>
         </div>
         <div class="nav-section">
-          <h3>Reference</h3>
+          <h3>参考</h3>
           <ul>
-            <li><a href="agents.html" class="active">Agents (23)</a></li>
-            <li><a href="commands.html">Commands (13)</a></li>
-            <li><a href="skills.html">Skills (11)</a></li>
-            <li><a href="mcp-servers.html">MCP Servers (2)</a></li>
+            <li><a href="agents.html" class="active">代理商 (23)</a></li>
+            <li><a href="commands.html">命令 (13)</a></li>
+            <li><a href="skills.html">技能 (11)</a></li>
+            <li><a href="mcp-servers.html">MCP 服务器 (2)</a></li>
           </ul>
         </div>
         <div class="nav-section">
-          <h3>Resources</h3>
+          <h3>资源</h3>
           <ul>
-            <li><a href="changelog.html">Changelog</a></li>
+            <li><a href="changelog.html">变更日志</a></li>
           </ul>
         </div>
         <div class="nav-section">
-          <h3>On This Page</h3>
+          <h3>在此页上</h3>
           <ul>
-            <li><a href="#review-agents">Review (10)</a></li>
-            <li><a href="#research-agents">Research (4)</a></li>
-            <li><a href="#workflow-agents">Workflow (5)</a></li>
-            <li><a href="#design-agents">Design (3)</a></li>
-            <li><a href="#docs-agents">Docs (1)</a></li>
+            <li><a href="#review-agents">评论 (10)</a></li>
+            <li><a href="#research-agents">研究 (4)</a></li>
+            <li><a href="#workflow-agents">工作流程 (5)</a></li>
+            <li><a href="#design-agents">设计 (3)</a></li>
+            <li><a href="#docs-agents">文件 (1)</a></li>
           </ul>
         </div>
       </nav>
@@ -61,11 +61,11 @@
     <main class="docs-content">
       <div class="docs-header">
         <nav class="breadcrumb">
-          <a href="../index.html">Home</a>
+          <a href="../index.html">家</a>
           <span>/</span>
-          <a href="getting-started.html">Docs</a>
+          <a href="getting-started.html">文档</a>
           <span>/</span>
-          <span>Agents</span>
+          <span>代理商</span>
         </nav>
         <button class="mobile-menu-toggle" data-sidebar-toggle>
           <i class="fa-solid fa-bars"></i>
@@ -73,13 +73,13 @@
       </div>
 
       <article class="docs-article">
-        <h1><i class="fa-solid fa-users-gear color-accent"></i> Agent Reference</h1>
+        <h1><i class="fa-solid fa-users-gear color-accent"></i> 代理参考</h1>
         <p class="lead">
-          Think of agents as your expert teammates who never sleep. You've got 23 specialists here—each one obsessed with a single domain. Call them individually when you need focused expertise, or orchestrate them together for multi-angle analysis. They're opinionated, they're fast, and they remember your codebase better than you do.
+          将座席视为您从不睡觉的专家队友。这里有 23 名专家，每一位都专注于一个领域。当您需要集中的专业知识时，可以单独致电他们，或者将他们组合在一起进行多角度分析。他们固执己见，速度很快，而且比你更记得你的代码库。
         </p>
 
         <div class="usage-box">
-          <h3>How to Use Agents</h3>
+          <h3>如何使用代理</h3>
           <div class="card-code-block">
             <pre><code># Basic invocation
 claude agent [agent-name]
@@ -95,26 +95,26 @@ claude agent security-sentinel "Audit the payment flow"</code></pre>
 
         <!-- Review Agents -->
         <section id="review-agents">
-          <h2><i class="fa-solid fa-code-pull-request"></i> Review Agents (10)</h2>
-          <p>Your code review dream team. These agents catch what humans miss at 2am—security holes, performance cliffs, architectural drift, and those "it works but I hate it" moments. They're picky. They disagree with each other. That's the point.</p>
+          <h2><i class="fa-solid fa-code-pull-request"></i> 审查代理 (10)</h2>
+          <p>您的代码审查梦之队。这些代理能够捕捉到人类在凌晨 2 点错过的东西——安全漏洞、性能悬崖、架构漂移以及那些“它有效但我讨厌它”的时刻。他们很挑剔。他们意见不一。这就是重点。</p>
 
           <div class="agent-detail" id="kieran-rails-reviewer">
             <div class="agent-detail-header">
-              <h3>kieran-rails-reviewer</h3>
-              <span class="agent-badge">Rails</span>
+              <h3>kieran-rails-审稿人</h3>
+              <span class="agent-badge">导轨</span>
             </div>
             <p class="agent-detail-description">
-              Your senior Rails developer who's seen too many "clever" solutions fail in production. Obsessed with code that's boring, predictable, and maintainable. Strict on existing code (because touching it risks everything), pragmatic on new isolated features (because shipping matters). If you've ever thought "this works but feels wrong," this reviewer will tell you why.
+              您的高级 Rails 开发人员见过太多“聪明”的解决方案在生产中失败。痴迷于枯燥、可预测且可维护的代码。对现有代码严格（因为触及它会带来一切风险），对新的孤立功能务实（因为运输很重要）。如果您曾经想过“这有效但感觉不对”，这位评论家会告诉您原因。
             </p>
-            <h4>Key Principles</h4>
+            <h4>关键原则</h4>
             <ul>
-              <li><strong>Existing Code Modifications</strong> - Very strict. Added complexity needs strong justification.</li>
-              <li><strong>New Code</strong> - Pragmatic. If it's isolated and works, it's acceptable.</li>
-              <li><strong>Turbo Streams</strong> - Simple turbo streams MUST be inline arrays in controllers.</li>
-              <li><strong>Testing as Quality</strong> - Hard-to-test code = poor structure that needs refactoring.</li>
-              <li><strong>Naming (5-Second Rule)</strong> - Must understand what a view/component does in 5 seconds from its name.</li>
-              <li><strong>Namespacing</strong> - Always use <code>class Module::ClassName</code> pattern.</li>
-              <li><strong>Duplication > Complexity</strong> - Simple duplicated code is better than complex DRY abstractions.</li>
+              <li><strong>现有代码修改</strong> - 非常严格。增加复杂性需要强有力的理由。</li>
+              <li><strong>新代码</strong> - 务实。如果它是隔离的并且有效，那么它是可以接受的。</li>
+              <li><strong>涡轮流</strong> - 简单的涡轮流必须是控制器中的内联数组。</li>
+              <li><strong>测试作为质量</strong> - 难以测试的代码=需要重构的糟糕结构。</li>
+              <li><strong>命名（5 秒规则）</strong> - 必须从名称中了解视图/组件在 5 秒内的作用。</li>
+              <li><strong>命名空间</strong> - 始终使用 <code>class Module::ClassName</code> 图案。</li>
+              <li><strong>重复 > 复杂性</strong> - 简单的重复代码比复杂的 DRY 抽象更好。</li>
             </ul>
             <div class="card-code-block">
               <pre><code>claude agent kieran-rails-reviewer "Review the UserController"</code></pre>
@@ -123,18 +123,18 @@ claude agent security-sentinel "Audit the payment flow"</code></pre>
 
           <div class="agent-detail" id="dhh-rails-reviewer">
             <div class="agent-detail-header">
-              <h3>dhh-rails-reviewer</h3>
-              <span class="agent-badge">Rails</span>
+              <h3>dhh-rails-审稿人</h3>
+              <span class="agent-badge">导轨</span>
             </div>
             <p class="agent-detail-description">
-              What if DHH reviewed your Rails PR? He'd ask why you're building React inside Rails, why you need six layers of abstraction for a form, and whether you've forgotten that Rails already solved this problem. This agent channels that energy—blunt, opinionated, allergic to complexity.
+              如果 DHH 审查您的 Rails PR 会怎样？他会问你为什么要在 Rails 中构建 React，为什么表单需要六层抽象，以及你是否忘记了 Rails 已经解决了这个问题。这个代理引导着这种能量——生硬、固执己见、对复杂性过敏。
             </p>
-            <h4>Key Focus Areas</h4>
+            <h4>重点关注领域</h4>
             <ul>
-              <li>Identifies deviations from Rails conventions</li>
-              <li>Spots JavaScript framework patterns infiltrating Rails</li>
-              <li>Tears apart unnecessary abstractions</li>
-              <li>Challenges overengineering and microservices mentality</li>
+              <li>识别与 Rails 约定的偏差</li>
+              <li>发现 JavaScript 框架模式渗透到 Rails</li>
+              <li>分解不必要的抽象</li>
+              <li>过度工程和微服务心态的挑战</li>
             </ul>
             <div class="card-code-block">
               <pre><code>claude agent dhh-rails-reviewer</code></pre>
@@ -143,19 +143,19 @@ claude agent security-sentinel "Audit the payment flow"</code></pre>
 
           <div class="agent-detail" id="kieran-python-reviewer">
             <div class="agent-detail-header">
-              <h3>kieran-python-reviewer</h3>
+              <h3>kieran-python-评论者</h3>
               <span class="agent-badge">Python</span>
             </div>
             <p class="agent-detail-description">
-              Your Pythonic perfectionist who believes type hints aren't optional and <code>dict.get()</code> beats try/except KeyError. Expects modern Python 3.10+ patterns—no legacy syntax, no <code>typing.List</code> when <code>list</code> works natively. If your code looks like Java translated to Python, prepare for rewrites.
+              你的 Python 完美主义者相信类型提示不是可选的，并且 <code>dict.get()</code> 击败 try/ except KeyError。期望现代 Python 3.10+ 模式——没有遗留语法，没有 <code>typing.List</code> 什么时候 <code>list</code> 本机工作。如果您的代码看起来像 Java 翻译成 Python，请准备重写。
             </p>
-            <h4>Key Focus Areas</h4>
+            <h4>重点关注领域</h4>
             <ul>
-              <li>Type hints for all functions</li>
-              <li>Pythonic patterns and idioms</li>
-              <li>Modern Python syntax</li>
-              <li>Import organization</li>
-              <li>Module extraction signals</li>
+              <li>所有功能的键入提示</li>
+              <li>Pythonic 模式和习语</li>
+              <li>现代 Python 语法</li>
+              <li>进口组织</li>
+              <li>模块提取信号</li>
             </ul>
             <div class="card-code-block">
               <pre><code>claude agent kieran-python-reviewer</code></pre>
@@ -164,19 +164,19 @@ claude agent security-sentinel "Audit the payment flow"</code></pre>
 
           <div class="agent-detail" id="kieran-typescript-reviewer">
             <div class="agent-detail-header">
-              <h3>kieran-typescript-reviewer</h3>
-              <span class="agent-badge">TypeScript</span>
+              <h3>基兰打字稿审稿人</h3>
+              <span class="agent-badge">打字稿</span>
             </div>
             <p class="agent-detail-description">
-              TypeScript's type system is a gift—don't throw it away with <code>any</code>. This reviewer treats <code>any</code> like a code smell that needs justification. Expects proper types, clean imports, and code that doesn't need comments because the types explain everything. You added TypeScript for safety; this agent makes sure you actually get it.
+              TypeScript 的类型系统是一份礼物——不要把它扔掉 <code>any</code>。这位审稿人对待 <code>any</code> 就像需要合理化的代码味道一样。期望正确的类型、干净的导入和不需要注释的代码，因为类型解释了一切。为了安全起见，您添加了 TypeScript；该代理确保您确实得到它。
             </p>
-            <h4>Key Focus Areas</h4>
+            <h4>重点关注领域</h4>
             <ul>
-              <li>No <code>any</code> without justification</li>
-              <li>Component/module extraction signals</li>
-              <li>Import organization</li>
-              <li>Modern TypeScript patterns</li>
-              <li>Testability assessment</li>
+              <li>No <code>any</code> 无理地</li>
+              <li>组件/模块提取信号</li>
+              <li>进口组织</li>
+              <li>现代 TypeScript 模式</li>
+              <li>可测试性评估</li>
             </ul>
             <div class="card-code-block">
               <pre><code>claude agent kieran-typescript-reviewer</code></pre>
@@ -185,21 +185,21 @@ claude agent security-sentinel "Audit the payment flow"</code></pre>
 
           <div class="agent-detail" id="security-sentinel">
             <div class="agent-detail-header">
-              <h3>security-sentinel</h3>
-              <span class="agent-badge critical">Security</span>
+              <h3>安全哨兵</h3>
+              <span class="agent-badge critical">安全</span>
             </div>
             <p class="agent-detail-description">
-              Security vulnerabilities hide in boring code—the "just grab the user ID from params" line that ships a privilege escalation bug to production. This agent thinks like an attacker: SQL injection, XSS, auth bypass, leaked secrets. Run it before touching authentication, payments, or anything with PII. Your users' data depends on paranoia.
+              安全漏洞隐藏在无聊的代码中——“只需从参数中获取用户 ID”行，将权限升级错误带入生产环境。该代理像攻击者一样思考：SQL 注入、XSS、身份验证绕过、泄露秘密。在接触身份验证、付款或任何涉及 PII 的内容之前运行它。您的用户数据取决于偏执狂。
             </p>
-            <h4>Security Checks</h4>
+            <h4>安全检查</h4>
             <ul>
-              <li>Input validation analysis</li>
-              <li>SQL injection risk assessment</li>
-              <li>XSS vulnerability detection</li>
-              <li>Authentication/authorization audit</li>
-              <li>Sensitive data exposure scanning</li>
-              <li>OWASP Top 10 compliance</li>
-              <li>Hardcoded secrets search</li>
+              <li>输入验证分析</li>
+              <li>SQL注入风险评估</li>
+              <li>XSS漏洞检测</li>
+              <li>认证/授权审核</li>
+              <li>敏感数据曝光扫描</li>
+              <li>OWASP 前 10 名合规性</li>
+              <li>硬编码秘密搜索</li>
             </ul>
             <div class="card-code-block">
               <pre><code>claude agent security-sentinel "Audit the payment flow"</code></pre>
@@ -208,21 +208,21 @@ claude agent security-sentinel "Audit the payment flow"</code></pre>
 
           <div class="agent-detail" id="performance-oracle">
             <div class="agent-detail-header">
-              <h3>performance-oracle</h3>
-              <span class="agent-badge">Performance</span>
+              <h3>性能预言机</h3>
+              <span class="agent-badge">表现</span>
             </div>
             <p class="agent-detail-description">
-              Your code works fine with 10 users. What happens at 10,000? This agent time-travels to your future scaling problems—N+1 queries that murder your database, O(n²) algorithms hiding in loops, missing indexes, memory leaks. It thinks in Big O notation and asks uncomfortable questions about what breaks first when traffic spikes.
+              您的代码适用于 10 个用户。 10,000 时会发生什么？该代理会通过时间旅行解决您未来的扩展问题 - 破坏数据库的 N+1 查询、隐藏在循环中的 O(n²) 算法、丢失索引、内存泄漏。它以大 O 表示法进行思考，并提出一些令人不舒服的问题：当流量激增时，什么首先发生故障。
             </p>
-            <h4>Analysis Areas</h4>
+            <h4>分析领域</h4>
             <ul>
-              <li>Algorithmic complexity (Big O notation)</li>
-              <li>N+1 query pattern detection</li>
-              <li>Proper index usage verification</li>
-              <li>Memory management review</li>
-              <li>Caching opportunity identification</li>
-              <li>Network usage optimization</li>
-              <li>Frontend bundle impact</li>
+              <li>算法复杂度（大O表示法）</li>
+              <li>N+1查询模式检测</li>
+              <li>正确的索引使用验证</li>
+              <li>内存管理回顾</li>
+              <li>缓存机会识别</li>
+              <li>网络使用优化</li>
+              <li>前端捆绑影响</li>
             </ul>
             <div class="card-code-block">
               <pre><code>claude agent performance-oracle</code></pre>
@@ -231,20 +231,20 @@ claude agent security-sentinel "Audit the payment flow"</code></pre>
 
           <div class="agent-detail" id="architecture-strategist">
             <div class="agent-detail-header">
-              <h3>architecture-strategist</h3>
-              <span class="agent-badge">Architecture</span>
+              <h3>架构策略师</h3>
+              <span class="agent-badge">建筑学</span>
             </div>
             <p class="agent-detail-description">
-              Every "small change" either reinforces your architecture or starts eroding it. This agent zooms out to see if your fix actually fits the system's design—or if you're bolting duct tape onto a crumbling foundation. It speaks SOLID principles, microservice boundaries, and API contracts. Call it when you're about to make a change that "feels weird."
+              每一个“小变化”要么强化你的架构，要么开始侵蚀它。该代理会缩小范围，查看您的修复是否确实适合系统的设计，或者您是否将胶带固定在摇摇欲坠的地基上。它阐述了 SOLID 原则、微服务边界和 API 契约。当你要做出“感觉很奇怪”的改变时，请调用它。
             </p>
-            <h4>Analysis Areas</h4>
+            <h4>分析领域</h4>
             <ul>
-              <li>Overall system structure understanding</li>
-              <li>Change context within architecture</li>
-              <li>Architectural violation identification</li>
-              <li>SOLID principles compliance</li>
-              <li>Microservice boundary assessment</li>
-              <li>API contract evaluation</li>
+              <li>整体系统结构理解</li>
+              <li>改变架构内的环境</li>
+              <li>建筑违规识别</li>
+              <li>遵守坚实的原则</li>
+              <li>微服务边界评估</li>
+              <li>API合同评估</li>
             </ul>
             <div class="card-code-block">
               <pre><code>claude agent architecture-strategist</code></pre>
@@ -253,20 +253,20 @@ claude agent security-sentinel "Audit the payment flow"</code></pre>
 
           <div class="agent-detail" id="data-integrity-guardian">
             <div class="agent-detail-header">
-              <h3>data-integrity-guardian</h3>
-              <span class="agent-badge critical">Data</span>
+              <h3>数据完整性守护者</h3>
+              <span class="agent-badge critical">数据</span>
             </div>
             <p class="agent-detail-description">
-              Migrations can't be rolled back once they're run on production. This agent is your last line of defense before you accidentally drop a column with user data, create a race condition in transactions, or violate GDPR. It obsesses over referential integrity, rollback safety, and data constraints. Your database is forever; migrations should be paranoid.
+              一旦在生产环境中运行，迁移就无法回滚。在您意外删除包含用户数据的列、在事务中创建竞争条件或违反 GDPR 之前，此代理是您的最后一道防线。它痴迷于引用完整性、回滚安全性和数据约束。您的数据库是永久的；移民应该是偏执的。
             </p>
-            <h4>Review Areas</h4>
+            <h4>审查领域</h4>
             <ul>
-              <li>Migration safety and reversibility</li>
-              <li>Data constraint validation</li>
-              <li>Transaction boundary review</li>
-              <li>Referential integrity preservation</li>
-              <li>Privacy compliance (GDPR, CCPA)</li>
-              <li>Data corruption scenario checking</li>
+              <li>迁移安全性和可逆性</li>
+              <li>数据约束验证</li>
+              <li>交易边界审查</li>
+              <li>引用完整性保存</li>
+              <li>隐私合规性（GDPR、CCPA）</li>
+              <li>数据损坏场景检查</li>
             </ul>
             <div class="card-code-block">
               <pre><code>claude agent data-integrity-guardian</code></pre>
@@ -275,20 +275,20 @@ claude agent security-sentinel "Audit the payment flow"</code></pre>
 
           <div class="agent-detail" id="pattern-recognition-specialist">
             <div class="agent-detail-header">
-              <h3>pattern-recognition-specialist</h3>
-              <span class="agent-badge">Patterns</span>
+              <h3>模式识别专家</h3>
+              <span class="agent-badge">图案</span>
             </div>
             <p class="agent-detail-description">
-              Patterns tell stories—Factory, Observer, God Object, Copy-Paste Programming. This agent reads your code like an archaeologist reading artifacts. It spots the good patterns (intentional design), the anti-patterns (accumulated tech debt), and the duplicated blocks you swore you'd refactor later. Runs tools like jscpd because humans miss repetition that machines catch instantly.
+              模式讲述故事——工厂、观察者、上帝对象、复制粘贴编程。该代理读取您的代码就像考古学家读取文物一样。它可以发现好的模式（有意的设计）、反模式（累积的技术债务）以及您发誓稍后会重构的重复块。运行像 jscpd 这样的工具，因为人类会错过机器立即捕获的重复。
             </p>
-            <h4>Detection Areas</h4>
+            <h4>检测区域</h4>
             <ul>
-              <li>Design patterns (Factory, Singleton, Observer, etc.)</li>
-              <li>Anti-patterns and code smells</li>
-              <li>TODO/FIXME comments</li>
-              <li>God objects and circular dependencies</li>
-              <li>Naming consistency</li>
-              <li>Code duplication</li>
+              <li>设计模式（工厂、单例、观察者等）</li>
+              <li>反模式和代码异味</li>
+              <li>TODO/FIXME 评论</li>
+              <li>上帝对象和循环依赖</li>
+              <li>命名一致性</li>
+              <li>代码重复</li>
             </ul>
             <div class="card-code-block">
               <pre><code>claude agent pattern-recognition-specialist</code></pre>
@@ -297,20 +297,20 @@ claude agent security-sentinel "Audit the payment flow"</code></pre>
 
           <div class="agent-detail" id="code-simplicity-reviewer">
             <div class="agent-detail-header">
-              <h3>code-simplicity-reviewer</h3>
-              <span class="agent-badge">Quality</span>
+              <h3>代码简单性审查者</h3>
+              <span class="agent-badge">质量</span>
             </div>
             <p class="agent-detail-description">
-              Simplicity is violent discipline. This agent asks "do you actually need this?" about every line, every abstraction, every dependency. YAGNI isn't a suggestion—it's the law. Your 200-line feature with three layers of indirection? This agent will show you the 50-line version that does the same thing. Complexity is a liability; simplicity compounds.
+              简单就是暴力的纪律。该代理询问“您真的需要这个吗？”关于每一行、每一个抽象、每一个依赖。 YAGNI 不是建议，而是法律。您的 200 行功能具有三层间接层？该代理将向您展示具有相同功能的 50 行版本。复杂性是一种负担；简单的化合物。
             </p>
-            <h4>Simplification Checks</h4>
+            <h4>简化检查</h4>
             <ul>
-              <li>Analyze every line for necessity</li>
-              <li>Simplify complex logic</li>
-              <li>Remove redundancy and duplication</li>
-              <li>Challenge abstractions</li>
-              <li>Optimize for readability</li>
-              <li>Eliminate premature generalization</li>
+              <li>分析每一行的必要性</li>
+              <li>简化复杂逻辑</li>
+              <li>消除冗余和重复</li>
+              <li>挑战抽象</li>
+              <li>优化可读性</li>
+              <li>消除过早的概括</li>
             </ul>
             <div class="card-code-block">
               <pre><code>claude agent code-simplicity-reviewer</code></pre>
@@ -320,24 +320,24 @@ claude agent security-sentinel "Audit the payment flow"</code></pre>
 
         <!-- Research Agents -->
         <section id="research-agents">
-          <h2><i class="fa-solid fa-microscope"></i> Research Agents (4)</h2>
-          <p>Stop guessing. These agents dig through documentation, GitHub repos, git history, and real-world examples to give you answers backed by evidence. They read faster than you, remember more than you, and synthesize patterns you'd miss. Perfect for "how should I actually do this?" questions.</p>
+          <h2><i class="fa-solid fa-microscope"></i> 研究代理人 (4)</h2>
+          <p>别再猜测了。这些代理深入研究文档、GitHub 存储库、git 历史记录和真实示例，为您提供有证据支持的答案。他们比你读得快，比你记得更多，并能合成你可能会错过的模式。非常适合“我实际上应该怎么做？”问题。</p>
 
           <div class="agent-detail" id="framework-docs-researcher">
             <div class="agent-detail-header">
-              <h3>framework-docs-researcher</h3>
-              <span class="agent-badge">Research</span>
+              <h3>框架文档研究员</h3>
+              <span class="agent-badge">研究</span>
             </div>
             <p class="agent-detail-description">
-              Official docs are scattered. GitHub examples are inconsistent. Deprecations hide in changelogs. This agent pulls it all together—docs, source code, version constraints, real-world examples. Ask "how do I use Hotwire Turbo?" and get back patterns that actually work in production, not toy tutorials.
+              官方文档分散。 GitHub 的示例不一致。弃用隐藏在变更日志中。该代理将所有内容整合在一起——文档、源代码、版本约束、真实示例。问“如何使用 Hotwire Turbo？”并获取在生产中实际有效的模式，而不是玩具教程。
             </p>
-            <h4>Capabilities</h4>
+            <h4>能力</h4>
             <ul>
-              <li>Fetch official framework and library documentation</li>
-              <li>Identify version-specific constraints and deprecations</li>
-              <li>Search GitHub for real-world usage examples</li>
-              <li>Analyze gem/library source code using <code>bundle show</code></li>
-              <li>Synthesize findings with practical examples</li>
+              <li>获取官方框架和库文档</li>
+              <li>确定特定于版本的限制和弃用</li>
+              <li>在 GitHub 上搜索实际使用示例</li>
+              <li>使用分析gem/库源代码 <code>bundle show</code></li>
+              <li>用实际例子综合研究结果</li>
             </ul>
             <div class="card-code-block">
               <pre><code>claude agent framework-docs-researcher "Research Hotwire Turbo patterns"</code></pre>
@@ -346,19 +346,19 @@ claude agent security-sentinel "Audit the payment flow"</code></pre>
 
           <div class="agent-detail" id="best-practices-researcher">
             <div class="agent-detail-header">
-              <h3>best-practices-researcher</h3>
-              <span class="agent-badge">Research</span>
+              <h3>最佳实践研究员</h3>
+              <span class="agent-badge">研究</span>
             </div>
             <p class="agent-detail-description">
-              "Best practices" are everywhere and contradictory. This agent cuts through the noise by evaluating sources (official docs, trusted blogs, real GitHub repos), checking recency, and synthesizing actionable guidance. You get code templates, patterns that scale, and answers you can trust—not StackOverflow copy-paste roulette.
+              “最佳实践”无处不在且相互矛盾。该代理通过评估来源（官方文档、可信博客、真实的 GitHub 存储库）、检查新近度并综合可行的指导来消除噪音。您将获得代码模板、可扩展的模式以及值得信赖的答案，而不是 StackOverflow 复制粘贴轮盘赌。
             </p>
-            <h4>Capabilities</h4>
+            <h4>能力</h4>
             <ul>
-              <li>Leverage multiple sources (Context7 MCP, web search, GitHub)</li>
-              <li>Evaluate information quality and recency</li>
-              <li>Synthesize into actionable guidance</li>
-              <li>Provide code examples and templates</li>
-              <li>Research issue templates and community engagement</li>
+              <li>利用多个来源（Context7 MCP、网络搜索、GitHub）</li>
+              <li>评估信息质量和新近度</li>
+              <li>综合为可操作的指导</li>
+              <li>提供代码示例和模板</li>
+              <li>研究问题模板和社区参与</li>
             </ul>
             <div class="card-code-block">
               <pre><code>claude agent best-practices-researcher "Find pagination patterns"</code></pre>
@@ -367,19 +367,19 @@ claude agent security-sentinel "Audit the payment flow"</code></pre>
 
           <div class="agent-detail" id="git-history-analyzer">
             <div class="agent-detail-header">
-              <h3>git-history-analyzer</h3>
-              <span class="agent-badge">Git</span>
+              <h3>git 历史分析器</h3>
+              <span class="agent-badge">git</span>
             </div>
             <p class="agent-detail-description">
-              Your codebase has a history—decisions, patterns, mistakes. This agent does archaeology with git tools: file evolution, blame analysis, contributor expertise mapping. Ask "why does this code exist?" and get the commit that explains it. Spot patterns in how bugs appear. Understand the design decisions buried in history.
+              您的代码库有历史记录——决策、模式、错误。该代理使用 git 工具进行考古学：文件演变、责任分析、贡献者专业知识映射。问“为什么会有这段代码？”并获得解释它的提交。发现错误出现的模式。了解埋藏在历史中的设计决策。
             </p>
-            <h4>Analysis Techniques</h4>
+            <h4>分析技术</h4>
             <ul>
-              <li>Trace file evolution using <code>git log --follow</code></li>
-              <li>Determine code origins using <code>git blame -w -C -C -C</code></li>
-              <li>Identify patterns from commit history</li>
-              <li>Map key contributors and expertise areas</li>
-              <li>Extract historical patterns of issues and fixes</li>
+              <li>使用跟踪文件演变 <code>git log --follow</code></li>
+              <li>使用确定代码来源 <code>git blame -w -C -C -C</code></li>
+              <li>从提交历史中识别模式</li>
+              <li>绘制关键贡献者和专业领域</li>
+              <li>提取问题和修复的历史模式</li>
             </ul>
             <div class="card-code-block">
               <pre><code>claude agent git-history-analyzer "Analyze changes to User model"</code></pre>
@@ -388,19 +388,19 @@ claude agent security-sentinel "Audit the payment flow"</code></pre>
 
           <div class="agent-detail" id="repo-research-analyst">
             <div class="agent-detail-header">
-              <h3>repo-research-analyst</h3>
-              <span class="agent-badge">Research</span>
+              <h3>回购研究分析师</h3>
+              <span class="agent-badge">研究</span>
             </div>
             <p class="agent-detail-description">
-              Every repo has conventions—some documented, most tribal knowledge. This agent reads ARCHITECTURE.md, issue templates, PR patterns, and actual code to reverse-engineer the standards. Perfect for joining a new project or ensuring your PR matches the team's implicit style. Finds the rules nobody wrote down.
+              每个存储库都有约定——一些记录在案的、最部落的知识。该代理读取 ARCHITECTURE.md、问题模板、PR 模式和实际代码来对标准进行逆向工程。非常适合加入新项目或确保您的公关符合团队的隐含风格。找到没有人写下的规则。
             </p>
-            <h4>Analysis Areas</h4>
+            <h4>分析领域</h4>
             <ul>
-              <li>Architecture and documentation files (ARCHITECTURE.md, README.md, CLAUDE.md)</li>
-              <li>GitHub issues for patterns and conventions</li>
-              <li>Issue/PR templates and guidelines</li>
-              <li>Implementation patterns using ast-grep or rg</li>
-              <li>Project-specific conventions</li>
+              <li>架构和文档文件（ARCHITECTURE.md、README.md、CLAUDE.md）</li>
+              <li>有关模式和约定的 GitHub 问题</li>
+              <li>问题/公关模板和指南</li>
+              <li>使用 ast-grep 或 rg 的实现模式</li>
+              <li>项目特定约定</li>
             </ul>
             <div class="card-code-block">
               <pre><code>claude agent repo-research-analyst</code></pre>
@@ -410,25 +410,25 @@ claude agent security-sentinel "Audit the payment flow"</code></pre>
 
         <!-- Workflow Agents -->
         <section id="workflow-agents">
-          <h2><i class="fa-solid fa-gears"></i> Workflow Agents (5)</h2>
-          <p>Tedious work you hate doing. These agents handle the grind—reproducing bugs, resolving PR comments, running linters, analyzing specs. They're fast, they don't complain, and they free you up to solve interesting problems instead of mechanical ones.</p>
+          <h2><i class="fa-solid fa-gears"></i> 工作流程代理 (5)</h2>
+          <p>你讨厌做的乏味工作。这些代理负责处理繁琐的工作——重现错误、解决 PR​​ 评论、运行 linter、分析规范。他们速度很快，不会抱怨，而且可以让你有时间去解决有趣的问题，而不是机械问题。</p>
 
           <div class="agent-detail" id="bug-reproduction-validator">
             <div class="agent-detail-header">
-              <h3>bug-reproduction-validator</h3>
-              <span class="agent-badge">Bugs</span>
+              <h3>错误重现验证器</h3>
+              <span class="agent-badge">虫子</span>
             </div>
             <p class="agent-detail-description">
-              Half of bug reports aren't bugs—they're user errors, environment issues, or misunderstood features. This agent systematically reproduces the reported behavior, classifies what it finds (Confirmed, Can't Reproduce, Not a Bug, etc.), and assesses severity. Saves you from chasing ghosts or missing real issues.
+              一半的错误报告不是错误，而是用户错误、环境问题或被误解的功能。该代理系统地重现所报告的行为，对其发现的内容进行分类（已确认、无法重现、不是错误等），并评估严重性。使您免于追逐幽灵或错过真正的问题。
             </p>
-            <h4>Classification Types</h4>
+            <h4>分类类型</h4>
             <ul>
-              <li><strong>Confirmed</strong> - Bug reproduced successfully</li>
-              <li><strong>Cannot Reproduce</strong> - Unable to reproduce</li>
-              <li><strong>Not a Bug</strong> - Expected behavior</li>
-              <li><strong>Environmental</strong> - Environment-specific issue</li>
-              <li><strong>Data</strong> - Data-related issue</li>
-              <li><strong>User Error</strong> - User misunderstanding</li>
+              <li><strong>确认的</strong> - 错误已成功重现</li>
+              <li><strong>无法重现</strong> - 无法重现</li>
+              <li><strong>不是错误</strong> - 预期行为</li>
+              <li><strong>环境的</strong> - 环境特定问题</li>
+              <li><strong>数据</strong> - 数据相关问题</li>
+              <li><strong>用户错误</strong> - 用户误解</li>
             </ul>
             <div class="card-code-block">
               <pre><code>claude agent bug-reproduction-validator</code></pre>
@@ -437,19 +437,19 @@ claude agent security-sentinel "Audit the payment flow"</code></pre>
 
           <div class="agent-detail" id="pr-comment-resolver">
             <div class="agent-detail-header">
-              <h3>pr-comment-resolver</h3>
+              <h3>前评论解析器</h3>
               <span class="agent-badge">PR</span>
             </div>
             <p class="agent-detail-description">
-              Code review comments pile up. This agent reads them, plans fixes, implements changes, and reports back what it did. It doesn't argue with reviewers or skip hard feedback—it just resolves the work systematically. Great for burning through a dozen "change this variable name" comments in seconds.
+              代码审查评论堆积如山。该代理读取它们，计划修复，实施更改，并报告它所做的事情。它不会与审稿人争论或跳过硬反馈——它只是系统地解决工作。非常适合在几秒钟内烧完十几条“更改此变量名称”评论。
             </p>
-            <h4>Workflow</h4>
+            <h4>工作流程</h4>
             <ul>
-              <li>Analyze code review comments</li>
-              <li>Plan the resolution before implementation</li>
-              <li>Implement requested modifications</li>
-              <li>Verify resolution doesn't break functionality</li>
-              <li>Provide clear resolution reports</li>
+              <li>分析代码评审意见</li>
+              <li>在实施之前计划好决议</li>
+              <li>实施请求的修改</li>
+              <li>验证分辨率不会破坏功能</li>
+              <li>提供清晰的解决方案报告</li>
             </ul>
             <div class="card-code-block">
               <pre><code>claude agent pr-comment-resolver</code></pre>
@@ -458,17 +458,17 @@ claude agent security-sentinel "Audit the payment flow"</code></pre>
 
           <div class="agent-detail" id="lint">
             <div class="agent-detail-header">
-              <h3>lint</h3>
-              <span class="agent-badge">Quality</span>
+              <h3>皮棉</h3>
+              <span class="agent-badge">质量</span>
             </div>
             <p class="agent-detail-description">
-              Linters are pedantic robots that enforce consistency. This agent runs StandardRB, ERBLint, and Brakeman for you—checking Ruby style, ERB templates, and security issues. It's fast (uses the Haiku model) and catches the formatting noise before CI does.
+              Linters 是强制一致性的迂腐机器人。该代理为您运行 StandardRB、ERBLint 和 Brakeman — 检查 Ruby 样式、ERB 模板和安全问题。它速度很快（使用俳句模型）并且比 CI 更早捕获格式化噪音。
             </p>
-            <h4>Tools Run</h4>
+            <h4>工具运行</h4>
             <ul>
-              <li><code>bundle exec standardrb</code> - Ruby file checking/fixing</li>
-              <li><code>bundle exec erblint --lint-all</code> - ERB templates</li>
-              <li><code>bin/brakeman</code> - Security scanning</li>
+              <li><code>bundle exec standardrb</code> - Ruby 文件检查/修复</li>
+              <li><code>bundle exec erblint --lint-all</code> - ERB 模板</li>
+              <li><code>bin/brakeman</code> - 安全扫描</li>
             </ul>
             <div class="card-code-block">
               <pre><code>claude agent lint</code></pre>
@@ -477,19 +477,19 @@ claude agent security-sentinel "Audit the payment flow"</code></pre>
 
           <div class="agent-detail" id="spec-flow-analyzer">
             <div class="agent-detail-header">
-              <h3>spec-flow-analyzer</h3>
-              <span class="agent-badge">Testing</span>
+              <h3>规格流分析仪</h3>
+              <span class="agent-badge">测试</span>
             </div>
             <p class="agent-detail-description">
-              Specs always have gaps—edge cases nobody thought about, ambiguous requirements, missing error states. This agent maps all possible user flows, identifies what's unclear or missing, and generates the questions you need to ask stakeholders. Runs before you code to avoid building the wrong thing.
+              规范总是存在差距——没有人考虑到的边缘情况、模糊的需求、缺失的错误状态。该代理绘制所有可能的用户流程，识别不清楚或缺失的内容，并生成您需要向利益相关者询问的问题。在编码之前运行以避免构建错误的东西。
             </p>
-            <h4>Analysis Areas</h4>
+            <h4>分析领域</h4>
             <ul>
-              <li>Map all possible user flows and permutations</li>
-              <li>Identify gaps, ambiguities, and missing specifications</li>
-              <li>Consider different user types, roles, permissions</li>
-              <li>Analyze error states and edge cases</li>
-              <li>Generate critical questions requiring clarification</li>
+              <li>映射所有可能的用户流和排列</li>
+              <li>识别差距、歧义和缺失的规范</li>
+              <li>考虑不同的用户类型、角色、权限</li>
+              <li>分析错误状态和边缘情况</li>
+              <li>产生需要澄清的关键问题</li>
             </ul>
             <div class="card-code-block">
               <pre><code>claude agent spec-flow-analyzer</code></pre>
@@ -498,19 +498,19 @@ claude agent security-sentinel "Audit the payment flow"</code></pre>
 
           <div class="agent-detail" id="every-style-editor">
             <div class="agent-detail-header">
-              <h3>every-style-editor</h3>
-              <span class="agent-badge">Content</span>
+              <h3>每种风格的编辑器</h3>
+              <span class="agent-badge">内容</span>
             </div>
             <p class="agent-detail-description">
-              Style guides are arbitrary rules that make writing consistent. This agent enforces Every's particular quirks—title case in headlines, no overused filler words ("actually," "very"), active voice, Oxford commas. It's a line-by-line grammar cop for content that needs to match the brand.
+              风格指南是使写作保持一致的任意规则。该代理强制执行Every的特殊怪癖——标题中的标题大小写，没有过度使用的填充词（“实际上”，“非常”），主动语态，牛津逗号。它是一个逐行语法警察，用于检查需要与品牌相匹配的内容。
             </p>
-            <h4>Style Checks</h4>
+            <h4>风格格纹</h4>
             <ul>
-              <li>Title case in headlines, sentence case elsewhere</li>
-              <li>Company singular/plural usage</li>
-              <li>Remove overused words (actually, very, just)</li>
-              <li>Enforce active voice</li>
-              <li>Apply formatting rules (Oxford commas, em dashes)</li>
+              <li>标题中的标题大小写，其他地方的句子大小写</li>
+              <li>公司单数/复数用法</li>
+              <li>删除过度使用的词语（实际上、非常、只是）</li>
+              <li>强制使用主动语态</li>
+              <li>应用格式规则（牛津逗号、破折号）</li>
             </ul>
             <div class="card-code-block">
               <pre><code>claude agent every-style-editor</code></pre>
@@ -520,24 +520,24 @@ claude agent security-sentinel "Audit the payment flow"</code></pre>
 
         <!-- Design Agents -->
         <section id="design-agents">
-          <h2><i class="fa-solid fa-palette"></i> Design Agents (3)</h2>
-          <p>Design is iteration. These agents take screenshots, compare them to Figma, make targeted improvements, and repeat. They fix spacing, alignment, colors, typography—the visual details that compound into polish. Perfect for closing the gap between "it works" and "it looks right."</p>
+          <h2><i class="fa-solid fa-palette"></i> 设计代理 (3)</h2>
+          <p>设计就是迭代。这些代理会截取屏幕截图，将其与 Figma 进行比较，进行有针对性的改进，然后重复。他们修复间距、对齐方式、颜色、版式——这些视觉细节最终形成了完美的效果。非常适合缩小“它有效”和“它看起来不错”之间的差距。</p>
 
           <div class="agent-detail" id="design-iterator">
             <div class="agent-detail-header">
-              <h3>design-iterator</h3>
-              <span class="agent-badge">Design</span>
+              <h3>设计迭代器</h3>
+              <span class="agent-badge">设计</span>
             </div>
             <p class="agent-detail-description">
-              Design doesn't happen in one pass. This agent runs a loop: screenshot the UI, analyze what's off (spacing, colors, alignment), implement 3-5 targeted fixes, repeat. Run it for 10 iterations and watch rough interfaces transform into polished designs through systematic refinement.
+              设计不会一次性完成。该代理运行一个循环：对 UI 进行屏幕截图，分析问题所在（间距、颜色、对齐方式），实施 3-5 个有针对性的修复，然后重复。运行 10 次迭代，观察粗糙的界面通过系统的细化转变为精美的设计。
             </p>
-            <h4>Process</h4>
+            <h4>过程</h4>
             <ul>
-              <li>Take focused screenshots of target elements</li>
-              <li>Analyze current state and identify 3-5 improvements</li>
-              <li>Implement targeted CSS/design changes</li>
-              <li>Document changes made</li>
-              <li>Repeat for specified iterations (default 10)</li>
+              <li>对目标元素进行集中截图</li>
+              <li>分析当前状态并确定 3-5 项改进</li>
+              <li>实施有针对性的 CSS/设计更改</li>
+              <li>所做的文档更改</li>
+              <li>重复指定的迭代次数（默认 10）</li>
             </ul>
             <div class="card-code-block">
               <pre><code>claude agent design-iterator</code></pre>
@@ -546,19 +546,19 @@ claude agent security-sentinel "Audit the payment flow"</code></pre>
 
           <div class="agent-detail" id="figma-design-sync">
             <div class="agent-detail-header">
-              <h3>figma-design-sync</h3>
-              <span class="agent-badge">Figma</span>
+              <h3>Figma 设计同步</h3>
+              <span class="agent-badge">菲格玛</span>
             </div>
             <p class="agent-detail-description">
-              Designers hand you a Figma file. You build it. Then: "the spacing is wrong, the font is off, the colors don't match." This agent compares your implementation to the Figma spec, identifies every visual discrepancy, and fixes them automatically. Designers stay happy. You stay sane.
+              设计师给你一个 Figma 文件。你建造它。然后：“间距错误，字体不对，颜色不匹配。”该代理会将您的实现与 Figma 规范进行比较，识别每个视觉差异，并自动修复它们。设计师保持快乐。你保持理智。
             </p>
-            <h4>Workflow</h4>
+            <h4>工作流程</h4>
             <ul>
-              <li>Extract design specifications from Figma</li>
-              <li>Capture implementation screenshots</li>
-              <li>Conduct systematic visual comparison</li>
-              <li>Make precise code changes to fix discrepancies</li>
-              <li>Verify implementation matches design</li>
+              <li>从 Figma 中提取设计规范</li>
+              <li>捕获实施屏幕截图</li>
+              <li>进行系统的视觉比较</li>
+              <li>进行精确的代码更改以修复差异</li>
+              <li>验证实施是否符合设计</li>
             </ul>
             <div class="card-code-block">
               <pre><code>claude agent figma-design-sync</code></pre>
@@ -567,19 +567,19 @@ claude agent security-sentinel "Audit the payment flow"</code></pre>
 
           <div class="agent-detail" id="design-implementation-reviewer">
             <div class="agent-detail-header">
-              <h3>design-implementation-reviewer</h3>
-              <span class="agent-badge">Review</span>
+              <h3>设计-实施-评审员</h3>
+              <span class="agent-badge">审查</span>
             </div>
             <p class="agent-detail-description">
-              Before you ship UI changes, run this agent. It compares your implementation against Figma at a pixel level—layouts, typography, colors, spacing, responsive behavior. Uses the Opus model for detailed visual analysis. Catches the "close enough" mistakes that users notice but you don't.
+              在发布 UI 更改之前，请运行此代理。它将您的实现与 Figma 在像素级别（布局、版式、颜色、间距、响应行为）进行比较。使用 Opus 模型进行详细的视觉分析。捕获用户注意到但您没有注意到的“足够接近”的错误。
             </p>
-            <h4>Comparison Areas</h4>
+            <h4>比较领域</h4>
             <ul>
-              <li>Layouts and structure</li>
-              <li>Typography (fonts, sizes, weights)</li>
-              <li>Colors and themes</li>
-              <li>Spacing and alignment</li>
-              <li>Different viewport sizes</li>
+              <li>布局和结构</li>
+              <li>版式（字体、大小、粗细）</li>
+              <li>颜色和主题</li>
+              <li>间距和对齐</li>
+              <li>不同的视口尺寸</li>
             </ul>
             <div class="card-code-block">
               <pre><code>claude agent design-implementation-reviewer</code></pre>
@@ -589,34 +589,34 @@ claude agent security-sentinel "Audit the payment flow"</code></pre>
 
         <!-- Docs Agents -->
         <section id="docs-agents">
-          <h2><i class="fa-solid fa-file-lines"></i> Documentation Agent (1)</h2>
+          <h2><i class="fa-solid fa-file-lines"></i> 文件代理 (1)</h2>
 
           <div class="agent-detail" id="ankane-readme-writer">
             <div class="agent-detail-header">
-              <h3>ankane-readme-writer</h3>
-              <span class="agent-badge">Docs</span>
+              <h3>ankane 自述文件编写者</h3>
+              <span class="agent-badge">文档</span>
             </div>
             <p class="agent-detail-description">
-              Andrew Kane writes READMEs that are models of clarity—concise, scannable, zero fluff. This agent generates gem documentation in that style: 15 words max per sentence, imperative voice, single-purpose code examples. If your README rambles, this agent will fix it.
+              安德鲁·凯恩 (Andrew Kane) 编写的自述文件是清晰的典范——简洁、可浏览、零废话。该代理以这种风格生成 gem 文档：每句话最多 15 个单词、命令式语音、单一用途代码示例。如果您的自述文件杂乱无章，此代理将修复它。
             </p>
-            <h4>Section Order</h4>
+            <h4>部分顺序</h4>
             <ol>
-              <li>Header (title + description)</li>
-              <li>Installation</li>
-              <li>Quick Start</li>
-              <li>Usage</li>
-              <li>Options</li>
-              <li>Upgrading</li>
-              <li>Contributing</li>
-              <li>License</li>
+              <li>标题（标题+描述）</li>
+              <li>安装</li>
+              <li>快速入门</li>
+              <li>用法</li>
+              <li>选项</li>
+              <li>升级中</li>
+              <li>贡献</li>
+              <li>执照</li>
             </ol>
-            <h4>Style Guidelines</h4>
+            <h4>风格指南</h4>
             <ul>
-              <li>Imperative voice throughout</li>
-              <li>15 words max per sentence</li>
-              <li>Single-purpose code fences</li>
-              <li>Up to 4 badges maximum</li>
-              <li>No HTML comments</li>
+              <li>贯穿始终的命令语气</li>
+              <li>每句话最多 15 个单词</li>
+              <li>单一用途代码围栏</li>
+              <li>最多 4 个徽章</li>
+              <li>没有 HTML 注释</li>
             </ul>
             <div class="card-code-block">
               <pre><code>claude agent ankane-readme-writer</code></pre>
@@ -627,12 +627,12 @@ claude agent security-sentinel "Audit the payment flow"</code></pre>
         <!-- Navigation -->
         <nav class="docs-nav-footer">
           <a href="getting-started.html" class="nav-prev">
-            <span class="nav-label">Previous</span>
-            <span class="nav-title"><i class="fa-solid fa-arrow-left"></i> Getting Started</span>
+            <span class="nav-label">以前的</span>
+            <span class="nav-title"><i class="fa-solid fa-arrow-left"></i> 入门</span>
           </a>
           <a href="commands.html" class="nav-next">
-            <span class="nav-label">Next</span>
-            <span class="nav-title">Commands <i class="fa-solid fa-arrow-right"></i></span>
+            <span class="nav-label">下一个</span>
+            <span class="nav-title">命令 <i class="fa-solid fa-arrow-right"></i></span>
           </a>
         </nav>
       </article>

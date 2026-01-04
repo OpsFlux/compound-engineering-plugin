@@ -5,13 +5,13 @@
     "url": "https://github.com/EveryInc"
   },
   "metadata": {
-    "description": "Official Every plugin marketplace for Claude Code extensions",
+    "description": "Claude Code 扩展的 Every 官方插件市场",
     "version": "1.0.0"
   },
   "plugins": [
     {
       "name": "compound-engineering",
-      "description": "AI-powered development tools that get smarter with every use. Make each unit of engineering work easier than the last. Includes 27 specialized agents, 19 commands, and 13 skills.",
+      "description": "AI 驱动的开发工具，每次使用都会变得更聪明。让每个工程工作单元都比上一次更轻松。包含 27 个专用代理、19 个命令和 13 个技能。",
       "version": "2.18.0",
       "author": {
         "name": "Kieran Klaassen",
@@ -19,18 +19,33 @@
         "email": "kieran@every.to"
       },
       "homepage": "https://github.com/EveryInc/compound-engineering-plugin",
-      "tags": ["ai-powered", "compound-engineering", "workflow-automation", "code-review", "quality", "knowledge-management", "image-generation"],
+      "tags": [
+        "ai-powered",
+        "compound-engineering",
+        "workflow-automation",
+        "code-review",
+        "quality",
+        "knowledge-management",
+        "image-generation"
+      ],
       "source": "./plugins/compound-engineering"
     },
     {
       "name": "coding-tutor",
-      "description": "Personalized coding tutorials that build on your existing knowledge and use your actual codebase for examples. Includes spaced repetition quizzes to reinforce learning. Includes 3 commands and 1 skill.",
+      "description": "基于您现有知识并使用您的实际代码库作为示例的个性化编码教程。包括间隔重复测验以强化学习。包括 3 个命令和 1 个技能。",
       "version": "1.2.1",
       "author": {
         "name": "Nityesh Agarwal"
       },
       "homepage": "https://github.com/EveryInc/compound-engineering-plugin",
-      "tags": ["coding", "programming", "tutorial", "learning", "spaced-repetition", "education"],
+      "tags": [
+        "coding",
+        "programming",
+        "tutorial",
+        "learning",
+        "spaced-repetition",
+        "education"
+      ],
       "source": "./plugins/coding-tutor"
     }
   ]

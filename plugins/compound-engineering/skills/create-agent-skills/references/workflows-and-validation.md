@@ -1,10 +1,10 @@
 <overview>
-This reference covers patterns for complex workflows, validation loops, and feedback cycles in skill authoring. All patterns use pure XML structure.
+本参考涵盖了技能创作中复杂工作流程、验证循环和反馈循环的模式。所有模式都使用纯 XML 结构。
 </overview>
 
 <complex_workflows>
 <principle>
-Break complex operations into clear, sequential steps. For particularly complex workflows, provide a checklist.
+将复杂的操作分解为清晰、连续的步骤。对于特别复杂的工作流程，请提供清单。
 </principle>
 
 <pdf_forms_example>
@@ -17,12 +17,13 @@ Fill PDF forms with validated data from JSON field mappings.
 Copy this checklist and check off items as you complete them:
 
 ```
-Task Progress:
-- [ ] Step 1: Analyze the form (run analyze_form.py)
-- [ ] Step 2: Create field mapping (edit fields.json)
-- [ ] Step 3: Validate mapping (run validate_fields.py)
-- [ ] Step 4: Fill the form (run fill_form.py)
-- [ ] Step 5: Verify output (run verify_output.py)
+
+任务进展：
+- [ ] 步骤1：分析表单（运行analyze_form.py）
+- [ ] 步骤 2：创建字段映射（编辑 fields.json）
+- [ ] 步骤 3：验证映射（运行 validate_fields.py）
+- [ ] 第 4 步：填写表格（运行 fill_form.py）
+- [ ] 步骤 5：验证输出（运行 verify_output.py）
 ```
 
 <step_1>
@@ -62,21 +63,22 @@ If verification fails, return to Step 2.
 </step_5>
 </workflow>
 ```
+
 </pdf_forms_example>
 
 <when_to_use>
-Use checklist pattern when:
-- Workflow has 5+ sequential steps
-- Steps must be completed in order
-- Progress tracking helps prevent errors
-- Easy resumption after interruption is valuable
+在以下情况下使用清单模式：
+- 工作流程有 5 个以上的连续步骤
+- 步骤必须按顺序完成
+- 进度跟踪有助于防止错误
+- 中断后轻松恢复很有价值
 </when_to_use>
 </complex_workflows>
 
 <feedback_loops>
 <validate_fix_repeat_pattern>
 <principle>
-Run validator → fix errors → repeat. This pattern greatly improves output quality.
+运行验证器→修复错误→重复。这种模式极大地提高了输出质量。
 </principle>
 
 <document_editing_example>
@@ -118,21 +120,22 @@ Test the output document
 Never skip validation. Catching errors early prevents corrupted output files.
 </validation>
 ```
+
 </document_editing_example>
 
 <why_it_works>
-- Catches errors early before changes are applied
-- Machine-verifiable with objective verification
-- Plan can be iterated without touching originals
-- Reduces total iteration cycles
+- 在应用更改之前尽早捕获错误
+- 可通过客观验证进行机器验证
+- 计划可以迭代而不触及原始计划
+- 减少总迭代周期
 </why_it_works>
 </validate_fix_repeat_pattern>
 
 <plan_validate_execute_pattern>
 <principle>
-When Claude performs complex, open-ended tasks, create a plan in a structured format, validate it, then execute.
+当克劳德执行复杂的、开放式的任务时，以结构化格式创建计划，验证它，然后执行。
 
-Workflow: analyze → **create plan file** → **validate plan** → execute → verify
+工作流程：分析 → **创建计划文件** → **验证计划** → 执行 → 验证
 </principle>
 
 <batch_update_example>
@@ -186,33 +189,34 @@ Verify output
 - Output verification confirms expected results
 </success_criteria>
 ```
+
 </batch_update_example>
 
 <implementation_tip>
-Make validation scripts verbose with specific error messages:
+使验证脚本变得详细并包含特定的错误消息：
 
-**Good error message**:
-"Field 'signature_date' not found. Available fields: customer_name, order_total, signature_date_signed"
+**好的错误消息**：
+“未找到字段‘signature_date’。可用字段：customer_name、order_total、signature_date_signed”
 
-**Bad error message**:
-"Invalid field"
+**错误的错误消息**：
+“无效字段”
 
-Specific errors help Claude fix issues without guessing.
+特定错误可帮助 Claude 无需猜测即可解决问题。
 </implementation_tip>
 
 <when_to_use>
-Use plan-validate-execute when:
-- Operations are complex and error-prone
-- Changes are irreversible or difficult to undo
-- Planning can be validated independently
-- Catching errors early saves significant time
+在以下情况下使用计划-验证-执行：
+- 操作复杂且容易出错
+- 更改是不可逆转或难以撤消的
+- 规划可以独立验证
+- 尽早发现错误可以节省大量时间
 </when_to_use>
 </plan_validate_execute_pattern>
 </feedback_loops>
 
 <conditional_workflows>
 <principle>
-Guide Claude through decision points with clear branching logic.
+通过清晰的分支逻辑引导克劳德完成决策点。
 </principle>
 
 <document_modification_example>
@@ -257,55 +261,56 @@ Determine the modification type:
 - Output file validated and verified
 </success_criteria>
 ```
+
 </document_modification_example>
 
 <when_to_use>
-Use conditional workflows when:
-- Different task types require different approaches
-- Decision points are clear and well-defined
-- Workflows are mutually exclusive
-- Guiding Claude to correct path improves outcomes
+在以下情况下使用条件工作流程：
+- 不同的任务类型需要不同的方法
+- 决策点清晰且定义明确
+- 工作流程是相互排斥的
+- 引导克劳德走上正确的道路可以改善结果
 </when_to_use>
 </conditional_workflows>
 
 <validation_scripts>
 <principles>
-Validation scripts are force multipliers. They catch errors that Claude might miss and provide actionable feedback for fixing issues.
+验证脚本是力量倍增器。他们发现克劳德可能错过的错误，并提供可操作的反馈来解决问题。
 </principles>
 
 <characteristics_of_good_validation>
 <verbose_errors>
-**Good**: "Field 'signature_date' not found. Available fields: customer_name, order_total, signature_date_signed"
+**好**：“未找到字段‘signature_date’。可用字段：customer_name、order_total、signature_date_signed”
 
-**Bad**: "Invalid field"
+**坏**：“无效字段”
 
-Verbose errors help Claude fix issues in one iteration instead of multiple rounds of guessing.
+详细错误帮助 Claude 在一次迭代中解决问题，而不是进行多轮猜测。
 </verbose_errors>
 
 <specific_feedback>
-**Good**: "Line 47: Expected closing tag `</paragraph>` but found `</section>`"
+**好**：“第 47 行：预期结束标记`</paragraph>`，但发现`</section>`”
 
-**Bad**: "XML syntax error"
+**坏**：“XML 语法错误”
 
-Specific feedback pinpoints exact location and nature of the problem.
+具体的反馈可以查明问题的确切位置和性质。
 </specific_feedback>
 
 <actionable_suggestions>
-**Good**: "Required field 'customer_name' is missing. Add: {\"customer_name\": \"value\"}"
+**好**：“缺少必填字段‘customer_name’。添加：{\"customer_name\": \"value\"}"
 
-**Bad**: "Missing required field"
+**坏**：“缺少必填字段”
 
-Actionable suggestions show Claude exactly what to fix.
+可行的建议向克劳德明确指出了需要解决的问题。
 </actionable_suggestions>
 
 <available_options>
-When validation fails, show available valid options:
+当验证失败时，显示可用的有效选项：
 
-**Good**: "Invalid status 'pending_review'. Valid statuses: active, paused, archived"
+**好**：“无效状态‘pending_review’。有效状态：活动、暂停、存档”
 
-**Bad**: "Invalid status"
+**坏**：“状态无效”
 
-Showing valid options eliminates guesswork.
+显示有效选项可以消除猜测。
 </available_options>
 </characteristics_of_good_validation>
 
@@ -315,7 +320,8 @@ Showing valid options eliminates guesswork.
 After making changes, validate immediately:
 
 ```bash
-python scripts/validate.py output_dir/
+
+蟒蛇scripts/validate.py输出目录/
 ```
 
 If validation fails, fix errors before continuing. Validation errors include:
@@ -328,20 +334,21 @@ If validation fails, fix errors before continuing. Validation errors include:
 Only proceed when validation passes with zero errors.
 </validation>
 ```
+
 </implementation_pattern>
 
 <benefits>
-- Catches errors before they propagate
-- Reduces iteration cycles
-- Provides learning feedback
-- Makes debugging deterministic
-- Enables confident execution
+- 在错误传播之前捕获错误
+- 减少迭代周期
+- 提供学习反馈
+- 使调试具有确定性
+- 实现自信的执行
 </benefits>
 </validation_scripts>
 
 <iterative_refinement>
 <principle>
-Many workflows benefit from iteration: generate → validate → refine → validate → finalize.
+许多工作流程受益于迭代：生成→验证→细化→验证→最终确定。
 </principle>
 
 <implementation_example>
@@ -392,20 +399,21 @@ Export to final format and deliver.
 - Report ready for delivery
 </success_criteria>
 ```
+
 </implementation_example>
 
 <when_to_use>
-Use iterative refinement when:
-- Quality improves with multiple passes
-- Validation provides actionable feedback
-- Time permits iteration
-- Perfect output matters more than speed
+在以下情况下使用迭代求精：
+- 多次通过可提高质量
+- 验证提供可操作的反馈
+- 时间允许迭代
+- 完美的输出比速度更重要
 </when_to_use>
 </iterative_refinement>
 
 <checkpoint_pattern>
 <principle>
-For long workflows, add checkpoints where Claude can pause and verify progress before continuing.
+对于较长的工作流程，请添加检查点，克劳德可以在继续之前暂停并验证进度。
 </principle>
 
 <implementation_example>
@@ -450,20 +458,21 @@ At each checkpoint:
 4. Only proceed when validation passes
 </checkpoint_validation>
 ```
+
 </implementation_example>
 
 <benefits>
-- Prevents cascading errors
-- Easier to diagnose issues
-- Clear progress indicators
-- Natural pause points for review
-- Reduces wasted work from early errors
+- 防止级联错误
+- 更容易诊断问题
+- 清晰的进度指标
+- 复习时的自然停顿点
+- 减少早期错误造成的浪费工作
 </benefits>
 </checkpoint_pattern>
 
 <error_recovery>
 <principle>
-Design workflows with clear error recovery paths. Claude should know what to do when things go wrong.
+设计具有清晰错误恢复路径的工作流程。克劳德应该知道出现问题时该怎么做。
 </principle>
 
 <implementation_example>
@@ -497,14 +506,15 @@ Design workflows with clear error recovery paths. Claude should know what to do 
 </escalation>
 </workflow>
 ```
+
 </implementation_example>
 
 <when_to_use>
-Include error recovery when:
-- Workflows interact with external systems
-- File operations could fail
-- Network calls could timeout
-- User input could be invalid
-- Errors are recoverable
+在以下情况下包括错误恢复：
+- 工作流程与外部系统交互
+- 文件操作可能会失败
+- 网络调用可能会超时
+- 用户输入可能无效
+- 错误是可恢复的
 </when_to_use>
 </error_recovery>

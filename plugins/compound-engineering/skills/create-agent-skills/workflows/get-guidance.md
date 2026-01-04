@@ -1,68 +1,69 @@
-# Workflow: Get Guidance on Skill Design
+# 工作流程：获取技能设计指导
 
 <required_reading>
-**Read these reference files NOW:**
-1. references/core-principles.md
-2. references/recommended-structure.md
+**立即阅读这些参考文件：**
+1.references/core-principles.md
+2.references/recommended-structure.md
 </required_reading>
 
 <process>
-## Step 1: Understand the Problem Space
+## 步骤 1：了解问题空间
 
-Ask the user:
-- What task or domain are you trying to support?
-- Is this something you do repeatedly?
-- What makes it complex enough to need a skill?
+询问用户：
+- 您想要支持什么任务或领域？
+- 这是你反复做的事情吗？
+- 是什么让它复杂到需要技能？
 
-## Step 2: Determine If a Skill Is Right
+## 第 2 步：确定技能是否正确
 
-**Create a skill when:**
-- Task is repeated across multiple sessions
-- Domain knowledge doesn't change frequently
-- Complex enough to benefit from structure
-- Would save significant time if automated
+**在以下情况下创建技能：**
+- 任务在多个会话中重复
+- 领域知识不经常变化
+- 足够复杂以从结构中受益
+- 如果自动化，将节省大量时间
 
-**Don't create a skill when:**
-- One-off task (just do it directly)
-- Changes constantly (will be outdated quickly)
-- Too simple (overhead isn't worth it)
-- Better as a slash command (user-triggered, no context needed)
+**在以下情况下不要创建技能：**
+- 一次性任务（直接做即可）
+- 不断变化（很快就会过时）
+- 太简单了（开销不值得）
+- 更好地作为斜杠命令（用户触发，不需要上下文）
 
-Share this assessment with user.
+与用户分享此评估。
 
-## Step 3: Map the Workflows
+## 步骤 3：绘制工作流程
 
-Ask: "What are the different things someone might want to do with this skill?"
+问：“人们可能想用这项技能做哪些不同的事情？”
 
-Common patterns:
-- Create / Read / Update / Delete
-- Build / Debug / Ship
-- Setup / Use / Troubleshoot
-- Import / Process / Export
+常见模式：
+- 创建/读取/更新/删除
+- 构建/调试/运输
+- 设置/使用/故障排除
+- 进口/加工/出口
 
-Each distinct workflow = potential workflow file.
+每个不同的工作流程 = 潜在的工作流程文件。
 
-## Step 4: Identify Domain Knowledge
+## 步骤 4：识别领域知识
 
-Ask: "What knowledge is needed regardless of which workflow?"
+问：“无论哪种工作流程都需要什么知识？”
 
-This becomes references:
-- API patterns
-- Best practices
-- Common examples
-- Configuration details
+这成为参考：
+- API模式
+- 最佳实践
+- 常见示例
+- 配置详细信息
 
-## Step 5: Draft the Structure
+## 步骤 5：起草结构
 
-Based on answers, recommend structure:
+根据答案，推荐结构：
 
-**If 1 workflow, simple knowledge:**
+**如果1个工作流程，简单知识：**
 ```
 skill-name/
 └── SKILL.md (everything in one file)
 ```
 
-**If 2+ workflows, shared knowledge:**
+
+**如果有 2 个以上工作流程，共享知识：**
 ```
 skill-name/
 ├── SKILL.md (router)
@@ -73,49 +74,50 @@ skill-name/
     └── shared-knowledge.md
 ```
 
-## Step 6: Identify Essential Principles
 
-Ask: "What rules should ALWAYS apply, no matter which workflow?"
+## 步骤 6：确定基本原则
 
-These become `<essential_principles>` in SKILL.md.
+问：“无论哪种工作流程，都应始终应用哪些规则？”
 
-Examples:
-- "Always verify before reporting success"
-- "Never store credentials in code"
-- "Ask before making destructive changes"
+这些成为 SKILL.md 中的`<essential_principles>`。
 
-## Step 7: Present Recommendation
+示例：
+- “在报告成功之前始终进行验证”
+- “永远不要在代码中存储凭据”
+- “在进行破坏性改变之前先询问”
 
-Summarize:
-- Recommended structure (simple vs router pattern)
-- List of workflows
-- List of references
-- Essential principles
+## 步骤 7：提出建议
 
-Ask: "Does this structure make sense? Ready to build it?"
+总结一下：
+- 推荐结构（简单与路由器模式）
+- 工作流程列表
+- 参考文献列表
+- 基本原则
 
-If yes → offer to switch to "Create a new skill" workflow
-If no → clarify and iterate
+问：“这个结构有意义吗？准备好建造它了吗？”
+
+如果是 → 提议切换到“创建新技能”工作流程
+如果否 → 澄清并迭代
 </process>
 
 <decision_framework>
-## Quick Decision Framework
+## 快速决策框架
 
-| Situation | Recommendation |
-|-----------|----------------|
-| Single task, repeat often | Simple skill |
-| Multiple related tasks | Router + workflows |
-| Complex domain, many patterns | Router + workflows + references |
-| User-triggered, fresh context | Slash command, not skill |
-| One-off task | No skill needed |
+|情况|推荐|
+|----------|----------------|
+|单一任务，经常重复|简单技巧|
+|多项相关任务|路由器+工作流程|
+|复杂领域，多种模式 |路由器+工作流程+参考|
+|用户触发的新鲜情境 |斜线命令，而非技能 |
+|一次性任务 |无需任何技能 |
 </decision_framework>
 
 <success_criteria>
-Guidance is complete when:
-- [ ] User understands if they need a skill
-- [ ] Structure is recommended and explained
-- [ ] Workflows are identified
-- [ ] References are identified
-- [ ] Essential principles are identified
-- [ ] User is ready to build (or decided not to)
+在以下情况下指导完成：
+- [ ] 用户了解他们是否需要技能
+- [ ] 结构推荐和解释
+- [ ] 工作流程已确定
+- [ ] 参考文献被识别
+- [ ] 确定了基本原则
+- [ ] 用户已准备好构建（或决定不构建）
 </success_criteria>

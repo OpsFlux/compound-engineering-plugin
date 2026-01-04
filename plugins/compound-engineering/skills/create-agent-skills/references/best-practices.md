@@ -1,34 +1,36 @@
-# Skill Authoring Best Practices
+# 技能创作最佳实践
 
-Source: [platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices)
+来源：[platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices)
 
-## Core Principles
+## 核心原则
 
-### Concise is Key
+### 简洁是关键
 
-The context window is a public good. Your Skill shares the context window with everything else Claude needs to know.
+上下文窗口是一种公共物品。您的技能与克劳德需要了解的其他内容共享上下文窗口。
 
-**Default assumption**: Claude is already very smart. Only add context Claude doesn't already have.
+**默认假设**：克劳德已经非常聪明了。只添加克劳德还没有的上下文。
 
-Challenge each piece of information:
-- "Does Claude really need this explanation?"
-- "Can I assume Claude knows this?"
-- "Does this paragraph justify its token cost?"
+挑战每一条信息：
+——“克劳德真的需要这个解释吗？”
+- “我可以假设克劳德知道这一点吗？”
+- “这一段是否证明其代币成本合理？”
 
-**Good example (concise, ~50 tokens):**
+**很好的例子（简洁，约 50 个标记）：**
 ```markdown
 ## Extract PDF text
 
 Use pdfplumber for text extraction:
 
 ```python
-import pdfplumber
-with pdfplumber.open("file.pdf") as pdf:
-    text = pdf.pages[0].extract_text()
+
+导入 pdfplumber
+使用 pdfplumber.open("file.pdf") 作为 pdf：
+    文本 = pdf.pages[0].extract_text()
 ```
 ```
 
-**Bad example (too verbose, ~150 tokens):**
+
+**不好的例子（太冗长，约 150 个标记）：**
 ```markdown
 ## Extract PDF text
 
@@ -37,11 +39,12 @@ text, images, and other content. To extract text from a PDF, you'll need to
 use a library. There are many libraries available...
 ```
 
-### Set Appropriate Degrees of Freedom
 
-Match specificity to task fragility and variability.
+### 设置适当的自由度
 
-**High freedom** (multiple valid approaches):
+将特异性与任务的脆弱性和可变性相匹配。
+
+**高自由度**（多种有效方法）：
 ```markdown
 ## Code review process
 
@@ -51,65 +54,70 @@ Match specificity to task fragility and variability.
 4. Verify adherence to project conventions
 ```
 
-**Medium freedom** (preferred pattern with variation):
+
+**中等自由度**（具有变化的首选模式）：
 ```markdown
 ## Generate report
 
 Use this template and customize as needed:
 
 ```python
-def generate_report(data, format="markdown"):
-    # Process data
-    # Generate output in specified format
+
+defgenerate_report（数据，格式=“markdown”）：
+    # 处理数据
+    # 生成指定格式的输出
 ```
 ```
 
-**Low freedom** (fragile, exact sequence required):
+
+**低自由度**（脆弱，需要精确的顺序）：
 ```markdown
 ## Database migration
 
 Run exactly this script:
 
 ```bash
-python scripts/migrate.py --verify --backup
+
+python scripts/migrate.py --验证 --备份
 ```
 
 Do not modify the command or add flags.
 ```
 
-### Test With All Models
 
-Skills act as additions to models. Test with Haiku, Sonnet, and Opus.
+### 使用所有模型进行测试
 
-- **Haiku**: Does the Skill provide enough guidance?
-- **Sonnet**: Is the Skill clear and efficient?
-- **Opus**: Does the Skill avoid over-explaining?
+技能充当模型的补充。使用俳句、十四行诗和作品进行测试。
 
-## Naming Conventions
+- **俳句**：技能是否提供足够的指导？
+- **十四行诗**：技能是否清晰高效？
+- **Opus**：技能是否避免过度解释？
 
-Use **gerund form** (verb + -ing) for Skill names:
+## 命名约定
 
-**Good:**
+使用**动名词形式**（动词 + -ing）作为技能名称：
+
+**好：**
 - `processing-pdfs`
 - `analyzing-spreadsheets`
 - `managing-databases`
 - `testing-code`
 - `writing-documentation`
 
-**Acceptable alternatives:**
-- Noun phrases: `pdf-processing`, `spreadsheet-analysis`
-- Action-oriented: `process-pdfs`, `analyze-spreadsheets`
+**可接受的替代方案：**
+- 名词短语：`pdf-processing`、`spreadsheet-analysis`
+- 以行动为导向：`process-pdfs`、`analyze-spreadsheets`
 
-**Avoid:**
-- Vague: `helper`, `utils`, `tools`
-- Generic: `documents`, `data`, `files`
-- Reserved: `anthropic-*`, `claude-*`
+**避免：**
+- 模糊：`helper`、`utils`、`tools`
+- 通用：`documents`、`data`、`files`
+- 保留：`anthropic-*`、`claude-*`
 
-## Writing Effective Descriptions
+## 撰写有效的描述
 
-**Always write in third person.** The description is injected into the system prompt.
+**始终以第三人称书写。** 描述被注入到系统提示符中。
 
-**Be specific and include key terms:**
+**具体并包括关键术语：**
 
 ```yaml
 # PDF Processing skill
@@ -122,16 +130,18 @@ description: Analyze Excel spreadsheets, create pivot tables, generate charts. U
 description: Generate descriptive commit messages by analyzing git diffs. Use when the user asks for help writing commit messages or reviewing staged changes.
 ```
 
-**Avoid vague descriptions:**
+
+**避免模糊的描述：**
 ```yaml
 description: Helps with documents  # Too vague!
 description: Processes data       # Too generic!
 description: Does stuff with files # Useless!
 ```
 
-## Progressive Disclosure Patterns
 
-### Pattern 1: High-level guide with references
+## 渐进式披露模式
+
+### 模式 1：带有参考资料的高级指南
 
 ```markdown
 ---
@@ -144,9 +154,10 @@ description: Extracts text and tables from PDF files, fills forms, merges docume
 ## Quick start
 
 ```python
-import pdfplumber
-with pdfplumber.open("file.pdf") as pdf:
-    text = pdf.pages[0].extract_text()
+
+导入 pdfplumber
+使用 pdfplumber.open("file.pdf") 作为 pdf：
+    文本 = pdf.pages[0].extract_text()
 ```
 
 ## Advanced features
@@ -156,7 +167,8 @@ with pdfplumber.open("file.pdf") as pdf:
 **Examples**: See [EXAMPLES.md](EXAMPLES.md)
 ```
 
-### Pattern 2: Domain-specific organization
+
+### 模式 2：特定领域的组织
 
 ```
 bigquery-skill/
@@ -168,7 +180,8 @@ bigquery-skill/
     └── marketing.md (campaigns, attribution)
 ```
 
-### Pattern 3: Conditional details
+
+### 模式 3：条件细节
 
 ```markdown
 # DOCX Processing
@@ -185,11 +198,12 @@ For simple edits, modify the XML directly.
 **For OOXML details**: See [OOXML.md](OOXML.md)
 ```
 
-## Keep References One Level Deep
 
-Claude may partially read files when they're referenced from other referenced files.
+## 将参考文献保留一层深度
 
-**Bad (too deep):**
+当从其他引用的文件引用文件时，克劳德可能会部分读取文件。
+
+**不好（太深）：**
 ```markdown
 # SKILL.md
 See [advanced.md](advanced.md)...
@@ -201,7 +215,8 @@ See [details.md](details.md)...
 Here's the actual information...
 ```
 
-**Good (one level deep):**
+
+**好（一层深）：**
 ```markdown
 # SKILL.md
 
@@ -211,9 +226,10 @@ Here's the actual information...
 **Examples**: See [examples.md](examples.md)
 ```
 
-## Workflows and Feedback Loops
 
-### Workflow with Checklist
+## 工作流程和反馈循环
+
+### 带清单的工作流程
 
 ```markdown
 ## Research synthesis workflow
@@ -221,11 +237,12 @@ Here's the actual information...
 Copy this checklist:
 
 ```
-- [ ] Step 1: Read all source documents
-- [ ] Step 2: Identify key themes
-- [ ] Step 3: Cross-reference claims
-- [ ] Step 4: Create structured summary
-- [ ] Step 5: Verify citations
+
+- [ ] 步骤1：阅读所有源文档
+- [ ] 第 2 步：确定关键主题
+- [ ] 步骤 3：交叉引用权利要求
+- [ ] 步骤 4：创建结构化摘要
+- [ ] 步骤 5：验证引文
 ```
 
 **Step 1: Read all source documents**
@@ -234,7 +251,8 @@ Review each document in `sources/`. Note main arguments.
 ...
 ```
 
-### Feedback Loop Pattern
+
+### 反馈循环模式
 
 ```markdown
 ## Document editing process
@@ -249,9 +267,10 @@ Review each document in `sources/`. Note main arguments.
 5. Rebuild: `python scripts/pack.py unpacked_dir/ output.docx`
 ```
 
-## Common Patterns
 
-### Template Pattern
+## 常见模式
+
+### 模板模式
 
 ```markdown
 ## Report structure
@@ -259,22 +278,24 @@ Review each document in `sources/`. Note main arguments.
 Use this template:
 
 ```markdown
-# [Analysis Title]
 
-## Executive summary
-[One-paragraph overview]
+# [分析标题]
 
-## Key findings
-- Finding 1 with supporting data
-- Finding 2 with supporting data
+## 执行摘要
+[一段概述]
 
-## Recommendations
-1. Specific actionable recommendation
-2. Specific actionable recommendation
+## 主要发现
+- 找到 1 并提供支持数据
+- 发现 2 并提供支持数据
+
+## 建议
+1. 具体可行的建议
+2. 具体可行的建议
 ```
 ```
 
-### Examples Pattern
+
+### 示例模式
 
 ```markdown
 ## Commit message format
@@ -283,20 +304,23 @@ Use this template:
 Input: Added user authentication with JWT tokens
 Output:
 ```
-feat(auth): implement JWT-based authentication
 
-Add login endpoint and token validation middleware
+feat(auth)：实现基于 JWT 的身份验证
+
+添加登录端点和令牌验证中间件
 ```
 
 **Example 2:**
 Input: Fixed bug where dates displayed incorrectly
 Output:
 ```
-fix(reports): correct date formatting in timezone conversion
+
+修复（报告）：时区转换中的正确日期格式
 ```
 ```
 
-### Conditional Workflow Pattern
+
+### 条件工作流模式
 
 ```markdown
 ## Document modification
@@ -316,16 +340,18 @@ fix(reports): correct date formatting in timezone conversion
    - Validate after each change
 ```
 
-## Content Guidelines
 
-### Avoid Time-Sensitive Information
+## 内容指南
 
-**Bad:**
+### 避免时间敏感的信息
+
+**不好：**
 ```markdown
 If you're doing this before August 2025, use the old API.
 ```
 
-**Good:**
+
+**好：**
 ```markdown
 ## Current method
 
@@ -339,66 +365,70 @@ The v1 API used: `api.example.com/v1/messages`
 </details>
 ```
 
-### Use Consistent Terminology
 
-**Good - Consistent:**
-- Always "API endpoint"
-- Always "field"
-- Always "extract"
+### 使用一致的术语
 
-**Bad - Inconsistent:**
-- Mix "API endpoint", "URL", "API route", "path"
-- Mix "field", "box", "element", "control"
+**良好 - 一致：**
+- 始终“API端点”
+- 始终“田野”
+- 始终“提取”
 
-## Anti-Patterns to Avoid
+**不好 - 不一致：**
+- 混合“API端点”，“URL”，“API路由”，“路径”
+- 混合“字段”、“框”、“元素”、“控制”
 
-### Windows-Style Paths
+## 要避免的反模式
 
-- **Good**: `scripts/helper.py`, `reference/guide.md`
-- **Avoid**: `scripts\helper.py`, `reference\guide.md`
+### Windows 样式路径
 
-### Too Many Options
+- **好**：`scripts/helper.py`，`reference/guide.md`
+- **避免**：`scripts\helper.py`、`reference\guide.md`
 
-**Bad:**
+### 太多选择
+
+**不好：**
 ```markdown
 You can use pypdf, or pdfplumber, or PyMuPDF, or pdf2image, or...
 ```
 
-**Good:**
+
+**好：**
 ```markdown
 Use pdfplumber for text extraction:
 ```python
-import pdfplumber
+
+导入 pdfplumber
 ```
 
 For scanned PDFs requiring OCR, use pdf2image with pytesseract instead.
 ```
 
-## Checklist for Effective Skills
 
-### Core Quality
-- [ ] Description is specific and includes key terms
-- [ ] Description includes both what and when
-- [ ] SKILL.md body under 500 lines
-- [ ] Additional details in separate files
-- [ ] No time-sensitive information
-- [ ] Consistent terminology
-- [ ] Examples are concrete
-- [ ] References one level deep
-- [ ] Progressive disclosure used appropriately
-- [ ] Workflows have clear steps
+## 有效技能清单
 
-### Code and Scripts
-- [ ] Scripts handle errors explicitly
-- [ ] No "voodoo constants" (all values justified)
-- [ ] Required packages listed
-- [ ] Scripts have clear documentation
-- [ ] No Windows-style paths
-- [ ] Validation steps for critical operations
-- [ ] Feedback loops for quality-critical tasks
+### 核心品质
+- [ ] 描述具体并包含关键术语
+- [ ] 描述包括内容和时间
+- [ ] SKILL.md 正文 500 行以下
+- [ ] 单独文件中的其他详细信息
+- [ ] 没有时间敏感的信息
+- [ ] 一致的术语
+- [ ] 例子是具体的
+- [ ] 引用一层深
+- [ ] 适当使用渐进式披露
+- [ ] 工作流程步骤清晰
 
-### Testing
-- [ ] At least three test scenarios
-- [ ] Tested with Haiku, Sonnet, and Opus
-- [ ] Tested with real usage scenarios
-- [ ] Team feedback incorporated
+### 代码和脚本
+- [ ] 脚本明确处理错误
+- [ ] 没有“巫毒常量”（所有值均合理）
+- [ ] 列出所需的软件包
+- [ ] 脚本有清晰的文档
+- [ ] 没有 Windows 风格的路径
+- [ ] 关键操作的验证步骤
+- [ ] 质量关键任务的反馈循环
+
+### 测试
+- [ ] 至少三个测试场景
+- [ ] 使用 Haiku、Sonnet 和 Opus 进行测试
+- [ ] 经过真实使用场景测试
+- [ ] 纳入团队反馈

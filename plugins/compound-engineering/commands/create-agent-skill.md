@@ -1,8 +1,8 @@
 ---
 name: create-agent-skill
-description: Create or edit Claude Code skills with expert guidance on structure and best practices
+description: 在结构和最佳实践方面的专家指导下创建或编辑 Claude Code 技能
+
 allowed-tools: Skill(create-agent-skills)
 argument-hint: [skill description or requirements]
 ---
-
-Invoke the create-agent-skills skill for: $ARGUMENTS
+调用 create-agent-skills 技能：$ARGUMENTS

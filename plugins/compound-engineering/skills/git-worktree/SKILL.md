@@ -1,30 +1,30 @@
 ---
 name: git-worktree
-description: This skill manages Git worktrees for isolated parallel development. It handles creating, listing, switching, and cleaning up worktrees with a simple interactive interface, following KISS principles.
+description: 此技能管理 Git 工作树以进行隔离并行开发。它遵循 KISS 原则，通过简单的交互界面处理创建、列出、切换和清理工作树。
+
 ---
+# Git 工作树管理器
 
-# Git Worktree Manager
+此技能提供了一个统一的界面，用于管理整个开发工作流程中的 Git 工作树。无论您是单独审查 PR 还是并行开发功能，此技能都可以处理所有复杂性。
 
-This skill provides a unified interface for managing Git worktrees across your development workflow. Whether you're reviewing PRs in isolation or working on features in parallel, this skill handles all the complexity.
+## 该技能的作用
 
-## What This Skill Does
+- **从具有明确分支名称的主分支创建工作树**
+- **列出工作树**及其当前状态
+- **在工作树之间切换**以实现并行工作
+- **自动清理已完成的工作树**
+- **每一步的交互式确认**
+- **工作树目录的自动 .gitignore 管理**
+- **自动 .env 文件复制**从主存储库到新工作树
 
-- **Create worktrees** from main branch with clear branch names
-- **List worktrees** with current status
-- **Switch between worktrees** for parallel work
-- **Clean up completed worktrees** automatically
-- **Interactive confirmations** at each step
-- **Automatic .gitignore management** for worktree directory
-- **Automatic .env file copying** from main repo to new worktrees
+## 关键：始终使用管理器脚本
 
-## CRITICAL: Always Use the Manager Script
+**切勿直接调用`git worktree add`。**始终使用`worktree-manager.sh`脚本。
 
-**NEVER call `git worktree add` directly.** Always use the `worktree-manager.sh` script.
-
-The script handles critical setup that raw git commands don't:
-1. Copies `.env`, `.env.local`, `.env.test`, etc. from main repo
-2. Ensures `.worktrees` is in `.gitignore`
-3. Creates consistent directory structure
+该脚本处理原始 git 命令不处理的关键设置：
+1. 从主仓库复制 `.env`、`.env.local`、`.env.test` 等
+2. 确保 `.worktrees` 位于 `.gitignore` 中
+3. 创建一致的目录结构
 
 ```bash
 # ✅ CORRECT - Always use the script
@@ -34,29 +34,31 @@ bash ${CLAUDE_PLUGIN_ROOT}/skills/git-worktree/scripts/worktree-manager.sh creat
 git worktree add .worktrees/feature-name -b feature-name main
 ```
 
-## When to Use This Skill
 
-Use this skill in these scenarios:
+## 何时使用此技能
 
-1. **Code Review (`/workflows:review`)**: If NOT already on the PR branch, offer worktree for isolated review
-2. **Feature Work (`/workflows:work`)**: Always ask if user wants parallel worktree or live branch work
-3. **Parallel Development**: When working on multiple features simultaneously
-4. **Cleanup**: After completing work in a worktree
+在以下场景中使用此技能：
 
-## How to Use
+1. **代码审查 (`/workflows:review`)**：如果尚未在 PR 分支上，请提供工作树进行单独审查
+2. **功能工作（`/workflows:work`）**：始终询问用户是否想要并行工作树或实时分支工作
+3. **并行开发**：同时处理多个功能时
+4. **清理**：完成工作树中的工作后
 
-### In Claude Code Workflows
+## 如何使用
 
-The skill is automatically called from `/workflows:review` and `/workflows:work` commands:
+### 在 Claude 代码工作流程中
+
+该技能会自动从 `/workflows:review` 和 `/workflows:work` 命令调用：
 
 ```
 # For review: offers worktree if not on PR branch
 # For work: always asks - new branch or worktree?
 ```
 
-### Manual Usage
 
-You can also invoke the skill directly from bash:
+### 手动使用
+
+您还可以直接从 bash 调用该技能：
 
 ```bash
 # Create a new worktree (copies .env files automatically)
@@ -75,73 +77,78 @@ bash ${CLAUDE_PLUGIN_ROOT}/skills/git-worktree/scripts/worktree-manager.sh copy-
 bash ${CLAUDE_PLUGIN_ROOT}/skills/git-worktree/scripts/worktree-manager.sh cleanup
 ```
 
-## Commands
+
+## 命令
 
 ### `create <branch-name> [from-branch]`
 
-Creates a new worktree with the given branch name.
+使用给定的分支名称创建一个新的工作树。
 
-**Options:**
-- `branch-name` (required): The name for the new branch and worktree
-- `from-branch` (optional): Base branch to create from (defaults to `main`)
+**选项：**
+- `branch-name`（必需）：新分支和工作树的名称
+- `from-branch`（可选）：创建的基础分支（默认为`main`）
 
-**Example:**
+**示例：**
 ```bash
 bash ${CLAUDE_PLUGIN_ROOT}/skills/git-worktree/scripts/worktree-manager.sh create feature-login
 ```
 
-**What happens:**
-1. Checks if worktree already exists
-2. Updates the base branch from remote
-3. Creates new worktree and branch
-4. **Copies all .env files from main repo** (.env, .env.local, .env.test, etc.)
-5. Shows path for cd-ing to the worktree
 
-### `list` or `ls`
+**发生了什么：**
+1. 检查工作树是否已经存在
+2.从远程更新基础分支
+3. 创建新的工作树和分支
+4. **从主存储库复制所有 .env 文件**（.env、.env.local、.env.test 等）
+5. 显示 cd 到工作树的路径
 
-Lists all available worktrees with their branches and current status.
+### `list` 或 `ls`
 
-**Example:**
+列出所有可用的工作树及其分支和当前状态。
+
+**示例：**
 ```bash
 bash ${CLAUDE_PLUGIN_ROOT}/skills/git-worktree/scripts/worktree-manager.sh list
 ```
 
-**Output shows:**
-- Worktree name
-- Branch name
-- Which is current (marked with ✓)
-- Main repo status
 
-### `switch <name>` or `go <name>`
+**输出显示：**
+- 工作树名称
+- 分行名称
+- 哪个是最新的（标有 ✓）
+- 主要回购状态
 
-Switches to an existing worktree and cd's into it.
+### `switch <name>` 或 `go <name>`
 
-**Example:**
+切换到现有工作树并进入其中。
+
+**示例：**
 ```bash
 bash ${CLAUDE_PLUGIN_ROOT}/skills/git-worktree/scripts/worktree-manager.sh switch feature-login
 ```
 
-**Optional:**
-- If name not provided, lists available worktrees and prompts for selection
 
-### `cleanup` or `clean`
+**可选：**
+- 如果未提供名称，则列出可用的工作树并提示选择
 
-Interactively cleans up inactive worktrees with confirmation.
+### `cleanup` 或 `clean`
 
-**Example:**
+通过确认以交互方式清理不活动的工作树。
+
+**示例：**
 ```bash
 bash ${CLAUDE_PLUGIN_ROOT}/skills/git-worktree/scripts/worktree-manager.sh cleanup
 ```
 
-**What happens:**
-1. Lists all inactive worktrees
-2. Asks for confirmation
-3. Removes selected worktrees
-4. Cleans up empty directories
 
-## Workflow Examples
+**发生了什么：**
+1. 列出所有不活动的工作树
+2. 要求确认
+3. 删除选定的工作树
+4.清理空目录
 
-### Code Review with Worktree
+## 工作流程示例
+
+### 使用 Worktree 进行代码审查
 
 ```bash
 # Claude Code recognizes you're not on the PR branch
@@ -159,7 +166,8 @@ cd ../..
 bash ${CLAUDE_PLUGIN_ROOT}/skills/git-worktree/scripts/worktree-manager.sh cleanup
 ```
 
-### Parallel Feature Development
+
+### 并行功能开发
 
 ```bash
 # For first feature (copies .env files):
@@ -179,34 +187,35 @@ cd .
 bash ${CLAUDE_PLUGIN_ROOT}/skills/git-worktree/scripts/worktree-manager.sh cleanup
 ```
 
-## Key Design Principles
 
-### KISS (Keep It Simple, Stupid)
+## 关键设计原则
 
-- **One manager script** handles all worktree operations
-- **Simple commands** with sensible defaults
-- **Interactive prompts** prevent accidental operations
-- **Clear naming** using branch names directly
+### KISS（保持简单，愚蠢）
 
-### Opinionated Defaults
+- **一个管理器脚本** 处理所有工作树操作
+- **简单的命令**，具有合理的默认值
+- **互动提示**防止误操作
+- **明确命名**直接使用分支名称
 
-- Worktrees always created from **main** (unless specified)
-- Worktrees stored in **.worktrees/** directory
-- Branch name becomes worktree name
-- **.gitignore** automatically managed
+### 固执己见的默认值
 
-### Safety First
+- 工作树始终从 **main** 创建（除非指定）
+- 工作树存储在 **.worktrees/** 目录中
+- 分支名称成为工作树名称
+- **.gitignore** 自动管理
 
-- **Confirms before creating** worktrees
-- **Confirms before cleanup** to prevent accidental removal
-- **Won't remove current worktree**
-- **Clear error messages** for issues
+### 安全第一
 
-## Integration with Workflows
+- **创建**工作树之前确认
+- **清理前确认**以防止意外移除
+- **不会删除当前工作树**
+- **清除问题的错误消息**
+
+## 与工作流程集成
 
 ### `/workflows:review`
 
-Instead of always creating a worktree:
+而不是总是创建工作树：
 
 ```
 1. Check current branch
@@ -217,9 +226,10 @@ Instead of always creating a worktree:
    - no → proceed with PR diff on current branch
 ```
 
+
 ### `/workflows:work`
 
-Always offer choice:
+始终提供选择：
 
 ```
 1. Ask: "How do you want to work?
@@ -230,46 +240,51 @@ Always offer choice:
 3. If choice 2 → call git-worktree skill to create from main
 ```
 
-## Troubleshooting
 
-### "Worktree already exists"
+## 故障排除
 
-If you see this, the script will ask if you want to switch to it instead.
+### “工作树已经存在”
 
-### "Cannot remove worktree: it is the current worktree"
+如果您看到此内容，脚本会询问您是否要切换到它。
 
-Switch out of the worktree first (to main repo), then cleanup:
+### “无法删除工作树：它是当前工作树”
+
+首先切换出工作树（到主存储库），然后进行清理：
 
 ```bash
 cd $(git rev-parse --show-toplevel)
 bash ${CLAUDE_PLUGIN_ROOT}/skills/git-worktree/scripts/worktree-manager.sh cleanup
 ```
 
-### Lost in a worktree?
 
-See where you are:
+### 迷失在工作树中？
+
+看看你在哪里：
 
 ```bash
 bash ${CLAUDE_PLUGIN_ROOT}/skills/git-worktree/scripts/worktree-manager.sh list
 ```
 
-### .env files missing in worktree?
 
-If a worktree was created without .env files (e.g., via raw `git worktree add`), copy them:
+### 工作树中缺少 .env 文件？
+
+如果创建的工作树没有 .env 文件（例如，通过原始 `git worktree add`），请复制它们：
 
 ```bash
 bash ${CLAUDE_PLUGIN_ROOT}/skills/git-worktree/scripts/worktree-manager.sh copy-env feature-name
 ```
 
-Navigate back to main:
+
+导航回到主界面：
 
 ```bash
 cd $(git rev-parse --show-toplevel)
 ```
 
-## Technical Details
 
-### Directory Structure
+## 技术细节
+
+### 目录结构
 
 ```
 .worktrees/
@@ -286,17 +301,18 @@ cd $(git rev-parse --show-toplevel)
 .gitignore (updated to include .worktrees)
 ```
 
-### How It Works
 
-- Uses `git worktree add` for isolated environments
-- Each worktree has its own branch
-- Changes in one worktree don't affect others
-- Share git history with main repo
-- Can push from any worktree
+### 它是如何运作的
 
-### Performance
+- 对于隔离环境使用`git worktree add`
+- 每个工作树都有自己的分支
+- 一个工作树的变化不会影响其他工作树
+- 与主仓库共享 git 历史记录
+- 可以从任何工作树推送
 
-- Worktrees are lightweight (just file system links)
-- No repository duplication
-- Shared git objects for efficiency
-- Much faster than cloning or stashing/switching
+### 表现
+
+- 工作树是轻量级的（只是文件系统链接）
+- 没有存储库重复
+- 共享 git 对象以提高效率
+- 比克隆或隐藏/切换快得多

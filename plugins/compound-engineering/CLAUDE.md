@@ -1,30 +1,30 @@
-# Compounding Engineering Plugin Development
+# 复合工程插件开发
 
-## Versioning Requirements
+## 版本控制要求
 
-**IMPORTANT**: Every change to this plugin MUST include updates to all three files:
+**重要**：对此插件的每次更改都必须包括对所有三个文件的更新：
 
-1. **`.claude-plugin/plugin.json`** - Bump version using semver
-2. **`CHANGELOG.md`** - Document changes using Keep a Changelog format
-3. **`README.md`** - Verify/update component counts and tables
+1. **`.claude-plugin/plugin.json`** - 使用 semver 的凹凸版本
+2. **`CHANGELOG.md`** - 使用保留变更日志格式记录变更
+3. **`README.md`** - 验证/更新组件数量和表格
 
-### Version Bumping Rules
+### 版本冲突规则
 
-- **MAJOR** (1.0.0 → 2.0.0): Breaking changes, major reorganization
-- **MINOR** (1.0.0 → 1.1.0): New agents, commands, or skills
-- **PATCH** (1.0.0 → 1.0.1): Bug fixes, doc updates, minor improvements
+- **主要** (1.0.0 → 2.0.0)：重大变更、重大重组
+- **次要** (1.0.0 → 1.1.0)：新代理、命令或技能
+- **补丁** (1.0.0 → 1.0.1)：错误修复、文档更新、细微改进
 
-### Pre-Commit Checklist
+### 预提交清单
 
-Before committing ANY changes:
+在进行任何更改之前：
 
-- [ ] Version bumped in `.claude-plugin/plugin.json`
-- [ ] CHANGELOG.md updated with changes
-- [ ] README.md component counts verified
-- [ ] README.md tables accurate (agents, commands, skills)
-- [ ] plugin.json description matches current counts
+- [ ] `.claude-plugin/plugin.json` 中的版本已更改
+- [ ] CHANGELOG.md 更新了更改
+- [ ] README.md 组件计数已验证
+- [ ] README.md 表准确（代理、命令、技能）
+- [ ]plugin.json 描述与当前计数匹配
 
-### Directory Structure
+### 目录结构
 
 ```
 agents/
@@ -42,38 +42,39 @@ skills/
 └── *.md        # All skills at root level
 ```
 
-## Command Naming Convention
 
-**Workflow commands** use `workflows:` prefix to avoid collisions with built-in commands:
-- `/workflows:plan` - Create implementation plans
-- `/workflows:review` - Run comprehensive code reviews
-- `/workflows:work` - Execute work items systematically
-- `/workflows:compound` - Document solved problems
+## 命令命名约定
 
-**Why `workflows:`?** Claude Code has built-in `/plan` and `/review` commands. Using `name: workflows:plan` in frontmatter creates a unique `/workflows:plan` command with no collision.
+**工作流程命令**使用 `workflows:` 前缀以避免与内置命令发生冲突：
+- `/workflows:plan` - 制定实施计划
+- `/workflows:review` - 运行全面的代码审查
+- `/workflows:work` - 系统地执行工作项目
+- `/workflows:compound` - 记录已解决的问题
 
-## Skill Compliance Checklist
+**为什么`workflows:`?** Claude Code 具有内置的 `/plan` 和 `/review` 命令。在 frontmatter 中使用 `name: workflows:plan` 创建一个独特的 `/workflows:plan` 命令，不会发生冲突。
 
-When adding or modifying skills, verify compliance with skill-creator spec:
+## 技能合规检查表
 
-### YAML Frontmatter (Required)
+添加或修改技能时，请验证是否符合技能创建者规范：
 
-- [ ] `name:` present and matches directory name (lowercase-with-hyphens)
-- [ ] `description:` present and uses **third person** ("This skill should be used when..." NOT "Use this skill when...")
+### YAML Frontmatter（必需）
 
-### Reference Links (Required if references/ exists)
+- [ ] `name:` 显示并匹配目录名称（小写字母加连字符）
+- [ ] `description:` 呈现并使用**第三人称**（“该技能应在...时使用”而不是“在...时使用该技能”）
 
-- [ ] All files in `references/` are linked as `[filename.md](./references/filename.md)`
-- [ ] All files in `assets/` are linked as `[filename](./assets/filename)`
-- [ ] All files in `scripts/` are linked as `[filename](./scripts/filename)`
-- [ ] No bare backtick references like `` `references/file.md` `` - use proper markdown links
+### 参考链接（如果引用/存在则为必填）
 
-### Writing Style
+- [ ] `references/` 中的所有文件均链接为 `[filename.md](./references/filename.md)`
+- [ ] `assets/` 中的所有文件均链接为 `[filename](./assets/filename)`
+- [ ] `scripts/` 中的所有文件均链接为 `[filename](./scripts/filename)`
+- [ ] 没有裸露的反引号引用，例如 `` `references/file.md` `` - 使用正确的降价链接
 
-- [ ] Use imperative/infinitive form (verb-first instructions)
-- [ ] Avoid second person ("you should") - use objective language ("To accomplish X, do Y")
+### 写作风格
 
-### Quick Validation Command
+- [ ] 使用命令式/不定式形式（动词在前的指令）
+- [ ] 避免第二人称（“你应该”） - 使用客观语言（“为了完成 X，做 Y”）
+
+### 快速验证命令
 
 ```bash
 # Check for unlinked references in a skill
@@ -85,6 +86,7 @@ grep -E '^description:' skills/*/SKILL.md | grep -v 'This skill'
 # Should return nothing if all use third person
 ```
 
-## Documentation
 
-See `docs/solutions/plugin-versioning-requirements.md` for detailed versioning workflow.
+## 文档
+
+有关详细的版本控制工作流程，请参阅`docs/solutions/plugin-versioning-requirements.md`。

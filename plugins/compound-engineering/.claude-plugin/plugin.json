@@ -1,7 +1,7 @@
 {
   "name": "compound-engineering",
   "version": "2.20.0",
-  "description": "AI-powered development tools. 27 agents, 20 commands, 13 skills, 2 MCP servers for code review, research, design, and workflow automation.",
+  "description": "人工智能驱动的开发工具。 27 个代理、20 个命令、13 项技能、2 个 MCP 服务器，用于代码审查、研究、设计和工作流程自动化。",
   "author": {
     "name": "Kieran Klaassen",
     "email": "kieran@every.to",
@@ -28,7 +28,10 @@
     "pw": {
       "type": "stdio",
       "command": "npx",
-      "args": ["-y", "@playwright/mcp@latest"],
+      "args": [
+        "-y",
+        "@playwright/mcp@latest"
+      ],
       "env": {}
     },
     "context7": {

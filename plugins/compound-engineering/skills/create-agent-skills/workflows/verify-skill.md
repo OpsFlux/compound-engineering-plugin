@@ -1,75 +1,77 @@
-# Workflow: Verify Skill Content Accuracy
+# 工作流程：验证技能内容的准确性
 
 <required_reading>
-**Read these reference files NOW:**
-1. references/skill-structure.md
+**立即阅读这些参考文件：**
+1.references/skill-structure.md
 </required_reading>
 
 <purpose>
-Audit checks structure. **Verify checks truth.**
+审计检查结构。 **验证检查真实性。**
 
-Skills contain claims about external things: APIs, CLI tools, frameworks, services. These change over time. This workflow checks if a skill's content is still accurate.
+技能包含有关外部事物的声明：API、CLI 工具、框架、服务。这些随着时间的推移而改变。此工作流程检查技能内容是否仍然准确。
 </purpose>
 
 <process>
-## Step 1: Select the Skill
+## 第 1 步：选择技能
 
 ```bash
 ls ~/.claude/skills/
 ```
 
-Present numbered list, ask: "Which skill should I verify for accuracy?"
 
-## Step 2: Read and Categorize
+出示编号列表，询问：“我应该验证哪项技能的准确性？”
 
-Read the entire skill (SKILL.md + workflows/ + references/):
+## 第 2 步：阅读并分类
+
+阅读整个技能（SKILL.md + 工作流程/ + 参考资料/）：
 ```bash
 cat ~/.claude/skills/{skill-name}/SKILL.md
 cat ~/.claude/skills/{skill-name}/workflows/*.md 2>/dev/null
 cat ~/.claude/skills/{skill-name}/references/*.md 2>/dev/null
 ```
 
-Categorize by primary dependency type:
 
-| Type | Examples | Verification Method |
+按主要依赖类型分类：
+
+|类型 |示例 |验证方法|
 |------|----------|---------------------|
-| **API/Service** | manage-stripe, manage-gohighlevel | Context7 + WebSearch |
-| **CLI Tools** | build-macos-apps (xcodebuild, swift) | Run commands |
-| **Framework** | build-iphone-apps (SwiftUI, UIKit) | Context7 for docs |
-| **Integration** | setup-stripe-payments | WebFetch + Context7 |
-| **Pure Process** | create-agent-skills | No external deps |
+| **API/服务** |管理条纹，管理高级 | Context7 + 网络搜索 |
+| **CLI 工具** |构建-macos-apps（xcodebuild，swift）|运行命令|
+| **框架** |构建 iPhone 应用程序（SwiftUI、UIKit）|文档的 Context7 |
+| **整合** |设置条带付款| WebFetch + Context7 |
+| **纯工艺** |创建代理技能 |没有外部部门 |
 
-Report: "This skill is primarily [type]-based. I'll verify using [method]."
+报告：“该技能主要是基于[类型]的。我将使用[方法]进行验证。”
 
-## Step 3: Extract Verifiable Claims
+## 步骤 3：提取可验证的声明
 
-Scan skill content and extract:
+扫描技能内容并提取：
 
-**CLI Tools mentioned:**
-- Tool names (xcodebuild, swift, npm, etc.)
-- Specific flags/options documented
-- Expected output patterns
+**提到的 CLI 工具：**
+- 工具名称（xcodebuild、swift、npm 等）
+- 记录特定标志/选项
+- 预期输出模式
 
-**API Endpoints:**
-- Service names (Stripe, Meta, etc.)
-- Specific endpoints documented
-- Authentication methods
-- SDK versions
+**API端点：**
+- 服务名称（Stripe、Meta 等）
+- 记录特定端点
+- 认证方式
+- SDK版本
 
-**Framework Patterns:**
-- Framework names (SwiftUI, React, etc.)
-- Specific APIs/patterns documented
-- Version-specific features
+**框架模式：**
+- 框架名称（SwiftUI、React 等）
+- 记录特定 API/模式
+- 版本特定的功能
 
-**File Paths/Structures:**
-- Expected project structures
-- Config file locations
+**文件路径/结构：**
+- 预期的项目结构
+- 配置文件位置
 
-Present: "Found X verifiable claims to check."
+目前：“发现 X 个可验证的声明需要检查。”
 
-## Step 4: Verify by Type
+## 步骤 4：按类型验证
 
-### For CLI Tools
+### 对于 CLI 工具
 ```bash
 # Check tool exists
 which {tool-name}
@@ -81,46 +83,50 @@ which {tool-name}
 {tool-name} --help | grep "{documented-flag}"
 ```
 
-### For API/Service Skills
-Use Context7 to fetch current documentation:
+
+### API/服务技能
+使用 Context7 获取当前文档：
 ```
 mcp__context7__resolve-library-id: {service-name}
 mcp__context7__get-library-docs: {library-id}, topic: {relevant-topic}
 ```
 
-Compare skill's documented patterns against current docs:
-- Are endpoints still valid?
-- Has authentication changed?
-- Are there deprecated methods being used?
 
-### For Framework Skills
-Use Context7:
+将技能记录的模式与当前文档进行比较：
+- 端点仍然有效吗？
+- 身份验证是否已更改？
+- 是否使用了已弃用的方法？
+
+### 对于框架技能
+使用上下文7：
 ```
 mcp__context7__resolve-library-id: {framework-name}
 mcp__context7__get-library-docs: {library-id}, topic: {specific-api}
 ```
 
-Check:
-- Are documented APIs still current?
-- Have patterns changed?
-- Are there newer recommended approaches?
 
-### For Integration Skills
-WebSearch for recent changes:
+检查：
+- 记录的 API 仍然是最新的吗？
+- 模式有变化吗？
+- 有更新的推荐方法吗？
+
+### 整合技能
+网络搜索最近的更改：
 ```
 "[service name] API changes 2025"
 "[service name] breaking changes"
 "[service name] deprecated endpoints"
 ```
 
-Then Context7 for current SDK patterns.
 
-### For Services with Status Pages
-WebFetch official docs/changelog if available.
+然后是当前 SDK 模式的 Context7。
 
-## Step 5: Generate Freshness Report
+### 对于带有状态页面的服务
+WebFetch 官方文档/变更日志（如果有）。
 
-Present findings:
+## 步骤 5：生成新鲜度报告
+
+目前的发现：
 
 ```
 ## Verification Report: {skill-name}
@@ -144,61 +150,64 @@ Present findings:
 **Last Verified:** [Today's date]
 ```
 
-## Step 6: Offer Updates
 
-If issues found:
+## 第 6 步：优惠更新
 
-"Found [N] items that need updating. Would you like me to:"
+如果发现问题：
 
-1. **Update all** - Apply all corrections
-2. **Review each** - Show each change before applying
-3. **Just the report** - No changes
+“发现 [N] 个需要更新的项目。您希望我：”
 
-If updating:
-- Make changes based on verified current information
-- Add verification date comment if appropriate
-- Report what was updated
+1. **全部更新** - 应用所有更正
+2. **查看每个** - 在应用之前显示每个更改
+3. **仅报告** - 没有变化
 
-## Step 7: Suggest Verification Schedule
+如果更新：
+- 根据已验证的当前信息进行更改
+- 添加验证日期注释（如果适用）
+- 报告更新内容
 
-Based on skill type, recommend:
+## 步骤 7：建议验证时间表
 
-| Skill Type | Recommended Frequency |
-|------------|----------------------|
-| API/Service | Every 1-2 months |
-| Framework | Every 3-6 months |
-| CLI Tools | Every 6 months |
-| Pure Process | Annually |
+根据技能类型，推荐：
 
-"This skill should be re-verified in approximately [timeframe]."
+|技能类型 |推荐频率 |
+|------------|------------------------|
+| API/服务 |每 1-2 个月 |
+|框架|每 3-6 个月 |
+| CLI 工具 |每 6 个月 |
+|纯工艺|每年 |
+
+“这项技能应该在大约[时间范围]内重新验证。”
 </process>
 
 <verification_shortcuts>
-## Quick Verification Commands
+## 快速验证命令
 
-**Check if CLI tool exists and get version:**
+**检查CLI工具是否存在并获取版本：**
 ```bash
 which {tool} && {tool} --version
 ```
 
-**Context7 pattern for any library:**
+
+**适用于任何库的 Context7 模式：**
 ```
 1. resolve-library-id: "{library-name}"
 2. get-library-docs: "{id}", topic: "{specific-feature}"
 ```
 
-**WebSearch patterns:**
-- Breaking changes: "{service} breaking changes 2025"
-- Deprecations: "{service} deprecated API"
-- Current best practices: "{framework} best practices 2025"
+
+**网络搜索模式：**
+- 重大变更：“{service} 2025 年重大变更”
+- 弃用：“{service} 已弃用 API”
+- 当前最佳实践：“{framework} 2025 年最佳实践”
 </verification_shortcuts>
 
 <success_criteria>
-Verification is complete when:
-- [ ] Skill categorized by dependency type
-- [ ] Verifiable claims extracted
-- [ ] Each claim checked with appropriate method
-- [ ] Freshness report generated
-- [ ] Updates applied (if requested)
-- [ ] User knows when to re-verify
+验证完成时：
+- [ ] 按依赖类型分类的技能
+- [ ] 提取可验证的声明
+- [ ] 每项索赔均采用适当的方法进行检查
+- [ ] 生成新鲜度报告
+- [ ] 应用更新（如果需要）
+- [ ] 用户知道何时重新验证
 </success_criteria>

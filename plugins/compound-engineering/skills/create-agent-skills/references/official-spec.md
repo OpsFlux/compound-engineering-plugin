@@ -1,12 +1,12 @@
-# Anthropic Official Skill Specification
+# Anthropic官方技能说明
 
-Source: [code.claude.com/docs/en/skills](https://code.claude.com/docs/en/skills)
+来源：[code.claude.com/docs/en/skills](https://code.claude.com/docs/en/skills)
 
-## SKILL.md File Structure
+## SKILL.md 文件结构
 
-Every Skill requires a `SKILL.md` file with YAML frontmatter followed by Markdown instructions.
+每项技能都需要一个 `SKILL.md` 文件，其中包含 YAML frontmatter 和 Markdown 指令。
 
-### Basic Format
+### 基本格式
 
 ```markdown
 ---
@@ -23,39 +23,41 @@ Provide clear, step-by-step guidance for Claude.
 Show concrete examples of using this Skill.
 ```
 
-## Required Frontmatter Fields
 
-| Field | Required | Description |
-|-------|----------|-------------|
-| `name` | Yes | Skill name using lowercase letters, numbers, and hyphens only (max 64 characters). Should match the directory name. |
-| `description` | Yes | What the Skill does and when to use it (max 1024 characters). Claude uses this to decide when to apply the Skill. |
-| `allowed-tools` | No | Tools Claude can use without asking permission when this Skill is active. Example: `Read, Grep, Glob` |
-| `model` | No | Specific model to use when this Skill is active (e.g., `claude-sonnet-4-20250514`). Defaults to the conversation's model. |
+## 必需的 Frontmatter 字段
 
-## Skill Locations & Priority
+|领域|必填|描述 |
+|--------|----------|-------------|
+| `name` |是的 |技能名称仅使用小写字母、数字和连字符（最多 64 个字符）。应与目录名称匹配。 |
+| `description` |是的 |该技能的用途以及何时使用它（最多 1024 个字符）。克劳德用它来决定何时应用技能。 |
+| `allowed-tools` |没有 |当该技能激活时，克劳德无需征得许可即可使用工具。示例：`Read, Grep, Glob` |
+| `model` |没有 |该技能激活时使用的特定模型（例如，`claude-sonnet-4-20250514`）。默认为对话模型。 |
+
+## 技能位置和优先级
 
 ```
 Enterprise (highest priority) → Personal → Project → Plugin (lowest priority)
 ```
 
-| Type | Path | Applies to |
-|------|------|-----------|
-| **Enterprise** | See managed settings | All users in organization |
-| **Personal** | `~/.claude/skills/` | You, across all projects |
-| **Project** | `.claude/skills/` | Anyone working in repository |
-| **Plugin** | Bundled with plugins | Anyone with plugin installed |
 
-## How Skills Work
+|类型 |路径|适用于 |
+|------|------|------------|
+| **企业** |查看托管设置 |组织中的所有用户 |
+| **个人** | `~/.claude/skills/` |您，跨所有项目|
+| **项目** | `.claude/skills/` |任何在存储库中工作的人 |
+| **插件** |捆绑插件 |任何安装了插件的人 |
 
-1. **Discovery**: Claude loads only name and description at startup
-2. **Activation**: When your request matches a Skill's description, Claude asks for confirmation
-3. **Execution**: Claude follows the Skill's instructions and loads referenced files
+## 技能如何发挥作用
 
-**Key Principle**: Skills are **model-invoked** — Claude automatically decides which Skills to use based on your request.
+1. **发现**：克劳德在启动时仅加载名称和描述
+2. **激活**：当您的请求与技能描述相符时，克劳德会要求确认
+3. **执行**：克劳德按照技能的指示，加载引用的文件
 
-## Progressive Disclosure Pattern
+**关键原则**：技能是**模型调用的** - 克劳德根据您的请求自动决定使用哪些技能。
 
-Keep `SKILL.md` under 500 lines by linking to supporting files:
+## 渐进式披露模式
+
+通过链接到支持文件，将 `SKILL.md` 控制在 500 行以下：
 
 ```
 my-skill/
@@ -66,7 +68,8 @@ my-skill/
     └── helper.py (utility script - executed, not loaded)
 ```
 
-### Example SKILL.md with References
+
+### 带有参考文献的 SKILL.md 示例
 
 ```markdown
 ---
@@ -81,9 +84,10 @@ allowed-tools: Read, Bash(python:*)
 
 Extract text:
 ```python
-import pdfplumber
-with pdfplumber.open("doc.pdf") as pdf:
-    text = pdf.pages[0].extract_text()
+
+导入 pdfplumber
+使用 pdfplumber.open("doc.pdf") 作为 pdf：
+    文本 = pdf.pages[0].extract_text()
 ```
 
 For form filling, see [FORMS.md](FORMS.md).
@@ -93,11 +97,13 @@ For detailed API reference, see [REFERENCE.md](REFERENCE.md).
 
 Packages must be installed:
 ```bash
-pip install pypdf pdfplumber
+
+pip 安装 pypdf pdfplumber
 ```
 ```
 
-## Restricting Tool Access
+
+## 限制工具访问
 
 ```yaml
 ---
@@ -107,34 +113,37 @@ allowed-tools: Read, Grep, Glob
 ---
 ```
 
-Benefits:
-- Read-only Skills that shouldn't modify files
-- Limited scope for specific tasks
-- Security-sensitive workflows
 
-## Writing Effective Descriptions
+好处：
+- 不应修改文件的只读技能
+- 特定任务的范围有限
+- 安全敏感的工作流程
 
-The `description` field enables Skill discovery and should include both what the Skill does and when to use it.
+## 撰写有效的描述
 
-**Always write in third person.** The description is injected into the system prompt.
+`description` 字段支持技能发现，并且应包括技能的用途和使用时间。
 
-- **Good:** "Processes Excel files and generates reports"
-- **Avoid:** "I can help you process Excel files"
-- **Avoid:** "You can use this to process Excel files"
+**始终以第三人称书写。** 描述被注入到系统提示符中。
 
-**Be specific and include key terms:**
+- **好：**“处理 Excel 文件并生成报告”
+- **避免：**“我可以帮你处理Excel文件”
+- **避免：**“您可以使用它来处理 Excel 文件”
+
+**具体并包括关键术语：**
 
 ```yaml
 description: Extract text and tables from PDF files, fill forms, merge documents. Use when working with PDF files or when the user mentions PDFs, forms, or document extraction.
 ```
 
-**Avoid vague descriptions:**
+
+**避免模糊的描述：**
 
 ```yaml
 description: Helps with documents  # Too vague!
 ```
 
-## Complete Example: Commit Message Generator
+
+## 完整示例：提交消息生成器
 
 ```markdown
 ---
@@ -158,7 +167,8 @@ description: Generates clear commit messages from git diffs. Use when writing co
 - Explain what and why, not how
 ```
 
-## Complete Example: Code Explanation Skill
+
+## 完整示例：代码解释技巧
 
 ```markdown
 ---
@@ -178,8 +188,9 @@ When explaining code, always include:
 Keep explanations conversational. For complex concepts, use multiple analogies.
 ```
 
-## Distribution
 
-- **Project Skills**: Commit `.claude/skills/` to version control
-- **Plugins**: Add `skills/` directory to plugin with Skill folders
-- **Enterprise**: Deploy organization-wide through managed settings
+## 分配
+
+- **项目技能**：将`.claude/skills/`提交给版本控制
+- **插件**：将`skills/`目录添加到带有技能文件夹的插件中
+- **企业**：通过托管设置在组织范围内部署

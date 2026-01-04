@@ -1,71 +1,75 @@
 <overview>
-This reference documents common patterns for skill authoring, including templates, examples, terminology consistency, and anti-patterns. All patterns use pure XML structure.
+本参考记录了技能创作的常见模式，包括模板、示例、术语一致性和反模式。所有模式都使用纯 XML 结构。
 </overview>
 
 <template_pattern>
 <description>
-Provide templates for output format. Match the level of strictness to your needs.
+提供输出格式的模板。将严格程度与您的需求相匹配。
 </description>
 
 <strict_requirements>
-Use when output format must be exact and consistent:
+当输出格式必须准确且一致时使用：
 
 ```xml
 <report_structure>
 ALWAYS use this exact template structure:
 
 ```markdown
-# [Analysis Title]
 
-## Executive summary
-[One-paragraph overview of key findings]
+# [分析标题]
 
-## Key findings
-- Finding 1 with supporting data
-- Finding 2 with supporting data
-- Finding 3 with supporting data
+## 执行摘要
+[主要发现的一段概述]
 
-## Recommendations
-1. Specific actionable recommendation
-2. Specific actionable recommendation
+## 主要发现
+- 找到 1 并提供支持数据
+- 发现 2 并提供支持数据
+- 发现 3 并提供支持数据
+
+## 建议
+1. 具体可行的建议
+2. 具体可行的建议
 ```
 </report_structure>
 ```
 
-**When to use**: Compliance reports, standardized formats, automated processing
+
+**何时使用**：合规报告、标准化格式、自动化处理
 </strict_requirements>
 
 <flexible_guidance>
-Use when Claude should adapt the format based on context:
+当 Claude 应根据上下文调整格式时使用：
 
 ```xml
 <report_structure>
 Here is a sensible default format, but use your best judgment:
 
 ```markdown
-# [Analysis Title]
 
-## Executive summary
-[Overview]
+# [分析标题]
 
-## Key findings
-[Adapt sections based on what you discover]
+## 执行摘要
+[概述]
 
-## Recommendations
-[Tailor to the specific context]
+## 主要发现
+[根据您的发现调整部分]
+
+## 建议
+【根据具体情况量身定制】
 ```
 
 Adjust sections as needed for the specific analysis type.
 </report_structure>
 ```
 
-**When to use**: Exploratory analysis, context-dependent formatting, creative tasks
+
+**何时使用**：探索性分析、上下文相关格式、创意任务
 </flexible_guidance>
 </template_pattern>
 
 <examples_pattern>
 <description>
-For skills where output quality depends on seeing examples, provide input/output pairs.
+对于输出质量取决于示例的技能，请提供输入/输出对。
 </description>
 
 <commit_messages_example>
@@ -81,9 +85,10 @@ Generate commit messages following these examples:
 <input>Added user authentication with JWT tokens</input>
 <output>
 ```
-feat(auth): implement JWT-based authentication
 
-Add login endpoint and token validation middleware
+feat(auth)：实现基于 JWT 的身份验证
+
+添加登录端点和令牌验证中间件
 ```
 </output>
 </example>
@@ -92,9 +97,10 @@ Add login endpoint and token validation middleware
 <input>Fixed bug where dates displayed incorrectly in reports</input>
 <output>
 ```
-fix(reports): correct date formatting in timezone conversion
 
-Use UTC timestamps consistently across report generation
+修复（报告）：时区转换中的正确日期格式
+
+在报告生成过程中一致使用 UTC 时间戳
 ```
 </output>
 </example>
@@ -102,26 +108,27 @@ Use UTC timestamps consistently across report generation
 Follow this style: type(scope): brief description, then detailed explanation.
 </commit_message_format>
 ```
+
 </commit_messages_example>
 
 <when_to_use>
-- Output format has nuances that text explanations can't capture
-- Pattern recognition is easier than rule following
-- Examples demonstrate edge cases
-- Multi-shot learning improves quality
+- 输出格式存在文本解释无法捕获的细微差别
+- 模式识别比规则遵循更容易
+- 示例展示了边缘情况
+- 多次学习提高质量
 </when_to_use>
 </examples_pattern>
 
 <consistent_terminology>
 <principle>
-Choose one term and use it throughout the skill. Inconsistent terminology confuses Claude and reduces execution quality.
+选择一个术语并在整个技能中使用它。不一致的术语会让克劳德感到困惑并降低执行质量。
 </principle>
 
 <good_example>
-Consistent usage:
-- Always "API endpoint" (not mixing with "URL", "API route", "path")
-- Always "field" (not mixing with "box", "element", "control")
-- Always "extract" (not mixing with "pull", "get", "retrieve")
+一致的用法：
+- 始终为“API端点”（不与“URL”、“API路由”、“路径”混合）
+- 始终为“字段”（不与“框”、“元素”、“控件”混合）
+- 始终“提取”（不要与“拉”、“获取”、“检索”混合）
 
 ```xml
 <objective>
@@ -134,10 +141,11 @@ Extract data from API endpoints using field mappings.
 3. Extract field values
 </quick_start>
 ```
+
 </good_example>
 
 <bad_example>
-Inconsistent usage creates confusion:
+不一致的用法会造成混乱：
 
 ```xml
 <objective>
@@ -151,42 +159,45 @@ Pull data from API routes using element mappings.
 </quick_start>
 ```
 
-Claude must now interpret: Are "API routes" and "URLs" the same? Are "fields", "boxes", "elements", and "controls" the same?
+
+Claude 现在必须解释：“API 路由”和“URL”相同吗？ “字段”、“框”、“元素”和“控件”相同吗？
 </bad_example>
 
 <implementation>
-1. Choose terminology early in skill development
-2. Document key terms in `<objective>` or `<context>`
-3. Use find/replace to enforce consistency
-4. Review reference files for consistent usage
+1. 在技能开发早期选择术语
+2. 记录 `<objective>` 或 `<context>` 中的关键术语
+3. 使用查找/替换来强制一致性
+4. 检查参考文件以确保用法一致
 </implementation>
 </consistent_terminology>
 
 <provide_default_with_escape_hatch>
 <principle>
-Provide a default approach with an escape hatch for special cases, not a list of alternatives. Too many options paralyze decision-making.
+为特殊情况提供带有逃生舱口的默认方法，而不是替代方案列表。太多的选择会阻碍决策。
 </principle>
 
 <good_example>
-Clear default with escape hatch:
+使用逃生舱口清除默认值：
 
 ```xml
 <quick_start>
 Use pdfplumber for text extraction:
 
 ```python
-import pdfplumber
-with pdfplumber.open("file.pdf") as pdf:
-    text = pdf.pages[0].extract_text()
+
+导入 pdfplumber
+使用 pdfplumber.open("file.pdf") 作为 pdf：
+    文本 = pdf.pages[0].extract_text()
 ```
 
 For scanned PDFs requiring OCR, use pdf2image with pytesseract instead.
 </quick_start>
 ```
+
 </good_example>
 
 <bad_example>
-Too many options creates decision paralysis:
+太多的选择会导致决策瘫痪：
 
 ```xml
 <quick_start>
@@ -203,24 +214,25 @@ Choose based on your needs.
 </quick_start>
 ```
 
-Claude must now research and compare all options before starting. This wastes tokens and time.
+
+克劳德现在必须在开始之前研究和比较所有选项。这浪费了代币和时间。
 </bad_example>
 
 <implementation>
-1. Recommend ONE default approach
-2. Explain when to use the default (implied: most of the time)
-3. Add ONE escape hatch for edge cases
-4. Link to advanced reference if multiple alternatives truly needed
+1. 推荐一种默认方法
+2. 解释何时使用默认值（隐含：大部分时间）
+3.为边缘情况添加一个逃生舱口
+4. 如果确实需要多种替代方案，请链接到高级参考
 </implementation>
 </provide_default_with_escape_hatch>
 
 <anti_patterns>
 <description>
-Common mistakes to avoid when authoring skills.
+创作技巧时要避免的常见错误。
 </description>
 
 <pitfall name="markdown_headings_in_body">
-❌ **BAD**: Using markdown headings in skill body:
+❌ **不好**：在技能正文中使用 Markdown 标题：
 
 ```markdown
 # PDF Processing
@@ -232,7 +244,8 @@ Extract text with pdfplumber...
 Form filling requires additional setup...
 ```
 
-✅ **GOOD**: Using pure XML structure:
+
+✅ **好**：使用纯 XML 结构：
 
 ```xml
 <objective>
@@ -248,113 +261,125 @@ Form filling requires additional setup...
 </advanced_features>
 ```
 
-**Why it matters**: XML provides semantic meaning, reliable parsing, and token efficiency.
+
+**为什么重要**：XML 提供语义、可靠的解析和标记效率。
 </pitfall>
 
 <pitfall name="vague_descriptions">
-❌ **BAD**:
+❌ **不好**：
 ```yaml
 description: Helps with documents
 ```
 
-✅ **GOOD**:
+
+✅ **好**：
 ```yaml
 description: Extract text and tables from PDF files, fill forms, merge documents. Use when working with PDF files or when the user mentions PDFs, forms, or document extraction.
 ```
 
-**Why it matters**: Vague descriptions prevent Claude from discovering and using the skill appropriately.
+
+**为什么重要**：模糊的描述使克劳德无法正确发现和使用该技能。
 </pitfall>
 
 <pitfall name="inconsistent_pov">
-❌ **BAD**:
+❌ **不好**：
 ```yaml
 description: I can help you process Excel files and generate reports
 ```
 
-✅ **GOOD**:
+
+✅ **好**：
 ```yaml
 description: Processes Excel files and generates reports. Use when analyzing spreadsheets or .xlsx files.
 ```
 
-**Why it matters**: Skills must use third person. First/second person breaks the skill metadata pattern.
+
+**为什么重要**：技能必须使用第三人称。第一/第二人称打破了技能元数据模式。
 </pitfall>
 
 <pitfall name="wrong_naming_convention">
-❌ **BAD**: Directory name doesn't match skill name or verb-noun convention:
-- Directory: `facebook-ads`, Name: `facebook-ads-manager`
-- Directory: `stripe-integration`, Name: `stripe`
-- Directory: `helper-scripts`, Name: `helper`
+❌ **BAD**：目录名称与技能名称或动词名词约定不匹配：
+- 目录：`facebook-ads`，名称：`facebook-ads-manager`
+- 目录：`stripe-integration`，名称：`stripe`
+- 目录：`helper-scripts`，名称：`helper`
 
-✅ **GOOD**: Consistent verb-noun convention:
-- Directory: `manage-facebook-ads`, Name: `manage-facebook-ads`
-- Directory: `setup-stripe-payments`, Name: `setup-stripe-payments`
-- Directory: `process-pdfs`, Name: `process-pdfs`
+✅ **好**：一致的动词-名词约定：
+- 目录：`manage-facebook-ads`，名称：`manage-facebook-ads`
+- 目录：`setup-stripe-payments`，名称：`setup-stripe-payments`
+- 目录：`process-pdfs`，名称：`process-pdfs`
 
-**Why it matters**: Consistency in naming makes skills discoverable and predictable.
-</pitfall>
+**为什么重要**：命名的一致性使技能可被发现和可预测。
+§§PH100​​§§
 
 <pitfall name="too_many_options">
-❌ **BAD**:
+❌ **不好**：
 ```xml
 <quick_start>
 You can use pypdf, or pdfplumber, or PyMuPDF, or pdf2image, or pdfminer, or tabula-py...
 </quick_start>
 ```
 
-✅ **GOOD**:
+
+✅ **好**：
 ```xml
 <quick_start>
 Use pdfplumber for text extraction:
 
 ```python
-import pdfplumber
+
+导入 pdfplumber
 ```
 
 For scanned PDFs requiring OCR, use pdf2image with pytesseract instead.
 </quick_start>
 ```
 
-**Why it matters**: Decision paralysis. Provide one default approach with escape hatch for special cases.
+
+**为什么重要**：决策瘫痪。为特殊情况提供一种带有逃生舱口的默认方法。
 </pitfall>
 
 <pitfall name="deeply_nested_references">
-❌ **BAD**: References nested multiple levels:
+❌ **BAD**：引用嵌套多个级别：
 ```
 SKILL.md → advanced.md → details.md → examples.md
 ```
 
-✅ **GOOD**: References one level deep from SKILL.md:
+
+✅ **好**：引用了 SKILL.md 的深一层：
 ```
 SKILL.md → advanced.md
 SKILL.md → details.md
 SKILL.md → examples.md
 ```
 
-**Why it matters**: Claude may only partially read deeply nested files. Keep references one level deep from SKILL.md.
+
+**为什么重要**：Claude 可能只能部分读取深度嵌套的文件。将 SKILL.md 中的引用保持深一层。
 </pitfall>
 
 <pitfall name="windows_paths">
-❌ **BAD**:
+❌ **不好**：
 ```xml
 <reference_guides>
 See scripts\validate.py for validation
 </reference_guides>
 ```
 
-✅ **GOOD**:
+
+✅ **好**：
 ```xml
 <reference_guides>
 See scripts/validate.py for validation
 </reference_guides>
 ```
 
-**Why it matters**: Always use forward slashes for cross-platform compatibility.
+
+**为什么重要**：始终使用正斜杠来实现跨平台兼容性。
 </pitfall>
 
 <pitfall name="dynamic_context_and_file_reference_execution">
-**Problem**: When showing examples of dynamic context syntax (exclamation mark + backticks) or file references (@ prefix), the skill loader executes these during skill loading.
+**问题**：当显示动态上下文语法（感叹号 + 反引号）或文件引用（@ 前缀）的示例时，技能加载器会在技能加载期间执行这些示例。
 
-❌ **BAD** - These execute during skill load:
+❌ **BAD** - 这些在技能加载期间执行：
 ```xml
 <examples>
 Load current status with: !`git status`
@@ -362,7 +387,8 @@ Review dependencies in: @package.json
 </examples>
 ```
 
-✅ **GOOD** - Add space to prevent execution:
+
+✅ **好** - 添加空间以防止执行：
 ```xml
 <examples>
 Load current status with: ! `git status` (remove space before backtick in actual usage)
@@ -370,23 +396,25 @@ Review dependencies in: @ package.json (remove space after @ in actual usage)
 </examples>
 ```
 
-**When this applies**:
-- Skills that teach users about dynamic context (slash commands, prompts)
-- Any documentation showing the exclamation mark prefix syntax or @ file references
-- Skills with example commands or file paths that shouldn't execute during loading
 
-**Why it matters**: Without the space, these execute during skill load, causing errors or unwanted file reads.
+**当适用时**：
+- 向用户传授动态上下文的技能（斜线命令、提示）
+- 显示感叹号前缀语法或@文件引用的任何文档
+- 具有在加载期间不应执行的示例命令或文件路径的技能
+
+**为什么重要**：如果没有空间，它们会在技能加载期间执行，从而导致错误或不需要的文件读取。
 </pitfall>
 
 <pitfall name="missing_required_tags">
-❌ **BAD**: Missing required tags:
+❌ **不好**：缺少必需的标签：
 ```xml
 <quick_start>
 Use this tool for processing...
 </quick_start>
 ```
 
-✅ **GOOD**: All required tags present:
+
+✅ **好**：所有必需的标签都存在：
 ```xml
 <objective>
 Process data files with validation and transformation.
@@ -403,11 +431,12 @@ Use this tool for processing...
 </success_criteria>
 ```
 
-**Why it matters**: Every skill must have `<objective>`, `<quick_start>`, and `<success_criteria>` (or `<when_successful>`).
+
+**为什么重要**：每项技能都必须具有`<objective>`、`<quick_start>`和`<success_criteria>`（或`<when_successful>`）。
 </pitfall>
 
 <pitfall name="hybrid_xml_markdown">
-❌ **BAD**: Mixing XML tags with markdown headings:
+❌ **BAD**：将 XML 标签与 Markdown 标题混合：
 ```markdown
 <objective>
 PDF processing capabilities
@@ -422,7 +451,8 @@ Extract text with pdfplumber...
 Form filling...
 ```
 
-✅ **GOOD**: Pure XML throughout:
+
+✅ **好**：纯 XML 贯穿始终：
 ```xml
 <objective>
 PDF processing capabilities
@@ -437,11 +467,12 @@ Form filling...
 </advanced_features>
 ```
 
-**Why it matters**: Consistency in structure. Either use pure XML or pure markdown (prefer XML).
+
+**为什么重要**：结构的一致性。使用纯 XML 或纯 Markdown（首选 XML）。
 </pitfall>
 
 <pitfall name="unclosed_xml_tags">
-❌ **BAD**: Forgetting to close XML tags:
+❌ **BAD**：忘记关闭 XML 标签：
 ```xml
 <objective>
 Process PDF files
@@ -451,7 +482,8 @@ Use pdfplumber...
 </quick_start>
 ```
 
-✅ **GOOD**: Properly closed tags:
+
+✅ **好**：正确关闭的标签：
 ```xml
 <objective>
 Process PDF files
@@ -462,13 +494,14 @@ Use pdfplumber...
 </quick_start>
 ```
 
-**Why it matters**: Unclosed tags break XML parsing and create ambiguous boundaries.
+
+**为什么重要**：未封闭的标签会破坏 XML 解析并创建不明确的边界。
 </pitfall>
 </anti_patterns>
 
 <progressive_disclosure_pattern>
 <description>
-Keep SKILL.md concise by linking to detailed reference files. Claude loads reference files only when needed.
+通过链接到详细的参考文件来保持 SKILL.md 的简洁。克劳德仅在需要时加载参考文件。
 </description>
 
 <implementation>
@@ -491,17 +524,18 @@ See [basic-operations.md](basic-operations.md) for campaign creation and managem
 </advanced_features>
 ```
 
-**Benefits**:
-- SKILL.md stays under 500 lines
-- Claude only reads relevant reference files
-- Token usage scales with task complexity
-- Easier to maintain and update
+
+**好处**：
+- SKILL.md 保持在 500 行以下
+- 克劳德只阅读相关参考文件
+- 令牌的使用随任务复杂性而变化
+- 更容易维护和更新
 </implementation>
 </progressive_disclosure_pattern>
 
 <validation_pattern>
 <description>
-For skills with validation steps, make validation scripts verbose and specific.
+对于验证步骤的技能，请使验证脚本变得详细且具体。
 </description>
 
 <implementation>
@@ -510,7 +544,8 @@ For skills with validation steps, make validation scripts verbose and specific.
 After making changes, validate immediately:
 
 ```bash
-python scripts/validate.py output_dir/
+
+蟒蛇scripts/validate.py输出目录/
 ```
 
 If validation fails, fix errors before continuing. Validation errors include:
@@ -523,16 +558,17 @@ Only proceed when validation passes with zero errors.
 </validation>
 ```
 
-**Why verbose errors help**:
-- Claude can fix issues without guessing
-- Specific error messages reduce iteration cycles
-- Available options shown in error messages
+
+**为什么详细错误有帮助**：
+- 克劳德可以在不猜测的情况下解决问题
+- 特定的错误消息减少迭代周期
+- 错误消息中显示可用选项
 </implementation>
 </validation_pattern>
 
 <checklist_pattern>
 <description>
-For complex multi-step workflows, provide a checklist Claude can copy and track progress.
+对于复杂的多步骤工作流程，请提供克劳德可以复制和跟踪进度的清单。
 </description>
 
 <implementation>
@@ -541,12 +577,13 @@ For complex multi-step workflows, provide a checklist Claude can copy and track 
 Copy this checklist and check off items as you complete them:
 
 ```
-Task Progress:
-- [ ] Step 1: Analyze the form (run analyze_form.py)
-- [ ] Step 2: Create field mapping (edit fields.json)
-- [ ] Step 3: Validate mapping (run validate_fields.py)
-- [ ] Step 4: Fill the form (run fill_form.py)
-- [ ] Step 5: Verify output (run verify_output.py)
+
+任务进展：
+- [ ] 步骤1：分析表单（运行analyze_form.py）
+- [ ] 步骤 2：创建字段映射（编辑 fields.json）
+- [ ] 步骤 3：验证映射（运行 validate_fields.py）
+- [ ] 第 4 步：填写表格（运行 fill_form.py）
+- [ ] 步骤 5：验证输出（运行 verify_output.py）
 ```
 
 <step_1>
@@ -587,9 +624,10 @@ If verification fails, return to Step 2.
 </workflow>
 ```
 
-**Benefits**:
-- Clear progress tracking
-- Prevents skipping steps
-- Easy to resume after interruption
+
+**好处**：
+- 清晰的进度跟踪
+- 防止跳过步骤
+- 中断后轻松恢复
 </implementation>
 </checklist_pattern>

@@ -1,50 +1,51 @@
-# Workflow: Add a Template to a Skill
+# 工作流程：向技能添加模板
 
 <required_reading>
-**Read these reference files NOW:**
-1. references/using-templates.md
+**立即阅读这些参考文件：**
+1.references/using-templates.md
 </required_reading>
 
 <process>
-## Step 1: Identify the Skill
+## 第 1 步：确定技能
 
-Ask (if not already provided):
-- Which skill needs a template?
-- What output does this template structure?
+询问（如果尚未提供）：
+- 哪些技能需要模板？
+- 该模板构造什么输出？
 
-## Step 2: Analyze Template Need
+## 步骤 2：分析模板需求
 
-Confirm this is a good template candidate:
-- [ ] Output has consistent structure across uses
-- [ ] Structure matters more than creative generation
-- [ ] Filling placeholders is more reliable than blank-page generation
+确认这是一个好的候选模板：
+- [ ] 输出在不同用途中具有一致的结构
+- [ ] 结构比创意生成更重要
+- [ ] 填充占位符比生成空白页更可靠
 
-If not a good fit, suggest alternatives (workflow guidance, reference examples).
+如果不合适，请提出替代方案（工作流程指南、参考示例）。
 
-## Step 3: Create Templates Directory
+## 第三步：创建模板目录
 
 ```bash
 mkdir -p ~/.claude/skills/{skill-name}/templates
 ```
 
-## Step 4: Design Template Structure
 
-Gather requirements:
-- What sections does the output need?
-- What information varies between uses? (→ placeholders)
-- What stays constant? (→ static structure)
+## 步骤4：设计模板结构
 
-## Step 5: Write Template File
+收集要求：
+- 输出需要哪些部分？
+- 哪些信息因用途而异？ （→ 占位符）
+- 什么保持不变？ （→ 静态结构）
 
-Create `templates/{template-name}.md` with:
-- Clear section markers
-- `{{PLACEHOLDER}}` syntax for variable content
-- Brief inline guidance where helpful
-- Minimal example content
+## 步骤5：编写模板文件
 
-## Step 6: Update Workflow to Use Template
+创建`templates/{template-name}.md`：
+- 清晰的部分标记
+- `{{PLACEHOLDER}}`可变内容语法
+- 简短的内联指导（如有帮助）
+- 最少的示例内容
 
-Find the workflow that produces this output. Add:
+## 步骤 6：更新工作流程以使用模板
+
+找到产生此输出的工作流程。添加：
 ```xml
 <process>
 ...
@@ -55,20 +56,21 @@ N+2. Fill each placeholder based on gathered context
 </process>
 ```
 
-## Step 7: Test
 
-Invoke the skill workflow and verify:
-- Template is read at the right step
-- All placeholders get filled appropriately
-- Output structure matches template
-- No placeholders left unfilled
+## 步骤 7：测试
+
+调用技能工作流程并验证：
+- 在正确的步骤读取模板
+- 所有占位符都得到适当填充
+- 输出结构与模板匹配
+- 没有未填写的占位符
 </process>
 
 <success_criteria>
-Template is complete when:
-- [ ] templates/ directory exists
-- [ ] Template file has clear structure with placeholders
-- [ ] At least one workflow references the template
-- [ ] Workflow instructions explain when/how to use template
-- [ ] Tested with real invocation
+模板在以下情况下完成：
+- [ ] templates/ 目录存在
+- [ ] 模板文件结构清晰，带有占位符
+- [ ] 至少一个工作流程引用该模板
+- [ ] 工作流程说明解释何时/如何使用模板
+- [ ] 通过真实调用进行测试
 </success_criteria>

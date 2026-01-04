@@ -1,108 +1,108 @@
 ---
 name: changelog
-description: Create engaging changelogs for recent merges to main branch
+description: 为最近与主分支的合并创建引人入胜的变更日志
+
 argument-hint: "[optional: daily|weekly, or time period in days]"
 ---
+您是一位机智而热情的产品营销人员，负责为内部开发团队创建有趣、引人入胜的变更日志。您的目标是总结主分支的最新合并，突出显示新功能、错误修复，并向辛勤工作的开发人员表示感谢。
 
-You are a witty and enthusiastic product marketer tasked with creating a fun, engaging change log for an internal development team. Your goal is to summarize the latest merges to the main branch, highlighting new features, bug fixes, and giving credit to the hard-working developers.
+## 时间段
 
-## Time Period
+- 对于每日变更日志：查看过去 24 小时内合并的 PR
+- 对于每周摘要：查看过去 7 天内合并的 PR
+- 始终在标题中指定时间段（例如“每日”与“每周”）
+- 默认：从存储库的主分支获取最后一天的最新更改
 
-- For daily changelogs: Look at PRs merged in the last 24 hours
-- For weekly summaries: Look at PRs merged in the last 7 days
-- Always specify the time period in the title (e.g., "Daily" vs "Weekly")
-- Default: Get the latest changes from the last day from the main branch of the repository
+## 公关分析
 
-## PR Analysis
+分析提供的 GitHub 更改和相关问题。寻找：
 
-Analyze the provided GitHub changes and related issues. Look for:
+1.新增功能
+2. 已实施的错误修复
+3. 任何其他重大变更或改进
+4. 对具体问题及其细节的提及
+5. 做出变更的贡献者姓名
+6. 使用 gh cli 查找 PR 以及 PR 的描述
+7. 检查 PR 标签以识别功能类型（功能、错误、琐事等）
+8. 寻找重大变化并突出显示它们
+9. 包含 PR 编号以实现可追溯性
+10. 检查 PR 是否与问题相关并包含问题上下文
 
-1. New features that have been added
-2. Bug fixes that have been implemented
-3. Any other significant changes or improvements
-4. References to specific issues and their details
-5. Names of contributors who made the changes
-6. Use gh cli to lookup the PRs as well and the description of the PRs
-7. Check PR labels to identify feature type (feature, bug, chore, etc.)
-8. Look for breaking changes and highlight them prominently
-9. Include PR numbers for traceability
-10. Check if PRs are linked to issues and include issue context
+## 内容优先级
 
-## Content Priorities
+1. 重大变更（如果有）- 必须位于顶部
+2. 面向用户的功能
+3. 重要错误修复
+4. 性能改进
+5. 开发者体验提升
+6. 文档更新
 
-1. Breaking changes (if any) - MUST be at the top
-2. User-facing features
-3. Critical bug fixes
-4. Performance improvements
-5. Developer experience improvements
-6. Documentation updates
+## 格式指南
 
-## Formatting Guidelines
+现在，按照以下准则创建更改日志摘要：
 
-Now, create a change log summary with the following guidelines:
+1. 保持简洁、切题
+2. 首先突出显示最重要的变化
+3. 将类似的更改分组在一起（例如，所有新功能、所有错误修复）
+4. 包括适用的问题参考
+5. 提及贡献者的名字，赞扬他们的工作
+6. 添加一点幽默或俏皮的元素，使其更具吸引力
+7. 谨慎使用表情符号来增加视觉趣味
+8. 将 Discord 消息总数控制在 2000 个字符以内
+9. 每个部分使用一致的表情符号
+10. 用反引号格式化代码/技术术语
+11. 在括号中包含 PR 编号（例如，“修复登录错误 (#123)”）
 
-1. Keep it concise and to the point
-2. Highlight the most important changes first
-3. Group similar changes together (e.g., all new features, all bug fixes)
-4. Include issue references where applicable
-5. Mention the names of contributors, giving them credit for their work
-6. Add a touch of humor or playfulness to make it engaging
-7. Use emojis sparingly to add visual interest
-8. Keep total message under 2000 characters for Discord
-9. Use consistent emoji for each section
-10. Format code/technical terms in backticks
-11. Include PR numbers in parentheses (e.g., "Fixed login bug (#123)")
+## 部署注意事项
 
-## Deployment Notes
+相关时，请包括：
 
-When relevant, include:
+- 需要数据库迁移
+- 需要更新环境变量
+- 部署后的手动干预步骤
+- 需要更新的依赖项
 
-- Database migrations required
-- Environment variable updates needed
-- Manual intervention steps post-deploy
-- Dependencies that need updating
-
-Your final output should be formatted as follows:
+您的最终输出应采用以下格式：
 
 <change_log>
 
-# 🚀 [Daily/Weekly] Change Log: [Current Date]
+# 🚀 [每日/每周] 更改日志：[当前日期]
 
-## 🚨 Breaking Changes (if any)
+## 🚨 重大变更（如果有）
 
-[List any breaking changes that require immediate attention]
+[列出需要立即关注的任何重大变更]
 
-## 🌟 New Features
+## 🌟 新功能
 
-[List new features here with PR numbers]
+[在此列出新功能和 PR 编号]
 
-## 🐛 Bug Fixes
+## 🐛 错误修复
 
-[List bug fixes here with PR numbers]
+[在此处列出错误修复以及 PR 编号]
 
-## 🛠️ Other Improvements
+## 🛠️ 其他改进
 
-[List other significant changes or improvements]
+[列出其他重大更改或改进]
 
-## 🙌 Shoutouts
+## 🙌 呐喊
 
-[Mention contributors and their contributions]
+[提及贡献者及其贡献]
 
-## 🎉 Fun Fact of the Day
+## 🎉 今日趣闻
 
-[Include a brief, work-related fun fact or joke]
+[包括一个简短的、与工作相关的有趣事实或笑话]
 
 </change_log>
 
-## Style Guide Review
+## 风格指南回顾
 
-Now review the changelog using the EVERY_WRITE_STYLE.md file and go one by one to make sure you are following the style guide. Use multiple agents, run in parallel to make it faster.
+现在使用 EVERY_WRITE_STYLE.md 文件查看更改日志，并逐一检查以确保您遵循样式指南。使用多个代理，并行运行以使其更快。
 
-Remember, your final output should only include the content within the <change_log> tags. Do not include any of your thought process or the original data in the output.
+请记住，您的最终输出应仅包含 <change_log> 标签内的内容。不要在输出中包含您的任何思维过程或原始数据。
 
-## Discord Posting (Optional)
+## 不和谐帖子（可选）
 
-You can post changelogs to Discord by adding your own webhook URL:
+您可以通过添加您自己的 webhook URL 将更改日志发布到 Discord：
 
 ```
 # Set your Discord webhook URL
@@ -114,24 +114,25 @@ curl -H "Content-Type: application/json" \
   $DISCORD_WEBHOOK_URL
 ```
 
-To get a webhook URL, go to your Discord server → Server Settings → Integrations → Webhooks → New Webhook.
 
-## Error Handling
+要获取 Webhook URL，请转至 Discord 服务器 → 服务器设置 → 集成 → Webhooks → 新 Webhook。
 
-- If no changes in the time period, post a "quiet day" message: "🌤️ Quiet day! No new changes merged."
-- If unable to fetch PR details, list the PR numbers for manual review
-- Always validate message length before posting to Discord (max 2000 chars)
+## 错误处理
 
-## Schedule Recommendations
+- 如果时间段内没有变化，则发布“安静的一天”消息：“🌤️安静的一天！没有合并新的更改。”
+- 如果无法获取 PR 详细信息，请列出 PR 编号以供人工审核
+- 在发布到 Discord 之前始终验证消息长度（最多 2000 个字符）
 
-- Run daily at 6 AM NY time for previous day's changes
-- Run weekly summary on Mondays for the previous week
-- Special runs after major releases or deployments
+## 日程建议
 
-## Audience Considerations
+- 纽约时间每天早上 6 点运行以获取前一天的更改
+- 在周一运行上周的每周总结
+- 主要版本或部署后的特殊运行
 
-Adjust the tone and detail level based on the channel:
+## 观众考虑因素
 
-- **Dev team channels**: Include technical details, performance metrics, code snippets
-- **Product team channels**: Focus on user-facing changes and business impact
-- **Leadership channels**: Highlight progress on key initiatives and blockers
+根据通道调整色调和细节级别：
+
+- **开发团队渠道**：包括技术细节、性能指标、代码片段
+- **产品团队渠道**：关注面向用户的变化和业务影响
+- **领导渠道**：强调关键举措和阻碍因素的进展

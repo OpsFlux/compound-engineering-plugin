@@ -1,6 +1,6 @@
-# Module Organization Patterns
+# 模块组织模式
 
-## Simple Gem Layout
+## 简单的 Gem 布局
 
 ```
 lib/
@@ -11,7 +11,8 @@ lib/
     └── version.rb      # VERSION constant only
 ```
 
-## Complex Gem Layout (PgHero pattern)
+
+## 复杂的 Gem 布局（PgHero 模式）
 
 ```
 lib/
@@ -27,9 +28,10 @@ lib/
         └── replication.rb
 ```
 
-## Method Decomposition Pattern
 
-Break large classes into includable modules by feature:
+## 方法分解模式
+
+按功能将大类分解为可包含的模块：
 
 ```ruby
 # lib/pghero/database.rb
@@ -58,9 +60,10 @@ module PgHero
 end
 ```
 
-## Version File Pattern
 
-Keep version.rb minimal:
+## 版本文件模式
+
+保持 version.rb 最小：
 
 ```ruby
 # lib/gemname/version.rb
@@ -69,7 +72,8 @@ module GemName
 end
 ```
 
-## Require Order in Entry Point
+
+## 需要在入口点下订单
 
 ```ruby
 # lib/searchkick.rb
@@ -91,9 +95,10 @@ require_relative "searchkick/version"
 require_relative "searchkick/railtie" if defined?(Rails)
 ```
 
-## Autoload vs Require
 
-Kane uses explicit `require_relative`, not autoload:
+## 自动加载与需要
+
+Kane 使用显式的 `require_relative`，而不是自动加载：
 
 ```ruby
 # CORRECT
@@ -105,9 +110,10 @@ autoload :Model, "gemname/model"
 autoload :Query, "gemname/query"
 ```
 
-## Comments Style
 
-Minimal section headers only:
+## 评论风格
+
+仅最小节标题：
 
 ```ruby
 # dependencies
@@ -119,3 +125,4 @@ require_relative "adapters/postgresql_adapter"
 # modules
 require_relative "migration"
 ```
+

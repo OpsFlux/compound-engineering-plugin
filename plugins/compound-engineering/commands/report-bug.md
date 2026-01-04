@@ -1,44 +1,44 @@
 ---
 name: report-bug
-description: Report a bug in the compound-engineering plugin
+description: 报告复合工程插件中的错误
+
 argument-hint: "[optional: brief description of the bug]"
 ---
+# 报告复合工程插件错误
 
-# Report a Compounding Engineering Plugin Bug
+报告使用复合工程插件时遇到的错误。此命令收集结构化信息并为维护者创建 GitHub 问题。
 
-Report bugs encountered while using the compound-engineering plugin. This command gathers structured information and creates a GitHub issue for the maintainer.
+## 第 1 步：收集错误信息
 
-## Step 1: Gather Bug Information
+使用 AskUserQuestion 工具收集以下信息：
 
-Use the AskUserQuestion tool to collect the following information:
+**问题 1：Bug 类别**
+- 您遇到什么类型的问题？
+- 选项：代理不工作、命令不工作、技能不工作、MCP 服务器问题、安装问题、其他
 
-**Question 1: Bug Category**
-- What type of issue are you experiencing?
-- Options: Agent not working, Command not working, Skill not working, MCP server issue, Installation problem, Other
+**问题2：特定组件**
+- 哪个特定组件受到影响？
+- 询问代理、命令、技能或 MCP 服务器的名称
 
-**Question 2: Specific Component**
-- Which specific component is affected?
-- Ask for the name of the agent, command, skill, or MCP server
+**问题 3：发生了什么（实际行为）**
+- 问：“当你使用这个组件时发生了什么？”
+- 获得实际行为的清晰描述
 
-**Question 3: What Happened (Actual Behavior)**
-- Ask: "What happened when you used this component?"
-- Get a clear description of the actual behavior
+**问题 4：应该发生什么（预期行为）**
+- 问：“你预计会发生什么？”
+- 获得预期行为的清晰描述
 
-**Question 4: What Should Have Happened (Expected Behavior)**
-- Ask: "What did you expect to happen instead?"
-- Get a clear description of expected behavior
+**问题 5：重现步骤**
+- 问：“在错误发生之前您采取了哪些步骤？”
+- 获取复制步骤
 
-**Question 5: Steps to Reproduce**
-- Ask: "What steps did you take before the bug occurred?"
-- Get reproduction steps
+**问题 6：错误消息**
+- 询问：“您看到任何错误消息吗？如果有，请分享。”
+- 捕获任何错误输出
 
-**Question 6: Error Messages**
-- Ask: "Did you see any error messages? If so, please share them."
-- Capture any error output
+## 步骤2：收集环境信息
 
-## Step 2: Collect Environment Information
-
-Automatically gather:
+自动采集：
 ```bash
 # Get plugin version
 cat ~/.claude/plugins/installed_plugins.json 2>/dev/null | grep -A5 "compound-engineering" | head -10 || echo "Plugin info not found"
@@ -50,9 +50,10 @@ claude --version 2>/dev/null || echo "Claude CLI version unknown"
 uname -a
 ```
 
-## Step 3: Format the Bug Report
 
-Create a well-structured bug report with:
+## 步骤 3：格式化错误报告
+
+使用以下内容创建结构良好的错误报告：
 
 ```markdown
 ## Bug Description
@@ -83,7 +84,8 @@ Create a well-structured bug report with:
 ## Error Messages
 
 ```
-[Any error output]
+
+[任何错误输出]
 ```
 
 ## Additional Context
@@ -94,9 +96,10 @@ Create a well-structured bug report with:
 *Reported via `/report-bug` command*
 ```
 
-## Step 4: Create GitHub Issue
 
-Use the GitHub CLI to create the issue:
+## 步骤 4：创建 GitHub 问题
+
+使用 GitHub CLI 创建问题：
 
 ```bash
 gh issue create \
@@ -106,7 +109,8 @@ gh issue create \
   --label "bug,compound-engineering"
 ```
 
-**Note:** If labels don't exist, create without labels:
+
+**注意：** 如果标签不存在，则创建无标签：
 ```bash
 gh issue create \
   --repo EveryInc/every-marketplace \
@@ -114,14 +118,15 @@ gh issue create \
   --body "[Formatted bug report]"
 ```
 
-## Step 5: Confirm Submission
 
-After the issue is created:
-1. Display the issue URL to the user
-2. Thank them for reporting the bug
-3. Let them know the maintainer (Kieran Klaassen) will be notified
+## 步骤5：确认提交
 
-## Output Format
+创建问题后：
+1.向用户显示问题URL
+2. 感谢他们报告错误
+3. 让他们知道维护者 (Kieran Klaassen) 将收到通知
+
+## 输出格式
 
 ```
 ✅ Bug report submitted successfully!
@@ -133,18 +138,19 @@ Thank you for helping improve the compound-engineering plugin!
 The maintainer will review your report and respond as soon as possible.
 ```
 
-## Error Handling
 
-- If `gh` CLI is not authenticated: Prompt user to run `gh auth login` first
-- If issue creation fails: Display the formatted report so user can manually create the issue
-- If required information is missing: Re-prompt for that specific field
+## 错误处理
 
-## Privacy Notice
+- 如果`gh` CLI未经过身份验证：提示用户首先运行`gh auth login`
+- 如果问题创建失败：显示格式化报告，以便用户可以手动创建问题
+- 如果缺少所需信息：重新提示该特定字段
 
-This command does NOT collect:
-- Personal information
-- API keys or credentials
-- Private code from your projects
-- File paths beyond basic OS info
+## 隐私声明
 
-Only technical information about the bug is included in the report.
+此命令不收集：
+- 个人信息
+- API 密钥或凭证
+- 您项目中的私有代码
+- 超出基本操作系统信息的文件路径
+
+报告中仅包含有关该错误的技术信息。

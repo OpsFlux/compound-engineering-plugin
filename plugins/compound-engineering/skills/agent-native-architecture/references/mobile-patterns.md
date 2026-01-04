@@ -1,13 +1,13 @@
 <overview>
-Mobile agent-native apps face unique challenges: background execution limits, system permissions, network constraints, and cost sensitivity. This guide covers patterns for building robust agent experiences on iOS and Android.
+移动代理本机应用程序面临着独特的挑战：后台执行限制、系统权限、网络限制和成本敏感性。本指南涵盖了在 iOS 和 Android 上构建强大的代理体验的模式。
 </overview>
 
 <background_execution>
-## Background Execution & Resumption
+## 后台执行和恢复
 
-Mobile apps can be suspended or terminated at any time. Agents must handle this gracefully.
+移动应用程序可以随时暂停或终止。代理必须妥善处理此事。
 
-### The Challenge
+### 挑战
 
 ```
 User starts research agent
@@ -21,9 +21,10 @@ iOS suspends your app
 Agent is mid-execution... what happens?
 ```
 
-### Checkpoint/Resume Pattern
 
-Save agent state before backgrounding, restore on foreground:
+### 检查点/恢复模式
+
+在后台保存代理状态，在前台恢复：
 
 ```swift
 class AgentOrchestrator: ObservableObject {
@@ -70,7 +71,8 @@ class AgentOrchestrator: ObservableObject {
 }
 ```
 
-### State Machine for Agent Lifecycle
+
+### 代理生命周期的状态机
 
 ```swift
 enum AgentState {
@@ -103,9 +105,10 @@ class AgentSession: ObservableObject {
 }
 ```
 
-### Background Task Extension (iOS)
 
-Request extra time when backgrounded during critical operations:
+### 后台任务扩展 (iOS)
+
+在关键操作期间处于后台时请求额外时间：
 
 ```swift
 class AgentOrchestrator {
@@ -135,9 +138,10 @@ class AgentOrchestrator {
 }
 ```
 
-### User Communication
 
-Let users know what's happening:
+### 用户沟通
+
+让用户知道发生了什么：
 
 ```swift
 struct AgentStatusView: View {
@@ -159,26 +163,27 @@ struct AgentStatusView: View {
     }
 }
 ```
+
 </background_execution>
 
 <permissions>
-## Permission Handling
+## 权限处理
 
-Mobile agents may need access to system resources. Handle permission requests gracefully.
+移动代理可能需要访问系统资源。优雅地处理权限请求。
 
-### Common Permissions
+### 常用权限
 
-| Resource | iOS Permission | Use Case |
-|----------|---------------|----------|
-| Photo Library | PHPhotoLibrary | Profile generation from photos |
-| Files | Document picker | Reading user documents |
-| Camera | AVCaptureDevice | Scanning book covers |
-| Location | CLLocationManager | Location-aware recommendations |
-| Network | (automatic) | Web search, API calls |
+|资源| iOS 权限 |使用案例|
+|----------|--------------|----------|
+|图片库| PH照片库 |从照片生成个人资料 |
+|文件|文档选择器 |阅读用户文档 |
+|相机 | AV 捕获设备 |扫描书籍封面|
+|地点 | CL位置管理器|位置感知推荐 |
+|网络| （自动）|网页搜索、API 调用 |
 
-### Permission-Aware Tools
+### 权限感知工具
 
-Check permissions before executing:
+执行前检查权限：
 
 ```swift
 struct PhotoTools {
@@ -221,9 +226,10 @@ struct PhotoTools {
 }
 ```
 
-### Graceful Degradation
 
-When permissions aren't granted, offer alternatives:
+### 优雅的降级
+
+如果未授予权限，请提供替代方案：
 
 ```swift
 func readPhotos() async -> ToolResult {
@@ -247,9 +253,10 @@ func readPhotos() async -> ToolResult {
 }
 ```
 
-### Permission Request Timing
 
-Don't request permissions until needed:
+### 权限请求时序
+
+在需要之前不要请求权限：
 
 ```swift
 // BAD: Request all permissions at launch
@@ -271,16 +278,17 @@ tool("analyze_book_cover", async ({ image }) => {
     }
 })
 ```
+
 </permissions>
 
 <cost_awareness>
-## Cost-Aware Design
+## 成本意识设计
 
-Mobile users may be on cellular data or concerned about API costs. Design agents to be efficient.
+移动用户可能使用蜂窝数据或担心 API 成本。设计高效的代理。
 
-### Model Tier Selection
+### 模型层选择
 
-Use the cheapest model that achieves the outcome:
+使用实现结果的最便宜的模型：
 
 ```swift
 enum ModelTier {
@@ -307,9 +315,10 @@ let agentConfigs: [AgentType: ModelTier] = [
 ]
 ```
 
-### Token Budgets
 
-Limit tokens per agent session:
+### 代币预算
+
+限制每个代理会话的令牌：
 
 ```swift
 struct AgentConfig {
@@ -346,9 +355,10 @@ class AgentSession {
 }
 ```
 
-### Network-Aware Execution
 
-Defer heavy operations to WiFi:
+### 网络感知执行
+
+将繁重的操作推迟到 WiFi：
 
 ```swift
 class NetworkMonitor: ObservableObject {
@@ -387,9 +397,10 @@ class AgentOrchestrator {
 }
 ```
 
-### Batch API Calls
 
-Combine multiple small requests:
+### 批量API调用
+
+合并多个小请求：
 
 ```swift
 // BAD: Many small API calls
@@ -402,9 +413,10 @@ let bookList = books.map { $0.title }.joined(separator: ", ")
 await agent.chat("Summarize each of these books briefly: \(bookList)")
 ```
 
-### Caching
 
-Cache expensive operations:
+### 缓存
+
+缓存昂贵的操作：
 
 ```swift
 class ResearchCache {
@@ -444,9 +456,10 @@ tool("web_search", async ({ query, bookId }) => {
 })
 ```
 
-### Cost Visibility
 
-Show users what they're spending:
+### 成本可见性
+
+向用户展示他们的支出：
 
 ```swift
 struct AgentCostView: View {
@@ -472,12 +485,13 @@ struct AgentCostView: View {
     }
 }
 ```
+
 </cost_awareness>
 
 <offline_handling>
-## Offline Graceful Degradation
+## 离线优雅降级
 
-Handle offline scenarios gracefully:
+优雅地处理离线场景：
 
 ```swift
 class ConnectivityAwareAgent {
@@ -507,9 +521,10 @@ class ConnectivityAwareAgent {
 }
 ```
 
-### Offline-First Tools
 
-Some tools should work entirely offline:
+### 离线优先工具
+
+有些工具应该完全离线工作：
 
 ```swift
 let offlineTools: Set<String> = [
@@ -531,9 +546,10 @@ let hybridTools: Set<String> = [
 ]
 ```
 
-### Queued Actions
 
-Queue actions that require connectivity:
+### 排队操作
+
+需要连接的队列操作：
 
 ```swift
 class OfflineQueue: ObservableObject {
@@ -562,12 +578,13 @@ class OfflineQueue: ObservableObject {
     }
 }
 ```
+
 </offline_handling>
 
 <battery_awareness>
-## Battery-Aware Execution
+## 电池感知执行
 
-Respect device battery state:
+尊重设备电池状态：
 
 ```swift
 class BatteryMonitor: ObservableObject {
@@ -621,38 +638,39 @@ class AgentOrchestrator {
     }
 }
 ```
+
 </battery_awareness>
 
 <checklist>
-## Mobile Agent-Native Checklist
+## 移动代理-本机检查表
 
-**Background Execution:**
-- [ ] Checkpoint/resume implemented for all agent sessions
-- [ ] State machine for agent lifecycle (idle, running, backgrounded, etc.)
-- [ ] Background task extension for critical saves
-- [ ] User-visible status for backgrounded agents
+**后台执行：**
+- [ ] 为所有代理会话实施检查点/恢复
+- [ ] 代理生命周期的状态机（空闲、运行、后台等）
+- [ ] 关键保存的后台任务扩展
+- [ ] 后台代理的用户可见状态
 
-**Permissions:**
-- [ ] Permissions requested only when needed, not at launch
-- [ ] Graceful degradation when permissions denied
-- [ ] Clear error messages with Settings deep links
-- [ ] Alternative paths when permissions unavailable
+**权限：**
+- [ ] 仅在需要时请求权限，而不是在启动时请求
+- [ ] 权限被拒绝时优雅降级
+- [ ] 通过设置深层链接清除错误消息
+- [ ] 权限不可用时的替代路径
 
-**Cost Awareness:**
-- [ ] Model tier matched to task complexity
-- [ ] Token budgets per session
-- [ ] Network-aware (defer heavy work to WiFi)
-- [ ] Caching for expensive operations
-- [ ] Cost visibility to users
+**成本意识：**
+- [ ] 模型层与任务复杂性相匹配
+- [ ] 每个会话的代币预算
+- [ ] 网络感知（将繁重的工作推迟到 WiFi）
+- [ ] 缓存昂贵的操作
+- [ ] 用户的成本可见性
 
-**Offline Handling:**
-- [ ] Offline-capable tools identified
-- [ ] Graceful degradation for online-only features
-- [ ] Action queue for sync when online
-- [ ] Clear user communication about offline state
+**离线处理：**
+- [ ] 识别出具有离线功能的工具
+- [ ] 仅在线功能的优雅降级
+- [ ] 在线同步的操作队列
+- [ ] 清除有关离线状态的用户通信
 
-**Battery Awareness:**
-- [ ] Battery monitoring for heavy operations
-- [ ] Low power mode detection
-- [ ] Defer or downgrade based on battery state
+**电池意识：**
+- [ ] 重型操作的电池监控
+- [ ] 低功耗模式检测
+- [ ] 根据电池状态推迟或降级
 </checklist>

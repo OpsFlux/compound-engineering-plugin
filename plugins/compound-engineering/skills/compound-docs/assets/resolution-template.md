@@ -12,41 +12,40 @@ resolution_type: [code_fix|migration|config_change|test_fix|dependency_update|en
 severity: [critical|high|medium|low]
 tags: [keyword1, keyword2, keyword3]
 ---
+# 故障排除：【清除问题标题】
 
-# Troubleshooting: [Clear Problem Title]
+## 问题
+[1-2 句话清楚地描述问题和用户经历的情况]
 
-## Problem
-[1-2 sentence clear description of the issue and what the user experienced]
+## 环境
+- 模块：[名称或“CORA 系统”]
+- Rails 版本：[例如 7.1.2]
+- 受影响的组件：[例如，“电子邮件处理模型”、“简要系统服务”、“身份验证控制器”]
+- 日期：[问题解决时的 YYYY-MM-DD]
 
-## Environment
-- Module: [Name or "CORA system"]
-- Rails Version: [e.g., 7.1.2]
-- Affected Component: [e.g., "Email Processing model", "Brief System service", "Authentication controller"]
-- Date: [YYYY-MM-DD when this was solved]
+## 症状
+- [可观察到的症状 1 - 用户所看到/经历的]
+- [观察到的症状 2 - 错误消息、视觉问题、意外行为]
+- [根据需要继续 - 具体]
 
-## Symptoms
-- [Observable symptom 1 - what the user saw/experienced]
-- [Observable symptom 2 - error messages, visual issues, unexpected behavior]
-- [Continue as needed - be specific]
+## 什么不起作用
 
-## What Didn't Work
+**尝试的解决方案 1：** [尝试过的内容的描述]
+- **为什么失败：** [这没有解决问题的技术原因]
 
-**Attempted Solution 1:** [Description of what was tried]
-- **Why it failed:** [Technical reason this didn't solve the problem]
+**尝试的解决方案2：** [第二次尝试的说明]
+- **为什么失败：** [技术原因]
 
-**Attempted Solution 2:** [Description of second attempt]
-- **Why it failed:** [Technical reason]
+[继续进行所有无效的重要尝试]
 
-[Continue for all significant attempts that DIDN'T work]
+[如果没有先尝试其他方法，请写：]
+**直接解决方案：** 问题在第一次尝试时就被识别并修复。
 
-[If nothing else was attempted first, write:]
-**Direct solution:** The problem was identified and fixed on the first attempt.
+## 解决方案
 
-## Solution
+[实际有效的修复 - 提供具体细节]
 
-[The actual fix that worked - provide specific details]
-
-**Code changes** (if applicable):
+**代码更改**（如果适用）：
 ```ruby
 # Before (broken):
 [Show the problematic code]
@@ -55,39 +54,42 @@ tags: [keyword1, keyword2, keyword3]
 [Show the corrected code with explanation]
 ```
 
-**Database migration** (if applicable):
+
+**数据库迁移**（如果适用）：
 ```ruby
 # Migration change:
 [Show what was changed in the migration]
 ```
 
-**Commands run** (if applicable):
+
+**运行命令**（如果适用）：
 ```bash
 # Steps taken to fix:
 [Commands or actions]
 ```
 
-## Why This Works
 
-[Technical explanation of:]
-1. What was the ROOT CAUSE of the problem?
-2. Why does the solution address this root cause?
-3. What was the underlying issue (API misuse, configuration error, Rails version issue, etc.)?
+## 为什么这有效
 
-[Be detailed enough that future developers understand the "why", not just the "what"]
+[技术说明：]
+1. 问题的根本原因是什么？
+2. 为什么该解决方案能够解决这个根本原因？
+3. 根本问题是什么（API 误用、配置错误、Rails 版本问题等）？
 
-## Prevention
+[足够详细，以便未来的开发人员了解“为什么”，而不仅仅是“什么”]
 
-[How to avoid this problem in future CORA development:]
-- [Specific coding practice, check, or pattern to follow]
-- [What to watch out for]
-- [How to catch this early]
+## 预防
 
-## Related Issues
+【今后CORA开发中如何避免这个问题：】
+- [具体的编码实践、检查或遵循的模式]
+- [注意事项]
+- [如何尽早赶上]
 
-[If any similar problems exist in docs/solutions/, link to them:]
+## 相关问题
+
+[如果 docs/solutions/ 中存在任何类似问题，请链接到它们：]
 - See also: [another-related-issue.md](../category/another-related-issue.md)
-- Similar to: [related-problem.md](../category/related-problem.md)
+- 类似于：[相关问题.md](../category/related-problem.md)
 
-[If no related issues, write:]
-No related issues documented yet.
+[如果没有相关问题，请写：]
+尚未记录相关问题。

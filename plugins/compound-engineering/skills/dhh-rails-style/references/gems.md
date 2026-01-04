@@ -1,51 +1,53 @@
-# Gems - DHH Rails Style
+# Gems - DHH 导轨风格
 
 <what_they_use>
-## What 37signals Uses
+## 37signals 使用什么
 
-**Core Rails stack:**
-- turbo-rails, stimulus-rails, importmap-rails
-- propshaft (asset pipeline)
+**核心Rails堆栈：**
+- 涡轮轨道、刺激轨道、导入地图轨道
+- 传动轴（资产管道）
 
-**Database-backed services (Solid suite):**
-- solid_queue - background jobs
-- solid_cache - caching
-- solid_cable - WebSockets/Action Cable
+**数据库支持的服务（Solid 套件）：**
+-solid_queue - 后台作业
+-solid_cache-缓存
+-solid_cable - WebSockets/动作电缆
 
-**Authentication & Security:**
-- bcrypt (for any password hashing needed)
+**身份验证和安全性：**
+- bcrypt（用于任何需要的密码散列）
 
-**Their own gems:**
-- geared_pagination (cursor-based pagination)
-- lexxy (rich text editor)
-- mittens (mailer utilities)
+**他们自己的宝石：**
+- geared_pagination（基于光标的分页）
+- lexxy（富文本编辑器）
+- 手套（邮寄工具）
 
-**Utilities:**
-- rqrcode (QR code generation)
-- redcarpet + rouge (Markdown rendering)
-- web-push (push notifications)
+**公用事业：**
+- rqrcode（二维码生成）
+- 红地毯 + 胭脂（Markdown 渲染）
+- 网络推送（推送通知）
 
-**Deployment & Operations:**
-- kamal (Docker deployment)
-- thruster (HTTP/2 proxy)
-- mission_control-jobs (job monitoring)
-- autotuner (GC tuning)
+**部署和操作：**
+-kamal（Docker 部署）
+- 推进器（HTTP/2 代理）
+- Mission_control-jobs（作业监控）
+- 自动调谐器（GC 调谐）
 </what_they_use>
 
 <what_they_avoid>
-## What They Deliberately Avoid
+## 他们故意避免什么
 
-**Authentication:**
+**身份验证：**
 ```
 devise → Custom ~150-line auth
 ```
-Why: Full control, no password liability with magic links, simpler.
 
-**Authorization:**
+原因：完全控制，没有密码责任，带有魔术链接，更简单。
+
+**授权：**
 ```
 pundit/cancancan → Simple role checks in models
 ```
-Why: Most apps don't need policy objects. A method on the model suffices:
+
+原因：大多数应用程序不需要策略对象。模型上的方法就足够了：
 ```ruby
 class Board < ApplicationRecord
   def editable_by?(user)
@@ -54,83 +56,96 @@ class Board < ApplicationRecord
 end
 ```
 
-**Background Jobs:**
+
+**后台工作：**
 ```
 sidekiq → Solid Queue
 ```
-Why: Database-backed means no Redis, same transactional guarantees.
 
-**Caching:**
+原因：数据库支持意味着没有 Redis，但事务保证相同。
+
+**缓存：**
 ```
 redis → Solid Cache
 ```
-Why: Database is already there, simpler infrastructure.
 
-**Search:**
+原因：数据库已经存在，基础设施更简单。
+
+**搜索：**
 ```
 elasticsearch → Custom sharded search
 ```
-Why: Built exactly what they need, no external service dependency.
 
-**View Layer:**
+原因：完全按照他们的需要构建，不依赖外部服务。
+
+**视图层：**
 ```
 view_component → Standard partials
 ```
-Why: Partials work fine. ViewComponents add complexity without clear benefit for their use case.
 
-**API:**
+为什么：部分工作正常。 ViewComponents 增加了复杂性，但对其用例没有明显的好处。
+
+**API：**
 ```
 GraphQL → REST with Turbo
 ```
-Why: REST is sufficient when you control both ends. GraphQL complexity not justified.
 
-**Factories:**
+原因：当您控制两端时，REST 就足够了。 GraphQL 的复杂性不合理。
+
+**工厂：**
 ```
 factory_bot → Fixtures
 ```
-Why: Fixtures are simpler, faster, and encourage thinking about data relationships upfront.
 
-**Service Objects:**
+原因：装置更简单、更快，并且鼓励预先考虑数据关系。
+
+**服务对象：**
 ```
 Interactor, Trailblazer → Fat models
 ```
-Why: Business logic stays in models. Methods like `card.close` instead of `CardCloser.call(card)`.
 
-**Form Objects:**
+原因：业务逻辑保留在模型中。类似 `card.close` 的方法而不是 `CardCloser.call(card)`。
+
+**表单对象：**
 ```
 Reform, dry-validation → params.expect + model validations
 ```
-Why: Rails 7.1's `params.expect` is clean enough. Contextual validations on model.
 
-**Decorators:**
+原因：Rails 7.1 的`params.expect` 足够干净。模型的上下文验证。
+
+**装饰器：**
 ```
 Draper → View helpers + partials
 ```
-Why: Helpers and partials are simpler. No decorator indirection.
 
-**CSS:**
+原因：助手和部分更简单。没有装饰器间接。
+
+**CSS：**
 ```
 Tailwind, Sass → Native CSS
 ```
-Why: Modern CSS has nesting, variables, layers. No build step needed.
 
-**Frontend:**
+原因：现代 CSS 有嵌套、变量、层。无需构建步骤。
+
+**前端：**
 ```
 React, Vue, SPAs → Turbo + Stimulus
 ```
-Why: Server-rendered HTML with sprinkles of JS. SPA complexity not justified.
 
-**Testing:**
+原因：服务器渲染的 HTML，带有少量 JS。 SPA 复杂性不合理。
+
+**测试：**
 ```
 RSpec → Minitest
 ```
-Why: Simpler, faster boot, less DSL magic, ships with Rails.
+
+原因：更简单、更快的启动、更少的 DSL 魔力，随 Rails 一起提供。
 </what_they_avoid>
 
 <testing_philosophy>
-## Testing Philosophy
+## 测试理念
 
-**Minitest** - simpler, faster:
+**Minitest** - 更简单、更快：
 ```ruby
 class CardTest < ActiveSupport::TestCase
   test "closing creates closure" do
@@ -143,7 +158,8 @@ class CardTest < ActiveSupport::TestCase
 end
 ```
 
-**Fixtures** - loaded once, deterministic:
+
+**夹具** - 加载一次，确定性：
 ```yaml
 # test/fixtures/cards.yml
 open_card:
@@ -157,7 +173,8 @@ closed_card:
   creator: bob
 ```
 
-**Dynamic timestamps** with ERB:
+
+**带有 ERB 的动态时间戳**：
 ```yaml
 recent:
   title: Recent
@@ -168,7 +185,8 @@ old:
   created_at: <%= 1.month.ago %>
 ```
 
-**Time travel** for time-dependent tests:
+
+**时间旅行**用于时间相关测试：
 ```ruby
 test "expires after 15 minutes" do
   magic_link = MagicLink.create!(user: users(:alice))
@@ -179,7 +197,8 @@ test "expires after 15 minutes" do
 end
 ```
 
-**VCR** for external APIs:
+
+**VCR** 用于外部 API：
 ```ruby
 VCR.use_cassette("stripe/charge") do
   charge = Stripe::Charge.create(amount: 1000)
@@ -187,44 +206,45 @@ VCR.use_cassette("stripe/charge") do
 end
 ```
 
-**Tests ship with features** - same commit, not before or after.
+
+**测试附带功能** - 相同的提交，而不是之前或之后。
 </testing_philosophy>
 
 <decision_framework>
-## Decision Framework
+## 决策框架
 
-Before adding a gem, ask:
+在添加 gem 之前，询问：
 
-1. **Can vanilla Rails do this?**
-   - ActiveRecord can do most things Sequel can
-   - ActionMailer handles email fine
-   - ActiveJob works for most job needs
+1. **普通 Rails 可以做到这一点吗？**
+   - ActiveRecord 可以做 Sequel 可以做的大部分事情
+   - ActionMailer 可以很好地处理电子邮件
+   - ActiveJob 适合大多数工作需求
 
-2. **Is the complexity worth it?**
-   - 150 lines of custom code vs. 10,000-line gem
-   - You'll understand your code better
-   - Fewer upgrade headaches
+2. **复杂性值得吗？**
+   - 150 行自定义代码与 10,000 行 gem
+   - 你会更好地理解你的代码
+   - 更少的升级难题
 
-3. **Does it add infrastructure?**
-   - Redis? Consider database-backed alternatives
-   - External service? Consider building in-house
-   - Simpler infrastructure = fewer failure modes
+3. **它是否增加了基础设施？**
+   - 雷迪斯？考虑数据库支持的替代方案
+   - 外部服务？考虑内部建设
+   - 更简单的基础设施=更少的故障模式
 
-4. **Is it from someone you trust?**
-   - 37signals gems: battle-tested at scale
-   - Well-maintained, focused gems: usually fine
-   - Kitchen-sink gems: probably overkill
+4. **是来自您信任的人吗？**
+   - 37 个信号宝石：经过大规模战斗测试
+   - 保养良好、专注的宝石：通常都很好
+   - 厨房水槽宝石：可能有点矫枉过正
 
-**The philosophy:**
-> "Build solutions before reaching for gems."
+**理念：**
+> “在获取宝石之前先制定解决方案。”
 
-Not anti-gem, but pro-understanding. Use gems when they genuinely solve a problem you have, not a problem you might have.
+不是反对宝石，而是支持理解。当宝石真正解决您遇到的问题而不是您可能遇到的问题时，请使用宝石。
 </decision_framework>
 
 <gem_patterns>
-## Gem Usage Patterns
+## 宝石使用模式
 
-**Pagination:**
+**分页：**
 ```ruby
 # geared_pagination - cursor-based
 class CardsController < ApplicationController
@@ -234,7 +254,8 @@ class CardsController < ApplicationController
 end
 ```
 
-**Markdown:**
+
+**降价：**
 ```ruby
 # redcarpet + rouge
 class MarkdownRenderer
@@ -248,7 +269,8 @@ class MarkdownRenderer
 end
 ```
 
-**Background jobs:**
+
+**后台工作：**
 ```ruby
 # solid_queue - no Redis
 class ApplicationJob < ActiveJob::Base
@@ -257,10 +279,12 @@ class ApplicationJob < ActiveJob::Base
 end
 ```
 
-**Caching:**
+
+**缓存：**
 ```ruby
 # solid_cache - no Redis
 # config/environments/production.rb
 config.cache_store = :solid_cache_store
 ```
+
 </gem_patterns>

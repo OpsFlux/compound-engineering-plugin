@@ -1,69 +1,76 @@
-# Frontend - DHH Rails Style
+# 前端 - DHH Rails 风格
 
 <turbo_patterns>
-## Turbo Patterns
+## 涡轮模式
 
-**Turbo Streams** for partial updates:
+**Turbo Streams** 用于部分更新：
 ```erb
 <%# app/views/cards/closures/create.turbo_stream.erb %>
 <%= turbo_stream.replace @card %>
 ```
 
-**Morphing** for complex updates:
+
+**变形**复杂的更新：
 ```ruby
 render turbo_stream: turbo_stream.morph(@card)
 ```
 
-**Global morphing** - enable in layout:
+
+**全局变形** - 在布局中启用：
 ```ruby
 turbo_refreshes_with method: :morph, scroll: :preserve
 ```
 
-**Fragment caching** with `cached: true`:
+
+**带有 `cached: true` 的片段缓存**：
 ```erb
 <%= render partial: "card", collection: @cards, cached: true %>
 ```
 
-**No ViewComponents** - standard partials work fine.
+
+**没有 ViewComponents** - 标准部分工作正常。
 </turbo_patterns>
 
 <turbo_morphing>
-## Turbo Morphing Best Practices
+## Turbo 变形最佳实践
 
-**Listen for morph events** to restore client state:
+**监听变形事件**以恢复客户端状态：
 ```javascript
 document.addEventListener("turbo:morph-element", (event) => {
   // Restore any client-side state after morph
 })
 ```
 
-**Permanent elements** - skip morphing with data attribute:
+
+**永久元素** - 使用数据属性跳过变形：
 ```erb
 <div data-turbo-permanent id="notification-count">
   <%= @count %>
 </div>
 ```
 
-**Frame morphing** - add refresh attribute:
+
+**帧变形** - 添加刷新属性：
 ```erb
 <%= turbo_frame_tag :assignment, src: path, refresh: :morph %>
 ```
 
-**Common issues and solutions:**
 
-| Problem | Solution |
+**常见问题及解决方案：**
+
+|问题 |解决方案 |
 |---------|----------|
-| Timers not updating | Clear/restart in morph event listener |
-| Forms resetting | Wrap form sections in turbo frames |
-| Pagination breaking | Use turbo frames with `refresh: :morph` |
-| Flickering on replace | Switch to morph instead of replace |
-| localStorage loss | Listen to `turbo:morph-element`, restore state |
+|计时器未更新 |在 morph 事件侦听器中清除/重新启动 |
+|表格重置 |在涡轮框架中包裹成型截面 |
+|分页中断 |使用带 `refresh: :morph` 的涡轮框架 |
+|更换时闪烁 |切换到变形而不是替换 |
+|本地存储丢失 |听`turbo:morph-element`，恢复状态 |
 </turbo_morphing>
 
 <turbo_frames>
-## Turbo Frames
+## 涡轮框架
 
-**Lazy loading** with spinner:
+**带有微调器的延迟加载**：
 ```erb
 <%= turbo_frame_tag "menu",
       src: menu_path,
@@ -72,7 +79,8 @@ document.addEventListener("turbo:morph-element", (event) => {
 <% end %>
 ```
 
-**Inline editing** with edit/view toggle:
+
+**内联编辑**，具有编辑/视图切换功能：
 ```erb
 <%= turbo_frame_tag dom_id(card, :edit) do %>
   <%= link_to "Edit", edit_card_path(card),
@@ -80,31 +88,34 @@ document.addEventListener("turbo:morph-element", (event) => {
 <% end %>
 ```
 
-**Target parent frame** without hardcoding:
+
+**目标父框架**，无需硬编码：
 ```erb
 <%= form_with model: @card, data: { turbo_frame: "_parent" } do |f| %>
 ```
 
-**Real-time subscriptions:**
+
+**实时订阅：**
 ```erb
 <%= turbo_stream_from @card %>
 <%= turbo_stream_from @card, :activity %>
 ```
+
 </turbo_frames>
 
 <stimulus_controllers>
-## Stimulus Controllers
+## 刺激控制器
 
-52 controllers in Fizzy, split 62% reusable, 38% domain-specific.
+Fizzy 中有 52 个控制器，其中 62% 是可重用的，38% 是特定于域的。
 
-**Characteristics:**
-- Single responsibility per controller
-- Configuration via values/classes
-- Events for communication
-- Private methods with #
-- Most under 50 lines
+**特点：**
+- 每个控制器单一职责
+- 通过值/类进行配置
+- 沟通活动
+- 带有#的私有方法
+- 大多数低于 50 行
 
-**Examples:**
+**示例：**
 
 ```javascript
 // copy-to-clipboard (25 lines)
@@ -125,6 +136,7 @@ export default class extends Controller {
 }
 ```
 
+
 ```javascript
 // auto-click (7 lines)
 import { Controller } from "@hotwired/stimulus"
@@ -135,6 +147,7 @@ export default class extends Controller {
   }
 }
 ```
+
 
 ```javascript
 // toggle-class (31 lines)
@@ -153,6 +166,7 @@ export default class extends Controller {
   }
 }
 ```
+
 
 ```javascript
 // auto-submit (28 lines) - debounced form submission
@@ -178,6 +192,7 @@ export default class extends Controller {
 }
 ```
 
+
 ```javascript
 // dialog (45 lines) - native HTML dialog management
 import { Controller } from "@hotwired/stimulus"
@@ -197,6 +212,7 @@ export default class extends Controller {
   }
 }
 ```
+
 
 ```javascript
 // local-time (40 lines) - relative time display
@@ -224,12 +240,13 @@ export default class extends Controller {
   }
 }
 ```
+
 </stimulus_controllers>
 
 <stimulus_best_practices>
-## Stimulus Best Practices
+## 刺激最佳实践
 
-**Values API** over getAttribute:
+**Values API** 通过 getAttribute：
 ```javascript
 // Good
 static values = { delay: { type: Number, default: 300 } }
@@ -238,7 +255,8 @@ static values = { delay: { type: Number, default: 300 } }
 this.element.getAttribute("data-delay")
 ```
 
-**Cleanup in disconnect:**
+
+**断开连接时的清理：**
 ```javascript
 disconnect() {
   clearTimeout(this.timeout)
@@ -247,12 +265,14 @@ disconnect() {
 }
 ```
 
-**Action filters** - `:self` prevents bubbling:
+
+**作用过滤器** - `:self` 防止冒泡：
 ```erb
 <div data-action="click->menu#toggle:self">
 ```
 
-**Helper extraction** - shared utilities in separate modules:
+
+**助手提取** - 单独模块中的共享实用程序：
 ```javascript
 // app/javascript/helpers/timing.js
 export function debounce(fn, delay) {
@@ -264,16 +284,18 @@ export function debounce(fn, delay) {
 }
 ```
 
-**Event dispatching** for loose coupling:
+
+**松散耦合的事件调度**：
 ```javascript
 this.dispatch("selected", { detail: { id: this.idValue } })
 ```
+
 </stimulus_best_practices>
 
 <view_helpers>
-## View Helpers (Stimulus-Integrated)
+## 查看助手（刺激集成）
 
-**Dialog helper:**
+**对话助手：**
 ```ruby
 def dialog_tag(id, &block)
   tag.dialog(
@@ -287,7 +309,8 @@ def dialog_tag(id, &block)
 end
 ```
 
-**Auto-submit form helper:**
+
+**自动提交表单助手：**
 ```ruby
 def auto_submit_form_with(model:, delay: 300, **options, &block)
   form_with(
@@ -303,7 +326,8 @@ def auto_submit_form_with(model:, delay: 300, **options, &block)
 end
 ```
 
-**Copy button helper:**
+
+**复制按钮助手：**
 ```ruby
 def copy_button(content:, label: "Copy")
   tag.button(
@@ -316,14 +340,15 @@ def copy_button(content:, label: "Copy")
   )
 end
 ```
+
 </view_helpers>
 
 <css_architecture>
-## CSS Architecture
+## CSS 架构
 
-Vanilla CSS with modern features, no preprocessors.
+具有现代功能的 Vanilla CSS，无需预处理器。
 
-**CSS @layer** for cascade control:
+**CSS @layer** 用于级联控制：
 ```css
 @layer reset, base, components, modules, utilities;
 
@@ -348,7 +373,8 @@ Vanilla CSS with modern features, no preprocessors.
 }
 ```
 
-**OKLCH color system** for perceptual uniformity:
+
+**OKLCH 颜色系统** 用于感知均匀性：
 ```css
 :root {
   --color-primary: oklch(60% 0.15 250);
@@ -358,7 +384,8 @@ Vanilla CSS with modern features, no preprocessors.
 }
 ```
 
-**Dark mode** via CSS variables:
+
+**深色模式**通过 CSS 变量：
 ```css
 :root {
   --bg: oklch(98% 0 0);
@@ -373,7 +400,8 @@ Vanilla CSS with modern features, no preprocessors.
 }
 ```
 
-**Native CSS nesting:**
+
+**原生 CSS 嵌套：**
 ```css
 .card {
   padding: var(--space-4);
@@ -388,20 +416,21 @@ Vanilla CSS with modern features, no preprocessors.
 }
 ```
 
-**~60 minimal utilities** vs Tailwind's hundreds.
 
-**Modern features used:**
-- `@starting-style` for enter animations
-- `color-mix()` for color manipulation
-- `:has()` for parent selection
-- Logical properties (`margin-inline`, `padding-block`)
-- Container queries
+**~60 个最小实用程序** 与 Tailwind 的数百个相比。
+
+**使用的现代功能：**
+- `@starting-style` 用于输入动画
+- `color-mix()`用于颜色处理
+- `:has()` 用于家长选择
+- 逻辑属性（`margin-inline`、`padding-block`）
+- 容器查询
 </css_architecture>
 
 <view_patterns>
-## View Patterns
+## 查看模式
 
-**Standard partials** - no ViewComponents:
+**标准部分** - 无 ViewComponents：
 ```erb
 <%# app/views/cards/_card.html.erb %>
 <article id="<%= dom_id(card) %>" class="card">
@@ -411,19 +440,22 @@ Vanilla CSS with modern features, no preprocessors.
 </article>
 ```
 
-**Fragment caching:**
+
+**片段缓存：**
 ```erb
 <% cache card do %>
   <%= render "cards/card", card: card %>
 <% end %>
 ```
 
-**Collection caching:**
+
+**集合缓存：**
 ```erb
 <%= render partial: "card", collection: @cards, cached: true %>
 ```
 
-**Simple component naming** - no strict BEM:
+
+**简单的组件命名** - 没有严格的 BEM：
 ```css
 .card { }
 .card .title { }
@@ -431,12 +463,13 @@ Vanilla CSS with modern features, no preprocessors.
 .card.golden { }
 .card.closed { }
 ```
+
 </view_patterns>
 
 <caching_with_personalization>
-## User-Specific Content in Caches
+## 缓存中的用户特定内容
 
-Move personalization to client-side JavaScript to preserve caching:
+将个性化移至客户端 JavaScript 以保留缓存：
 
 ```erb
 <%# Cacheable fragment %>
@@ -449,6 +482,7 @@ Move personalization to client-side JavaScript to preserve caching:
   </article>
 <% end %>
 ```
+
 
 ```javascript
 // Reveal user-specific elements after cache hit
@@ -465,7 +499,8 @@ export default class extends Controller {
 }
 ```
 
-**Extract dynamic content** to separate frames:
+
+**提取动态内容**以单独的框架：
 ```erb
 <% cache [card, board] do %>
   <article class="card">
@@ -476,13 +511,14 @@ export default class extends Controller {
 <% end %>
 ```
 
-Assignment dropdown updates independently without invalidating parent cache.
+
+分配下拉列表独立更新，不会使父缓存失效。
 </caching_with_personalization>
 
 <broadcasting>
-## Broadcasting with Turbo Streams
+## 使用 Turbo Streams 进行广播
 
-**Model callbacks** for real-time updates:
+**模型回调**用于实时更新：
 ```ruby
 class Card < ApplicationRecord
   include Broadcastable
@@ -506,5 +542,6 @@ class Card < ApplicationRecord
 end
 ```
 
-**Scope by tenant** using `[Current.account, resource]` pattern.
+
+**按租户划分的范围**使用 `[Current.account, resource]` 模式。
 </broadcasting>

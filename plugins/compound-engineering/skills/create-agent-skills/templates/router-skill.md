@@ -1,73 +1,73 @@
 ---
 name: {{SKILL_NAME}}
-description: {{What it does}} Use when {{trigger conditions}}.
+description: {{它的作用}}当{{触发条件}}时使用。
+
 ---
-
 <essential_principles>
-## {{Core Concept}}
+## {{核心概念}}
 
-{{Principles that ALWAYS apply, regardless of which workflow runs}}
+{{无论运行哪个工作流程，始终适用的原则}}
 
-### 1. {{First principle}}
-{{Explanation}}
+### 1. {{第一原则}}
+{{解释}}
 
-### 2. {{Second principle}}
-{{Explanation}}
+### 2. {{第二个原则}}
+{{解释}}
 
-### 3. {{Third principle}}
-{{Explanation}}
+### 3. {{第三个原则}}
+{{解释}}
 </essential_principles>
 
 <intake>
-**Ask the user:**
+**询问用户：**
 
-What would you like to do?
-1. {{First option}}
-2. {{Second option}}
-3. {{Third option}}
+你想做什么？
+1. {{第一个选项}}
+2. {{第二个选项}}
+3. {{第三个选项}}
 
-**Wait for response before proceeding.**
+**等待回复后再继续。**
 </intake>
 
 <routing>
-| Response | Workflow |
+|回应 |工作流程|
 |----------|----------|
-| 1, "{{keywords}}" | `workflows/{{first-workflow}}.md` |
-| 2, "{{keywords}}" | `workflows/{{second-workflow}}.md` |
-| 3, "{{keywords}}" | `workflows/{{third-workflow}}.md` |
+| 1、“{{关键字}}”| `workflows/{{first-workflow}}.md` |
+| 2、“{{关键字}}”| `workflows/{{second-workflow}}.md` |
+| 3、“{{关键字}}”| `workflows/{{third-workflow}}.md` |
 
-**After reading the workflow, follow it exactly.**
+**阅读工作流程后，请严格遵循。**
 </routing>
 
 <quick_reference>
-## {{Skill Name}} Quick Reference
+## {{技能名称}}快速参考
 
-{{Brief reference information always useful to have visible}}
+{{可见的简短参考信息总是有用的}}
 </quick_reference>
 
 <reference_index>
-## Domain Knowledge
+## 领域知识
 
-All in `references/`:
-- {{reference-1.md}} - {{purpose}}
-- {{reference-2.md}} - {{purpose}}
+全部在`references/`中：
+- {{reference-1.md}} - {{目的}}
+- {{reference-2.md}} - {{目的}}
 </reference_index>
 
 <workflows_index>
-## Workflows
+## 工作流程
 
-All in `workflows/`:
+全部在`workflows/`中：
 
-| Workflow | Purpose |
+|工作流程|目的|
 |----------|---------|
-| {{first-workflow}}.md | {{purpose}} |
-| {{second-workflow}}.md | {{purpose}} |
-| {{third-workflow}}.md | {{purpose}} |
+| {{第一个工作流程}}.md | {{目的}} |
+| {{第二工作流程}}.md | {{目的}} |
+| {{第三工作流程}}.md | {{目的}} |
 </workflows_index>
 
 <success_criteria>
-A well-executed {{skill name}}:
-- {{First criterion}}
-- {{Second criterion}}
-- {{Third criterion}}
+执行良好的{{技能名称}}：
+- {{第一个标准}}
+- {{第二个标准}}
+- {{第三个标准}}
 </success_criteria>

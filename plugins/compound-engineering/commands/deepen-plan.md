@@ -1,67 +1,68 @@
 ---
 name: deepen-plan
-description: Enhance a plan with parallel research agents for each section to add depth, best practices, and implementation details
+description: 与每个部分的并行研究代理一起增强计划，以增加深度、最佳实践和实施细节
+
 argument-hint: "[path to plan file]"
 ---
+# 深化计划-力量增强模式
 
-# Deepen Plan - Power Enhancement Mode
+## 介绍
 
-## Introduction
+**注意：当前年份是 2025 年。** 在搜索最新文档和最佳实践时使用此选项。
 
-**Note: The current year is 2025.** Use this when searching for recent documentation and best practices.
+该命令采用现有计划（来自`/workflows:plan`）并通过并行研究代理增强每个部分。每个主要元素都有自己专门的研究子代理来寻找：
+- 最佳实践和行业模式
+- 性能优化
+- UI/UX 改进（如果适用）
+- 质量增强和边缘情况
+- 现实世界的实施示例
 
-This command takes an existing plan (from `/workflows:plan`) and enhances each section with parallel research agents. Each major element gets its own dedicated research sub-agent to find:
-- Best practices and industry patterns
-- Performance optimizations
-- UI/UX improvements (if applicable)
-- Quality enhancements and edge cases
-- Real-world implementation examples
+其结果是一个根深蒂固、可投入生产的计划以及具体的实施细节。
 
-The result is a deeply grounded, production-ready plan with concrete implementation details.
+## 计划文件
 
-## Plan File
+<plan_path> #$参数</plan_path>
 
-<plan_path> #$ARGUMENTS </plan_path>
+**如果上面的计划路径为空：**
+1. 检查最近的计划：`ls -la plans/`
+2. 询问用户：“您想深化哪个计划？请提供路径（例如`plans/my-feature.md`）。”
 
-**If the plan path above is empty:**
-1. Check for recent plans: `ls -la plans/`
-2. Ask the user: "Which plan would you like to deepen? Please provide the path (e.g., `plans/my-feature.md`)."
+在获得有效的计划文件路径之前不要继续。
 
-Do not proceed until you have a valid plan file path.
+## 主要任务
 
-## Main Tasks
-
-### 1. Parse and Analyze Plan Structure
+### 1.解析和分析计划结构
 
 <thinking>
-First, read and parse the plan to identify each major section that can be enhanced with research.
+首先，阅读并解析该计划，以确定可以通过研究增强的每个主要部分。
 </thinking>
 
-**Read the plan file and extract:**
-- [ ] Overview/Problem Statement
-- [ ] Proposed Solution sections
-- [ ] Technical Approach/Architecture
-- [ ] Implementation phases/steps
-- [ ] Code examples and file references
-- [ ] Acceptance criteria
-- [ ] Any UI/UX components mentioned
-- [ ] Technologies/frameworks mentioned (Rails, React, Python, TypeScript, etc.)
-- [ ] Domain areas (data models, APIs, UI, security, performance, etc.)
+**阅读计划文件并摘录：**
+- [ ] 概述/问题陈述
+- [ ] 提议的解决方案部分
+- [ ] 技术方法/架构
+- [ ] 实施阶段/步骤
+- [ ] 代码示例和文件参考
+- [ ] 验收标准
+- [ ] 提到的任何 UI/UX 组件
+- [ ] 提到的技术/框架（Rails、React、Python、TypeScript 等）
+- [ ] 领域领域（数据模型、API、UI、安全性、性能等）
 
-**Create a section manifest:**
+**创建部分清单：**
 ```
 Section 1: [Title] - [Brief description of what to research]
 Section 2: [Title] - [Brief description of what to research]
 ...
 ```
 
-### 2. Discover and Apply Available Skills
+
+### 2.发现并应用可用技能
 
 <thinking>
-Dynamically discover all available skills and match them to plan sections. Don't assume what skills exist - discover them at runtime.
+动态发现所有可用技能并将其与计划部分相匹配。不要假设存在哪些技能 - 在运行时发现它们。
 </thinking>
 
-**Step 1: Discover ALL available skills from ALL sources**
+**第 1 步：从所有来源发现所有可用技能**
 
 ```bash
 # 1. Project-local skills (highest priority - project-specific)
@@ -80,27 +81,29 @@ find ~/.claude/plugins/cache -type d -name "skills" 2>/dev/null
 cat ~/.claude/plugins/installed_plugins.json
 ```
 
-**Important:** Check EVERY source. Don't assume compound-engineering is the only plugin. Use skills from ANY installed plugin that's relevant.
 
-**Step 2: For each discovered skill, read its SKILL.md to understand what it does**
+**重要：**检查每个来源。不要假设复合工程是唯一的插件。使用任何已安装的相关插件中的技能。
+
+**第 2 步：对于每个发现的技能，请阅读其 SKILL.md 以了解其作用**
 
 ```bash
 # For each skill directory found, read its documentation
 cat [skill-path]/SKILL.md
 ```
 
-**Step 3: Match skills to plan content**
 
-For each skill discovered:
-- Read its SKILL.md description
-- Check if any plan sections match the skill's domain
-- If there's a match, spawn a sub-agent to apply that skill's knowledge
+**第 3 步：将技能与规划内容相匹配**
 
-**Step 4: Spawn a sub-agent for EVERY matched skill**
+对于发现的每项技能：
+- 阅读其 SKILL.md 描述
+- 检查是否有任何计划部分与技能领域相匹配
+- 如果匹配，则生成一个子代理来应用该技能的知识
 
-**CRITICAL: For EACH skill that matches, spawn a separate sub-agent and instruct it to USE that skill.**
+**第 4 步：为每个匹配的技能生成一个子代理**
 
-For each matched skill:
+**关键：对于每个匹配的技能，生成一个单独的子代理并指示它使用该技能。**
+
+对于每个匹配的技能：
 ```
 Task general-purpose: "You have the [skill-name] skill available at [skill-path].
 
@@ -117,19 +120,20 @@ YOUR JOB: Use this skill on the plan.
 The skill tells you what to do - follow it. Execute the skill completely."
 ```
 
-**Spawn ALL skill sub-agents in PARALLEL:**
-- 1 sub-agent per matched skill
-- Each sub-agent reads and uses its assigned skill
-- All run simultaneously
-- 10, 20, 30 skill sub-agents is fine
 
-**Each sub-agent:**
-1. Reads its skill's SKILL.md
-2. Follows the skill's workflow/instructions
-3. Applies the skill to the plan
-4. Returns whatever the skill produces (code, recommendations, patterns, reviews, etc.)
+**并行生成所有技能子代理：**
+- 每个匹配技能 1 个子代理
+- 每个子代理阅读并使用其分配的技能
+- 全部同时运行
+- 10、20、30个技能的副代理就可以了
 
-**Example spawns:**
+**各分代理：**
+1.读取其技能的SKILL.md
+2. 遵循技能的工作流程/说明
+3. 将技能应用到计划中
+4. 返回技能产生的任何内容（代码、建议、模式、评论等）
+
+**生成示例：**
 ```
 Task general-purpose: "Use the dhh-rails-style skill at ~/.claude/plugins/.../dhh-rails-style. Read SKILL.md and apply it to: [Rails sections of plan]"
 
@@ -140,15 +144,16 @@ Task general-purpose: "Use the agent-native-architecture skill at ~/.claude/plug
 Task general-purpose: "Use the security-patterns skill at ~/.claude/skills/security-patterns. Read SKILL.md and apply it to: [full plan]"
 ```
 
-**No limit on skill sub-agents. Spawn one for every skill that could possibly be relevant.**
 
-### 3. Discover and Apply Learnings/Solutions
+**对子代理的技能没有限制。为每一项可能相关的技能生成一个。**
+
+### 3.发现并应用所学到的知识/解决方案
 
 <thinking>
-Check for documented learnings from /workflows:compound. These are solved problems stored as markdown files. Spawn a sub-agent for each learning to check if it's relevant.
+检查 /workflows:compound 中记录的学习内容。这些已解决的问题存储为 Markdown 文件。为每个学习生成一个子代理来检查它是否相关。
 </thinking>
 
-**LEARNINGS LOCATION - Check these exact folders:**
+**学习位置 - 检查这些确切的文件夹：**
 
 ```
 docs/solutions/           <-- PRIMARY: Project-level learnings (created by /workflows:compound)
@@ -166,9 +171,10 @@ docs/solutions/           <-- PRIMARY: Project-level learnings (created by /work
     └── *.md
 ```
 
-**Step 1: Find ALL learning markdown files**
 
-Run these commands to get every learning file:
+**第 1 步：查找所有学习 Markdown 文件**
+
+运行以下命令来获取每个学习文件：
 
 ```bash
 # PRIMARY LOCATION - Project learnings
@@ -179,9 +185,10 @@ find .claude/docs -name "*.md" -type f 2>/dev/null
 find ~/.claude/docs -name "*.md" -type f 2>/dev/null
 ```
 
-**Step 2: Read frontmatter of each learning to filter**
 
-Each learning file has YAML frontmatter with metadata. Read the first ~20 lines of each file to get:
+**第2步：阅读每个学习的frontmatter以进行过滤**
+
+每个学习文件都有带有元数据的 YAML frontmatter。读取每个文件的前 20 行以获得：
 
 ```yaml
 ---
@@ -194,34 +201,36 @@ root_cause: "Missing includes on association"
 ---
 ```
 
-**For each .md file, quickly scan its frontmatter:**
+
+**对于每个 .md 文件，快速扫描其 frontmatter：**
 
 ```bash
 # Read first 20 lines of each learning (frontmatter + summary)
 head -20 docs/solutions/**/*.md
 ```
 
-**Step 3: Filter - only spawn sub-agents for LIKELY relevant learnings**
 
-Compare each learning's frontmatter against the plan:
-- `tags:` - Do any tags match technologies/patterns in the plan?
-- `category:` - Is this category relevant? (e.g., skip deployment-issues if plan is UI-only)
-- `module:` - Does the plan touch this module?
-- `symptom:` / `root_cause:` - Could this problem occur with the plan?
+**第 3 步：过滤 - 只为可能相关的学习生成子代理**
 
-**SKIP learnings that are clearly not applicable:**
-- Plan is frontend-only → skip `database-migrations/` learnings
-- Plan is Python → skip `rails-specific/` learnings
-- Plan has no auth → skip `authentication-issues/` learnings
+将每个学习的前沿内容与计划进行比较：
+- `tags:` - 任何标签是否与计划中的技术/模式相匹配？
+- `category:` - 此类别相关吗？ （例如，如果计划仅包含 UI，则跳过部署问题）
+- `module:` - 该计划是否涉及此模块？
+- `symptom:` / `root_cause:` - 该计划会出现此问题吗？
 
-**SPAWN sub-agents for learnings that MIGHT apply:**
-- Any tag overlap with plan technologies
-- Same category as plan domain
-- Similar patterns or concerns
+**跳过明显不适用的学习内容：**
+- 计划仅限前端 → 跳过 `database-migrations/` 学习内容
+- 计划是 Python → 跳过 `rails-specific/` 学习
+- 计划没有授权 → 跳过 `authentication-issues/` 学习内容
 
-**Step 4: Spawn sub-agents for filtered learnings**
+**生成子代理以获取可能适用的学习内容：**
+- 任何标签与计划技术重叠
+- 与计划域相同的类别
+- 类似的模式或担忧
 
-For each learning that passes the filter:
+**步骤 4：生成子代理以进行过滤学习**
+
+对于通过过滤器的每个学习：
 
 ```
 Task general-purpose: "
@@ -246,7 +255,8 @@ If NOT relevant after deeper analysis:
 "
 ```
 
-**Example filtering:**
+
+**过滤示例：**
 ```
 # Found 15 learning files, plan is about "Rails API caching"
 
@@ -261,17 +271,18 @@ docs/solutions/frontend-issues/stimulus-race-condition.md    # plan is API, not 
 docs/solutions/authentication-issues/jwt-expiry.md           # plan has no auth
 ```
 
-**Spawn sub-agents in PARALLEL for all filtered learnings.**
 
-**These learnings are institutional knowledge - applying them prevents repeating past mistakes.**
+**为所有过滤的学习并行生成子代理。**
 
-### 4. Launch Per-Section Research Agents
+**这些知识是机构知识 - 应用它们可以防止重复过去的错误。**
+
+### 4.启动每部分研究代理
 
 <thinking>
-For each major section in the plan, spawn dedicated sub-agents to research improvements. Use the Explore agent type for open-ended research.
+对于计划中的每个主要部分，派生专门的子代理来研究改进。使用探索代理类型进行开放式研究。
 </thinking>
 
-**For each identified section, launch parallel research:**
+**对于每个确定的部分，启动并行研究：**
 
 ```
 Task Explore: "Research best practices, patterns, and real-world examples for: [section topic].
@@ -283,25 +294,27 @@ Find:
 Return concrete, actionable recommendations."
 ```
 
-**Also use Context7 MCP for framework documentation:**
 
-For any technologies/frameworks mentioned in the plan, query Context7:
+**还使用 Context7 MCP 作为框架文档：**
+
+对于计划中提到的任何技术/框架，请查询 Context7：
 ```
 mcp__plugin_compound-engineering_context7__resolve-library-id: Find library ID for [framework]
 mcp__plugin_compound-engineering_context7__query-docs: Query documentation for specific patterns
 ```
 
-**Use WebSearch for current best practices:**
 
-Search for recent (2024-2025) articles, blog posts, and documentation on topics in the plan.
+**使用 WebSearch 获取当前最佳实践：**
 
-### 5. Discover and Run ALL Review Agents
+搜索有关计划中主题的最新 (2024-2025) 文章、博客文章和文档。
+
+### 5.发现并运行所有审核代理
 
 <thinking>
-Dynamically discover every available agent and run them ALL against the plan. Don't filter, don't skip, don't assume relevance. 40+ parallel agents is fine. Use everything available.
+动态发现每个可用的代理并根据计划运行它们。不要过滤，不要跳过，不要假设相关性。 40+个并行代理就可以了。使用一切可用的东西。
 </thinking>
 
-**Step 1: Discover ALL available agents from ALL sources**
+**第 1 步：从所有来源发现所有可用代理**
 
 ```bash
 # 1. Project-local agents (highest priority - project-specific)
@@ -323,83 +336,85 @@ cat ~/.claude/plugins/installed_plugins.json
 # Parse installed_plugins.json and find local plugin paths
 ```
 
-**Important:** Check EVERY source. Include agents from:
-- Project `.claude/agents/`
-- User's `~/.claude/agents/`
-- compound-engineering plugin (but SKIP workflow/ agents - only use review/, research/, design/, docs/)
-- ALL other installed plugins (agent-sdk-dev, frontend-design, etc.)
-- Any local plugins
 
-**For compound-engineering plugin specifically:**
-- USE: `agents/review/*` (all reviewers)
-- USE: `agents/research/*` (all researchers)
-- USE: `agents/design/*` (design agents)
-- USE: `agents/docs/*` (documentation agents)
-- SKIP: `agents/workflow/*` (these are workflow orchestrators, not reviewers)
+**重要：**检查每个来源。包括来自以下机构的代理：
+- 项目`.claude/agents/`
+- 用户的`~/.claude/agents/`
+- 复合工程插件（但跳过工作流程/代理 - 仅使用审查/、研究/、设计/、文档/）
+- 所有其他已安装的插件（agent-sdk-dev、frontend-design 等）
+- 任何本地插件
 
-**Step 2: For each discovered agent, read its description**
+**特别针对复合工程插件：**
+- 使用：`agents/review/*`（所有审阅者）
+- 使用：`agents/research/*`（所有研究人员）
+- 使用：`agents/design/*`（设计代理）
+- 使用：`agents/docs/*`（文件代理）
+- 跳过：`agents/workflow/*`（这些是工作流程协调者，而不是审阅者）
 
-Read the first few lines of each agent file to understand what it reviews/analyzes.
+**第 2 步：对于每个发现的代理，请阅读其描述**
 
-**Step 3: Launch ALL agents in parallel**
+阅读每个代理文件的前几行以了解它审查/分析的内容。
 
-For EVERY agent discovered, launch a Task in parallel:
+**步骤 3：并行启动所有代理**
+
+对于发现的每个代理，并行启动一个任务：
 
 ```
 Task [agent-name]: "Review this plan using your expertise. Apply all your checks and patterns. Plan content: [full plan content]"
 ```
 
-**CRITICAL RULES:**
-- Do NOT filter agents by "relevance" - run them ALL
-- Do NOT skip agents because they "might not apply" - let them decide
-- Launch ALL agents in a SINGLE message with multiple Task tool calls
-- 20, 30, 40 parallel agents is fine - use everything
-- Each agent may catch something others miss
-- The goal is MAXIMUM coverage, not efficiency
 
-**Step 4: Also discover and run research agents**
+**关键规则：**
+- 不要按“相关性”过滤代理 - 全部运行
+- 不要跳过代理，因为他们“可能不申请” - 让他们决定
+- 通过多个任务工具调用在一条消息中启动所有代理
+- 20、30、40 个并行代理就可以了 - 使用一切
+- 每个代理可能会发现其他代理错过的东西
+- 目标是最大覆盖范围，而不是效率
 
-Research agents (like `best-practices-researcher`, `framework-docs-researcher`, `git-history-analyzer`, `repo-research-analyst`) should also be run for relevant plan sections.
+**第 4 步：同时发现并运行研究代理**
 
-### 6. Wait for ALL Agents and Synthesize Everything
+研究代理（如`best-practices-researcher`、`framework-docs-researcher`、`git-history-analyzer`、`repo-research-analyst`）也应针对相关计划部分进行运行。
 
-<thinking>
-Wait for ALL parallel agents to complete - skills, research agents, review agents, everything. Then synthesize all findings into a comprehensive enhancement.
-</thinking>
-
-**Collect outputs from ALL sources:**
-
-1. **Skill-based sub-agents** - Each skill's full output (code examples, patterns, recommendations)
-2. **Learnings/Solutions sub-agents** - Relevant documented learnings from /workflows:compound
-3. **Research agents** - Best practices, documentation, real-world examples
-4. **Review agents** - All feedback from every reviewer (architecture, security, performance, simplicity, etc.)
-5. **Context7 queries** - Framework documentation and patterns
-6. **Web searches** - Current best practices and articles
-
-**For each agent's findings, extract:**
-- [ ] Concrete recommendations (actionable items)
-- [ ] Code patterns and examples (copy-paste ready)
-- [ ] Anti-patterns to avoid (warnings)
-- [ ] Performance considerations (metrics, benchmarks)
-- [ ] Security considerations (vulnerabilities, mitigations)
-- [ ] Edge cases discovered (handling strategies)
-- [ ] Documentation links (references)
-- [ ] Skill-specific patterns (from matched skills)
-- [ ] Relevant learnings (past solutions that apply - prevent repeating mistakes)
-
-**Deduplicate and prioritize:**
-- Merge similar recommendations from multiple agents
-- Prioritize by impact (high-value improvements first)
-- Flag conflicting advice for human review
-- Group by plan section
-
-### 7. Enhance Plan Sections
+### 6. 等待所有代理并综合所有内容
 
 <thinking>
-Merge research findings back into the plan, adding depth without changing the original structure.
+等待所有并行代理完成 - 技能、研究代理、审查代理，一切。然后将所有发现综合为综合增强。
 </thinking>
 
-**Enhancement format for each section:**
+**从所有来源收集输出：**
+
+1. **基于技能的子代理** - 每个技能的完整输出（代码示例、模式、建议）
+2. **学习/解决方案子代理** - 来自/workflows:compound的相关记录学习
+3. **研究代理** - 最佳实践、文档、真实示例
+4. **审核代理** - 每个审核者的所有反馈（架构、安全性、性能、简单性等）
+5. **Context7 查询** - 框架文档和模式
+6. **网络搜索** - 当前最佳实践和文章
+
+**对于每个代理的调查结果，摘录：**
+- [ ] 具体建议（可操作的项目）
+- [ ] 代码模式和示例（复制粘贴就绪）
+- [ ] 要避免的反模式（警告）
+- [ ] 性能考虑因素（指标、基准）
+- [ ] 安全考虑（漏洞、缓解措施）
+- [ ] 发现边缘情况（处理策略）
+- [ ] 文档链接（参考文献）
+- [ ] 技能特定模式（来自匹配的技能）
+- [ ] 相关学习（过去适用的解决方案 - 防止重复错误）
+
+**重复数据删除并确定优先级：**
+- 合并来自多个代理的相似建议
+- 按影响确定优先顺序（高价值改进优先）
+- 标记相互矛盾的建议以供人工审核
+- 按计划部分分组
+
+### 7. 增强计划部分
+
+<thinking>
+将研究成果合并回计划中，在不改变原始结构的情况下增加深度。
+</thinking>
+
+**每个部分的增强格式：**
 
 ```markdown
 ## [Original Section Title]
@@ -418,7 +433,8 @@ Merge research findings back into the plan, adding depth without changing the or
 
 **Implementation Details:**
 ```[language]
-// Concrete code example from research
+
+// 研究中的具体代码示例
 ```
 
 **Edge Cases:**
@@ -430,9 +446,10 @@ Merge research findings back into the plan, adding depth without changing the or
 - [Documentation URL 2]
 ```
 
-### 8. Add Enhancement Summary
 
-At the top of the plan, add a summary section:
+### 8.添加增强摘要
+
+在计划的顶部添加摘要部分：
 
 ```markdown
 ## Enhancement Summary
@@ -451,57 +468,59 @@ At the top of the plan, add a summary section:
 - [Important finding 2]
 ```
 
-### 9. Update Plan File
 
-**Write the enhanced plan:**
-- Preserve original filename
-- Add `-deepened` suffix if user prefers a new file
-- Update any timestamps or metadata
+### 9. 更新计划文件
 
-## Output Format
+**写出增强计划：**
+- 保留原始文件名
+- 如果用户喜欢新文件，请添加 `-deepened` 后缀
+- 更新任何时间戳或元数据
 
-Update the plan file in place (or create `plans/<original-name>-deepened.md` if requested).
+## 输出格式
 
-## Quality Checks
+更新计划文件（或根据要求创建`plans/<original-name>-deepened.md`）。
 
-Before finalizing:
-- [ ] All original content preserved
-- [ ] Research insights clearly marked and attributed
-- [ ] Code examples are syntactically correct
-- [ ] Links are valid and relevant
-- [ ] No contradictions between sections
-- [ ] Enhancement summary accurately reflects changes
+## 质量检查
 
-## Post-Enhancement Options
+在最终确定之前：
+- [ ] 保留所有原始内容
+- [ ] 明确标记和归因研究见解
+- [ ] 代码示例语法正确
+- [ ] 链接有效且相关
+- [ ] 各部分之间没有矛盾
+- [ ] 增强摘要准确反映变化
 
-After writing the enhanced plan, use the **AskUserQuestion tool** to present these options:
+## 增强后选项
 
-**Question:** "Plan deepened at `[plan_path]`. What would you like to do next?"
+编写增强计划后，使用 **AskUserQuestion 工具** 呈现以下选项：
 
-**Options:**
-1. **View diff** - Show what was added/changed
-2. **Run `/plan_review`** - Get feedback from reviewers on enhanced plan
-3. **Start `/workflows:work`** - Begin implementing this enhanced plan
-4. **Deepen further** - Run another round of research on specific sections
-5. **Revert** - Restore original plan (if backup exists)
+**问题：**“计划在`[plan_path]`深化。接下来你想做什么？”
 
-Based on selection:
-- **View diff** → Run `git diff [plan_path]` or show before/after
-- **`/plan_review`** → Call the /plan_review command with the plan file path
-- **`/workflows:work`** → Call the /workflows:work command with the plan file path
-- **Deepen further** → Ask which sections need more research, then re-run those agents
-- **Revert** → Restore from git or backup
+**选项：**
+1. **查看差异** - 显示添加/更改的内容
+2. **运行 `/plan_review`** - 获取审阅者对增强计划的反馈
+3. **开始`/workflows:work`** - 开始实施此增强计划
+4. **进一步深化** - 对特定部分进行另一轮研究
+5. **恢复** - 恢复原始计划（如果存在备份）
 
-## Example Enhancement
+根据选择：
+- **查看差异** → 运行`git diff [plan_path]`或显示之前/之后
+- **`/plan_review`** → 使用计划文件路径调用/plan_review命令
+- **`/workflows:work`** → 使用计划文件路径调用/workflows:work命令
+- **进一步深化** → 询问哪些部分需要更多研究，然后重新运行这些代理
+- **恢复** → 从 git 或备份恢复
 
-**Before (from /workflows:plan):**
+## 增强示例
+
+**之前（来自/workflows:plan）：**
 ```markdown
 ## Technical Approach
 
 Use React Query for data fetching with optimistic updates.
 ```
 
-**After (from /workflows:deepen-plan):**
+
+**之后（来自/workflows:deepen-plan）：**
 ```markdown
 ## Technical Approach
 
@@ -521,13 +540,14 @@ Use React Query for data fetching with optimistic updates.
 
 **Implementation Details:**
 ```typescript
-// Recommended query configuration
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      staleTime: 5 * 60 * 1000, // 5 minutes
-      retry: 2,
-      refetchOnWindowFocus: false,
+
+// 推荐的查询配置
+const queryClient = 新的 QueryClient({
+  默认选项：{
+    查询：{
+      staleTime: 5 * 60 * 1000, // 5 分钟
+      重试：2，
+      refetchOnWindowFocus：假，
     },
   },
 });
@@ -543,4 +563,5 @@ const queryClient = new QueryClient({
 - https://tkdodo.eu/blog/practical-react-query
 ```
 
-NEVER CODE! Just research and enhance the plan.
+
+永远不要编码！只需研究并完善该计划即可。

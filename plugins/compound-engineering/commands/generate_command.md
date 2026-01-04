@@ -1,51 +1,51 @@
 ---
 name: generate_command
-description: Create a new custom slash command following conventions and best practices
+description: 遵循约定和最佳实践创建新的自定义斜杠命令
+
 argument-hint: "[command purpose and requirements]"
 ---
+# 创建自定义 Claude 代码命令
 
-# Create a Custom Claude Code Command
+在 `.claude/commands/` 中为请求的任务创建一个新的斜杠命令。
 
-Create a new slash command in `.claude/commands/` for the requested task.
+## 目标
 
-## Goal
+# $参数
 
-#$ARGUMENTS
+## 可利用的关键功能
 
-## Key Capabilities to Leverage
+**文件操作：**
+- 读取、编辑、写入 - 精确修改文件
+- Glob、Grep - 搜索代码库
+- MultiEdit - 原子多部分更改
 
-**File Operations:**
-- Read, Edit, Write - modify files precisely
-- Glob, Grep - search codebase
-- MultiEdit - atomic multi-part changes
+**发展：**
+- Bash - 运行命令（git、测试、linter）
+- 任务 - 启动专门的代理来执行复杂的任务
+- TodoWrite - 使用待办事项列表跟踪进度
 
-**Development:**
-- Bash - run commands (git, tests, linters)
-- Task - launch specialized agents for complex tasks
-- TodoWrite - track progress with todo lists
+**网络和 API：**
+- WebFetch、WebSearch - 研究文档
+- GitHub (gh cli) - PR、问题、评论
+- 剧作家 - 浏览器自动化、屏幕截图
 
-**Web & APIs:**
-- WebFetch, WebSearch - research documentation
-- GitHub (gh cli) - PRs, issues, reviews
-- Playwright - browser automation, screenshots
+**集成：**
+- AppSignal - 日志和监控
+- Context7 - 框架文档
+- Stripe、Todoist、Featurebase（如果相关）
 
-**Integrations:**
-- AppSignal - logs and monitoring
-- Context7 - framework docs
-- Stripe, Todoist, Featurebase (if relevant)
+## 最佳实践
 
-## Best Practices
+1. **具体、清晰** - 详细的说明会产生更好的结果
+2. **分解复杂的任务** - 使用分步计划
+3. **使用示例** - 引用现有的代码模式
+4. **包括成功标准** - 测试通过、掉毛干净等。
+5. **先思考** - 对于复杂问题使用“认真思考”或“计划”关键字
+6. **迭代** - 逐步指导流程
 
-1. **Be specific and clear** - detailed instructions yield better results
-2. **Break down complex tasks** - use step-by-step plans
-3. **Use examples** - reference existing code patterns
-4. **Include success criteria** - tests pass, linting clean, etc.
-5. **Think first** - use "think hard" or "plan" keywords for complex problems
-6. **Iterate** - guide the process step by step
+## 必需：YAML Frontmatter
 
-## Required: YAML Frontmatter
-
-**EVERY command MUST start with YAML frontmatter:**
+**每个命令必须以 YAML frontmatter 开头：**
 
 ```yaml
 ---
@@ -55,12 +55,13 @@ argument-hint: "[what arguments the command accepts]"
 ---
 ```
 
-**Fields:**
-- `name`: Lowercase command identifier (used internally)
-- `description`: Clear, concise summary of command purpose
-- `argument-hint`: Shows user what arguments are expected (e.g., `[file path]`, `[PR number]`, `[optional: format]`)
 
-## Structure Your Command
+**字段：**
+- `name`：小写命令标识符（内部使用）
+- `description`：命令目的的清晰、简洁的总结
+- `argument-hint`：向用户显示需要哪些参数（例如，`[file path]`、`[PR number]`、`[optional: format]`）
+
+## 构建你的命令
 
 ```markdown
 # [Command Name]
@@ -89,15 +90,16 @@ argument-hint: "[what arguments the command accepts]"
 - [ ] Documentation updated (if needed)
 ```
 
-## Tips for Effective Commands
 
-- **Use $ARGUMENTS** placeholder for dynamic inputs
-- **Reference CLAUDE.md** patterns and conventions
-- **Include verification steps** - tests, linting, visual checks
-- **Be explicit about constraints** - don't modify X, use pattern Y
-- **Use XML tags** for structured prompts: `<task>`, `<requirements>`, `<constraints>`
+## 有效命令的技巧
 
-## Example Pattern
+- **使用 $ARGUMENTS** 占位符进行动态输入
+- **参考 CLAUDE.md** 模式和约定
+- **包括验证步骤** - 测试、检查、目视检查
+- **明确约束** - 不要修改 X，使用模式 Y
+- **使用 XML 标签**进行结构化提示：`<task>`、`<requirements>`、`<constraints>`
+
+## 示例模式
 
 ```markdown
 Implement #$ARGUMENTS following these steps:
@@ -125,14 +127,15 @@ Implement #$ARGUMENTS following these steps:
    - Write clear commit message
 ```
 
-## Creating the Command File
 
-1. **Create the file** at `.claude/commands/[name].md` (subdirectories like `workflows/` supported)
-2. **Start with YAML frontmatter** (see section above)
-3. **Structure the command** using the template above
-4. **Test the command** by using it with appropriate arguments
+## 创建命令文件
 
-## Command File Template
+1. **在`.claude/commands/[name].md`处创建文件**（支持`workflows/`等子目录）
+2. **从 YAML frontmatter 开始**（参见上面的部分）
+3. **使用上面的模板构建命令**
+4. **通过使用适当的参数来测试命令**
+
+## 命令文件模板
 
 ```markdown
 ---
@@ -160,3 +163,4 @@ Details about what to do.
 - [ ] Expected outcome 1
 - [ ] Expected outcome 2
 ```
+

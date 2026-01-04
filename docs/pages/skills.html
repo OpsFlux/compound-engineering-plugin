@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en" class="theme-dark">
+<html lang="zh-CN" class="theme-dark">
 
 <head>
   <meta charset="utf-8" />
-  <title>Skill Reference - Compounding Engineering</title>
-  <meta content="Complete reference for all 11 intelligent skills in the Compounding Engineering plugin." name="description" />
+  <title>技能参考-复合工程</title>
+  <meta content="复合工程插件中所有 11 项智能技能的完整参考。" name="description" />
   <meta content="width=device-width, initial-scale=1" name="viewport" />
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
@@ -20,37 +20,37 @@
       <div class="sidebar-header">
         <a href="../index.html" class="nav-brand">
           <span class="logo-icon"><i class="fa-solid fa-layer-group"></i></span>
-          <span class="logo-text">CE Docs</span>
+          <span class="logo-text">CE文件</span>
         </a>
       </div>
       <nav class="sidebar-nav">
         <div class="nav-section">
-          <h3>Getting Started</h3>
+          <h3>入门</h3>
           <ul>
-            <li><a href="getting-started.html">Installation</a></li>
+            <li><a href="getting-started.html">安装</a></li>
           </ul>
         </div>
         <div class="nav-section">
-          <h3>Reference</h3>
+          <h3>参考</h3>
           <ul>
-            <li><a href="agents.html">Agents (23)</a></li>
-            <li><a href="commands.html">Commands (13)</a></li>
-            <li><a href="skills.html" class="active">Skills (11)</a></li>
-            <li><a href="mcp-servers.html">MCP Servers (2)</a></li>
+            <li><a href="agents.html">代理商 (23)</a></li>
+            <li><a href="commands.html">命令 (13)</a></li>
+            <li><a href="skills.html" class="active">技能 (11)</a></li>
+            <li><a href="mcp-servers.html">MCP 服务器 (2)</a></li>
           </ul>
         </div>
         <div class="nav-section">
-          <h3>Resources</h3>
+          <h3>资源</h3>
           <ul>
-            <li><a href="changelog.html">Changelog</a></li>
+            <li><a href="changelog.html">变更日志</a></li>
           </ul>
         </div>
         <div class="nav-section">
-          <h3>On This Page</h3>
+          <h3>在此页上</h3>
           <ul>
-            <li><a href="#development-tools">Development (7)</a></li>
-            <li><a href="#content-workflow">Content & Workflow (3)</a></li>
-            <li><a href="#image-generation">Image Generation (1)</a></li>
+            <li><a href="#development-tools">发展 (7)</a></li>
+            <li><a href="#content-workflow">内容和工作流程 (3)</a></li>
+            <li><a href="#image-generation">图像生成 (1)</a></li>
           </ul>
         </div>
       </nav>
@@ -59,11 +59,11 @@
     <main class="docs-content">
       <div class="docs-header">
         <nav class="breadcrumb">
-          <a href="../index.html">Home</a>
+          <a href="../index.html">家</a>
           <span>/</span>
-          <a href="getting-started.html">Docs</a>
+          <a href="getting-started.html">文档</a>
           <span>/</span>
-          <span>Skills</span>
+          <span>技能</span>
         </nav>
         <button class="mobile-menu-toggle" data-sidebar-toggle>
           <i class="fa-solid fa-bars"></i>
@@ -71,13 +71,13 @@
       </div>
 
       <article class="docs-article">
-        <h1><i class="fa-solid fa-wand-magic-sparkles color-accent"></i> Skill Reference</h1>
+        <h1><i class="fa-solid fa-wand-magic-sparkles color-accent"></i> 技能参考</h1>
         <p class="lead">
-          Think of skills as reference manuals that Claude Code can read mid-conversation. When you're writing Rails code and want DHH's style, or building a gem like Andrew Kane would, you don't need to paste documentation—just invoke the skill. Claude reads it, absorbs the patterns, and writes code that way.
+          将技能视为克劳德·科德可以在对话中阅读的参考手册。当您编写 Rails 代码并想要 DHH 的风格，或者像 Andrew Kane 那样构建 gem 时，您不需要粘贴文档 - 只需调用该技能即可。克劳德阅读它，吸收其中的模式，并以这种方式编写代码。
         </p>
 
         <div class="usage-box">
-          <h3>How to Use Skills</h3>
+          <h3>如何使用技能</h3>
           <div class="card-code-block">
             <pre><code># In your prompt, reference the skill
 skill: [skill-name]
@@ -92,44 +92,44 @@ skill: create-agent-skills</code></pre>
         <div class="callout callout-info">
           <div class="callout-icon"><i class="fa-solid fa-circle-info"></i></div>
           <div class="callout-content">
-            <h4>Skills vs Agents</h4>
+            <h4>技能与特​​工</h4>
             <p>
-              <strong>Agents</strong> are personas—they <em>do</em> things. <strong>Skills</strong> are knowledge—they teach Claude <em>how</em> to do things. Use <code>claude agent [name]</code> when you want someone to review your code. Use <code>skill: [name]</code> when you want to write code in a particular style yourself.
+              <strong>代理商</strong> 是角色——他们 <em>do</em> 事物。 <strong>技能</strong> 是知识——他们教克劳德 <em>如何</em> 做事。使用 <code>claude agent [name]</code> 当您希望有人检查您的代码时。使用 <code>skill: [name]</code> 当您想自己编写特定风格的代码时。
             </p>
           </div>
         </div>
 
         <!-- Development Tools -->
         <section id="development-tools">
-          <h2><i class="fa-solid fa-code"></i> Development Tools (7)</h2>
-          <p>These skills teach Claude specific coding styles and architectural patterns. Use them when you want code that follows a particular philosophy—not just any working code, but code that looks like it was written by a specific person or framework.</p>
+          <h2><i class="fa-solid fa-code"></i> 开发工具 (7)</h2>
+          <p>这些技能教会了克劳德特定的编码风格和架构模式。当您想要遵循特定理念的代码时使用它们——不仅仅是任何工作代码，而是看起来像是由特定人员或框架编写的代码。</p>
 
           <div class="skill-detail" id="create-agent-skills">
             <div class="skill-detail-header">
-              <h3>create-agent-skills</h3>
-              <span class="skill-badge">Meta</span>
+              <h3>创建代理技能</h3>
+              <span class="skill-badge">元</span>
             </div>
             <p class="skill-detail-description">
-              You're writing a skill right now, but you're not sure if you're structuring the SKILL.md file correctly. Should the examples go before the theory? How do you organize workflows vs. references? This skill is the answer—it's the master template for building skills themselves.
+              您现在正在编写一项技能，但不确定是否正确构建了 SKILL.md 文件。例子应该放在理论之前吗？您如何组织工作流程与参考文献？这项技能就是答案——它是构建技能本身的主模板。
             </p>
-            <h4>Capabilities</h4>
+            <h4>能力</h4>
             <ul>
-              <li>Skill architecture and best practices</li>
-              <li>Router pattern for complex multi-step skills</li>
-              <li>Progressive disclosure design principles</li>
-              <li>SKILL.md structure guidance</li>
-              <li>Asset management (workflows, references, templates, scripts)</li>
-              <li>XML structure patterns</li>
+              <li>技能架构和最佳实践</li>
+              <li>用于复杂多步骤技能的路由器模式</li>
+              <li>渐进式披露设计原则</li>
+              <li>SKILL.md 结构指导</li>
+              <li>资产管理（工作流程、参考、模板、脚本）</li>
+              <li>XML 结构模式</li>
             </ul>
-            <h4>Workflows Included</h4>
+            <h4>包含的工作流程</h4>
             <ul>
-              <li><code>create-new-skill</code> - Start from scratch</li>
-              <li><code>add-reference</code> - Add reference documentation</li>
-              <li><code>add-template</code> - Add code templates</li>
-              <li><code>add-workflow</code> - Add step-by-step procedures</li>
-              <li><code>add-script</code> - Add executable scripts</li>
-              <li><code>audit-skill</code> - Validate skill structure</li>
-              <li><code>verify-skill</code> - Test skill functionality</li>
+              <li><code>create-new-skill</code> - 从头开始</li>
+              <li><code>add-reference</code> - 添加参考文档</li>
+              <li><code>add-template</code> - 添加代码模板</li>
+              <li><code>add-workflow</code> - 添加分步程序</li>
+              <li><code>add-script</code> - 添加可执行脚本</li>
+              <li><code>audit-skill</code> - 验证技能结构</li>
+              <li><code>verify-skill</code> - 测试技能功能</li>
             </ul>
             <div class="card-code-block">
               <pre><code>skill: create-agent-skills</code></pre>
@@ -138,20 +138,20 @@ skill: create-agent-skills</code></pre>
 
           <div class="skill-detail" id="skill-creator">
             <div class="skill-detail-header">
-              <h3>skill-creator</h3>
-              <span class="skill-badge">Meta</span>
+              <h3>技能创造者</h3>
+              <span class="skill-badge">元</span>
             </div>
             <p class="skill-detail-description">
-              The simpler, step-by-step version of <code>create-agent-skills</code>. When you just want a checklist to follow from blank file to packaged skill, use this. It's less about theory, more about "do step 1, then step 2."
+              更简单的分步版本 <code>create-agent-skills</code>。当您只想从空白文件到打包技能的清单中遵循时，请使用此选项。与其说是理论，不如说是“先执行步骤 1，然后执行步骤 2”。
             </p>
-            <h4>6-Step Process</h4>
+            <h4>6步流程</h4>
             <ol>
-              <li>Understand skill usage patterns with examples</li>
-              <li>Plan reusable skill contents</li>
-              <li>Initialize skill using template</li>
-              <li>Edit skill with clear instructions</li>
-              <li>Package skill into distributable zip</li>
-              <li>Iterate based on testing feedback</li>
+              <li>通过示例了解技能使用模式</li>
+              <li>规划可重复使用的技能内容</li>
+              <li>使用模板初始化技能</li>
+              <li>编辑技能并提供清晰的说明</li>
+              <li>将技能打包到可分发的 zip 中</li>
+              <li>根据测试反馈进行迭代</li>
             </ol>
             <div class="card-code-block">
               <pre><code>skill: skill-creator</code></pre>
@@ -160,26 +160,26 @@ skill: create-agent-skills</code></pre>
 
           <div class="skill-detail" id="dhh-ruby-style">
             <div class="skill-detail-header">
-              <h3>dhh-ruby-style</h3>
-              <span class="skill-badge">Rails</span>
+              <h3>dhh 红宝石风格</h3>
+              <span class="skill-badge">导轨</span>
             </div>
             <p class="skill-detail-description">
-              You want Rails controllers that are five lines, not fifty. Models that handle authorization, broadcasting, and business logic without service objects everywhere. This skill teaches Claude to write code the way DHH writes it at 37signals—REST-pure, Hotwire-first, no architectural astronautics.
+              您需要五行而不是五十行的 Rails 控制器。处理授权、广播和业务逻辑的模型，无需到处都有服务对象。这项技能教会 Claude 以 DHH 在 37signals 编写代码的方式编写代码 — REST 纯、Hotwire 优先、无建筑航天学。
             </p>
-            <h4>Key Patterns</h4>
+            <h4>关键模式</h4>
             <ul>
-              <li><strong>REST Purity</strong> - 7 REST actions only</li>
-              <li><strong>Fat Models</strong> - Business logic, authorization, broadcasting in models</li>
-              <li><strong>Thin Controllers</strong> - 1-5 line actions</li>
-              <li><strong>Current Attributes</strong> - Request context</li>
-              <li><strong>Hotwire/Turbo</strong> - Model-level broadcasting</li>
+              <li><strong>休息纯度</strong> - 仅 7 个 REST 动作</li>
+              <li><strong>脂肪模型</strong> - 模型中的业务逻辑、授权、广播</li>
+              <li><strong>瘦控制器</strong> - 1-5行动作</li>
+              <li><strong>当前属性</strong> - 请求上下文</li>
+              <li><strong>热线/涡轮</strong> - 模型级广播</li>
             </ul>
-            <h4>Ruby Syntax Preferences</h4>
+            <h4>Ruby 语法首选项</h4>
             <ul>
-              <li>Symbol arrays <code>%i[...]</code></li>
-              <li>Modern hash syntax</li>
-              <li>Ternaries for simple conditionals</li>
-              <li>Bang methods for mutations</li>
+              <li>符号数组 <code>%i[...]</code></li>
+              <li>现代哈希语法</li>
+              <li>简单条件的三元数</li>
+              <li>突变的 Bang 方法</li>
             </ul>
             <div class="card-code-block">
               <pre><code>skill: dhh-ruby-style</code></pre>
@@ -188,28 +188,28 @@ skill: create-agent-skills</code></pre>
 
           <div class="skill-detail" id="andrew-kane-gem-writer">
             <div class="skill-detail-header">
-              <h3>andrew-kane-gem-writer</h3>
-              <span class="skill-badge">Ruby</span>
+              <h3>安德鲁·凯恩宝石作家</h3>
+              <span class="skill-badge">红宝石</span>
             </div>
             <p class="skill-detail-description">
-              Andrew Kane has written 100+ Ruby gems with 374 million downloads. Every gem follows the same patterns: minimal dependencies, class macro DSLs, Rails integration without Rails coupling. When you're building a gem and want it to feel production-ready from day one, this is how you do it.
+              Andrew Kane 编写了 100 多篇 Ruby gem，下载量达到 3.74 亿次。每个 gem 都遵循相同的模式：最小依赖、类宏 DSL、无 Rails 耦合的 Rails 集成。当您构建 gem 并希望它从第一天起就可以投入生产时，您可以这样做。
             </p>
-            <h4>Philosophy</h4>
+            <h4>哲学</h4>
             <ul>
-              <li>Simplicity over cleverness</li>
-              <li>Zero or minimal dependencies</li>
-              <li>Explicit code over metaprogramming</li>
-              <li>Rails integration without Rails coupling</li>
+              <li>简单胜过聪明</li>
+              <li>零或最小依赖性</li>
+              <li>关于元编程的显式代码</li>
+              <li>无需 Rails 耦合的 Rails 集成</li>
             </ul>
-            <h4>Key Patterns</h4>
+            <h4>关键模式</h4>
             <ul>
-              <li>Class macro DSL for configuration</li>
-              <li><code>ActiveSupport.on_load</code> for Rails integration</li>
+              <li>用于配置的类宏 DSL</li>
+              <li><code>ActiveSupport.on_load</code> 用于 Rails 集成</li>
               <li><code>class << self</code> with <code>attr_accessor</code></li>
-              <li>Railtie pattern for hooks</li>
-              <li>Minitest (no RSpec)</li>
+              <li>挂钩的铁轨图案</li>
+              <li>Minitest（无 RSpec）</li>
             </ul>
-            <h4>Reference Files</h4>
+            <h4>参考文件</h4>
             <ul>
               <li><code>references/module-organization.md</code></li>
               <li><code>references/rails-integration.md</code></li>
@@ -223,40 +223,40 @@ skill: create-agent-skills</code></pre>
 
           <div class="skill-detail" id="dspy-ruby">
             <div class="skill-detail-header">
-              <h3>dspy-ruby</h3>
+              <h3>dspy 红宝石</h3>
               <span class="skill-badge">AI</span>
             </div>
             <p class="skill-detail-description">
-              You're adding AI features to your Rails app, but you don't want brittle prompt strings scattered everywhere. DSPy.rb gives you type-safe signatures, composable predictors, and tool-using agents. This skill shows you how to use it—from basic inference to ReAct agents that iterate until they get the answer right.
+              您正在向 Rails 应用程序添加 AI 功能，但您不希望脆弱的提示字符串散布在各处。 DSPy.rb 为您提供类型安全的签名、可组合的预测器和工具使用代理。这项技能向您展示如何使用它——从基本推理到迭代直到获得正确答案的 ReAct 代理。
             </p>
-            <h4>Predictor Types</h4>
+            <h4>预测变量类型</h4>
             <ul>
-              <li><strong>Predict</strong> - Basic inference</li>
-              <li><strong>ChainOfThought</strong> - Reasoning with explanations</li>
-              <li><strong>ReAct</strong> - Tool-using agents with iteration</li>
-              <li><strong>CodeAct</strong> - Dynamic code generation</li>
+              <li><strong>预测</strong> - 基本推理</li>
+              <li><strong>思想链</strong> - 推理与解释</li>
+              <li><strong>反应</strong> - 具有迭代功能的工具使用代理</li>
+              <li><strong>法典法案</strong> - 动态代码生成</li>
             </ul>
-            <h4>Supported Providers</h4>
+            <h4>支持的提供商</h4>
             <ul>
-              <li>OpenAI (GPT-4, GPT-4o-mini)</li>
-              <li>Anthropic Claude</li>
-              <li>Google Gemini</li>
-              <li>Ollama (free, local)</li>
-              <li>OpenRouter</li>
+              <li>OpenAI（GPT-4、GPT-4o-mini）</li>
+              <li>人性化的克劳德</li>
+              <li>谷歌双子座</li>
+              <li>Ollama（免费，本地）</li>
+              <li>开放路由器</li>
             </ul>
-            <h4>Requirements</h4>
+            <h4>要求</h4>
             <table class="docs-table">
               <tr>
                 <td><code>OPENAI_API_KEY</code></td>
-                <td>For OpenAI provider</td>
+                <td>对于 OpenAI 提供商</td>
               </tr>
               <tr>
                 <td><code>ANTHROPIC_API_KEY</code></td>
-                <td>For Anthropic provider</td>
+                <td>对于人类提供者</td>
               </tr>
               <tr>
                 <td><code>GOOGLE_API_KEY</code></td>
-                <td>For Gemini provider</td>
+                <td>对于双子座提供商</td>
               </tr>
             </table>
             <div class="card-code-block">
@@ -266,31 +266,31 @@ skill: create-agent-skills</code></pre>
 
           <div class="skill-detail" id="frontend-design">
             <div class="skill-detail-header">
-              <h3>frontend-design</h3>
-              <span class="skill-badge">Design</span>
+              <h3>前端设计</h3>
+              <span class="skill-badge">设计</span>
             </div>
             <p class="skill-detail-description">
-              You've seen what AI usually generates: Inter font, purple gradients, rounded corners on everything. This skill teaches Claude to design interfaces that don't look like every other AI-generated site. It's about purposeful typography, unexpected color palettes, and interfaces with personality.
+              您已经看到了 AI 通常生成的内容：Inter 字体、紫色渐变、所有内容的圆角。这项技能教会克劳德设计出与其他人工智能生成的网站不同的界面。它涉及有目的的排版、意想不到的调色板和个性化的界面。
             </p>
-            <h4>Design Thinking</h4>
+            <h4>设计思维</h4>
             <ul>
-              <li><strong>Purpose</strong> - What is the interface for?</li>
-              <li><strong>Tone</strong> - What feeling should it evoke?</li>
-              <li><strong>Constraints</strong> - Technical and brand limitations</li>
-              <li><strong>Differentiation</strong> - How to stand out</li>
+              <li><strong>目的</strong> - 接口有什么用？</li>
+              <li><strong>语气</strong> - 它应该唤起什么样的感觉？</li>
+              <li><strong>约束条件</strong> - 技术和品牌限制</li>
+              <li><strong>差异化</strong> - 如何脱颖而出</li>
             </ul>
-            <h4>Focus Areas</h4>
+            <h4>重点领域</h4>
             <ul>
-              <li>Typography with distinctive font choices</li>
-              <li>Color & theme coherence with CSS variables</li>
-              <li>Motion and animation patterns</li>
-              <li>Spatial composition with asymmetry</li>
-              <li>Backgrounds (gradients, textures, patterns)</li>
+              <li>具有独特字体选择的版式</li>
+              <li>颜色和主题与 CSS 变量的一致性</li>
+              <li>运动和动画模式</li>
+              <li>不对称的空间构图</li>
+              <li>背景（渐变、纹理、图案）</li>
             </ul>
             <div class="callout callout-tip">
               <div class="callout-icon"><i class="fa-solid fa-lightbulb"></i></div>
               <div class="callout-content">
-                <p>Avoids generic AI aesthetics like Inter fonts, purple gradients, and rounded corners everywhere.</p>
+                <p>避免通用的 AI 美学，例如 Inter 字体、紫色渐变和圆角。</p>
               </div>
             </div>
             <div class="card-code-block">
@@ -300,25 +300,25 @@ skill: create-agent-skills</code></pre>
 
           <div class="skill-detail" id="compound-docs">
             <div class="skill-detail-header">
-              <h3>compound-docs</h3>
-              <span class="skill-badge">Docs</span>
+              <h3>复合文档</h3>
+              <span class="skill-badge">文档</span>
             </div>
             <p class="skill-detail-description">
-              You just fixed a weird build error after an hour of debugging. Tomorrow you'll forget how you fixed it. This skill automatically detects when you solve something (phrases like "that worked" or "it's fixed") and documents it with YAML frontmatter so you can find it again. Each documented solution compounds your team's knowledge.
+              经过一个小时的调试后，您刚刚修复了一个奇怪的构建错误。明天你就会忘记你是如何修复它的。此技能会自动检测您何时解决某些问题（诸如“有效”或“已修复”之类的短语），并使用 YAML frontmatter 对其进行记录，以便您可以再次找到它。每个记录的解决方案都会丰富您团队的知识。
             </p>
-            <h4>Auto-Triggers</h4>
-            <p>Phrases: "that worked", "it's fixed", "working now", "problem solved"</p>
-            <h4>7-Step Process</h4>
+            <h4>自动触发</h4>
+            <p>短语：“有效”、“已修复”、“现在有效”、“问题已解决”</p>
+            <h4>7 步流程</h4>
             <ol>
-              <li>Detect confirmation phrase</li>
-              <li>Gather context (module, symptom, investigation, root cause)</li>
-              <li>Check existing docs for similar issues</li>
-              <li>Generate filename</li>
-              <li>Validate YAML frontmatter</li>
-              <li>Create documentation in category directory</li>
-              <li>Cross-reference related issues</li>
+              <li>检测确认短语</li>
+              <li>收集背景信息（模块、症状、调查、根本原因）</li>
+              <li>检查现有文档是否存在类似问题</li>
+              <li>生成文件名</li>
+              <li>验证 YAML frontmatter</li>
+              <li>在类别目录中创​​建文档</li>
+              <li>交叉引用相关问题</li>
             </ol>
-            <h4>Categories</h4>
+            <h4>类别</h4>
             <ul>
               <li><code>build-errors/</code></li>
               <li><code>test-failures/</code></li>
@@ -335,31 +335,31 @@ skill: create-agent-skills</code></pre>
 
         <!-- Content & Workflow -->
         <section id="content-workflow">
-          <h2><i class="fa-solid fa-pen-fancy"></i> Content & Workflow (3)</h2>
-          <p>Writing, editing, and organizing work. These skills handle everything from style guide compliance to git worktree management—the meta-work that makes the real work easier.</p>
+          <h2><i class="fa-solid fa-pen-fancy"></i> 内容和工作流程 (3)</h2>
+          <p>写作、编辑和组织工作。这些技能处理从风格指南合规性到 git 工作树管理的一切事务——元工作使实际工作变得更容易。</p>
 
           <div class="skill-detail" id="every-style-editor">
             <div class="skill-detail-header">
-              <h3>every-style-editor</h3>
-              <span class="skill-badge">Content</span>
+              <h3>每种风格的编辑器</h3>
+              <span class="skill-badge">内容</span>
             </div>
             <p class="skill-detail-description">
-              You wrote a draft, but you're not sure if it matches Every's style guide. Should "internet" be capitalized? Is this comma splice allowed? This skill does a four-phase line-by-line review: context, detailed edits, mechanical checks, and actionable recommendations. It's like having a copy editor who never gets tired.
+              您写了一份草稿，但不确定它是否符合 Every 的风格指南。 “internet”应该大写吗？允许这种逗号拼接吗？该技能进行四个阶段的逐行审查：上下文、详细编辑、机械检查和可行的建议。这就像拥有一个永不疲倦的文案编辑。
             </p>
-            <h4>Four-Phase Review</h4>
+            <h4>四阶段审查</h4>
             <ol>
-              <li><strong>Initial Assessment</strong> - Context, type, audience, tone</li>
-              <li><strong>Detailed Line Edit</strong> - Sentence structure, punctuation, capitalization</li>
-              <li><strong>Mechanical Review</strong> - Spacing, formatting, consistency</li>
-              <li><strong>Recommendations</strong> - Actionable improvement suggestions</li>
+              <li><strong>初步评估</strong> - 语境、类型、受众、语气</li>
+              <li><strong>详细线路编辑</strong> - 句子结构、标点符号、大小写</li>
+              <li><strong>机械评论</strong> - 间距、格式、一致性</li>
+              <li><strong>建议</strong> - 可操作的改进建议</li>
             </ol>
-            <h4>Style Checks</h4>
+            <h4>风格格纹</h4>
             <ul>
-              <li>Grammar and punctuation</li>
-              <li>Style guide compliance</li>
-              <li>Capitalization rules</li>
-              <li>Word choice optimization</li>
-              <li>Formatting consistency</li>
+              <li>语法和标点符号</li>
+              <li>风格指南合规性</li>
+              <li>大写规则</li>
+              <li>选词优化</li>
+              <li>格式一致性</li>
             </ul>
             <div class="card-code-block">
               <pre><code>skill: every-style-editor</code></pre>
@@ -368,13 +368,13 @@ skill: create-agent-skills</code></pre>
 
           <div class="skill-detail" id="file-todos">
             <div class="skill-detail-header">
-              <h3>file-todos</h3>
-              <span class="skill-badge">Workflow</span>
+              <h3>文件全部</h3>
+              <span class="skill-badge">工作流程</span>
             </div>
             <p class="skill-detail-description">
-              Your todo list is a bunch of markdown files in a <code>todos/</code> directory. Each filename encodes status, priority, and description. No database, no UI, just files with YAML frontmatter. When you need to track work without setting up Jira, this is the system.
+              你的待办事项列表是一堆 markdown 文件 <code>todos/</code> 目录。每个文件名都编码状态、优先级和描述。没有数据库，没有 UI，只有带有 YAML frontmatter 的文件。当您需要在不设置 Jira 的情况下跟踪工作时，这就是系统。
             </p>
-            <h4>File Format</h4>
+            <h4>文件格式</h4>
             <div class="card-code-block">
               <pre><code># Naming convention
 {issue_id}-{status}-{priority}-{description}.md
@@ -384,19 +384,19 @@ skill: create-agent-skills</code></pre>
 002-ready-p2-performance-optimization.md
 003-complete-p3-code-cleanup.md</code></pre>
             </div>
-            <h4>Status Values</h4>
+            <h4>状态值</h4>
             <ul>
-              <li><code>pending</code> - Needs triage</li>
-              <li><code>ready</code> - Approved for work</li>
-              <li><code>complete</code> - Done</li>
+              <li><code>pending</code> - 需要分诊</li>
+              <li><code>ready</code> - 批准工作</li>
+              <li><code>complete</code> - 完毕</li>
             </ul>
-            <h4>Priority Values</h4>
+            <h4>优先值</h4>
             <ul>
-              <li><code>p1</code> - Critical</li>
-              <li><code>p2</code> - Important</li>
-              <li><code>p3</code> - Nice-to-have</li>
+              <li><code>p1</code> - 批判的</li>
+              <li><code>p2</code> - 重要的</li>
+              <li><code>p3</code> - 值得拥有</li>
             </ul>
-            <h4>YAML Frontmatter</h4>
+            <h4>YAML 前沿问题</h4>
             <div class="card-code-block">
               <pre><code>---
 status: pending
@@ -413,13 +413,13 @@ dependencies: []
 
           <div class="skill-detail" id="git-worktree">
             <div class="skill-detail-header">
-              <h3>git-worktree</h3>
-              <span class="skill-badge">Git</span>
+              <h3>git工作树</h3>
+              <span class="skill-badge">git</span>
             </div>
             <p class="skill-detail-description">
-              You're working on a feature branch, but you need to review a PR without losing your current work. Git worktrees let you have multiple branches checked out simultaneously in separate directories. This skill manages them—create, switch, cleanup—so you can context-switch without stashing or committing half-finished code.
+              您正在开发一个功能分支，但您需要在不丢失当前工作的情况下查看 PR。 Git 工作树让您可以在不同的目录中同时检出多个分支。这项技能可以管理它们（创建、切换、清理），因此您可以进行上下文切换，而无需隐藏或提交半成品代码。
             </p>
-            <h4>Commands</h4>
+            <h4>命令</h4>
             <div class="card-code-block">
               <pre><code># Create new worktree
 bash scripts/worktree-manager.sh create feature-login
@@ -433,15 +433,15 @@ bash scripts/worktree-manager.sh switch feature-login
 # Clean up completed worktrees
 bash scripts/worktree-manager.sh cleanup</code></pre>
             </div>
-            <h4>Integration</h4>
+            <h4>一体化</h4>
             <ul>
-              <li>Works with <code>/review</code> for isolated PR analysis</li>
-              <li>Works with <code>/work</code> for parallel feature development</li>
+              <li>与 <code>/review</code> 用于单独的 PR 分析</li>
+              <li>与 <code>/work</code> 用于并行功能开发</li>
             </ul>
-            <h4>Requirements</h4>
+            <h4>要求</h4>
             <ul>
-              <li>Git 2.8+ (for worktree support)</li>
-              <li>Worktrees stored in <code>.worktrees/</code> directory</li>
+              <li>Git 2.8+（用于工作树支持）</li>
+              <li>工作树存储在 <code>.worktrees/</code> 目录</li>
             </ul>
             <div class="card-code-block">
               <pre><code>skill: git-worktree</code></pre>
@@ -451,51 +451,51 @@ bash scripts/worktree-manager.sh cleanup</code></pre>
 
         <!-- Image Generation -->
         <section id="image-generation">
-          <h2><i class="fa-solid fa-image"></i> Image Generation (1)</h2>
-          <p>Generate images with AI. Not stock photos you found on Unsplash—images you describe and the model creates.</p>
+          <h2><i class="fa-solid fa-image"></i> 图像生成 (1)</h2>
+          <p>使用 AI 生成图像。不是您在 Unsplash 上找到的库存照片 - 您描述和模型创建的图像。</p>
 
           <div class="skill-detail featured" id="gemini-imagegen">
             <div class="skill-detail-header">
-              <h3>gemini-imagegen</h3>
-              <span class="skill-badge highlight">AI Images</span>
+              <h3>Gemini-imagegen</h3>
+              <span class="skill-badge highlight">人工智能图像</span>
             </div>
             <p class="skill-detail-description">
-              Need a logo with specific text? A product mockup on a marble surface? An illustration in a kawaii style? This skill wraps Google's Gemini image generation API. You describe what you want, it generates it. You can edit existing images, refine over multiple turns, or compose from reference images. All through simple Python scripts.
+              需要带有特定文字的徽标吗？大理石表面上的产品模型？卡哇伊风格的插图？该技能封装了 Google 的 Gemini 图像生成 API。你描述你想要什么，它就会生成它。您可以编辑现有图像、优化多轮图像或根据参考图像进行合成。全部通过简单的 Python 脚本完成。
             </p>
 
-            <h4>Features</h4>
+            <h4>特征</h4>
             <div class="skill-features">
-              <div class="feature-item"><i class="fa-solid fa-check"></i> Text-to-image generation</div>
-              <div class="feature-item"><i class="fa-solid fa-check"></i> Image editing & manipulation</div>
-              <div class="feature-item"><i class="fa-solid fa-check"></i> Multi-turn iterative refinement</div>
-              <div class="feature-item"><i class="fa-solid fa-check"></i> Multiple reference images (up to 14)</div>
-              <div class="feature-item"><i class="fa-solid fa-check"></i> Google Search grounding (Pro)</div>
+              <div class="feature-item"><i class="fa-solid fa-check"></i> 文本到图像的生成</div>
+              <div class="feature-item"><i class="fa-solid fa-check"></i> 图像编辑和操作</div>
+              <div class="feature-item"><i class="fa-solid fa-check"></i> 多轮迭代细化</div>
+              <div class="feature-item"><i class="fa-solid fa-check"></i> 多个参考图像（最多 14 个）</div>
+              <div class="feature-item"><i class="fa-solid fa-check"></i> Google 搜索接地（专业版）</div>
             </div>
 
-            <h4>Available Models</h4>
+            <h4>可用型号</h4>
             <table class="docs-table">
               <thead>
                 <tr>
-                  <th>Model</th>
-                  <th>Resolution</th>
-                  <th>Best For</th>
+                  <th>模型</th>
+                  <th>解决</th>
+                  <th>最适合</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
                   <td><code>gemini-2.5-flash-image</code></td>
                   <td>1024px</td>
-                  <td>Speed, high-volume tasks</td>
+                  <td>速度快、大批量的任务</td>
                 </tr>
                 <tr>
                   <td><code>gemini-3-pro-image-preview</code></td>
-                  <td>Up to 4K</td>
-                  <td>Professional assets, complex instructions</td>
+                  <td>高达 4K</td>
+                  <td>专业资产，复杂指令</td>
                 </tr>
               </tbody>
             </table>
 
-            <h4>Quick Start</h4>
+            <h4>快速入门</h4>
             <div class="card-code-block">
               <pre><code># Text-to-image
 python scripts/generate_image.py "A cat wearing a wizard hat" output.png
@@ -507,7 +507,7 @@ python scripts/edit_image.py input.png "Add a rainbow in the background" output.
 python scripts/multi_turn_chat.py</code></pre>
             </div>
 
-            <h4>Image Configuration</h4>
+            <h4>图像配置</h4>
             <div class="card-code-block">
               <pre><code>from google.genai import types
 
@@ -524,34 +524,34 @@ response = client.models.generate_content(
 )</code></pre>
             </div>
 
-            <h4>Prompting Best Practices</h4>
+            <h4>提示最佳实践</h4>
             <ul>
-              <li><strong>Photorealistic</strong> - Include camera details: lens type, lighting, angle, mood</li>
-              <li><strong>Stylized Art</strong> - Specify style explicitly: kawaii, cel-shading, bold outlines</li>
-              <li><strong>Text in Images</strong> - Be explicit about font style and placement (use Pro model)</li>
-              <li><strong>Product Mockups</strong> - Describe lighting setup and surface</li>
+              <li><strong>逼真</strong> - 包括相机详细信息：镜头类型、灯光、角度、情绪</li>
+              <li><strong>风格化艺术</strong> - 明确指定风格：卡哇伊、卡通阴影、粗体轮廓</li>
+              <li><strong>图像中的文字</strong> - 明确字体样式和位置（使用 Pro 模型）</li>
+              <li><strong>产品模型</strong> - 描述照明设置和表面</li>
             </ul>
 
-            <h4>Requirements</h4>
+            <h4>要求</h4>
             <table class="docs-table">
               <tr>
                 <td><code>GEMINI_API_KEY</code></td>
-                <td>Required environment variable</td>
+                <td>所需的环境变量</td>
               </tr>
               <tr>
                 <td><code>google-genai</code></td>
-                <td>Python package</td>
+                <td>Python包</td>
               </tr>
               <tr>
                 <td><code>pillow</code></td>
-                <td>Python package for image handling</td>
+                <td>用于图像处理的Python包</td>
               </tr>
             </table>
 
             <div class="callout callout-info">
               <div class="callout-icon"><i class="fa-solid fa-circle-info"></i></div>
               <div class="callout-content">
-                <p>All generated images include SynthID watermarks. Image-only mode won't work with Google Search grounding.</p>
+                <p>所有生成的图像都包含 SynthID 水印。仅图片模式不适用于 Google 搜索接地。</p>
               </div>
             </div>
 
@@ -564,12 +564,12 @@ response = client.models.generate_content(
         <!-- Navigation -->
         <nav class="docs-nav-footer">
           <a href="commands.html" class="nav-prev">
-            <span class="nav-label">Previous</span>
-            <span class="nav-title"><i class="fa-solid fa-arrow-left"></i> Commands</span>
+            <span class="nav-label">以前的</span>
+            <span class="nav-title"><i class="fa-solid fa-arrow-left"></i> 命令</span>
           </a>
           <a href="mcp-servers.html" class="nav-next">
-            <span class="nav-label">Next</span>
-            <span class="nav-title">MCP Servers <i class="fa-solid fa-arrow-right"></i></span>
+            <span class="nav-label">下一个</span>
+            <span class="nav-title">MCP服务器 <i class="fa-solid fa-arrow-right"></i></span>
           </a>
         </nav>
       </article>

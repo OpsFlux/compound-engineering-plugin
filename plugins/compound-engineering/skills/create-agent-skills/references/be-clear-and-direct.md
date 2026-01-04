@@ -1,21 +1,21 @@
 <golden_rule>
-Show your skill to someone with minimal context and ask them to follow the instructions. If they're confused, Claude will likely be too.
+向背景很少的人展示您的技能，并要求他们按照说明进行操作。如果他们感到困惑，克劳德很可能也会感到困惑。
 </golden_rule>
 
 <overview>
-Clarity and directness are fundamental to effective skill authoring. Clear instructions reduce errors, improve execution quality, and minimize token waste.
+清晰和直接是有效技能创作的基础。清晰的指令可以减少错误，提高执行质量，并最大限度地减少令牌浪费。
 </overview>
 
 <guidelines>
 <contextual_information>
-Give Claude contextual information that frames the task:
+为克劳德提供框架任务的上下文信息：
 
-- What the task results will be used for
-- What audience the output is meant for
-- What workflow the task is part of
-- The end goal or what successful completion looks like
+- 任务结果的用途
+- 输出的目标受众是什么
+- 该任务属于哪个工作流程
+- 最终目标或成功完成的样子
 
-Context helps Claude make better decisions and produce more appropriate outputs.
+上下文帮助克劳德做出更好的决策并产生更合适的输出。
 
 <example>
 ```xml
@@ -23,23 +23,24 @@ Context helps Claude make better decisions and produce more appropriate outputs.
 This analysis will be presented to investors who value transparency and actionable insights. Focus on financial metrics and clear recommendations.
 </context>
 ```
+
 </example>
 </contextual_information>
 
 <specificity>
-Be specific about what you want Claude to do. If you want code only and nothing else, say so.
+具体说明您希望克劳德做什么。如果您只想要代码而不需要其他任何东西，请直接说出来。
 
-**Vague**: "Help with the report"
-**Specific**: "Generate a markdown report with three sections: Executive Summary, Key Findings, Recommendations"
+**含糊**：“帮助报告”
+**具体**：“生成包含三个部分的降价报告：执行摘要、主要发现、建议”
 
-**Vague**: "Process the data"
-**Specific**: "Extract customer names and email addresses from the CSV file, removing duplicates, and save to JSON format"
+**含糊**：“处理数据”
+**具体**：“从 CSV 文件中提取客户姓名和电子邮件地址，删除重复项，然后保存为 JSON 格式”
 
-Specificity eliminates ambiguity and reduces iteration cycles.
+特异性消除了歧义并减少了迭代周期。
 </specificity>
 
 <sequential_steps>
-Provide instructions as sequential steps. Use numbered lists or bullet points.
+以连续步骤的形式提供说明。使用编号列表或项目符号点。
 
 ```xml
 <workflow>
@@ -51,7 +52,8 @@ Provide instructions as sequential steps. Use numbered lists or bullet points.
 </workflow>
 ```
 
-Sequential steps create clear expectations and reduce the chance Claude skips important operations.
+
+连续的步骤可以创建明确的期望并减少 Claude 跳过重要操作的机会。
 </sequential_steps>
 </guidelines>
 
@@ -63,12 +65,13 @@ Please remove all personally identifiable information from these customer feedba
 </quick_start>
 ```
 
-**Problems**:
-- What counts as PII?
-- What should replace PII?
-- What format should the output be?
-- What if no PII is found?
-- Should product names be redacted?
+
+**问题**：
+- 什么算作 PII？
+- 什么应该取代 PII？
+- 输出应该是什么格式？
+- 如果没有找到 PII 怎么办？
+- 产品名称是否应该被编辑？
 </unclear_example>
 
 <clear_example>
@@ -98,29 +101,30 @@ Data to process: {{FEEDBACK_DATA}}
 </success_criteria>
 ```
 
-**Why this is better**:
-- States the purpose (quarterly review)
-- Provides explicit step-by-step rules
-- Defines output format clearly
-- Specifies edge cases (product names, no PII found)
-- Defines success criteria
+
+**为什么这样更好**：
+- 说明目的（季度审查）
+- 提供明确的分步规则
+- 明确定义输出格式
+- 指定边缘情况（产品名称，未找到 PII）
+- 定义成功标准
 </clear_example>
 </example_comparison>
 
 <key_differences>
-The clear version:
-- States the purpose (quarterly review)
-- Provides explicit step-by-step rules
-- Defines output format
-- Specifies edge cases (product names, no PII found)
-- Includes success criteria
+清晰版：
+- 说明目的（季度审查）
+- 提供明确的分步规则
+- 定义输出格式
+- 指定边缘情况（产品名称，未找到 PII）
+- 包括成功标准
 
-The unclear version leaves all these decisions to Claude, increasing the chance of misalignment with expectations.
+不清楚的版本将所有这些决定留给了克劳德，增加了与预期不一致的可能性。
 </key_differences>
 
 <show_dont_just_tell>
 <principle>
-When format matters, show an example rather than just describing it.
+当格式很重要时，请展示一个示例，而不仅仅是描述它。
 </principle>
 
 <telling_example>
@@ -129,6 +133,7 @@ When format matters, show an example rather than just describing it.
 Generate commit messages in conventional format with type, scope, and description.
 </commit_messages>
 ```
+
 </telling_example>
 
 <showing_example>
@@ -140,9 +145,10 @@ Generate commit messages following these examples:
 <input>Added user authentication with JWT tokens</input>
 <output>
 ```
-feat(auth): implement JWT-based authentication
 
-Add login endpoint and token validation middleware
+feat(auth)：实现基于 JWT 的身份验证
+
+添加登录端点和令牌验证中间件
 ```
 </output>
 </example>
@@ -151,9 +157,10 @@ Add login endpoint and token validation middleware
 <input>Fixed bug where dates displayed incorrectly in reports</input>
 <output>
 ```
-fix(reports): correct date formatting in timezone conversion
 
-Use UTC timestamps consistently across report generation
+修复（报告）：时区转换中的正确日期格式
+
+在报告生成过程中一致使用 UTC 时间戳
 ```
 </output>
 </example>
@@ -161,64 +168,68 @@ Use UTC timestamps consistently across report generation
 Follow this style: type(scope): brief description, then detailed explanation.
 </commit_message_format>
 ```
+
 </showing_example>
 
 <why_showing_works>
-Examples communicate nuances that text descriptions can't:
-- Exact formatting (spacing, capitalization, punctuation)
-- Tone and style
-- Level of detail
-- Pattern across multiple cases
+示例传达了文本描述无法传达的细微差别：
+- 精确的格式（空格、大写、标点符号）
+- 语气和风格
+- 详细程度
+- 跨多种情况的模式
 
-Claude learns patterns from examples more reliably than from descriptions.
+克劳德从示例中学习模式比从描述中学习模式更可靠。
 </why_showing_works>
 </show_dont_just_tell>
 
 <avoid_ambiguity>
 <principle>
-Eliminate words and phrases that create ambiguity or leave decisions open.
+消除造成歧义或留下未决决定的单词和短语。
 </principle>
 
 <ambiguous_phrases>
-❌ **"Try to..."** - Implies optional
-✅ **"Always..."** or **"Never..."** - Clear requirement
+❌ **“尝试...”** - 表示可选
+✅ **“总是...”** 或 **“从不...”** - 明确的要求
 
-❌ **"Should probably..."** - Unclear obligation
-✅ **"Must..."** or **"May optionally..."** - Clear obligation level
+❌ **“应该可能......”** - 义务不明确
+✅ **“必须...”** 或 **“可以选择...”** - 明确的义务级别
 
-❌ **"Generally..."** - When are exceptions allowed?
-✅ **"Always... except when..."** - Clear rule with explicit exceptions
+❌ **“通常......”** - 什么时候允许例外？
+✅ **“总是......除非......”** - 具有明确例外的明确规则
 
-❌ **"Consider..."** - Should Claude always do this or only sometimes?
-✅ **"If X, then Y"** or **"Always..."** - Clear conditions
+❌ **“考虑...”** - 克劳德应该总是这样做还是只是有时这样做？
+✅ **“如果 X，则 Y”** 或 **“总是...”** - 明确的条件
 </ambiguous_phrases>
 
 <example>
-❌ **Ambiguous**:
+❌ **不明确**：
 ```xml
 <validation>
 You should probably validate the output and try to fix any errors.
 </validation>
 ```
 
-✅ **Clear**:
+
+✅ **清除**：
 ```xml
 <validation>
 Always validate output before proceeding:
 
 ```bash
-python scripts/validate.py output_dir/
+
+蟒蛇scripts/validate.py输出目录/
 ```
 
 If validation fails, fix errors and re-validate. Only proceed when validation passes with zero errors.
 </validation>
 ```
+
 </example>
 </avoid_ambiguity>
 
 <define_edge_cases>
 <principle>
-Anticipate edge cases and define how to handle them. Don't leave Claude guessing.
+预测边缘情况并定义如何处理它们。别让克劳德胡乱猜测。
 </principle>
 
 <without_edge_cases>
@@ -228,11 +239,12 @@ Extract email addresses from the text file and save to a JSON array.
 </quick_start>
 ```
 
-**Questions left unanswered**:
-- What if no emails are found?
-- What if the same email appears multiple times?
-- What if emails are malformed?
-- What JSON format exactly?
+
+**未解答的问题**：
+- 如果没有找到电子邮件怎么办？
+- 如果同一封电子邮件出现多次怎么办？
+- 如果电子邮件格式错误怎么办？
+- JSON 到底是什么格式？
 </without_edge_cases>
 
 <with_edge_cases>
@@ -249,20 +261,22 @@ Extract email addresses from the text file and save to a JSON array.
 
 <example_output>
 ```json
+
 [
-  "user1@example.com",
-  "user2@example.com"
+  “user1@example.com”，
+  “user2@example.com”
 ]
 ```
 </example_output>
 </quick_start>
 ```
+
 </with_edge_cases>
 </define_edge_cases>
 
 <output_format_specification>
 <principle>
-When output format matters, specify it precisely. Show examples.
+当输出格式很重要时，请精确指定。显示示例。
 </principle>
 
 <vague_format>
@@ -271,6 +285,7 @@ When output format matters, specify it precisely. Show examples.
 Generate a report with the analysis results.
 </output>
 ```
+
 </vague_format>
 
 <specific_format>
@@ -279,22 +294,23 @@ Generate a report with the analysis results.
 Generate a markdown report with this exact structure:
 
 ```markdown
-# Analysis Report: [Title]
 
-## Executive Summary
-[1-2 paragraphs summarizing key findings]
+# 分析报告：[标题]
 
-## Key Findings
-- Finding 1 with supporting data
-- Finding 2 with supporting data
-- Finding 3 with supporting data
+## 执行摘要
+[1-2 段总结主要发现]
 
-## Recommendations
-1. Specific actionable recommendation
-2. Specific actionable recommendation
+## 主要发现
+- 找到 1 并提供支持数据
+- 发现 2 并提供支持数据
+- 发现 3 并提供支持数据
 
-## Appendix
-[Raw data and detailed calculations]
+## 建议
+1. 具体可行的建议
+2. 具体可行的建议
+
+## 附录
+【原始数据和详细计算】
 ```
 
 **Requirements**:
@@ -305,12 +321,13 @@ Generate a markdown report with this exact structure:
 - Include appendix with source data
 </output_format>
 ```
+
 </specific_format>
 </output_format_specification>
 
 <decision_criteria>
 <principle>
-When Claude must make decisions, provide clear criteria.
+当克劳德必须做出决定时，提供明确的标准。
 </principle>
 
 <no_criteria>
@@ -320,7 +337,8 @@ Analyze the data and decide which visualization to use.
 </workflow>
 ```
 
-**Problem**: What factors should guide this decision?
+
+**问题**：什么因素应该指导这个决定？
 </no_criteria>
 
 <with_criteria>
@@ -347,13 +365,14 @@ Analyze the data and select appropriate visualization:
 </workflow>
 ```
 
-**Benefits**: Claude has objective criteria for making the decision rather than guessing.
+
+**好处**：克劳德有客观的标准来做决定而不是猜测。
 </with_criteria>
 </decision_criteria>
 
 <constraints_and_requirements>
 <principle>
-Clearly separate "must do" from "nice to have" from "must not do".
+明确区分“必须做”、“最好有”和“不能做”。
 </principle>
 
 <unclear_requirements>
@@ -363,10 +382,11 @@ The report should include financial data, customer metrics, and market analysis.
 </requirements>
 ```
 
-**Problems**:
-- Are all three content types required?
-- Are visualizations optional or required?
-- How long is "too long"?
+
+**问题**：
+- 三种内容类型都需要吗？
+- 可视化是可选的还是必需的？
+- “太长”有多长？
 </unclear_requirements>
 
 <clear_requirements>
@@ -393,13 +413,14 @@ The report should include financial data, customer metrics, and market analysis.
 </requirements>
 ```
 
-**Benefits**: Clear priorities and constraints prevent misalignment.
+
+**好处**：明确的优先事项和限制可以防止不一致。
 </clear_requirements>
 </constraints_and_requirements>
 
 <success_criteria>
 <principle>
-Define what success looks like. How will Claude know it succeeded?
+定义成功是什么样子。克劳德怎么知道它成功了？
 </principle>
 
 <without_success_criteria>
@@ -409,7 +430,8 @@ Process the CSV file and generate a report.
 </objective>
 ```
 
-**Problem**: When is this task complete? What defines success?
+
+**问题**：这个任务什么时候完成？什么定义了成功？
 </without_success_criteria>
 
 <with_success_criteria>
@@ -428,37 +450,39 @@ Process the CSV file and generate a summary report.
 </success_criteria>
 ```
 
-**Benefits**: Clear completion criteria eliminate ambiguity about when the task is done.
+
+**好处**：明确的完成标准消除了任务何时完成的歧义。
 </with_success_criteria>
 </success_criteria>
 
 <testing_clarity>
 <principle>
-Test your instructions by asking: "Could I hand these instructions to a junior developer and expect correct results?"
+通过询问以下问题来测试您的指令：“我可以将这些指令交给初级开发人员并期望得到正确的结果吗？”
 </principle>
 
 <testing_process>
-1. Read your skill instructions
-2. Remove context only you have (project knowledge, unstated assumptions)
-3. Identify ambiguous terms or vague requirements
-4. Add specificity where needed
-5. Test with someone who doesn't have your context
-6. Iterate based on their questions and confusion
+1.阅读你的技能说明
+2.删除只有你拥有的背景（项目知识、未陈述的假设）
+3. 识别不明确的术语或模糊的要求
+4. 根据需要添加特异性
+5. 与不了解你的背景的人进行测试
+6. 根据他们的问题和困惑进行迭代
 
-If a human with minimal context struggles, Claude will too.
+如果一个背景极少的人陷入困境，克劳德也会如此。
 </testing_process>
 </testing_clarity>
 
 <practical_examples>
 <example domain="data_processing">
-❌ **Unclear**:
+❌ **不清楚**：
 ```xml
 <quick_start>
 Clean the data and remove bad entries.
 </quick_start>
 ```
 
-✅ **Clear**:
+
+✅ **清除**：
 ```xml
 <quick_start>
 <data_cleaning>
@@ -478,36 +502,39 @@ Clean the data and remove bad entries.
 </success_criteria>
 </quick_start>
 ```
+
 </example>
 
 <example domain="code_generation">
-❌ **Unclear**:
+❌ **不清楚**：
 ```xml
 <quick_start>
 Write a function to process user input.
 </quick_start>
 ```
 
-✅ **Clear**:
+
+✅ **清除**：
 ```xml
 <quick_start>
 <function_specification>
 Write a Python function with this signature:
 
 ```python
-def process_user_input(raw_input: str) -> dict:
-    """
-    Validate and parse user input.
 
-    Args:
-        raw_input: Raw string from user (format: "name:email:age")
+def process_user_input(raw_input: str) -> 字典:
+    ”“”
+    验证并解析用户输入。
 
-    Returns:
-        dict with keys: name (str), email (str), age (int)
+参数：
+        raw_input：来自用户的原始字符串（格式：“姓名：电子邮件：年龄”）
 
-    Raises:
-        ValueError: If input format is invalid
-    """
+返回：
+        带键的字典：姓名 (str)、电子邮件 (str)、年龄 (int)
+
+加薪：
+        ValueError：如果输入格式无效
+    ”“”
 ```
 
 **Requirements**:
@@ -527,5 +554,6 @@ def process_user_input(raw_input: str) -> dict:
 </success_criteria>
 </quick_start>
 ```
+
 </example>
 </practical_examples>

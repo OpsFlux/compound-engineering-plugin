@@ -1,20 +1,20 @@
-# DSPy.rb LLM Providers
+# DSPy.rb LLM 提供商
 
-## Supported Providers
+## 支持的提供商
 
-DSPy.rb provides unified support across multiple LLM providers through adapter gems that automatically load when installed.
+DSPy.rb 通过安装时自动加载的适配器 gem 提供跨多个 LLM 提供商的统一支持。
 
-### Provider Overview
+### 提供商概述
 
-- **OpenAI**: GPT-4, GPT-4o, GPT-4o-mini, GPT-3.5-turbo
-- **Anthropic**: Claude 3 family (Sonnet, Opus, Haiku), Claude 3.5 Sonnet
-- **Google Gemini**: Gemini 1.5 Pro, Gemini 1.5 Flash, other versions
-- **Ollama**: Local model support via OpenAI compatibility layer
-- **OpenRouter**: Unified multi-provider API for 200+ models
+- **OpenAI**：GPT-4、GPT-4o、GPT-4o-mini、GPT-3.5-turbo
+- **人择**：克劳德 3 系列（十四行诗、作品、俳句）、克劳德 3.5 十四行诗
+- **Google Gemini**：Gemini 1.5 Pro、Gemini 1.5 Flash、其他版本
+- **Ollama**：通过 OpenAI 兼容层支持本地模型
+- **OpenRouter**：适用于 200 多种型号的统一多提供商 API
 
-## Configuration
+## 配置
 
-### Basic Setup
+### 基本设置
 
 ```ruby
 require 'dspy'
@@ -24,9 +24,10 @@ DSPy.configure do |c|
 end
 ```
 
-### OpenAI Configuration
 
-**Required gem**: `dspy-openai`
+### OpenAI 配置
+
+**所需宝石**：`dspy-openai`
 
 ```ruby
 DSPy.configure do |c|
@@ -41,11 +42,12 @@ DSPy.configure do |c|
 end
 ```
 
-**Environment variable**: `OPENAI_API_KEY`
 
-### Anthropic Configuration
+**环境变量**：`OPENAI_API_KEY`
 
-**Required gem**: `dspy-anthropic`
+### 人择配置
+
+**所需宝石**：`dspy-anthropic`
 
 ```ruby
 DSPy.configure do |c|
@@ -67,11 +69,12 @@ DSPy.configure do |c|
 end
 ```
 
-**Environment variable**: `ANTHROPIC_API_KEY`
 
-### Google Gemini Configuration
+**环境变量**：`ANTHROPIC_API_KEY`
 
-**Required gem**: `dspy-gemini`
+### 谷歌双子座配置
+
+**所需宝石**：`dspy-gemini`
 
 ```ruby
 DSPy.configure do |c|
@@ -85,11 +88,12 @@ DSPy.configure do |c|
 end
 ```
 
-**Environment variable**: `GOOGLE_API_KEY` or `GEMINI_API_KEY`
 
-### Ollama Configuration
+**环境变量**：`GOOGLE_API_KEY` 或 `GEMINI_API_KEY`
 
-**Required gem**: None (uses OpenAI compatibility layer)
+### 奥拉玛配置
+
+**必需的 gem**：无（使用 OpenAI 兼容层）
 
 ```ruby
 DSPy.configure do |c|
@@ -103,11 +107,12 @@ DSPy.configure do |c|
 end
 ```
 
-**Note**: Ensure Ollama is running locally: `ollama serve`
 
-### OpenRouter Configuration
+**注意**：确保 Ollama 在本地运行：`ollama serve`
 
-**Required gem**: `dspy-openai` (uses OpenAI adapter)
+### OpenRouter配置
+
+**所需的 gem**：`dspy-openai`（使用 OpenAI 适配器）
 
 ```ruby
 DSPy.configure do |c|
@@ -122,26 +127,27 @@ DSPy.configure do |c|
 end
 ```
 
-**Environment variable**: `OPENROUTER_API_KEY`
 
-## Provider Compatibility Matrix
+**环境变量**：`OPENROUTER_API_KEY`
 
-### Feature Support
+## 提供商兼容性矩阵
 
-| Feature | OpenAI | Anthropic | Gemini | Ollama |
-|---------|--------|-----------|--------|--------|
-| Structured Output | ✅ | ✅ | ✅ | ✅ |
-| Vision (Images) | ✅ | ✅ | ✅ | ⚠️ Limited |
-| Image URLs | ✅ | ❌ | ❌ | ❌ |
-| Tool Calling | ✅ | ✅ | ✅ | Varies |
-| Streaming | ❌ | ❌ | ❌ | ❌ |
-| Function Calling | ✅ | ✅ | ✅ | Varies |
+### 功能支持
 
-**Legend**: ✅ Full support | ⚠️ Partial support | ❌ Not supported
+|特色 |开放人工智能 |人择 |双子座|奥拉玛 |
+|--------|--------|------------|--------|--------|
+|结构化输出| ✅ | ✅ | ✅ | ✅ |
+|愿景（图像）| ✅ | ✅ | ✅ | ⚠️ 有限公司 |
+|图像 URL | ✅ | ❌ | ❌ | ❌ |
+|工具调用 | ✅ | ✅ | ✅ |变化 |
+|流媒体 | ❌ | ❌ | ❌ | ❌ |
+|函数调用 | ✅ | ✅ | ✅ |变化 |
 
-### Vision Capabilities
+**图例**： ✅ 全力支持| ⚠️部分支持| ❌ 不支持
 
-**Image URLs**: Only OpenAI supports direct URL references. For other providers, load images as base64 or from files.
+### 视觉能力
+
+**图像 URL**：仅 OpenAI 支持直接 URL 引用。对于其他提供程序，将图像加载为 base64 或从文件加载。
 
 ```ruby
 # OpenAI - supports URLs
@@ -152,13 +158,14 @@ DSPy::Image.from_file("path/to/image.jpg")
 DSPy::Image.from_base64(base64_data, mime_type: "image/jpeg")
 ```
 
-**Ollama**: Limited multimodal functionality. Check specific model capabilities.
 
-## Advanced Configuration
+**Ollama**：有限的多模式功能。检查特定型号的功能。
 
-### Custom Parameters
+## 高级配置
 
-Pass provider-specific parameters during configuration:
+### 自定义参数
+
+在配置期间传递特定于提供者的参数：
 
 ```ruby
 DSPy.configure do |c|
@@ -171,9 +178,10 @@ DSPy.configure do |c|
 end
 ```
 
-### Multiple Providers
 
-Use different models for different tasks:
+### 多个提供商
+
+针对不同的任务使用不同的模型：
 
 ```ruby
 # Fast model for simple tasks
@@ -201,9 +209,10 @@ class ComplexAnalyzer < DSPy::Module
 end
 ```
 
-### Per-Request Configuration
 
-Override configuration for specific predictions:
+### 每个请求配置
+
+覆盖特定预测的配置：
 
 ```ruby
 predictor = DSPy::Predict.new(MySignature)
@@ -218,16 +227,17 @@ result2 = predictor.forward(
 )
 ```
 
-## Cost Optimization
 
-### Model Selection Strategy
+## 成本优化
 
-1. **Development**: Use cheaper, faster models (gpt-4o-mini, claude-3-haiku, gemini-1.5-flash)
-2. **Production Simple Tasks**: Continue with cheaper models if quality is sufficient
-3. **Production Complex Tasks**: Upgrade to more capable models (gpt-4o, claude-3.5-sonnet, gemini-1.5-pro)
-4. **Local Development**: Use Ollama for privacy and zero API costs
+### 模型选择策略
 
-### Example Cost-Conscious Setup
+1. **开发**：使用更便宜、更快的模型（gpt-4o-mini、claude-3-haiku、gemini-1.5-flash）
+2. **生产简单任务**：如果质量足够，继续使用更便宜的型号
+3. **生产复杂任务**：升级到功能更强大的模型（gpt-4o、claude-3.5-sonnet、gemini-1.5-pro）
+4. **本地开发**：使用 Ollama 保护隐私和零 API 成本
+
+### 成本意识设置示例
 
 ```ruby
 # Development environment
@@ -248,40 +258,41 @@ else  # production
 end
 ```
 
-## Provider-Specific Best Practices
 
-### OpenAI
+## 特定于提供商的最佳实践
 
-- Use `gpt-4o-mini` for development and simple tasks
-- Use `gpt-4o` for production complex tasks
-- Best vision support including URL loading
-- Excellent function calling capabilities
+### 开放人工智能
 
-### Anthropic
+- 使用`gpt-4o-mini`进行开发和简单任务
+- 使用`gpt-4o`执行复杂的生产任务
+- 最佳视觉支持，包括 URL 加载
+- 优秀的函数调用能力
 
-- Claude 3.5 Sonnet is currently the most capable model
-- Excellent for complex reasoning and analysis
-- Strong safety features and helpful outputs
-- Requires base64 for images (no URL support)
+### 人择
 
-### Google Gemini
+- Claude 3.5 Sonnet是目前功能最强大的型号
+- 非常适合复杂的推理和分析
+- 强大的安全功能和有用的输出
+- 图像需要 base64（不支持 URL）
 
-- Gemini 1.5 Pro for complex tasks, Flash for speed
-- Strong multimodal capabilities
-- Good balance of cost and performance
-- Requires base64 for images
+### 谷歌双子座
 
-### Ollama
+- Gemini 1.5 Pro 用于复杂任务，Flash 用于速度
+- 强大的多式联运能力
+- 成本和性能的良好平衡
+- 图像需要 base64
 
-- Best for privacy-sensitive applications
-- Zero API costs
-- Requires local hardware resources
-- Limited multimodal support depending on model
-- Good for development and testing
+### 成为
 
-## Troubleshooting
+- 最适合隐私敏感的应用程序
+- 零 API 成本
+- 需要本地硬件资源
+- 有限的多式联运支持取决于型号
+- 适合开发和测试
 
-### API Key Issues
+## 故障排除
+
+### API 密钥问题
 
 ```ruby
 # Verify API key is set
@@ -301,9 +312,10 @@ rescue => e
 end
 ```
 
-### Rate Limiting
 
-Handle rate limits gracefully:
+### 速率限制
+
+优雅地处理速率限制：
 
 ```ruby
 def call_with_retry(predictor, input, max_retries: 3)
@@ -322,9 +334,10 @@ def call_with_retry(predictor, input, max_retries: 3)
 end
 ```
 
-### Model Not Found
 
-Ensure the correct gem is installed:
+### 型号未找到
+
+确保安装了正确的 gem：
 
 ```bash
 # For OpenAI
@@ -336,3 +349,4 @@ gem install dspy-anthropic
 # For Gemini
 gem install dspy-gemini
 ```
+

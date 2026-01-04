@@ -1,53 +1,53 @@
 <overview>
-Skills have three structural components: YAML frontmatter (metadata), pure XML body structure (content organization), and progressive disclosure (file organization). This reference defines requirements and best practices for each component.
+技能具有三个结构组成部分：YAML frontmatter（元数据）、纯 XML 主体结构（内容组织）和渐进式披露（文件组织）。该参考定义了每个组件的要求和最佳实践。
 </overview>
 
 <xml_structure_requirements>
 <critical_rule>
-**Remove ALL markdown headings (#, ##, ###) from skill body content.** Replace with semantic XML tags. Keep markdown formatting WITHIN content (bold, italic, lists, code blocks, links).
+**从技能正文内容中删除所有 Markdown 标题（#、##、###）。** 替换为语义 XML 标签。在内容中保持 Markdown 格式（粗体、斜体、列表、代码块、链接）。
 </critical_rule>
 
 <required_tags>
-Every skill MUST have these three tags:
+每个技能都必须具有这三个标签：
 
-- **`<objective>`** - What the skill does and why it matters (1-3 paragraphs)
-- **`<quick_start>`** - Immediate, actionable guidance (minimal working example)
-- **`<success_criteria>`** or **`<when_successful>`** - How to know it worked
+- **`<objective>`** - 该技能的作用及其重要性（1-3 段）
+- **`<quick_start>`** - 即时、可操作的指导（最小工作示例）
+- **`<success_criteria>`** 或 **`<when_successful>`** - 如何知道它有效
 </required_tags>
 
 <conditional_tags>
-Add based on skill complexity and domain requirements:
+根据技能复杂性和领域要求添加：
 
-- **`<context>`** - Background/situational information
-- **`<workflow>` or `<process>`** - Step-by-step procedures
-- **`<advanced_features>`** - Deep-dive topics (progressive disclosure)
-- **`<validation>`** - How to verify outputs
-- **`<examples>`** - Multi-shot learning
-- **`<anti_patterns>`** - Common mistakes to avoid
-- **`<security_checklist>`** - Non-negotiable security patterns
-- **`<testing>`** - Testing workflows
-- **`<common_patterns>`** - Code examples and recipes
-- **`<reference_guides>` or `<detailed_references>`** - Links to reference files
+- **`<context>`** - 背景/情况信息
+- **`<workflow>` 或 `<process>`** - 分步程序
+- **`<advanced_features>`** - 深入主题（逐步披露）
+- **`<validation>`** - 如何验证输出
+- **`<examples>`** - 多次学习
+- **`<anti_patterns>`** - 要避免的常见错误
+- **`<security_checklist>`** - 不可协商的安全模式
+- **`<testing>`** - 测试工作流程
+- **`<common_patterns>`** - 代码示例和配方
+- **`<reference_guides>` 或 `<detailed_references>`** - 参考文件链接
 
-See [use-xml-tags.md](use-xml-tags.md) for detailed guidance on each tag.
+有关每个标签的详细指南，请参阅 [use-xml-tags.md](use-xml-tags.md)。
 </conditional_tags>
 
 <tag_selection_intelligence>
-**Simple skills** (single domain, straightforward):
-- Required tags only
-- Example: Text extraction, file format conversion
+**简单技巧**（单一领域，简单明了）：
+- 仅必需的标签
+- 示例：文本提取、文件格式转换
 
-**Medium skills** (multiple patterns, some complexity):
-- Required tags + workflow/examples as needed
-- Example: Document processing with steps, API integration
+**中等技能**（多种模式，一些复杂性）：
+- 所需的标签+工作流程/示例（根据需要）
+- 示例：文档处理步骤、API 集成
 
-**Complex skills** (multiple domains, security, APIs):
-- Required tags + conditional tags as appropriate
-- Example: Payment processing, authentication systems, multi-step workflows
+**复杂技能**（多域、安全性、API）：
+- 必要标签+适当的条件标签
+- 示例：支付处理、身份验证系统、多步骤工作流程
 </tag_selection_intelligence>
 
 <xml_nesting>
-Properly nest XML tags for hierarchical content:
+为分层内容正确嵌套 XML 标签：
 
 ```xml
 <examples>
@@ -58,21 +58,23 @@ Properly nest XML tags for hierarchical content:
 </examples>
 ```
 
-Always close tags:
+
+始终关闭标签：
 ```xml
 <objective>
 Content here
 </objective>
 ```
+
 </xml_nesting>
 
 <tag_naming_conventions>
-Use descriptive, semantic names:
-- `<workflow>` not `<steps>`
-- `<success_criteria>` not `<done>`
-- `<anti_patterns>` not `<dont_do>`
+使用描述性的语义名称：
+- `<workflow>` 不是`<steps>`
+- `<success_criteria>` 不是`<done>`
+- `<anti_patterns>` 不是`<dont_do>`
 
-Be consistent within your skill. If you use `<workflow>`, don't also use `<process>` for the same purpose (unless they serve different roles).
+在你的技能范围内保持一致。如果您使用 `<workflow>`，请勿将 `<process>` 也用于同一目的（除非它们发挥不同的作用）。
 </tag_naming_conventions>
 </xml_structure_requirements>
 
@@ -84,112 +86,118 @@ name: skill-name-here
 description: What it does and when to use it (third person, specific triggers)
 ---
 ```
+
 </required_fields>
 
 <name_field>
-**Validation rules**:
-- Maximum 64 characters
-- Lowercase letters, numbers, hyphens only
-- No XML tags
-- No reserved words: "anthropic", "claude"
-- Must match directory name exactly
+**验证规则**：
+- 最多 64 个字符
+- 仅限小写字母、数字、连字符
+- 没有 XML 标签
+- 无保留字：“anthropic”、“claude”
+- 必须完全匹配目录名称
 
-**Examples**:
-- ✅ `process-pdfs`
-- ✅ `manage-facebook-ads`
-- ✅ `setup-stripe-payments`
-- ❌ `PDF_Processor` (uppercase)
-- ❌ `helper` (vague)
-- ❌ `claude-helper` (reserved word)
+**示例**：
+- ✅`process-pdfs`
+- ✅`manage-facebook-ads`
+- ✅`setup-stripe-payments`
+- ❌`PDF_Processor`（大写）
+- ❌`helper`（含糊）
+- ❌`claude-helper`（保留字）
 </name_field>
 
 <description_field>
-**Validation rules**:
-- Non-empty, maximum 1024 characters
-- No XML tags
-- Third person (never first or second person)
-- Include what it does AND when to use it
+**验证规则**：
+- 非空，最多 1024 个字符
+- 没有 XML 标签
+- 第三人称（绝不是第一人称或第二人称）
+- 包括它的作用和何时使用它
 
-**Critical rule**: Always write in third person.
-- ✅ "Processes Excel files and generates reports"
-- ❌ "I can help you process Excel files"
-- ❌ "You can use this to process Excel files"
+**关键规则**：始终以第三人称书写。
+- ✅“处理 Excel 文件并生成报告”
+- ❌“我可以帮你处理Excel文件”
+- ❌“您可以使用它来处理Excel文件”
 
-**Structure**: Include both capabilities and triggers.
+**结构**：包括功能和触发器。
 
-**Effective examples**:
+**有效例子**：
 ```yaml
 description: Extract text and tables from PDF files, fill forms, merge documents. Use when working with PDF files or when the user mentions PDFs, forms, or document extraction.
 ```
+
 
 ```yaml
 description: Analyze Excel spreadsheets, create pivot tables, generate charts. Use when analyzing Excel files, spreadsheets, tabular data, or .xlsx files.
 ```
 
+
 ```yaml
 description: Generate descriptive commit messages by analyzing git diffs. Use when the user asks for help writing commit messages or reviewing staged changes.
 ```
 
-**Avoid**:
+
+**避免**：
 ```yaml
 description: Helps with documents
 ```
 
+
 ```yaml
 description: Processes data
 ```
+
 </description_field>
 </yaml_requirements>
 
 <naming_conventions>
-Use **verb-noun convention** for skill names:
+使用**动词-名词约定**作为技能名称：
 
 <pattern name="create">
-Building/authoring tools
+构建/创作工具
 
-Examples: `create-agent-skills`, `create-hooks`, `create-landing-pages`
+示例：`create-agent-skills`、`create-hooks`、`create-landing-pages`
 </pattern>
 
 <pattern name="manage">
-Managing external services or resources
+管理外部服务或资源
 
-Examples: `manage-facebook-ads`, `manage-zoom`, `manage-stripe`, `manage-supabase`
+示例：`manage-facebook-ads`、`manage-zoom`、`manage-stripe`、`manage-supabase`
 </pattern>
 
 <pattern name="setup">
-Configuration/integration tasks
+配置/集成任务
 
-Examples: `setup-stripe-payments`, `setup-meta-tracking`
+示例：`setup-stripe-payments`、`setup-meta-tracking`
 </pattern>
 
 <pattern name="generate">
-Generation tasks
+生成任务
 
-Examples: `generate-ai-images`
+示例：`generate-ai-images`
 </pattern>
 
 <avoid_patterns>
-- Vague: `helper`, `utils`, `tools`
-- Generic: `documents`, `data`, `files`
-- Reserved words: `anthropic-helper`, `claude-tools`
-- Inconsistent: Directory `facebook-ads` but name `facebook-ads-manager`
+- 模糊：`helper`、`utils`、`tools`
+- 通用：`documents`、`data`、`files`
+- 保留字：`anthropic-helper`、`claude-tools`
+- 不一致：目录`facebook-ads`但名称`facebook-ads-manager`
 </avoid_patterns>
 </naming_conventions>
 
 <progressive_disclosure>
 <principle>
-SKILL.md serves as an overview that points to detailed materials as needed. This keeps context window usage efficient.
+SKILL.md 充当概述，根据需要指向详细材料。这可以保持上下文窗口的高效使用。
 </principle>
 
 <practical_guidance>
-- Keep SKILL.md body under 500 lines
-- Split content into separate files when approaching this limit
-- Keep references one level deep from SKILL.md
-- Add table of contents to reference files over 100 lines
+- 将 SKILL.md 正文控制在 500 行以下
+- 当接近此限制时，将内容拆分为单独的文件
+- 将 SKILL.md 的参考文献保留一层深
+- 将目录添加到超过 100 行的参考文件
 </practical_guidance>
 
 <pattern name="high_level_guide">
-Quick start in SKILL.md, details in reference files:
+SKILL.md 中的快速入门，参考文件中的详细信息：
 
 ```markdown
 ---
@@ -205,9 +213,10 @@ Extract text and tables from PDF files, fill forms, and merge documents using Py
 Extract text with pdfplumber:
 
 ```python
-import pdfplumber
-with pdfplumber.open("file.pdf") as pdf:
-    text = pdf.pages[0].extract_text()
+
+导入 pdfplumber
+使用 pdfplumber.open("file.pdf") 作为 pdf：
+    文本 = pdf.pages[0].extract_text()
 ```
 </quick_start>
 
@@ -217,11 +226,12 @@ with pdfplumber.open("file.pdf") as pdf:
 </advanced_features>
 ```
 
-Claude loads forms.md or reference.md only when needed.
+
+Claude仅在需要时加载forms.md或reference.md。
 </pattern>
 
 <pattern name="domain_organization">
-For skills with multiple domains, organize by domain to avoid loading irrelevant context:
+对于具有多个领域的技能，请按领域进行组织以避免加载不相关的上下文：
 
 ```
 bigquery-skill/
@@ -233,11 +243,12 @@ bigquery-skill/
     └── marketing.md (campaigns, attribution)
 ```
 
-When user asks about revenue, Claude reads only finance.md. Other files stay on filesystem consuming zero tokens.
+
+当用户询问收入时，Claude 只阅读 Finance.md。其他文件保留在消耗零令牌的文件系统上。
 </pattern>
 
 <pattern name="conditional_details">
-Show basic content in SKILL.md, link to advanced in reference files:
+在SKILL.md中显示基本内容，链接到参考文件中的高级内容：
 
 ```xml
 <objective>
@@ -258,29 +269,30 @@ For simple edits, modify XML directly.
 </quick_start>
 ```
 
-Claude reads redlining.md or ooxml.md only when the user needs those features.
+
+仅当用户需要这些功能时，Claude 才会读取 redlined.md 或 ooxml.md。
 </pattern>
 
 <critical_rules>
-**Keep references one level deep**: All reference files should link directly from SKILL.md. Avoid nested references (SKILL.md → advanced.md → details.md) as Claude may only partially read deeply nested files.
+**将参考保持一层深度**：所有参考文件应直接从 SKILL.md 链接。避免嵌套引用（SKILL.md→advanced.md→details.md），因为 Claude 可能只能部分读取深度嵌套的文件。
 
-**Add table of contents to long files**: For reference files over 100 lines, include a table of contents at the top.
+**向长文件添加目录**：对于超过 100 行的参考文件，请在顶部添加目录。
 
-**Use pure XML in reference files**: Reference files should also use pure XML structure (no markdown headings in body).
+**在参考文件中使用纯 XML**：参考文件也应该使用纯 XML 结构（正文中没有 Markdown 标题）。
 </critical_rules>
 </progressive_disclosure>
 
 <file_organization>
 <filesystem_navigation>
-Claude navigates your skill directory using bash commands:
+Claude 使用 bash 命令导航您的技能目录：
 
-- Use forward slashes: `reference/guide.md` (not `reference\guide.md`)
-- Name files descriptively: `form_validation_rules.md` (not `doc2.md`)
-- Organize by domain: `reference/finance.md`, `reference/sales.md`
+- 使用正斜杠：`reference/guide.md`（不是`reference\guide.md`）
+- 描述性地命名文件：`form_validation_rules.md`（不是`doc2.md`）
+- 按域组织：`reference/finance.md`、`reference/sales.md`
 </filesystem_navigation>
 
 <directory_structure>
-Typical skill structure:
+典型的技能结构：
 
 ```
 skill-name/
@@ -293,12 +305,13 @@ skill-name/
     ├── validate.py
     └── process.py
 ```
+
 </directory_structure>
 </file_organization>
 
 <anti_patterns>
 <pitfall name="markdown_headings_in_body">
-❌ Do NOT use markdown headings in skill body:
+❌ 不要在技能正文中使用 Markdown 标题：
 
 ```markdown
 # PDF Processing
@@ -310,7 +323,8 @@ Extract text...
 Form filling...
 ```
 
-✅ Use pure XML structure:
+
+✅ 使用纯XML结构：
 
 ```xml
 <objective>
@@ -325,47 +339,48 @@ Extract text...
 Form filling...
 </advanced_features>
 ```
+
 </pitfall>
 
 <pitfall name="vague_descriptions">
-- ❌ "Helps with documents"
-- ✅ "Extract text and tables from PDF files, fill forms, merge documents. Use when working with PDF files or when the user mentions PDFs, forms, or document extraction."
+- ❌“帮助处理文档”
+- ✅“从 PDF 文件中提取文本和表格、填写表单、合并文档。在处理 PDF 文件或用户提及 PDF、表单或文档提取时使用。”
 </pitfall>
 
 <pitfall name="inconsistent_pov">
-- ❌ "I can help you process Excel files"
-- ✅ "Processes Excel files and generates reports"
+- ❌“我可以帮你处理Excel文件”
+- ✅“处理 Excel 文件并生成报告”
 </pitfall>
 
 <pitfall name="wrong_naming_convention">
-- ❌ Directory: `facebook-ads`, Name: `facebook-ads-manager`
-- ✅ Directory: `manage-facebook-ads`, Name: `manage-facebook-ads`
-- ❌ Directory: `stripe-integration`, Name: `stripe`
-- ✅ Directory: `setup-stripe-payments`, Name: `setup-stripe-payments`
+- ❌目录：`facebook-ads`，名称：`facebook-ads-manager`
+- ✅ 目录：`manage-facebook-ads`，名称：`manage-facebook-ads`
+- ❌目录：`stripe-integration`，名称：`stripe`
+- ✅ 目录：`setup-stripe-payments`，名称：`setup-stripe-payments`
 </pitfall>
 
 <pitfall name="deeply_nested_references">
-Keep references one level deep from SKILL.md. Claude may only partially read nested files (SKILL.md → advanced.md → details.md).
+将 SKILL.md 中的引用保持深一层。 Claude 只能部分读取嵌套文件（SKILL.md→advanced.md→details.md）。
 </pitfall>
 
 <pitfall name="windows_paths">
-Always use forward slashes: `scripts/helper.py` (not `scripts\helper.py`)
+始终使用正斜杠：`scripts/helper.py`（不是`scripts\helper.py`）
 </pitfall>
 
 <pitfall name="missing_required_tags">
-Every skill must have: `<objective>`, `<quick_start>`, and `<success_criteria>` (or `<when_successful>`).
+每项技能都必须具有：`<objective>`、`<quick_start>` 和 `<success_criteria>`（或`<when_successful>`）。
 </pitfall>
 </anti_patterns>
 
 <validation_checklist>
-Before finalizing a skill, verify:
+在最终确定技能之前，请验证：
 
-- ✅ YAML frontmatter valid (name matches directory, description in third person)
-- ✅ No markdown headings in body (pure XML structure)
-- ✅ Required tags present: objective, quick_start, success_criteria
-- ✅ Conditional tags appropriate for complexity level
-- ✅ All XML tags properly closed
-- ✅ Progressive disclosure applied (SKILL.md < 500 lines)
+- ✅ YAML frontmatter 有效（名称与目录匹配，第三人称描述）
+- ✅ 正文中没有 Markdown 标题（纯 XML 结构）
+- ✅ 存在必需的标签：objective、quick_start、success_criteria
+- ✅适合复杂程度的条件标签
+- ✅ 所有 XML 标签都正确关闭
+- ✅ 应用渐进式披露（SKILL.md < 500 lines)
 - ✅ Reference files use pure XML structure
 - ✅ File paths use forward slashes
 - ✅ Descriptive file names

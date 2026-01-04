@@ -1,88 +1,92 @@
 ---
 name: playwright-test
-description: Run Playwright browser tests on pages affected by current PR or branch
+description: 在受当前 PR 或分支影响的页面上运行 Playwright 浏览器测试
+
 argument-hint: "[PR number, branch name, or 'current' for current branch]"
 ---
+# 剧作家测试命令
 
-# Playwright Test Command
+<command_purpose>使用 Playwright MCP 在受 PR 或分支更改影响的页面上运行端到端浏览器测试。</command_purpose>
 
-<command_purpose>Run end-to-end browser tests on pages affected by a PR or branch changes using Playwright MCP.</command_purpose>
+## 介绍
 
-## Introduction
+<role>QA 工程师，专门从事基于浏览器的端到端测试</role>
 
-<role>QA Engineer specializing in browser-based end-to-end testing</role>
+此命令在真实浏览器中测试受影响的页面，捕获单元测试遗漏的问题：
+- JavaScript 集成错误
+- CSS/布局回归
+- 用户工作流程中断
+- 控制台错误
 
-This command tests affected pages in a real browser, catching issues that unit tests miss:
-- JavaScript integration bugs
-- CSS/layout regressions
-- User workflow breakages
-- Console errors
-
-## Prerequisites
+## 先决条件
 
 <requirements>
-- Local development server running (e.g., `bin/dev`, `rails server`)
-- Playwright MCP server connected
-- Git repository with changes to test
+- 运行本地开发服务器（例如，`bin/dev`、`rails server`）
+- 连接剧作家 MCP 服务器
+- Git 存储库，包含要测试的更改
 </requirements>
 
-## Main Tasks
+## 主要任务
 
-### 1. Determine Test Scope
+### 1. 确定测试范围
 
-<test_target> $ARGUMENTS </test_target>
+<test_target>$参数</test_target>
 
 <determine_scope>
 
-**If PR number provided:**
+**如果提供 PR 号码：**
 ```bash
 gh pr view [number] --json files -q '.files[].path'
 ```
 
-**If 'current' or empty:**
+
+**如果“当前”或为空：**
 ```bash
 git diff --name-only main...HEAD
 ```
 
-**If branch name provided:**
+
+**如果提供分行名称：**
 ```bash
 git diff --name-only main...[branch]
 ```
 
+
 </determine_scope>
 
-### 2. Map Files to Routes
+### 2. 将文件映射到路由
 
 <file_to_route_mapping>
 
-Map changed files to testable routes:
+将更改的文件映射到可测试的路径：
 
-| File Pattern | Route(s) |
-|-------------|----------|
-| `app/views/users/*` | `/users`, `/users/:id`, `/users/new` |
+|文件模式|路线 |
+|----------|----------|
+| `app/views/users/*` | `/users`、`/users/:id`、`/users/new` |
 | `app/controllers/settings_controller.rb` | `/settings` |
-| `app/javascript/controllers/*_controller.js` | Pages using that Stimulus controller |
-| `app/components/*_component.rb` | Pages rendering that component |
-| `app/views/layouts/*` | All pages (test homepage at minimum) |
-| `app/assets/stylesheets/*` | Visual regression on key pages |
-| `app/helpers/*_helper.rb` | Pages using that helper |
+| `app/javascript/controllers/*_controller.js` |使用 Stimulus 控制器的页面 |
+| `app/components/*_component.rb` |渲染该组件的页面 |
+| `app/views/layouts/*` |所有页面（至少测试主页）|
+| `app/assets/stylesheets/*` |关键页面上的视觉回归 |
+| `app/helpers/*_helper.rb` |使用该帮助程序的页面|
 
-Build a list of URLs to test based on the mapping.
+根据映射构建要测试的 URL 列表。
 
 </file_to_route_mapping>
 
-### 3. Verify Server is Running
+### 3. 验证服务器是否正在运行
 
 <check_server>
 
-Before testing, verify the local server is accessible:
+测试之前，请验证本地服务器是否可访问：
 
 ```
 mcp__playwright__browser_navigate({ url: "http://localhost:3000" })
 mcp__playwright__browser_snapshot({})
 ```
 
-If server is not running, inform user:
+
+如果服务器未运行，通知用户：
 ```markdown
 **Server not running**
 
@@ -93,54 +97,58 @@ Please start your development server:
 Then run `/playwright-test` again.
 ```
 
+
 </check_server>
 
-### 4. Test Each Affected Page
+### 4. 测试每个受影响的页面
 
 <test_pages>
 
-For each affected route:
+对于每条受影响的路线：
 
-**Step 1: Navigate and capture snapshot**
+**第 1 步：导航并捕获快照**
 ```
 mcp__playwright__browser_navigate({ url: "http://localhost:3000/[route]" })
 mcp__playwright__browser_snapshot({})
 ```
 
-**Step 2: Check for errors**
+
+**步骤 2：检查错误**
 ```
 mcp__playwright__browser_console_messages({ level: "error" })
 ```
 
-**Step 3: Verify key elements**
-- Page title/heading present
-- Primary content rendered
-- No error messages visible
-- Forms have expected fields
 
-**Step 4: Test critical interactions (if applicable)**
+**第 3 步：验证关键要素**
+- 页面标题/标题存在
+- 呈现的主要内容
+- 没有可见的错误消息
+- 表单有预期字段
+
+**步骤 4：测试关键交互（如果适用）**
 ```
 mcp__playwright__browser_click({ element: "[description]", ref: "[ref]" })
 mcp__playwright__browser_snapshot({})
 ```
 
+
 </test_pages>
 
-### 5. Human Verification (When Required)
+### 5. 人工验证（需要时）
 
 <human_verification>
 
-Pause for human input when testing touches:
+测试触摸时暂停以等待人工输入：
 
-| Flow Type | What to Ask |
-|-----------|-------------|
-| OAuth | "Please sign in with [provider] and confirm it works" |
-| Email | "Check your inbox for the test email and confirm receipt" |
-| Payments | "Complete a test purchase in sandbox mode" |
-| SMS | "Verify you received the SMS code" |
-| External APIs | "Confirm the [service] integration is working" |
+|流量类型|问什么 |
+|------------|-------------|
+| OAuth | “请使用 [provider] 登录并确认其有效” |
+|电子邮件 | “检查您的收件箱中是否有测试电子邮件并确认收到”|
+|付款 | “在沙盒模式下完成测试购买”|
+|短信| “验证您收到短信代码”|
+|外部 API | “确认[服务]集成正在运行”|
 
-Use AskUserQuestion:
+使用询问用户问题：
 ```markdown
 **Human Verification Needed**
 
@@ -153,20 +161,21 @@ Did it work correctly?
 2. No - describe the issue
 ```
 
+
 </human_verification>
 
-### 6. Handle Failures
+### 6. 处理失败
 
 <failure_handling>
 
-When a test fails:
+当测试失败时：
 
-1. **Document the failure:**
-   - Screenshot the error state
-   - Capture console errors
-   - Note the exact reproduction steps
+1. **记录失败：**
+   - 错误状态截图
+   - 捕获控制台错误
+   - 注意准确的复制步骤
 
-2. **Ask user how to proceed:**
+2. **询问用户如何继续：**
    ```markdown
    **Test Failed: [route]**
 
@@ -179,27 +188,28 @@ When a test fails:
    3. Skip - Continue testing other pages
    ```
 
-3. **If "Fix now":**
-   - Investigate the issue
-   - Propose a fix
-   - Apply fix
-   - Re-run the failing test
 
-4. **If "Create todo":**
-   - Create `{id}-pending-p1-playwright-{description}.md`
-   - Continue testing
+3. **如果“立即修复”：**
+   - 调查问题
+   - 提出修复建议
+   - 应用修复
+   - 重新运行失败的测试
 
-5. **If "Skip":**
-   - Log as skipped
-   - Continue testing
+4. **如果“创建待办事项”：**
+   - 创建`{id}-pending-p1-playwright-{description}.md`
+   - 继续测试
+
+5. **如果“跳过”：**
+   - 记录为已跳过
+   - 继续测试
 
 </failure_handling>
 
-### 7. Test Summary
+### 7. 测试总结
 
 <test_summary>
 
-After all tests complete, present summary:
+所有测试完成后，呈现总结：
 
 ```markdown
 ## 🎭 Playwright Test Results
@@ -232,9 +242,10 @@ After all tests complete, present summary:
 ### Result: [PASS / FAIL / PARTIAL]
 ```
 
+
 </test_summary>
 
-## Quick Usage Examples
+## 快速使用示例
 
 ```bash
 # Test current branch changes
@@ -246,3 +257,4 @@ After all tests complete, present summary:
 # Test specific branch
 /playwright-test feature/new-dashboard
 ```
+

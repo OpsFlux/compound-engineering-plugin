@@ -1,34 +1,36 @@
-# Critical Pattern Template
+# 关键模式模板
 
-Use this template when adding a pattern to `docs/solutions/patterns/cora-critical-patterns.md`:
+将模式添加到 `docs/solutions/patterns/cora-critical-patterns.md` 时使用此模板：
 
 ---
 
-## N. [Pattern Name] (ALWAYS REQUIRED)
+## N. [模式名称]（始终需要）
 
-### ❌ WRONG ([Will cause X error])
+### ❌ 错误（[将导致 X 错误]）
 ```[language]
 [code showing wrong approach]
 ```
 
-### ✅ CORRECT
+
+### ✅ 正确
 ```[language]
 [code showing correct approach]
 ```
 
-**Why:** [Technical explanation of why this is required]
 
-**Placement/Context:** [When this applies]
+**为什么：** [为什么需要这样做的技术解释]
 
-**Documented in:** `docs/solutions/[category]/[filename].md`
+**位置/上下文：** [当适用时]
+
+**记载于：** `docs/solutions/[category]/[filename].md`
 
 ---
 
-**Instructions:**
-1. Replace N with the next pattern number
-2. Replace [Pattern Name] with descriptive title
-3. Fill in WRONG example with code that causes the problem
-4. Fill in CORRECT example with the solution
-5. Explain the technical reason in "Why"
-6. Clarify when this pattern applies in "Placement/Context"
-7. Link to the full troubleshooting doc where this was originally solved
+**说明：**
+1. 将 N 替换为下一个模式编号
+2. 将[模式名称]替换为描述性标题
+3. 使用导致问题的代码填写错误示例
+4. 用解决方案填写正确的示例
+5. 在“Why”中解释技术原因
+6. 澄清此模式何时适用于“放置/上下文”
+7. 链接到最初解决此问题的完整故障排除文档

@@ -1,37 +1,38 @@
-# Coding Tutor
+# 编码导师
 
-Your personal AI tutor that creates tutorials tailored to you - using real code from your projects, building on what you already know, and tracking your progress over time.
+您的个人人工智能导师将创建为您量身定制的教程 - 使用您项目中的真实代码，在您已知的基础上进行构建，并跟踪您随时间的进展。
 
-## Why
+## 为什么
 
-AI is already smarter than any single human being across the breadth of tasks it can perform. It beats PhDs, aces entrance exams in every field, and this gap will only widen.
+在它可以执行的各种任务中，人工智能已经比任何一个人都聪明。它击败了博士生、各个领域的高考高手，而且这种差距只会越来越大。
 
-In this world, humans have two paths: let their cognitive capabilities decline, or rise to match AI. The long-term future of humanity depends heavily on which path we take.
+在这个世界上，人类有两条路：让自己的认知能力下降，或者上升到与人工智能相匹配。人类的长远未来在很大程度上取决于我们走哪条道路。
 
-My belief is simple: today's AI is smarter than any private tutor anyone on the planet can hire. So why not use it to give every human access to the best personal tutor imaginable? One that knows your background, adapts to your pace, uses your actual work as teaching material, and helps you retain what you learn.
+我的信念很简单：今天的人工智能比地球上任何人可以聘请的任何私人导师都要聪明。那么为什么不利用它让每个人都能获得可以想象到的最好的个人导师呢？一个了解您的背景、适应您的节奏、使用您的实际工作作为教材并帮助您记住所学知识的人。
 
-This project starts with programming - the domain where AI has the most immediate economic impact. Use it to learn about the programs you're vibe coding and level up your skills. Don't just vibe code, vibe learn.
+该项目从编程开始——人工智能对经济影响最直接的领域。用它来了解您正在编写的程序并提高您的技能。不要只是氛围代码，而是氛围学习。
 
-## Install
+## 安装
 
 ```
 /plugin install coding-tutor@claude-code-essentials
 ```
 
-## Features
 
-- Personalized onboarding to understand your learning goals
-- Tutorials that use YOUR code as examples
-- Spaced repetition quiz system to reinforce learning
-- Tracks your progress across tutorials
-- Curriculum planning based on your current knowledge
+## 特征
 
-## Commands
+- 个性化的入职培训，以了解您的学习目标
+- 使用您的代码作为示例的教程
+- 间隔重复测验系统以强化学习
+- 跟踪您在教程中的进度
+- 根据您现有的知识规划课程
 
-- `/teach-me` - Learn something new
-- `/quiz-me` - Test your retention with spaced repetition
-- `/sync-tutorials` - Sync your tutorials to GitHub for backup
+## 命令
 
-## Storage
+- `/teach-me` - 学习新东西
+- `/quiz-me` - 通过间隔重复测试你的记忆力
+- `/sync-tutorials` - 将您的教程同步到 GitHub 进行备份
 
-Tutorials are stored at `~/coding-tutor-tutorials/`. This is auto-created on first use and shared across all your projects. The `source_repo` field in each tutorial tracks which codebase the examples came from.
+## 贮存
+
+教程存储在`~/coding-tutor-tutorials/`。这是在第一次使用时自动创建的，并在您的所有项目中共享。每个教程中的 `source_repo` 字段都会跟踪示例来自哪个代码库。

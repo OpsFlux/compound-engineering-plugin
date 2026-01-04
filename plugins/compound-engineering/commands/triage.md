@@ -1,28 +1,28 @@
 ---
 name: triage
-description: Triage and categorize findings for the CLI todo system
+description: 对 CLI 待办事项系统的结果进行分类和分类
+
 argument-hint: "[findings list or source type]"
 ---
+- 首先将/model设置为俳句
+- 然后读取 todos/ 目录中所有待处理的待办事项
 
-- First set the /model to Haiku
-- Then read all pending todos in the todos/ directory
+在此一一呈现所有发现、决定或问题以进行分类。目标是检查每个项目并决定是否将其添加到 CLI 待办事项系统中。
 
-Present all findings, decisions, or issues here one by one for triage. The goal is to go through each item and decide whether to add it to the CLI todo system.
+**重要提示：在分类期间请勿编写任何代码！**
 
-**IMPORTANT: DO NOT CODE ANYTHING DURING TRIAGE!**
+该命令用于：
 
-This command is for:
+- 对代码审查结果进行分类
+- 处理安全审核结果
+- 审查绩效分析
+- 处理任何其他需要跟踪的分类结果
 
-- Triaging code review findings
-- Processing security audit results
-- Reviewing performance analysis
-- Handling any other categorized findings that need tracking
+## 工作流程
 
-## Workflow
+### 第 1 步：展示每项发现
 
-### Step 1: Present Each Finding
-
-For each finding, present in this format:
+对于每项发现，都以以下格式呈现：
 
 ```
 ---
@@ -52,33 +52,35 @@ Do you want to add this to the todo list?
 3. custom - modify before creating
 ```
 
-### Step 2: Handle User Decision
 
-**When user says "yes":**
+### 第 2 步：处理用户决策
 
-1. **Update existing todo file** (if it exists) or **Create new filename:**
+**当用户说“是”时：**
 
-   If todo already exists (from code review):
+1. **更新现有待办事项文件**（如果存在）或**创建新文件名：**
 
-   - Rename file from `{id}-pending-{priority}-{desc}.md` → `{id}-ready-{priority}-{desc}.md`
-   - Update YAML frontmatter: `status: pending` → `status: ready`
-   - Keep issue_id, priority, and description unchanged
+如果待办事项已经存在（来自代码审查）：
 
-   If creating new todo:
+- 将文件从`{id}-pending-{priority}-{desc}.md`重命名为`{id}-ready-{priority}-{desc}.md`
+   - 更新 YAML frontmatter：`status: pending` → `status: ready`
+   - 保持issue_id、优先级和描述不变
+
+如果创建新的待办事项：
 
    ```
    {next_id}-ready-{priority}-{brief-description}.md
    ```
 
-   Priority mapping:
 
-   - 🔴 P1 (CRITICAL) → `p1`
-   - 🟡 P2 (IMPORTANT) → `p2`
-   - 🔵 P3 (NICE-TO-HAVE) → `p3`
+优先级映射：
 
-   Example: `042-ready-p1-transaction-boundaries.md`
+- 🔴 P1（关键）→ `p1`
+   - 🟡 P2（重要）→ `p2`
+   - 🔵 P3（必备）→ `p3`
 
-2. **Update YAML frontmatter:**
+示例：`042-ready-p1-transaction-boundaries.md`
+
+2. **更新 YAML frontmatter：**
 
    ```yaml
    ---
@@ -90,7 +92,8 @@ Do you want to add this to the todo list?
    ---
    ```
 
-3. **Populate or update the file:**
+
+3. **填充或更新文件：**
 
    ```yaml
    # [Issue Title]
@@ -144,30 +147,31 @@ Do you want to add this to the todo list?
    Source: Triage session on {date}
    ```
 
-4. **Confirm approval:** "✅ Approved: `{new_filename}` (Issue #{issue_id}) - Status: **ready** → Ready to work on"
 
-**When user says "next":**
+4. **确认批准：** “✅ 已批准：`{new_filename}`（问题 #{issue_id}）- 状态：**准备就绪** → 准备工作”
 
-- **Delete the todo file** - Remove it from todos/ directory since it's not relevant
-- Skip to the next item
-- Track skipped items for summary
+**当用户说“下一步”时：**
 
-**When user says "custom":**
+- **删除 todo 文件** - 将其从 todos/ 目录中删除，因为它不相关
+- 跳到下一个项目
+- 跟踪跳过的项目以进行摘要
 
-- Ask what to modify (priority, description, details)
-- Update the information
-- Present revised version
-- Ask again: yes/next/custom
+**当用户说“自定义”时：**
 
-### Step 3: Continue Until All Processed
+- 询问要修改的内容（优先级、描述、详细信息）
+- 更新信息
+- 目前修订版本
+- 再次询问：是/下一个/自定义
 
-- Process all items one by one
-- Track using TodoWrite for visibility
-- Don't wait for approval between items - keep moving
+### 第 3 步：继续直至所有内容均已处理完毕
 
-### Step 4: Final Summary
+- 一项一项地处理所有项目
+- 使用 TodoWrite 进行跟踪以获得可见性
+- 不要等待项目之间的批准 - 继续前进
 
-After all items processed:
+### 步骤 4：最终总结
+
+处理完所有项目后：
 
 ````markdown
 ## Triage Complete
@@ -200,17 +204,19 @@ During triage, the following status updates occurred:
    ```
 ````
 
-2. Start work on approved items:
+
+2. 开始处理已批准的项目：
 
    ```bash
    /resolve_todo_parallel  # Work on multiple approved items efficiently
    ```
 
-3. Or pick individual items to work on
 
-4. As you work, update todo status:
-   - Ready → In Progress (in your local context as you work)
-   - In Progress → Complete (rename file: ready → complete, update frontmatter)
+3. 或者选择要处理的单个项目
+
+4. 在工作时更新待办事项状态：
+   - 准备就绪→进行中（在您工作时的当地环境中）
+   - 进行中 → 完成（重命名文件：准备就绪 → 完成，更新 frontmatter）
 
 ```
 
@@ -218,45 +224,46 @@ During triage, the following status updates occurred:
 
 ```
 
----
-
-Issue #5: Missing Transaction Boundaries for Multi-Step Operations
-
-Severity: 🔴 P1 (CRITICAL)
-
-Category: Data Integrity / Security
-
-Description: The google_oauth2_connected callback in GoogleOauthCallbacks concern performs multiple database operations without transaction protection. If any step fails midway, the database is left in an inconsistent state.
-
-Location: app/controllers/concerns/google_oauth_callbacks.rb:13-50
-
-Problem Scenario:
-
-1. User.update succeeds (email changed)
-2. Account.save! fails (validation error)
-3. Result: User has changed email but no associated Account
-4. Next login attempt fails completely
-
-Operations Without Transaction:
-
-- User confirmation (line 13)
-- Waitlist removal (line 14)
-- User profile update (line 21-23)
-- Account creation (line 28-37)
-- Avatar attachment (line 39-45)
-- Journey creation (line 47)
-
-Proposed Solution: Wrap all operations in ApplicationRecord.transaction do ... end block
-
-Estimated Effort: Small (30 minutes)
 
 ---
 
-Do you want to add this to the todo list?
+问题 #5：缺少多步骤操作的事务边界
 
-1. yes - create todo file
-2. next - skip this item
-3. custom - modify before creating
+严重性：🔴P1（严重）
+
+类别：数据完整性/安全性
+
+说明：GoogleOauthCallbacks 关注点中的 google_oauth2_connected 回调在没有事务保护的情况下执行多个数据库操作。如果任何步骤中途失败，数据库就会处于不一致状态。
+
+地点：app/controllers/concerns/google_oauth_callbacks.rb:13-50
+
+问题场景：
+
+1. User.update成功（邮箱变了）
+2. 保存账户！失败（验证错误）
+3.结果：用户更改了电子邮件，但没有关联的帐户
+4.下次登录尝试完全失败
+
+无交易的操作：
+
+- 用户确认（第 13 行）
+- 删除候补名单（第 14 行）
+- 用户个人资料更新（第 21-23 行）
+- 帐户创建（第 28-37 行）
+- 头像附件（第 39-45 行）
+- 旅程创建（第 47 行）
+
+建议的解决方案：将所有操作包装在 ApplicationRecord.transaction do ... end 块中
+
+预计工作量：小（30 分钟）
+
+---
+
+您想将其添加到待办事项列表中吗？
+
+1. yes - 创建todo文件
+2. 下一步 - 跳过此项
+3.自定义-创建前修改
 
 ```
 
@@ -285,7 +292,8 @@ Every time you present a todo as a header, include:
 Example:
 ```
 
-Progress: 3/10 completed | Estimated time: ~2 minutes remaining
+
+进度：3/10 完成 |预计时间：剩余约 2 分钟
 
 ```
 
@@ -299,7 +307,8 @@ Progress: 3/10 completed | Estimated time: ~2 minutes remaining
 - ❌ That's for /resolve_todo_parallel phase
 ```
 
-When done give these options
+
+完成后给出这些选项
 
 ```markdown
 What would you like to do next?
@@ -308,3 +317,4 @@ What would you like to do next?
 2. commit the todos
 3. nothing, go chill
 ```
+
